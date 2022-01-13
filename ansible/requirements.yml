@@ -1,5 +1,6 @@
 - name: geerlingguy.mysql
 - name: ANXS.postgresql
+  version: 'v1.12.0'
 - name: geerlingguy.redis
 - name: geerlingguy.php
 - name: geerlingguy.php-versions

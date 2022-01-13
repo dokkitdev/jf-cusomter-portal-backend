@@ -44,7 +44,7 @@ supervisor_programs:
 mysql: false
 
 # enable postgres
-postgres: true
+postgres: false
 
 # enable redis
 redis: false

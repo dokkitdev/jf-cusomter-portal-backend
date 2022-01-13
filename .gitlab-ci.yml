@@ -77,7 +77,7 @@ deploy_development:
     PLAYBOOK: prod.yml
     HOSTS_FILE: hosts.prod
   environment:
-    name: "production"
-    url:  https://api.amerisupercraft.com 
+    name: "development"
+    url:  https://dev.${DOMAIN}
   only:
     - development

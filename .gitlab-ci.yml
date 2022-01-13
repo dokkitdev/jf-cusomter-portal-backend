@@ -74,8 +74,8 @@ tests:
 deploy_development:
   extends: .deploy_ansible
   variables:
-    PLAYBOOK: prod.yml
-    HOSTS_FILE: hosts.prod
+    PLAYBOOK: site.yml
+    HOSTS_FILE: hosts.dev
   environment:
     name: "development"
     url:  https://dev.${DOMAIN}

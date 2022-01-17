@@ -4,21 +4,24 @@ namespace App\Services;
 
 use App\Jobs\SendMailJob;
 use App\Mails\ForgotPasswordMail;
+use App\Mails\InvitationMail;
 use App\Models\Role;
 use Carbon\Carbon;
 use Illuminate\Support\Arr;
 use App\Repositories\UserRepository;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use RonasIT\Support\Services\EntityService;
 
 /**
  * @property UserRepository $repository
  * @mixin UserRepository
  */
-class UserService extends EntityService
+class UserService extends BaseService
 {
     public function __construct()
     {
+        parent::__construct();
+
         $this->setRepository(UserRepository::class);
     }
 
@@ -26,17 +29,39 @@ class UserService extends EntityService
     {
         return $this->repository
             ->searchQuery($filters)
-            ->filterBy('role_id')
+            ->filterByList('role_id', 'role_ids')
+            ->filterByList('customer_user.customer_id', 'customer_ids')
             ->filterByQuery(['name', 'email'])
+            ->filterByQueryWithValue('name', 'name_query')
+            ->filterByQueryWithValue('email', 'email_query')
+            ->with(Arr::get($filters, 'with', []))
             ->getSearchResults();
     }
 
     public function create($data)
     {
-        $data['role_id'] = Arr::get($data, 'role_id', Role::USER);
-        $data['password'] = Hash::make($data['password']);
+        $data['role_id'] = Arr::get($data, 'role_id', Role::CUSTOMER);
+        $data['password'] = Hash::make($this->generateHash());
+        $data['set_password_hash'] = $this->generateHash();
+        $data['set_password_hash_created_at'] = Carbon::now();
 
-        return $this->repository->create($data);
+        $user = DB::transaction(function () use ($data) {
+            $user = $this->repository
+                ->force()
+                ->create($data);
+
+            if (Arr::has($data, 'customer_ids')) {
+                $user->customers()->sync($data['customer_ids']);
+            }
+
+            return $user;
+        });
+
+        if (Arr::get($data, 'is_send_email')) {
+            $this->sendInvitationEmail($data['email'], $data['set_password_hash']);
+        }
+
+        return $user;
     }
 
     public function update($where, $data)
@@ -45,7 +70,17 @@ class UserService extends EntityService
             $data['password'] = Hash::make($data['password']);
         }
 
-        return $this->repository->update($where, $data);
+        return DB::transaction(function () use ($where, $data) {
+            $user = $this->repository
+                ->force()
+                ->update($where, $data);
+
+            if (Arr::has($data, 'customer_ids')) {
+                $user->customers()->sync($data['customer_ids']);
+            }
+
+            return $user;
+        });
     }
 
     public function forgotPassword($email)
@@ -75,6 +110,26 @@ class UserService extends EntityService
                 'password' => Hash::make($password),
                 'set_password_hash' => null
             ]);
+    }
+
+    public function resendInvitation($id)
+    {
+        $data = [
+            'set_password_hash' => $this->generateHash(),
+            'set_password_hash_created_at' => Carbon::now()
+        ];
+
+        $user = $this->repository
+            ->force()
+            ->update($id, $data);
+
+        $this->sendInvitationEmail($user['email'], $data['set_password_hash']);
+    }
+
+    protected function sendInvitationEmail($email, $hash)
+    {
+        $mail = new InvitationMail($email, ['hash' => $hash]);
+        dispatch(new SendMailJob($mail));
     }
 
     protected function generateHash($length = 32)

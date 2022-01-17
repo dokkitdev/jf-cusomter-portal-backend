@@ -18,6 +18,7 @@ use App\Http\Controllers\SettingController;
 */
 
 Route::group(['middleware' => 'auth'], function () {
+    Route::post('/users/{id}/resend-invitation', ['uses' => UserController::class . '@resendInvitation']);
     Route::post('/users', ['uses' => UserController::class . '@create']);
     Route::put('/users/{id}', ['uses' => UserController::class . '@update']);
     Route::delete('/users/{id}', ['uses' => UserController::class . '@delete']);
@@ -39,7 +40,6 @@ Route::group(['middleware' => 'guest'], function () {
     Route::post('/login', ['uses' => AuthController::class . '@login']);
     Route::get('/auth/refresh', ['uses' => AuthController::class . '@refreshToken']);
     Route::post('/auth/logout', ['uses' => AuthController::class . '@logout']);
-    Route::post('/register', ['uses' => AuthController::class . '@register']);
     Route::post('/auth/forgot-password', ['uses' => AuthController::class . '@forgotPassword']);
     Route::post('/auth/restore-password', ['uses' => AuthController::class . '@restorePassword']);
     Route::post('/auth/token/check', ['uses' => AuthController::class . '@checkRestoreToken']);

@@ -4,16 +4,17 @@ namespace App\Services;
 
 use Illuminate\Support\Arr;
 use App\Repositories\SettingRepository;
-use RonasIT\Support\Services\EntityService;
 
 /**
  * @property SettingRepository $repository
  * @mixin SettingRepository
  */
-class SettingService extends EntityService
+class SettingService extends BaseService
 {
     public function __construct()
     {
+        parent::__construct();
+
         $this->setRepository(SettingRepository::class);
     }
 

@@ -4,7 +4,6 @@ namespace App\Tests;
 
 use App\Mails\ForgotPasswordMail;
 use App\Tests\Support\AuthTestTrait;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Artisan;
 use Symfony\Component\HttpFoundation\Response;
 use App\Models\User;
@@ -84,21 +83,6 @@ class AuthTest extends TestCase
 
         $this->assertArrayHasKey('token', $response->json());
         $response->assertCookie('token');
-    }
-
-    public function testRegisterFromGuestUser()
-    {
-        $data = $this->getJsonFixture('new_user.json');
-
-        $response = $this->json('post', '/register', $data);
-
-        $response->assertStatus(Response::HTTP_OK);
-
-        $this->assertArrayHasKey('token', $response->json());
-        $response->assertCookie('token');
-
-        $this->assertDatabaseHas('users', $response->json('user'));
-        $this->assertDatabaseHas('users', Arr::only($data, ['email', 'name']));
     }
 
     public function testRefreshToken()
@@ -184,7 +168,7 @@ class AuthTest extends TestCase
     public function testRestorePassword()
     {
         $response = $this->json('post', '/auth/restore-password', [
-            'password' => 'new_password',
+            'password' => 'password1',
             'token' => 'restore_token',
         ]);
 

@@ -7,10 +7,10 @@ use App\Http\Requests\Auth\ForgotPasswordRequest;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Auth\LogoutRequest;
 use App\Http\Requests\Auth\RefreshTokenRequest;
-use App\Http\Requests\Auth\RegisterUserRequest;
 use App\Http\Requests\Auth\RestorePasswordRequest;
 use App\Services\UserService;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Hash;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\JWTAuth;
@@ -22,7 +22,13 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
         $remember = $request->input('remember', false);
 
-        $token = $auth->attempt($credentials);
+        $user = $service->getByEmailInsensitively($credentials['email']);
+
+        $token = false;
+
+        if ($user && Hash::check($credentials['password'], $user['password'])) {
+            $token = $auth->fromUser($user);
+        }
 
         if ($token === false) {
             return response()->json([
@@ -30,27 +36,7 @@ class AuthController extends Controller
             ], Response::HTTP_UNAUTHORIZED);
         }
 
-        $user = $service->first(['email' => $request->input('email')]);
-
         $tokenCookie = $this->authorizationTokenCookie($token, $remember);
-
-        return response()
-            ->json([
-                'token' => $token,
-                'ttl' => config('jwt.ttl'),
-                'refresh_ttl' => config('jwt.refresh_ttl'),
-                'user' => $user
-            ])
-            ->withCookie($tokenCookie);
-    }
-
-    public function register(RegisterUserRequest $request, UserService $service, JWTAuth $auth)
-    {
-        $user = $service->create($request->onlyValidated());
-
-        $credentials = $request->only('email', 'password');
-        $token = $auth->attempt($credentials);
-        $tokenCookie = $this->authorizationTokenCookie($token);
 
         return response()
             ->json([

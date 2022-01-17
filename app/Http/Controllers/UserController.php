@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Users\ResendInvitationRequest;
 use App\Services\UserService;
 use App\Http\Requests\Users\GetUserRequest;
 use App\Http\Requests\Users\CreateUserRequest;
@@ -33,6 +34,13 @@ class UserController extends Controller
     public function update(UpdateUserRequest $request, UserService $service, $id)
     {
         $service->update($id, $request->onlyValidated());
+
+        return response('', Response::HTTP_NO_CONTENT);
+    }
+
+    public function resendInvitation(ResendInvitationRequest $request, UserService $service, $id)
+    {
+        $service->resendInvitation($id);
 
         return response('', Response::HTTP_NO_CONTENT);
     }

@@ -1,4 +1,6 @@
 {
     "name": "Update User",
-    "email": "updateuser@example.com"
+    "email": "updateuser@example.com",
+    "role_id": 3,
+    "customer_ids": [2, 3]
 }

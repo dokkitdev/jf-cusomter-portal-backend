@@ -4,19 +4,20 @@ namespace App\Services;
 
 use App\Repositories\MediaRepository;
 use Illuminate\Support\Facades\Auth;
-use RonasIT\Support\Services\EntityService;
 use RonasIT\Support\Traits\FilesUploadTrait;
 
 /**
  * @property MediaRepository $repository
  * @mixin MediaRepository
  */
-class MediaService extends EntityService
+class MediaService extends BaseService
 {
     use FilesUploadTrait;
 
     public function __construct()
     {
+        parent::__construct();
+
         $this->setRepository(MediaRepository::class);
     }
 

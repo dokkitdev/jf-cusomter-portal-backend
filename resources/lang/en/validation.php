@@ -87,6 +87,8 @@ return [
     'unique'               => 'The :attribute has already been taken.',
     'uploaded'             => 'The :attribute failed to upload.',
     'url'                  => 'The :attribute format is invalid.',
+    'password'             => 'The :attribute is wrong.',
+    'new_password'         => 'The :attribute must be at least eight characters and one number.',
 
     /*
     |--------------------------------------------------------------------------
@@ -129,6 +131,12 @@ return [
 
     'exceptions' => [
         'not_found' => ':Entity does not exist',
+        'not_unique' => ':Entity already exists.',
+        'mismatched_hashes' => 'Hashes do not match',
+        'already_processed' => ':Entity already processed.',
+        'bad_request' => ':Entity does not have :attribute value',
+        'unique' => 'The :attribute has already been taken.',
+        'wrong_status' => ':Entity has wrong status.',
     ]
 
 ];

@@ -40,4 +40,10 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
+    'simpro' => [
+        'token' => env('SIMPRO_TOKEN'),
+        'api_url' => env('SIMPRO_API_URL', 'https://jf.simprosuite.com/'),
+        'webhook_secret' => env('SIMPRO_WEBHOOK_SECRET'),
+        'company_id' => env('SIMPRO_COMPANY_ID', 0)
+    ]
 ];

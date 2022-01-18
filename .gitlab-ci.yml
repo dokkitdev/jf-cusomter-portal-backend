@@ -6,7 +6,7 @@ stages:
 
 variables:
   CI_PROJECT_NAME: jf-cusomter-portal-backend
-  DOMAIN: api.js-customer-portal.ronasit.com
+  DOMAIN: api.jf-customer-portal.ronasit.com
   DOCKERFILE: ./Dockerfile
   CHART_REPO: ronasit/laravel
   CHART_VERSION: &ref 8.2.7

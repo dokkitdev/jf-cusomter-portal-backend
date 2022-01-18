@@ -15,7 +15,7 @@ class CustomerRepository extends BaseRepository
         $this->setModel(Customer::class);
     }
 
-    public function filterByNameOrId(): static
+    public function filterByNameOrId()
     {
         if (Arr::has($this->filter, 'query')) {
             $this->query->where(function ($query) {

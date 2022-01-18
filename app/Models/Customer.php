@@ -13,7 +13,7 @@ class Customer extends Model
     const TYPE_INDIVIDUALS = 'individuals';
 
     protected $fillable = [
-        'customer_id',
+        'simpro_customer_id',
         'name',
         'type'
     ];

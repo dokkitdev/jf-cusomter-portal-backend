@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use Closure;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -9,7 +10,7 @@ use RonasIT\Support\Repositories\BaseRepository as Repository;
 
 class BaseRepository extends Repository
 {
-    public function filterByIntQuery($field, $filterName = null)
+    public function filterByIntQuery(string $field, string $filterName = null)
     {
         if (empty($filterName)) {
             if (Str::contains($field, '.')) {
@@ -27,7 +28,7 @@ class BaseRepository extends Repository
         return $this;
     }
 
-    public function filterByQueryWithValue($field, $filterName)
+    public function filterByQueryWithValue(string $field, string $filterName)
     {
         if (Arr::has($this->filter, $filterName)) {
             $this->query->where($this->getQuerySearchCallbackWithValue($field, $this->filter[$filterName]));
@@ -36,14 +37,14 @@ class BaseRepository extends Repository
         return $this;
     }
 
-    protected function addIntQueryWhere(&$query, $field, $value)
+    protected function addIntQueryWhere(&$query, string $field, $value): void
     {
         $this->applyWhereCallback($query, $field, function (&$q, $field) use ($value) {
             $q->where($this->getIntQuerySearchCallbackWithValue($field, $value));
         });
     }
 
-    protected function getIntQuerySearchCallbackWithValue($field, $value)
+    protected function getIntQuerySearchCallbackWithValue(string $field, $value): Closure
     {
         return function ($query) use ($field, $value) {
             $field = DB::raw("cast({$field} as text)");
@@ -52,7 +53,7 @@ class BaseRepository extends Repository
         };
     }
 
-    protected function getQuerySearchCallbackWithValue($field, $value, $left = '%', $right = '%')
+    protected function getQuerySearchCallbackWithValue(string $field, $value, string $left = '%', string $right = '%'): Closure
     {
         return function ($query) use ($field, $value, $left, $right) {
             $loweredQuery = mb_strtolower($value);

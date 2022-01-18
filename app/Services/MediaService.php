@@ -3,6 +3,8 @@
 namespace App\Services;
 
 use App\Repositories\MediaRepository;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use RonasIT\Support\Traits\FilesUploadTrait;
 
@@ -21,7 +23,7 @@ class MediaService extends BaseService
         $this->setRepository(MediaRepository::class);
     }
 
-    public function search($filters)
+    public function search(array $filters): LengthAwarePaginator
     {
         return $this->repository
             ->searchQuery($filters)
@@ -29,7 +31,7 @@ class MediaService extends BaseService
             ->getSearchResults();
     }
 
-    public function create($content, $fileName, $data = [])
+    public function create(string $content, string $fileName, array $data = []): Model
     {
         $url = $this->saveFile($fileName, $content, true);
         $data['link'] = str_replace(config('app.url'), '', $url);

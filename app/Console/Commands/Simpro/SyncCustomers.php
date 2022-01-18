@@ -11,7 +11,7 @@ class SyncCustomers extends Command
 
     protected $description = 'Sync Simpro Customers';
 
-    public function handle()
+    public function handle(): void
     {
         app(CustomerService::class)->syncCustomers();
 

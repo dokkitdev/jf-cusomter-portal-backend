@@ -7,6 +7,8 @@ use App\Models\Role;
 use App\Models\Customer;
 use App\Repositories\CustomerRepository;
 use Exception;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 
 /**
@@ -16,7 +18,7 @@ use Illuminate\Support\Arr;
 class CustomerService extends BaseService
 {
     protected SimproApiClient $simproClient;
-    protected $companyId;
+    protected int $companyId;
 
     public function __construct()
     {
@@ -29,7 +31,7 @@ class CustomerService extends BaseService
         $this->companyId = config('services.simpro.company_id');
     }
 
-    public function search($filters)
+    public function search(array $filters): LengthAwarePaginator
     {
         $authUser = $this->getAuthUser();
 
@@ -40,12 +42,11 @@ class CustomerService extends BaseService
         return $this->repository
             ->searchQuery($filters)
             ->filterByNameOrId()
-            ->filterByUserGroups()
             ->with(Arr::get($filters, 'with', []))
             ->getSearchResults();
     }
 
-    public function syncCustomers()
+    public function syncCustomers(): void
     {
         $typeCompanies = Customer::TYPE_COMPANIES;
         $companiesPages = $this->simproClient->getAsGenerator("companies/{$this->companyId}/customers/{$typeCompanies}/");
@@ -56,7 +57,7 @@ class CustomerService extends BaseService
         foreach ($companiesPages as $companyPage) {
             $companies = array_map(function ($company) {
                 return [
-                    'customer_id' => $company['ID'],
+                    'simpro_customer_id' => $company['ID'],
                     'name' => $this->getName($company, Customer::TYPE_COMPANIES),
                     'type' => Customer::TYPE_COMPANIES
                 ];
@@ -69,7 +70,7 @@ class CustomerService extends BaseService
         foreach ($individualPages as $individualPage) {
             $individuals = array_map(function ($individual) {
                 return [
-                    'customer_id' => $individual['ID'],
+                    'simpro_customer_id' => $individual['ID'],
                     'name' => $this->getName($individual, Customer::TYPE_INDIVIDUALS),
                     'type' => Customer::TYPE_INDIVIDUALS
                 ];
@@ -84,7 +85,7 @@ class CustomerService extends BaseService
 
         foreach ($customersFromSimpro as $customerFromSimpro) {
             $customer = $customers->first(function ($customer) use ($customerFromSimpro) {
-                return ($customer['customer_id'] === $customerFromSimpro['customer_id']) && ($customer['type'] === $customerFromSimpro['type']);
+                return ($customer['simpro_customer_id'] === $customerFromSimpro['simpro_customer_id']) && ($customer['type'] === $customerFromSimpro['type']);
             });
 
             if ($customer) {
@@ -106,11 +107,11 @@ class CustomerService extends BaseService
         }
     }
 
-    public function getOrCreateBySimpro($companyId, $customer)
+    public function firstOrCreateBySimpro(int $companyId, array $customer): Model
     {
         $customerId = $customer['ID'];
 
-        $customer = $this->repository->first(['customer_id' => $customerId]);
+        $customer = $this->repository->first(['simpro_customer_id' => $customerId]);
 
         if (!$customer) {
             try {
@@ -122,7 +123,7 @@ class CustomerService extends BaseService
             }
 
             $customer = $this->repository->create([
-                'customer_id' => $customerId,
+                'simpro_customer_id' => $customerId,
                 'type' => $type,
                 'name' => $this->getName($customer, $type)
             ]);
@@ -131,7 +132,7 @@ class CustomerService extends BaseService
         return $customer;
     }
 
-    public function createOrUpdateBySimpro($webhook, $type)
+    public function createOrUpdateBySimpro(array $webhook, string $type): void
     {
         $companyId = $webhook['data']['reference']['companyID'];
         $customerId = $this->getCustomerId($webhook);
@@ -139,24 +140,24 @@ class CustomerService extends BaseService
         $customer = $this->simproClient->getCustomer($companyId, $type, $customerId);
 
         $this->repository->updateOrCreate([
-            'customer_id' => $customerId,
+            'simpro_customer_id' => $customerId,
             'type' => $type
         ], [
             'name' => $this->getName($customer, $type)
         ]);
     }
 
-    public function deleteBySimpro($webhook, $type)
+    public function deleteBySimpro(array $webhook, string $type): void
     {
         $customerId = $this->getCustomerId($webhook);
 
         $this->repository->delete([
-            'customer_id' => $customerId,
+            'simpro_customer_id' => $customerId,
             'type' => $type
         ]);
     }
 
-    protected function getName($customer, $type)
+    protected function getName(array $customer, string $type): string
     {
         if ($type === Customer::TYPE_INDIVIDUALS) {
             return "{$customer['GivenName']} {$customer['FamilyName']}";
@@ -165,7 +166,7 @@ class CustomerService extends BaseService
         return $customer['CompanyName'];
     }
 
-    protected function getCustomerId($webhook)
+    protected function getCustomerId(array $webhook): string
     {
         preg_match('/(\d+)/', $webhook['data']['description'], $matches);
 

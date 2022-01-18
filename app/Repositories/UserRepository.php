@@ -17,7 +17,7 @@ class UserRepository extends BaseRepository
         $this->setModel(User::class);
     }
 
-    public function clearSetPasswordHash()
+    public function clearSetPasswordHash(): int
     {
         return $this
             ->getQuery()
@@ -28,7 +28,7 @@ class UserRepository extends BaseRepository
             ]);
     }
 
-    public function getByEmailInsensitively($email)
+    public function getByEmailInsensitively(string $email): ?object
     {
         return $this->getQuery()
             ->where(DB::raw('lower(email)'), Str::lower($email))

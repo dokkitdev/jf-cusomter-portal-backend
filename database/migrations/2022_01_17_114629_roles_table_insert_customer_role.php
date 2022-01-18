@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 
-class AddCustomerRoleToRoles extends Migration
+class RolesTableInsertCustomerRole extends Migration
 {
     public function up()
     {

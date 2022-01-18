@@ -15,18 +15,7 @@ class CustomerRepository extends BaseRepository
         $this->setModel(Customer::class);
     }
 
-    public function filterByUserGroups()
-    {
-        if (Arr::has($this->filter, 'customer_has_user')) {
-            $this->query->whereHas('groups.users', function ($query) {
-                $query->where('user_id', $this->filter['customer_has_user']);
-            });
-        }
-
-        return $this;
-    }
-
-    public function filterByNameOrId()
+    public function filterByNameOrId(): static
     {
         if (Arr::has($this->filter, 'query')) {
             $this->query->where(function ($query) {
@@ -35,7 +24,7 @@ class CustomerRepository extends BaseRepository
                 if (preg_match('/^\d+/', $this->filter['query'])) {
                     $customerId = (int) $this->filter['query'];
 
-                    $query->orWhere('customer_id', $customerId);
+                    $query->orWhere('simpro_customer_id', $customerId);
                 }
             });
         }

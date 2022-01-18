@@ -7,6 +7,8 @@ use App\Mails\ForgotPasswordMail;
 use App\Mails\InvitationMail;
 use App\Models\Role;
 use Carbon\Carbon;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use App\Repositories\UserRepository;
 use Illuminate\Support\Facades\DB;
@@ -25,7 +27,7 @@ class UserService extends BaseService
         $this->setRepository(UserRepository::class);
     }
 
-    public function search($filters)
+    public function search(array $filters): LengthAwarePaginator
     {
         return $this->repository
             ->searchQuery($filters)
@@ -38,7 +40,7 @@ class UserService extends BaseService
             ->getSearchResults();
     }
 
-    public function create($data)
+    public function create(array $data): Model
     {
         $data['role_id'] = Arr::get($data, 'role_id', Role::CUSTOMER);
         $data['password'] = Hash::make($this->generateHash());
@@ -64,7 +66,7 @@ class UserService extends BaseService
         return $user;
     }
 
-    public function update($where, $data)
+    public function update($where, array $data): Model
     {
         if (!empty($data['password'])) {
             $data['password'] = Hash::make($data['password']);
@@ -83,7 +85,7 @@ class UserService extends BaseService
         });
     }
 
-    public function forgotPassword($email)
+    public function forgotPassword(string $email): void
     {
         $hash = $this->generateHash();
 
@@ -100,7 +102,7 @@ class UserService extends BaseService
         dispatch(new SendMailJob($mail));
     }
 
-    public function restorePassword($token, $password)
+    public function restorePassword(string $token, string $password): void
     {
         $this->repository
             ->force()
@@ -112,7 +114,7 @@ class UserService extends BaseService
             ]);
     }
 
-    public function resendInvitation($id)
+    public function resendInvitation(int $id): void
     {
         $data = [
             'set_password_hash' => $this->generateHash(),
@@ -126,13 +128,13 @@ class UserService extends BaseService
         $this->sendInvitationEmail($user['email'], $data['set_password_hash']);
     }
 
-    protected function sendInvitationEmail($email, $hash)
+    protected function sendInvitationEmail(string $email, string $hash): void
     {
         $mail = new InvitationMail($email, ['hash' => $hash]);
         dispatch(new SendMailJob($mail));
     }
 
-    protected function generateHash($length = 32)
+    protected function generateHash(int $length = 32): string
     {
         $length /= 2;
 

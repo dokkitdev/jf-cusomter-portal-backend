@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Repositories\RoleRepository;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 /**
  * @property RoleRepository $repository
@@ -17,7 +18,7 @@ class RoleService extends BaseService
         $this->setRepository(RoleRepository::class);
     }
 
-    public function search($filters)
+    public function search(array $filters): LengthAwarePaginator
     {
         return $this->repository
             ->searchQuery($filters)

@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use RonasIT\Support\Traits\MigrationTrait;
 
-class CreateCustomersTable extends Migration
+class CustomersTableCreate extends Migration
 {
     use MigrationTrait;
 
@@ -13,7 +13,7 @@ class CreateCustomersTable extends Migration
     {
         Schema::create('customers', function (Blueprint $table) {
             $table->id();
-            $table->integer('customer_id');
+            $table->integer('simpro_customer_id');
             $table->string('name');
             $table->enum('type', ['individuals', 'companies']);
             $table->timestamps();

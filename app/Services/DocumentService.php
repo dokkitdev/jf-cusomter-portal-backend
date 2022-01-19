@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Repositories\DocumentRepository;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Arr;
 use RonasIT\Support\Services\EntityService;
 
@@ -17,7 +18,7 @@ class DocumentService extends EntityService
         $this->setRepository(DocumentRepository::class);
     }
 
-    public function search($filters)
+    public function search(array $filters): LengthAwarePaginator
     {
         return $this->repository
             ->searchQuery($filters)

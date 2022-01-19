@@ -15,7 +15,7 @@ class DocumentRepository extends BaseRepository
         $this->setModel(Document::class);
     }
 
-    public function filterByTitle()
+    public function filterByTitle(): self
     {
         if (Arr::has($this->filter, 'title_query')) {
             $this->query->where($this->getQuerySearchCallbackWithValue('title', $this->filter['title_query']));

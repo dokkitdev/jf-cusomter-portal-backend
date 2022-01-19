@@ -241,7 +241,7 @@ class MediaTest extends TestCase
 
         $response->assertJson([
             'errors' => [
-                'file' => ['The file must be a file of type: jpg, jpeg, bmp, png.']
+                'file' => ['The file must be a file of type: jpg, jpeg, bmp, png, pdf.']
             ]
         ]);
     }
@@ -278,5 +278,30 @@ class MediaTest extends TestCase
         $this->assertDatabaseHas('media', [
             'id' => $responseData['id'],
         ]);
+    }
+
+    public function testDownload()
+    {
+        Storage::put('test-image.png', file_get_contents('tests/fixtures/MediaTest/test-image.png'));
+
+        $response = $this->actingAs($this->user)->json('get', '/media/1/download');
+
+        $response->assertStatus(Response::HTTP_OK);
+
+        Storage::delete('test-image.png');
+    }
+
+    public function testDownloadNotExists()
+    {
+        $response = $this->actingAs($this->admin)->json('get', '/media/0/download');
+
+        $response->assertStatus(Response::HTTP_NOT_FOUND);
+    }
+
+    public function testDownloadNoAuth()
+    {
+        $response = $this->json('get', '/media/1/download');
+
+        $response->assertStatus(Response::HTTP_UNAUTHORIZED);
     }
 }

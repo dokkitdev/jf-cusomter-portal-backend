@@ -9,7 +9,7 @@ trait AuthTestTrait
 {
     use MockClassTrait;
 
-    public function mockUniqueTokenGeneration($hash)
+    public function mockUniqueTokenGeneration(string $hash): void
     {
         $this->mockClass(UserService::class, [
             ['method' => 'generateHash', 'result' => $hash]

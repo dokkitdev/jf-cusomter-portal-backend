@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\StatusController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
@@ -34,6 +35,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::put('/settings/{name}', ['uses' => SettingController::class . '@update']);
     Route::get('/settings/{name}', ['uses' => SettingController::class . '@get']);
     Route::get('/settings', ['uses' => SettingController::class . '@search']);
+
+    Route::get('/customers/{id}', ['uses' => CustomerController::class . '@get']);
+    Route::get('/customers', ['uses' => CustomerController::class . '@search']);
 });
 
 Route::group(['middleware' => 'guest'], function () {

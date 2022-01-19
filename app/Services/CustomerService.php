@@ -5,6 +5,7 @@ namespace App\Services;
 use App\ApiClients\SimproApiClient;
 use App\Models\Role;
 use App\Models\Customer;
+use App\Models\SimproJob;
 use App\Repositories\CustomerRepository;
 use Exception;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
@@ -41,6 +42,7 @@ class CustomerService extends BaseService
 
         return $this->repository
             ->searchQuery($filters)
+            ->filterBy('users.user_id', 'customer_has_user')
             ->filterByNameOrId()
             ->with(Arr::get($filters, 'with', []))
             ->getSearchResults();
@@ -132,7 +134,7 @@ class CustomerService extends BaseService
         return $customer;
     }
 
-    public function createOrUpdateBySimpro(array $webhook, string $type): void
+    public function createOrUpdateBySimpro(SimproJob $webhook, string $type): void
     {
         $companyId = $webhook['data']['reference']['companyID'];
         $customerId = $this->getCustomerId($webhook);
@@ -147,7 +149,7 @@ class CustomerService extends BaseService
         ]);
     }
 
-    public function deleteBySimpro(array $webhook, string $type): void
+    public function deleteBySimpro(SimproJob $webhook, string $type): void
     {
         $customerId = $this->getCustomerId($webhook);
 
@@ -166,7 +168,7 @@ class CustomerService extends BaseService
         return $customer['CompanyName'];
     }
 
-    protected function getCustomerId(array $webhook): string
+    protected function getCustomerId(SimproJob $webhook): string
     {
         preg_match('/(\d+)/', $webhook['data']['description'], $matches);
 

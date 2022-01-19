@@ -243,16 +243,15 @@ class SimproApiClient
         } while (!empty($result));
     }
 
-    protected function makeRequest(string $method, string $url, ?array $data = null, array $headers = []): array
+    protected function makeRequest(string $method, string $url, array $data = [], array $headers = []): array
     {
         $headers = array_merge($this->getHeaders(), $headers);
 
         $requestData = ($method === 'delete') ? $headers : $data;
-        $method = "send{$method}";
 
         $response = $this->httpRequestService->$method($url, $requestData, $headers);
 
-        return $this->httpRequestService->parseJsonResponse($response);
+        return $response->json();
     }
 
     protected function getUrl(string $action): string

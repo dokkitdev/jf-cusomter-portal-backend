@@ -4,7 +4,8 @@ namespace App\Repositories;
 
 use App\Models\User;
 use Carbon\Carbon;
-use RonasIT\Support\Repositories\BaseRepository;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 /**
  * @property  User $model
@@ -16,7 +17,7 @@ class UserRepository extends BaseRepository
         $this->setModel(User::class);
     }
 
-    public function clearSetPasswordHash()
+    public function clearSetPasswordHash(): int
     {
         return $this
             ->getQuery()
@@ -25,5 +26,12 @@ class UserRepository extends BaseRepository
                 'set_password_hash' => null,
                 'set_password_hash_created_at' => null
             ]);
+    }
+
+    public function getByEmailInsensitively(string $email): ?object
+    {
+        return $this->getQuery()
+            ->where(DB::raw('lower(email)'), Str::lower($email))
+            ->first();
     }
 }

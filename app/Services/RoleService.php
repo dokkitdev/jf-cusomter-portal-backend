@@ -3,20 +3,22 @@
 namespace App\Services;
 
 use App\Repositories\RoleRepository;
-use RonasIT\Support\Services\EntityService;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 /**
  * @property RoleRepository $repository
  * @mixin RoleRepository
  */
-class RoleService extends EntityService
+class RoleService extends BaseService
 {
     public function __construct()
     {
+        parent::__construct();
+
         $this->setRepository(RoleRepository::class);
     }
 
-    public function search($filters)
+    public function search(array $filters): LengthAwarePaginator
     {
         return $this->repository
             ->searchQuery($filters)

@@ -2,22 +2,25 @@
 
 namespace App\Services;
 
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use App\Repositories\SettingRepository;
-use RonasIT\Support\Services\EntityService;
 
 /**
  * @property SettingRepository $repository
  * @mixin SettingRepository
  */
-class SettingService extends EntityService
+class SettingService extends BaseService
 {
     public function __construct()
     {
+        parent::__construct();
+
         $this->setRepository(SettingRepository::class);
     }
 
-    public function search($filters)
+    public function search(array $filters): LengthAwarePaginator
     {
         return $this->repository
             ->searchQuery($filters)
@@ -26,7 +29,7 @@ class SettingService extends EntityService
             ->getSearchResults();
     }
 
-    public function get($key, $default = null)
+    public function get(string $key, ?string $default = null)
     {
         $explodedKey = explode('.', $key);
         $primaryKey = array_shift($explodedKey);
@@ -47,7 +50,7 @@ class SettingService extends EntityService
         return Arr::get($setting, $valuePath);
     }
 
-    public function set($key, $value)
+    public function set(string $key, $value): Model
     {
         $explodedKey = explode('.', $key);
         $primaryKey = array_shift($explodedKey);

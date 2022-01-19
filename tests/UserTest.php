@@ -2,12 +2,17 @@
 
 namespace App\Tests;
 
+use App\Mails\InvitationMail;
 use App\Models\User;
+use App\Tests\Support\AuthTestTrait;
+use Carbon\Carbon;
 use Illuminate\Support\Arr;
 use Symfony\Component\HttpFoundation\Response;
 
 class UserTest extends TestCase
 {
+    use AuthTestTrait;
+
     protected $admin;
     protected $user;
 
@@ -21,6 +26,8 @@ class UserTest extends TestCase
 
     public function testCreate()
     {
+        $this->mockUniqueTokenGeneration('some_token');
+
         $data = $this->getJsonFixture('create_user.json');
 
         $response = $this->actingAs($this->admin)->json('post', '/users', $data);
@@ -30,6 +37,16 @@ class UserTest extends TestCase
         $this->assertEqualsFixture('user_created.json', $response->json());
 
         $this->assertDatabaseHas('users', $this->getJsonFixture('user_created_database.json'));
+
+        $this->assertDatabaseHas('customer_user', ['user_id' => 4, 'customer_id' => 1]);
+        $this->assertDatabaseHas('customer_user', ['user_id' => 4, 'customer_id' => 2]);
+
+        $this->assertMailEquals(InvitationMail::class, [
+            [
+                'emails' => $data['email'],
+                'fixture' => 'invitation_email.html'
+            ]
+        ]);
     }
 
     public function testCreateNoAuth()
@@ -40,7 +57,7 @@ class UserTest extends TestCase
 
         $response->assertStatus(Response::HTTP_UNAUTHORIZED);
 
-        $this->assertDatabaseMissing('users', Arr::except($data, ['password']));
+        $this->assertDatabaseMissing('users', Arr::except($data, ['password', 'is_send_email', 'customer_ids']));
     }
 
     public function testCreateNoPermission()
@@ -51,7 +68,7 @@ class UserTest extends TestCase
 
         $response->assertStatus(Response::HTTP_FORBIDDEN);
 
-        $this->assertDatabaseMissing('users', Arr::except($data, ['password']));
+        $this->assertDatabaseMissing('users', Arr::except($data, ['password', 'is_send_email', 'customer_ids']));
     }
 
     public function testCreateUserExists()
@@ -65,11 +82,15 @@ class UserTest extends TestCase
     {
         $data = $this->getJsonFixture('update_user.json');
 
-        $response = $this->actingAs($this->admin)->json('put', '/users/2', $data);
+        $response = $this->actingAs($this->admin)->json('put', '/users/3', $data);
 
         $response->assertStatus(Response::HTTP_NO_CONTENT);
 
-        $this->assertDatabaseHas('users', $data);
+        $this->assertDatabaseHas('users', Arr::except($data, 'customer_ids'));
+
+        $this->assertDatabaseMissing('customer_user', ['user_id' => 3, 'customer_id' => 1]);
+        $this->assertDatabaseHas('customer_user', ['user_id' => 3, 'customer_id' => 2]);
+        $this->assertDatabaseHas('customer_user', ['user_id' => 3, 'customer_id' => 3]);
     }
 
     public function testUpdateNoPermission()
@@ -118,18 +139,18 @@ class UserTest extends TestCase
 
         $response->assertStatus(Response::HTTP_UNAUTHORIZED);
 
-        $this->assertDatabaseMissing('users', $data);
+        $this->assertDatabaseMissing('users', Arr::except($data, 'customer_ids'));
     }
 
     public function testUpdateProfile()
     {
         $data = $this->getJsonFixture('update_user.json');
 
-        $response = $this->actingAs($this->admin)->json('put', '/profile', $data);
+        $response = $this->actingAs($this->user)->json('put', '/profile', $data);
 
         $response->assertStatus(Response::HTTP_NO_CONTENT);
 
-        $this->assertDatabaseHas('users', $data);
+        $this->assertDatabaseHas('users', Arr::except($data, ['customer_ids', 'role_id']));
     }
 
     public function testUpdateProfileWithPassword()
@@ -167,7 +188,7 @@ class UserTest extends TestCase
 
         $response->assertStatus(Response::HTTP_UNAUTHORIZED);
 
-        $this->assertDatabaseMissing('users', $data);
+        $this->assertDatabaseMissing('users', Arr::except($data, 'customer_ids'));
     }
 
     public function testDelete()
@@ -252,6 +273,8 @@ class UserTest extends TestCase
             ],
             [
                 'filter' => [
+                    'name_query' => 'Mr Admin',
+                    'email_query' => 'admin@example.com',
                     'query' => 'Admin',
                     'order_by' => 'created_at',
                     'desc' => false
@@ -281,5 +304,48 @@ class UserTest extends TestCase
         $response->assertStatus(Response::HTTP_OK);
 
         $this->assertEqualsFixture($fixture, $response->json());
+    }
+
+    public function testResendInvitation()
+    {
+        $this->mockUniqueTokenGeneration('some_token');
+
+        $response = $this->actingAs($this->admin)->json('post', '/users/1/resend-invitation');
+
+        $response->assertStatus(Response::HTTP_NO_CONTENT);
+
+        $this->assertDatabaseHas('users', [
+            'id' => 1,
+            'set_password_hash' => 'some_token',
+            'set_password_hash_created_at' => Carbon::now()
+        ]);
+
+        $this->assertMailEquals(InvitationMail::class, [
+            [
+                'emails' => 'admin@example.com',
+                'fixture' => 'invitation_email.html'
+            ]
+        ]);
+    }
+
+    public function testResendInvitationNotExists()
+    {
+        $response = $this->actingAs($this->admin)->json('post', '/users/0/resend-invitation');
+
+        $response->assertStatus(Response::HTTP_NOT_FOUND);
+    }
+
+    public function testResendInvitationNoPermissions()
+    {
+        $response = $this->actingAs($this->user)->json('post', '/users/1/resend-invitation');
+
+        $response->assertStatus(Response::HTTP_FORBIDDEN);
+    }
+
+    public function testResendInvitationNoAuth()
+    {
+        $response = $this->json('post', '/users/1/resend-invitation');
+
+        $response->assertStatus(Response::HTTP_UNAUTHORIZED);
     }
 }

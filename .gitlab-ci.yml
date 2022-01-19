@@ -12,7 +12,7 @@ variables:
   CHART_VERSION: &ref 8.2.7
   CHART_VALUES: k8s/values.yaml
   DOCKER_CONTAINER_REGISTRY: gcr.io/ronas-it-development/${CI_PROJECT_NAME}-${CI_ENVIRONMENT_SLUG}
-  APP_NAME: jfCusomterPortal
+  APP_NAME: Laravel
 
 include:
   - project: 'k8s-tools/charts/laravel'

@@ -2,5 +2,6 @@
     "name": "Another User",
     "email": "createuser@example.com",
     "role_id": 2,
-    "password": "123123"
+    "is_send_email": true,
+    "customer_ids": [1, 2]
 }

@@ -98,7 +98,10 @@ class CustomerTest extends TestCase
     {
         return [
             [
-                'filter' => ['all' => 1],
+                'filter' => [
+                    'all' => 1,
+                    'with' => ['users']
+                ],
                 'result' => 'search_by_all_customers.json'
             ],
             [

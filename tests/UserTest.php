@@ -277,7 +277,10 @@ class UserTest extends TestCase
                     'email_query' => 'admin@example.com',
                     'query' => 'Admin',
                     'order_by' => 'created_at',
-                    'desc' => false
+                    'desc' => false,
+                    'role_ids' => [1, 2, 3],
+                    'customer_ids' => [1, 2, 3],
+                    'with' => ['customers']
                 ],
                 'result' => 'get_users_complex.json'
             ],

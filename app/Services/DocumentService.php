@@ -21,12 +21,12 @@ class DocumentService extends EntityService
     public function search(array $filters): LengthAwarePaginator
     {
         return $this->repository
+            ->with(Arr::get($filters, 'with', []))
             ->searchQuery($filters)
             ->filterByTitle()
             ->filterFrom('created_at', false, 'created_at_from')
             ->filterTo('created_at', false, 'created_at_to')
             ->filterByQuery(['description'])
-            ->with(Arr::get($filters, 'with', []))
             ->getSearchResults();
     }
 }

@@ -15,4 +15,5 @@ INSERT INTO customers(id, simpro_customer_id, name, type, created_at, updated_at
 
 INSERT INTO customer_user(id, customer_id, user_id) VALUES
   (1, 1, 3),
-  (2, 2, 3);
+  (2, 2, 3),
+  (3, 3, 1);

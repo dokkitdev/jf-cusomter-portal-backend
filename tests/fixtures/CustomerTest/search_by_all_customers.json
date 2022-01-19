@@ -7,7 +7,22 @@
             "name": "Simpro Customer",
             "type": "companies",
             "created_at": "2016-10-20T10:05:00.000000Z",
-            "updated_at": "2016-10-20T10:05:00.000000Z"
+            "updated_at": "2016-10-20T10:05:00.000000Z",
+            "users": [
+                {
+                    "id": 3,
+                    "name": "Customer",
+                    "email": "customer@example.com",
+                    "role_id": 3,
+                    "set_password_hash_created_at": null,
+                    "created_at": "2016-10-20T10:05:00.000000Z",
+                    "updated_at": "2016-10-20T10:05:00.000000Z",
+                    "pivot": {
+                        "customer_id": 1,
+                        "user_id": 3
+                    }
+                }
+            ]
         },
         {
             "id": 2,
@@ -15,7 +30,22 @@
             "name": "Simpro Customer",
             "type": "companies",
             "created_at": "2016-10-20T10:05:00.000000Z",
-            "updated_at": "2016-10-20T10:05:00.000000Z"
+            "updated_at": "2016-10-20T10:05:00.000000Z",
+            "users": [
+                {
+                    "id": 3,
+                    "name": "Customer",
+                    "email": "customer@example.com",
+                    "role_id": 3,
+                    "set_password_hash_created_at": null,
+                    "created_at": "2016-10-20T10:05:00.000000Z",
+                    "updated_at": "2016-10-20T10:05:00.000000Z",
+                    "pivot": {
+                        "customer_id": 2,
+                        "user_id": 3
+                    }
+                }
+            ]
         },
         {
             "id": 3,
@@ -23,7 +53,22 @@
             "name": "Simpro Customer",
             "type": "companies",
             "created_at": "2016-10-20T10:05:00.000000Z",
-            "updated_at": "2016-10-20T10:05:00.000000Z"
+            "updated_at": "2016-10-20T10:05:00.000000Z",
+            "users": [
+                {
+                    "id": 3,
+                    "name": "Customer",
+                    "email": "customer@example.com",
+                    "role_id": 3,
+                    "set_password_hash_created_at": null,
+                    "created_at": "2016-10-20T10:05:00.000000Z",
+                    "updated_at": "2016-10-20T10:05:00.000000Z",
+                    "pivot": {
+                        "customer_id": 3,
+                        "user_id": 3
+                    }
+                }
+            ]
         }
     ],
     "first_page_url": "http:\/\/localhost\/customers?page=1",

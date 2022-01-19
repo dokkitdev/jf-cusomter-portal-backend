@@ -152,6 +152,7 @@ class DocumentTest extends TestCase
                     'created_at_to' => '2016-10-21',
                     'title_query' => 'Docname 1',
                     'query' => 'Product main photo',
+                    'with' => ['media']
                 ],
                 'result' => 'search_documents_complex.json'
             ],

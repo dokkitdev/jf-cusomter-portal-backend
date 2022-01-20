@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\StatusController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
@@ -30,6 +31,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::post('/media', ['uses' => MediaController::class . '@create']);
     Route::delete('/media/{id}', ['uses' => MediaController::class . '@delete']);
+    Route::get('/media/{id}/download', ['uses' => MediaController::class . '@download']);
     Route::get('/media', ['uses' => MediaController::class . '@search']);
 
     Route::put('/settings/{name}', ['uses' => SettingController::class . '@update']);
@@ -38,6 +40,12 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/customers/{id}', ['uses' => CustomerController::class . '@get']);
     Route::get('/customers', ['uses' => CustomerController::class . '@search']);
+
+    Route::post('/documents', ['uses' => DocumentController::class . '@create']);
+    Route::put('/documents/{id}', ['uses' => DocumentController::class . '@update']);
+    Route::delete('/documents/{id}', ['uses' => DocumentController::class . '@delete']);
+    Route::get('/documents/{id}', ['uses' => DocumentController::class . '@get']);
+    Route::get('/documents', ['uses' => DocumentController::class . '@search']);
 });
 
 Route::group(['middleware' => 'guest'], function () {

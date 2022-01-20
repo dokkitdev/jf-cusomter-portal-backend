@@ -30,13 +30,13 @@ class UserService extends BaseService
     public function search(array $filters): LengthAwarePaginator
     {
         return $this->repository
+            ->with(Arr::get($filters, 'with', []))
             ->searchQuery($filters)
             ->filterByList('role_id', 'role_ids')
-            ->filterByList('customer_user.customer_id', 'customer_ids')
+            ->filterByList('customers.customer_id', 'customer_ids')
             ->filterByQuery(['name', 'email'])
             ->filterByQueryWithValue('name', 'name_query')
             ->filterByQueryWithValue('email', 'email_query')
-            ->with(Arr::get($filters, 'with', []))
             ->getSearchResults();
     }
 

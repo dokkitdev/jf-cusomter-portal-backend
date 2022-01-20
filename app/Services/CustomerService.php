@@ -41,10 +41,10 @@ class CustomerService extends BaseService
         }
 
         return $this->repository
+            ->with(Arr::get($filters, 'with', []))
             ->searchQuery($filters)
             ->filterBy('users.user_id', 'customer_has_user')
             ->filterByNameOrId()
-            ->with(Arr::get($filters, 'with', []))
             ->getSearchResults();
     }
 

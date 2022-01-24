@@ -1,0 +1,6 @@
+{
+  "data": "{\"ID\": \"site.deleted\", \"build\": \"pfsgroup.simprosuite.com\", \"description\": \"Site #1 has been deleted.\", \"name\": \"Site\", \"action\": \"updated\", \"reference\": {\"companyID\": 0, \"siteID\": 1}, \"date_triggered\": \"2019-12-20T15:21:00+00:00\"}",
+  "handling_status": "new",
+  "created_at": "2018-11-11T11:11:11.000000Z",
+  "updated_at": "2018-11-11T11:11:11.000000Z"
+}

@@ -10,6 +10,13 @@ use RonasIT\Support\Repositories\BaseRepository as Repository;
 
 class BaseRepository extends Repository
 {
+    public function findByPermissions($id, $userId)
+    {
+        return $this->getQuery()
+            ->onlyPermitted($userId)
+            ->find($id);
+    }
+
     public function filterByIntQuery(string $field, string $filterName = null)
     {
         if (empty($filterName)) {

@@ -1,0 +1,16 @@
+{
+    "id": 4,
+    "site_id": 4,
+    "simpro_contact_id": 4,
+    "title": "Title",
+    "name": "Name",
+    "given_name": null,
+    "family_name": null,
+    "email": null,
+    "work_phone": null,
+    "cell_phone": null,
+    "position": null,
+    "is_primary": true,
+    "created_at": null,
+    "updated_at": null
+}

@@ -3,7 +3,7 @@
 namespace App\ApiClients;
 
 use Generator;
-use RonasIT\Support\Services\HttpRequestService;
+use App\Services\HttpRequestService;
 
 class SimproApiClient
 {
@@ -151,7 +151,7 @@ class SimproApiClient
         return $this->makeRequest('get', $url);
     }
 
-    public function patchSite(int $companyId, int $siteId, array $data): array
+    public function patchSite(int $companyId, int $siteId, array $data): ?array
     {
         $url = $this->getUrl("companies/{$companyId}/sites/{$siteId}");
 
@@ -175,21 +175,21 @@ class SimproApiClient
         return $this->makeRequest('post', $url, $data);
     }
 
-    public function patchSiteContact(int $companyId, int $siteId, int $contactId, array $data): array
+    public function patchSiteContact(int $companyId, int $siteId, int $contactId, array $data): ?array
     {
         $url = $this->getUrl("companies/{$companyId}/sites/{$siteId}/contacts/{$contactId}");
 
         return $this->makeRequest('patch', $url, $data);
     }
 
-    public function deleteSiteContact(int $companyId, int $siteId, int $contactId): array
+    public function deleteSiteContact(int $companyId, int $siteId, int $contactId): ?array
     {
         $url = $this->getUrl("companies/{$companyId}/sites/{$siteId}/contacts/{$contactId}");
 
         return $this->makeRequest('delete', $url);
     }
 
-    public function patchSiteCustomField(int $companyId, int $siteId, int $customFieldId, array $data): array
+    public function patchSiteCustomField(int $companyId, int $siteId, int $customFieldId, array $data): ?array
     {
         $url = $this->getUrl("companies/{$companyId}/sites/{$siteId}/customFields/{$customFieldId}");
 
@@ -243,7 +243,7 @@ class SimproApiClient
         } while (!empty($result));
     }
 
-    protected function makeRequest(string $method, string $url, array $data = [], array $headers = []): array
+    protected function makeRequest(string $method, string $url, array $data = [], array $headers = []): ?array
     {
         $headers = array_merge($this->getHeaders(), $headers);
 
@@ -251,7 +251,7 @@ class SimproApiClient
 
         $response = $this->httpRequestService->$method($url, $requestData, $headers);
 
-        return $response->json();
+        return $response->jsonOrNull();
     }
 
     protected function getUrl(string $action): string

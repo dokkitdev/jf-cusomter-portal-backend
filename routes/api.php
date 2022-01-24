@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DocumentController;
+use App\Http\Controllers\SiteContactController;
+use App\Http\Controllers\SiteController;
 use App\Http\Controllers\StatusController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
@@ -46,6 +48,15 @@ Route::group(['middleware' => 'auth'], function () {
     Route::delete('/documents/{id}', ['uses' => DocumentController::class . '@delete']);
     Route::get('/documents/{id}', ['uses' => DocumentController::class . '@get']);
     Route::get('/documents', ['uses' => DocumentController::class . '@search']);
+
+    Route::put('/sites/{id}', ['uses' => SiteController::class . '@update']);
+    Route::get('/sites/{id}', ['uses' => SiteController::class . '@get']);
+    Route::get('/sites', ['uses' => SiteController::class . '@search']);
+
+    Route::post('/site-contacts', ['uses' => SiteContactController::class . '@create']);
+    Route::put('/site-contacts/{id}', ['uses' => SiteContactController::class . '@update']);
+    Route::delete('/site-contacts/{id}', ['uses' => SiteContactController::class . '@delete']);
+    Route::get('/site-contacts/{id}', ['uses' => SiteContactController::class . '@get']);
 });
 
 Route::group(['middleware' => 'guest'], function () {

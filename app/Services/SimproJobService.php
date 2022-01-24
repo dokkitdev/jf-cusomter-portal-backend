@@ -14,12 +14,14 @@ use RonasIT\Support\Services\EntityService;
 class SimproJobService extends EntityService
 {
     protected CustomerService $customerService;
+    protected SiteService $siteService;
 
     public function __construct()
     {
         $this->setRepository(SimproJobRepository::class);
 
         $this->customerService = app(CustomerService::class);
+        $this->siteService = app(SiteService::class);
     }
 
     public function handleJob(SimproJob $webhook)
@@ -27,6 +29,11 @@ class SimproJobService extends EntityService
         $event = $webhook['data']['ID'];
 
         switch ($event) {
+            case 'site.created':
+            case 'site.updated':
+                return $this->siteService->createOrUpdateBySimpro($webhook);
+            case 'site.deleted':
+                return $this->siteService->deleteBySimpro($webhook);
             case 'company.customer.created':
             case 'company.customer.updated':
                 return $this->customerService->createOrUpdateBySimpro($webhook, Customer::TYPE_COMPANIES);

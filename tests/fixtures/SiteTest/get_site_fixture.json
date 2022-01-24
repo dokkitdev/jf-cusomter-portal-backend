@@ -1,0 +1,31 @@
+{
+    "id": 1,
+    "simpro_site_id": 1,
+    "name": "Name 1",
+    "uprn": null,
+    "postal_code": "UB8 1JG",
+    "country": null,
+    "city": null,
+    "county": null,
+    "address": "Charter Place",
+    "created_at": null,
+    "updated_at": null,
+    "site_contacts": [
+        {
+            "id": 1,
+            "site_id": 1,
+            "simpro_contact_id": 1,
+            "title": "Title",
+            "name": "Name",
+            "given_name": null,
+            "family_name": null,
+            "email": null,
+            "work_phone": null,
+            "cell_phone": null,
+            "position": null,
+            "is_primary": true,
+            "created_at": null,
+            "updated_at": null
+        }
+    ]
+}

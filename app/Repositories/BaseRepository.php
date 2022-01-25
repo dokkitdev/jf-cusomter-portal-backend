@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use Closure;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -10,14 +11,14 @@ use RonasIT\Support\Repositories\BaseRepository as Repository;
 
 class BaseRepository extends Repository
 {
-    public function findByPermissions($id, $userId)
+    public function findByPermissions(int $id, int $userId): ?Model
     {
         return $this->getQuery()
             ->onlyPermitted($userId)
             ->find($id);
     }
 
-    public function filterByIntQuery(string $field, string $filterName = null)
+    public function filterByIntQuery(string $field, string $filterName = null): self
     {
         if (empty($filterName)) {
             if (Str::contains($field, '.')) {
@@ -35,7 +36,7 @@ class BaseRepository extends Repository
         return $this;
     }
 
-    public function filterByQueryWithValue(string $field, string $filterName)
+    public function filterByQueryWithValue(string $field, string $filterName): self
     {
         if (Arr::has($this->filter, $filterName)) {
             $this->query->where($this->getQuerySearchCallbackWithValue($field, $this->filter[$filterName]));

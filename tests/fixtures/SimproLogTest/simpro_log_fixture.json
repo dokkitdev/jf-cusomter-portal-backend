@@ -1,0 +1,65 @@
+[
+    {
+        "id": 1,
+        "loggable_id": 1,
+        "loggable_type": "sites",
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": null,
+        "updated_at": null
+    },
+    {
+        "id": 2,
+        "loggable_id": 3659,
+        "loggable_type": "sites",
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 3,
+        "loggable_id": 3725,
+        "loggable_type": "sites",
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 4,
+        "loggable_id": 3324,
+        "loggable_type": "sites",
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 5,
+        "loggable_id": 3450,
+        "loggable_type": "sites",
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 6,
+        "loggable_id": 3529,
+        "loggable_type": "sites",
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 7,
+        "loggable_id": 3530,
+        "loggable_type": "sites",
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    }
+]

@@ -71,9 +71,9 @@ class SiteService extends BaseService
             }
 
             if (Arr::has($data, 'uprn')) {
-                $uprnSiteCustonFieldId = config('defaults.site_uprn_custom_field_id');
+                $uprnSiteCustomFieldId = config('defaults.site_uprn_custom_field_id');
 
-                $this->simproClient->patchSiteCustomField($this->companyId, $site['simpro_site_id'], $uprnSiteCustonFieldId, [
+                $this->simproClient->patchSiteCustomField($this->companyId, $site['simpro_site_id'], $uprnSiteCustomFieldId, [
                     'Value' => $data['uprn']
                 ]);
             }
@@ -109,7 +109,7 @@ class SiteService extends BaseService
         }
     }
 
-    public function getOrCreateBySimpro(int $companyId, int $siteId, int $simproCustomerId): Model
+    public function firstOrCreateBySimpro(int $companyId, int $siteId, int $simproCustomerId): Model
     {
         $simproSite = $this->repository->findBy('simpro_site_id', $siteId);
 
@@ -119,7 +119,7 @@ class SiteService extends BaseService
             if (!$simproCustomerId) {
                 $siteCustomer = Arr::first($site['Customers']);
                 if ($siteCustomer) {
-                    $simproCustomer = $this->customerService->getOrCreateBySimpro($companyId, $siteCustomer);
+                    $simproCustomer = $this->customerService->firstOrCreateBySimpro($companyId, $siteCustomer);
                     $simproCustomerId = $simproCustomer['id'];
                 }
             }

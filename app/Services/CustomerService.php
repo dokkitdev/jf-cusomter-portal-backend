@@ -109,23 +109,21 @@ class CustomerService extends BaseService
         }
     }
 
-    public function firstOrCreateBySimpro(int $companyId, array $customer): Model
+    public function firstOrCreateBySimpro(int $companyId, int $simproCustomerId): Model
     {
-        $customerId = $customer['ID'];
-
-        $customer = $this->repository->first(['simpro_customer_id' => $customerId]);
+        $customer = $this->repository->first(['simpro_customer_id' => $simproCustomerId]);
 
         if (!$customer) {
             try {
                 $type = Customer::TYPE_COMPANIES;
-                $customer = $this->simproClient->getCustomer($companyId, $type, $customerId);
+                $customer = $this->simproClient->getCustomer($companyId, $type, $simproCustomerId);
             } catch (Exception $e) {
                 $type = Customer::TYPE_INDIVIDUALS;
-                $customer = $this->simproClient->getCustomer($companyId, $type, $customerId);
+                $customer = $this->simproClient->getCustomer($companyId, $type, $simproCustomerId);
             }
 
             $customer = $this->repository->create([
-                'simpro_customer_id' => $customerId,
+                'simpro_customer_id' => $simproCustomerId,
                 'type' => $type,
                 'name' => $this->getName($customer, $type)
             ]);

@@ -1,0 +1,84 @@
+{
+    "current_page": 1,
+    "data": [
+        {
+            "id": 1,
+            "simpro_site_id": 1,
+            "name": "Name 1",
+            "uprn": null,
+            "postal_code": "UB8 1JG",
+            "country": null,
+            "city": null,
+            "county": null,
+            "address": "Charter Place",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 2,
+            "simpro_site_id": 2,
+            "name": "Name 2",
+            "uprn": null,
+            "postal_code": null,
+            "country": null,
+            "city": null,
+            "county": null,
+            "address": null,
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 3,
+            "simpro_site_id": 3,
+            "name": "Name 3",
+            "uprn": null,
+            "postal_code": null,
+            "country": null,
+            "city": null,
+            "county": null,
+            "address": null,
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 4,
+            "simpro_site_id": 4,
+            "name": "Name 4",
+            "uprn": null,
+            "postal_code": null,
+            "country": null,
+            "city": null,
+            "county": null,
+            "address": null,
+            "created_at": null,
+            "updated_at": null
+        }
+    ],
+    "first_page_url": "http:\/\/localhost\/sites?page=1",
+    "from": 1,
+    "last_page": 1,
+    "last_page_url": "http:\/\/localhost\/sites?page=1",
+    "links": [
+        {
+            "url": null,
+            "label": "&laquo; Previous",
+            "active": false
+        },
+        {
+            "url": "http:\/\/localhost\/sites?page=1",
+            "label": "1",
+            "active": true
+        },
+        {
+            "url": null,
+            "label": "Next &raquo;",
+            "active": false
+        }
+    ],
+    "next_page_url": null,
+    "path": "http:\/\/localhost\/sites",
+    "per_page": 4,
+    "prev_page_url": null,
+    "to": 4,
+    "total": 4
+}

@@ -24,4 +24,9 @@ class Customer extends Model
     {
         return $this->belongsToMany(User::class);
     }
+
+    public function sites()
+    {
+        return $this->belongsToMany(Site::class);
+    }
 }

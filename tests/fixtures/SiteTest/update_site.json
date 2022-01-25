@@ -1,0 +1,10 @@
+{
+  "name": "Updated Name",
+  "uprn": "UPRN Updated",
+  "address": "Updated Address",
+  "postal_code": "Updated Postcode",
+  "city": "Updated City",
+  "country": "Updated Country",
+  "county": "Updated County",
+  "primary_site_contact_id": 1
+}

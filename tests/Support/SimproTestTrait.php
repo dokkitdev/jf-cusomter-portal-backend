@@ -5,7 +5,7 @@ namespace App\Tests\Support;
 use App\Models\SimproJob;
 use GuzzleHttp\Psr7\Response as GuzzleResponse;
 use Illuminate\Support\Arr;
-use RonasIT\Support\Services\HttpRequestService;
+use App\Services\HttpRequestService;
 
 trait SimproTestTrait
 {
@@ -458,8 +458,6 @@ trait SimproTestTrait
         $this->mockHttpRequestService([
             $this->patchSite(),
             $this->patchSiteContact(),
-            $this->patchSiteCustomField(),
-            $this->patchSiteCustomField()
         ]);
     }
 
@@ -468,7 +466,6 @@ trait SimproTestTrait
         $this->mockHttpRequestService([
             $this->patchSite(),
             $this->patchSiteContact(),
-            $this->patchSiteCustomField()
         ]);
     }
 

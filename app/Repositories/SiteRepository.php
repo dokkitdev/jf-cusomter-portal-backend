@@ -16,7 +16,7 @@ class SiteRepository extends BaseRepository
         $this->setModel(Site::class);
     }
 
-    public function filterByOnlyPermitted()
+    public function filterByOnlyPermitted(): self
     {
         if (Arr::has($this->filter, 'site_has_user')) {
             $this->query->onlyPermitted($this->filter['site_has_user']);

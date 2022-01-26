@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use RonasIT\Support\Traits\ModelTrait;
 use Illuminate\Database\Eloquent\Model;
 
@@ -22,7 +23,7 @@ class Site extends Model
 
     protected $hidden = ['pivot'];
 
-    public function scopeOnlyPermitted($query, $userId)
+    public function scopeOnlyPermitted(Builder $query, int $userId): Builder
     {
         return $query->whereHas('customers.users', function ($query) use ($userId) {
             return $query->where('user_id', $userId);

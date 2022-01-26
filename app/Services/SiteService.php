@@ -152,7 +152,7 @@ class SiteService extends BaseService
         foreach ($simproSite['Customers'] as $siteCustomer) {
             $customer = $this->customerService->firstOrCreateBySimpro($companyId, $siteCustomer['ID']);
 
-            $site->customers()->attach($customer['id']);
+            $site->customers()->sync($customer['id']);
         }
 
         return $site;

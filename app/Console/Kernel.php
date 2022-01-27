@@ -12,12 +12,11 @@ class Kernel extends ConsoleKernel
 
     protected function schedule(Schedule $schedule)
     {
-        $sitesLoggableType = SimproLog::LOGGABLE_TYPE_SITES;
-        $schedule
-            ->command("simpro:save-simpro-log {$sitesLoggableType}")
-            ->everyMinute()
-            ->withoutOverlapping()
-            ->runInBackground();
+        $jobs = SimproLog::LOGGABLE_TYPE_JOBS;
+        $schedule->command("simpro:handle-log {$jobs}")->everyMinute()->withoutOverlapping()->runInBackground();
+
+        $sites = SimproLog::LOGGABLE_TYPE_SITES;
+        $schedule->command("simpro:handle-log {$sites}")->everyMinute()->withoutOverlapping()->runInBackground();
 
         $schedule->command('clear:set-password-hash')->hourly();
     }

@@ -1,0 +1,11 @@
+[
+    {
+        "id": 2,
+        "loggable_id": 1,
+        "loggable_type": "jobs",
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": null,
+        "updated_at": null
+    }
+]

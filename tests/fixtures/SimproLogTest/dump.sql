@@ -43,4 +43,21 @@ INSERT INTO customer_site(id, customer_id, site_id) VALUES
 (6, 3, 4);
 
 INSERT INTO simpro_log(id, loggable_id, loggable_type, handle_status, handle_result) VALUES
-(1, 1, 'sites', 'new', null);
+(1, 1, 'sites', 'new', null),
+(2, 1, 'jobs', 'new', null);
+
+INSERT INTO jobs(id, simpro_job_id, site_id, customer_id, stage) VALUES
+(1, 1, 1, 1, 'Progress'),
+(2, 2, 1, 1, 'Progress');
+
+INSERT INTO schedules(id, job_id, simpro_schedule_id, name, date, start_time, end_time) VALUES
+(1, 1, 1, 'Name', '2016-10-20 11:05:00', '2016-10-20 11:05:00', '2016-10-20 11:05:00');
+
+INSERT INTO job_catalogs(id, job_id, simpro_section_id, simpro_cost_center_id, simpro_catalog_id, simpro_original_catalog_id, name, part_no, qty) VALUES
+(1, 1, 0, 0, 0, 0, 'Test', 'Test', 1);
+
+INSERT INTO job_attachments(id, job_id, simpro_attachment_id, name) VALUES
+(1, 1, 'Test', 'Test');
+
+INSERT INTO job_work_orders(id, job_id, simpro_section_id, simpro_cost_center_id, simpro_work_order_id, name, description, date) VALUES
+(1, 1, 0, 0, 0, 'Test', 'Test', '2020-10-06');

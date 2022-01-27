@@ -19,6 +19,7 @@ class SimproLogService extends EntityService
     protected SimproApiClient $simproClient;
     protected int $companyId;
     protected SiteService $siteService;
+    protected JobService $jobService;
 
     public function __construct()
     {
@@ -26,6 +27,7 @@ class SimproLogService extends EntityService
 
         $this->simproClient = app(SimproApiClient::class);
         $this->siteService = app(SiteService::class);
+        $this->jobService = app(JobService::class);
 
         $this->companyId = config('services.simpro.company_id');
     }
@@ -41,12 +43,12 @@ class SimproLogService extends EntityService
 
     public function saveAll(string $loggableType): void
     {
-        $sitePages = $this->simproClient->getAsGenerator("companies/{$this->companyId}/{$loggableType}/");
+        $pages = $this->simproClient->getAsGenerator("companies/{$this->companyId}/{$loggableType}/");
 
-        foreach ($sitePages as $sitePage) {
-            foreach ($sitePage as $simproSite) {
+        foreach ($pages as $page) {
+            foreach ($page as $item) {
                 $this->repository->updateOrCreate([
-                    'loggable_id' => $simproSite['ID'],
+                    'loggable_id' => $item['ID'],
                     'loggable_type' => $loggableType
                 ], []);
             }
@@ -69,6 +71,10 @@ class SimproLogService extends EntityService
                     switch ($loggableType) {
                         case SimproLog::LOGGABLE_TYPE_SITES:
                             $this->handleSite($simproLog);
+                            break;
+                        case SimproLog::LOGGABLE_TYPE_JOBS:
+                            $this->handleJob($simproLog);
+                            break;
                     }
 
                     $this->delete($simproLog['id']);
@@ -87,7 +93,7 @@ class SimproLogService extends EntityService
         }
     }
 
-    protected function handleSite($simproLog): void
+    protected function handleSite(SimproLog $simproLog): void
     {
         $simproJob = new SimproJob([
             'data' => [
@@ -99,5 +105,19 @@ class SimproLogService extends EntityService
         ]);
 
         $this->siteService->createOrUpdateBySimpro($simproJob);
+    }
+
+    protected function handleJob(SimproLog $simproLog): void
+    {
+        $simproJob = new SimproJob([
+            'data' => [
+                'reference' => [
+                    'companyID' => 0,
+                    'jobID' => $simproLog['loggable_id']
+                ]
+            ]
+        ]);
+
+        $this->jobService->createOrUpdateBySimpro($simproJob);
     }
 }

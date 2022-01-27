@@ -82,60 +82,15 @@ class SiteService extends BaseService
         });
     }
 
-    public function attachSites(int $simproCustomerId, $group): void
+    public function firstOrCreateBySimpro(int $companyId, int $simproSiteId): Model
     {
-        $simproCustomer = $this->customerService->find($simproCustomerId);
+        $site = $this->repository->findBy('simpro_site_id', $simproSiteId);
 
-        $sitePages = $this->simproClient->getAsGenerator(
-            "companies/{$this->companyId}/sites/",
-            [
-                'Customers.ID' => $simproCustomer['customer_id'],
-                'columns' => 'ID,Name,Address'
-            ]
-        );
-
-        $isSiteEnabled = $this->groupSimproSiteService->isSiteEnabled($group['id']);
-
-        foreach ($sitePages as $sitePage) {
-            foreach ($sitePage as $site) {
-                $simproSite = $this->createOrUpdate($site, $simproCustomerId);
-
-                $this->siteCustomFieldService->createOrUpdateBySite($site, $simproSite['id']);
-
-                $this->siteContactService->syncBySite($this->companyId, $site['ID'], $simproSite['id']);
-
-                $this->getOrCreateGroupSimproSite($group['id'], $simproSite['id'], $isSiteEnabled);
-            }
-        }
-    }
-
-    public function firstOrCreateBySimpro(int $companyId, int $siteId, int $simproCustomerId): Model
-    {
-        $simproSite = $this->repository->findBy('simpro_site_id', $siteId);
-
-        if (!$simproSite) {
-            $site = $this->simproClient->getSite($companyId, $siteId);
-
-            if (!$simproCustomerId) {
-                $siteCustomer = Arr::first($site['Customers']);
-                if ($siteCustomer) {
-                    $simproCustomer = $this->customerService->firstOrCreateBySimpro($companyId, $siteCustomer);
-                    $simproCustomerId = $simproCustomer['id'];
-                }
-            }
-
-            $simproSite = $this->createOrUpdate($site, $simproCustomerId);
-
-            $this->siteCustomFieldService->createOrUpdateBySite($site, $simproSite['id']);
-
-            $this->siteContactService->syncBySite($companyId, $siteId, $simproSite['id']);
-
-            if ($simproCustomerId) {
-                $this->createGroupSimproSites($simproCustomerId, $simproSite['id']);
-            }
+        if (!$site) {
+            $site = $this->createOrUpdate($companyId, $simproSiteId);
         }
 
-        return $simproSite;
+        return $site;
     }
 
     public function createOrUpdateBySimpro(SimproJob $webhook): Model
@@ -143,20 +98,7 @@ class SiteService extends BaseService
         $companyId = $webhook['data']['reference']['companyID'];
         $simproSiteId = $webhook['data']['reference']['siteID'];
 
-        $simproSite = $this->simproClient->getSite($companyId, $simproSiteId);
-
-        $site = $this->createOrUpdate($simproSite);
-
-        $this->siteContactService->syncBySite($companyId, $simproSiteId, $site['id']);
-
-        $customerIds = [];
-        foreach ($simproSite['Customers'] as $siteCustomer) {
-            $customer = $this->customerService->firstOrCreateBySimpro($companyId, $siteCustomer['ID']);
-            $customerIds[] = $customer['id'];
-        }
-        $site->customers()->sync($customerIds);
-
-        return $site;
+        return $this->createOrUpdate($companyId, $simproSiteId);
     }
 
     public function deleteBySimpro(SimproJob $webhook): int
@@ -168,23 +110,36 @@ class SiteService extends BaseService
         ]);
     }
 
-    protected function createOrUpdate(array $site): Model
+    protected function createOrUpdate(int $companyId, int $simproSiteId): Model
     {
-        $uprnCustomField = collect($site['CustomFields'])->first(function ($value) {
+        $simproSite = $this->simproClient->getSite($companyId, $simproSiteId);
+
+        $uprnCustomField = collect($simproSite['CustomFields'])->first(function ($value) {
             return Arr::get($value, 'CustomField.ID') === config('defaults.site_uprn_custom_field_id');
         });
 
-        return $this->repository->updateOrCreate([
-            'simpro_site_id' => $site['ID']
+        $site = $this->repository->updateOrCreate([
+            'simpro_site_id' => $simproSite['ID']
         ], [
-            'name' => $site['Name'],
-            'address' => $site['Address']['Address'],
-            'postal_code' => $site['Address']['PostalCode'],
-            'city' => $site['Address']['City'],
-            'country' => $site['Address']['Country'],
-            'county' => $site['Address']['State'],
+            'name' => $simproSite['Name'],
+            'address' => $simproSite['Address']['Address'],
+            'postal_code' => $simproSite['Address']['PostalCode'],
+            'city' => $simproSite['Address']['City'],
+            'country' => $simproSite['Address']['Country'],
+            'county' => $simproSite['Address']['State'],
             'uprn' => Arr::get($uprnCustomField, 'Value')
         ]);
+
+        $this->siteContactService->syncBySite($companyId, $simproSiteId, $site['id']);
+
+        $customerIds = [];
+        foreach ($simproSite['Customers'] as $siteCustomer) {
+            $customer = $this->customerService->firstOrCreateBySimpro($companyId, $siteCustomer['ID']);
+            $customerIds[] = $customer['id'];
+        }
+        $site->customers()->sync($customerIds);
+
+        return $site;
     }
 
     protected function prepareSiteData(array $data): array

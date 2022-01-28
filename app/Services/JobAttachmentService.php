@@ -5,6 +5,7 @@ namespace App\Services;
 use App\ApiClients\SimproApiClient;
 use App\Repositories\JobAttachmentRepository;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 use RonasIT\Support\Services\EntityService;
 
 /**
@@ -70,7 +71,9 @@ class JobAttachmentService extends EntityService
         $simproJobId = $attachment['job']['simpro_job_id'];
         $simproAttachmentId = $attachment['simpro_attachment_id'];
 
-        $this->simproClient->downloadJobAttachment($this->companyId, $simproJobId, $simproAttachmentId);
+        $file = $this->simproClient->downloadJobAttachment($this->companyId, $simproJobId, $simproAttachmentId);
+
+        Storage::put($simproAttachmentId, base64_decode($file['Base64Data']));
 
         return $attachment;
     }

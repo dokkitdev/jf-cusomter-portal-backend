@@ -15,7 +15,7 @@ class ScheduleRepository extends BaseRepository
         $this->setModel(Schedule::class);
     }
 
-    public function getRecentSchedule(int $jobId): Model
+    public function getRecentSchedule(int $jobId): ?Model
     {
         return $this
             ->getQuery(['job_id' => $jobId])

@@ -68,4 +68,13 @@ class SiteRepository extends BaseRepository
 
         return $this;
     }
+
+    public function filterByUprn(): self
+    {
+        if (Arr::has($this->filter, 'uprn_query')) {
+            $this->query->where($this->getQuerySearchCallbackWithValue('uprn', $this->filter['uprn_query']));
+        }
+
+        return $this;
+    }
 }

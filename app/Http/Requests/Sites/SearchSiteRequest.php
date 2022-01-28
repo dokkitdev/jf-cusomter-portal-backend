@@ -16,6 +16,7 @@ class SearchSiteRequest extends Request
             'primary_contact_query' => 'string',
             'has_open_jobs' => 'boolean',
             'name_query' => 'string',
+            'uprn_query' => 'string',
             'page' => 'integer',
             'per_page' => 'integer',
             'all' => 'integer',

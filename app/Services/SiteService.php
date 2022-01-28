@@ -50,6 +50,7 @@ class SiteService extends BaseService
             ->filterByList('customers.customer_id', 'customer_ids')
             ->filterByQuery(['city', 'county', 'address'])
             ->filterByName()
+            ->filterByUprn()
             ->filterByPostalCode()
             ->filterByPrimaryContact()
             ->filterByOpenJobs()

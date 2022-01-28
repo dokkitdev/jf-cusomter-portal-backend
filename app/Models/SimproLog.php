@@ -13,6 +13,7 @@ class SimproLog extends Model
     const HANDLE_STATUS_ERROR = 'error';
 
     const LOGGABLE_TYPE_SITES = 'sites';
+    const LOGGABLE_TYPE_JOBS = 'jobs';
 
     protected $table = 'simpro_log';
 

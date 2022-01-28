@@ -44,4 +44,9 @@ class Site extends Model
     {
         return $this->hasOne(SiteContact::class)->where('is_primary', true);
     }
+
+    public function open_jobs()
+    {
+        return $this->hasMany(Job::class)->whereIn('stage', Job::OPEN_STAGES);
+    }
 }

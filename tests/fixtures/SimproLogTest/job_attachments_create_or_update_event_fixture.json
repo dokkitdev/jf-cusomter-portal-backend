@@ -1,0 +1,47 @@
+[
+    {
+        "id": 1,
+        "job_id": 1,
+        "simpro_attachment_id": "Test",
+        "name": "Test",
+        "date_added": null,
+        "created_at": null,
+        "updated_at": null
+    },
+    {
+        "id": 2,
+        "job_id": 3,
+        "simpro_attachment_id": "8EgYd8urKKzzqcdDTKsKcpW9xWHxtwsKSoCscR3R7g4",
+        "name": "Jobcard_For_Job_No_209000_24-02-2021_0942.pdf",
+        "date_added": "2021-02-24 09:42:48",
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 3,
+        "job_id": 3,
+        "simpro_attachment_id": "8EgYd8urKKzzqcdDTKsKcpW9xWHxtwsKSoCscR3R000",
+        "name": "Invoice_No_103987_10-03-2021_1411.pdf",
+        "date_added": "2021-02-23 09:42:48",
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 4,
+        "job_id": 3,
+        "simpro_attachment_id": "8EgYd8urKKzzqcdDTKsKcpW9xWHxtwsKSoCsc999999",
+        "name": "Invoice_No_103987_10-03-2021_1355.pdf",
+        "date_added": "2021-02-24 09:42:48",
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 5,
+        "job_id": 3,
+        "simpro_attachment_id": "8EgYd8urKKzzqcdDTKsKcpW9xWHxtwsKSoCsc555555",
+        "name": "Invoice_No_104375_10-03-2021_1405.pdf",
+        "date_added": "2021-02-26 09:42:48",
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    }
+]

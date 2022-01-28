@@ -597,14 +597,12 @@ trait SimproTestTrait
             $this->getCustomer(),
             $this->getSite(),
             $this->getSiteContacts(),
+            $this->getJobLog(),
             $this->getSchedules('get_schedules_response_success.json'),
             $this->getSchedules('get_schedules_empty_response_success.json'),
             $this->getJobAttachments('get_job_attachments_response_success.json'),
             $this->getJobAttachments('get_job_attachments_empty_response_success.json'),
             $this->getJobWorkOrders(),
-            $this->getJobInvoices('get_invoices_response_success.json'),
-            $this->getCustomerInvoice(),
-            $this->getJobInvoices('get_invoices_empty_response_success.json'),
         ]);
     }
 
@@ -877,6 +875,25 @@ trait SimproTestTrait
             ],
             'response' => [
                 'fixture' => 'get_customer_response_success.json'
+            ]
+        ];
+    }
+
+    protected function getJobLog()
+    {
+        return [
+            'type' => 'get',
+            'arguments' => [
+                $this->equalTo('https://pfsgroup.simprosuite.com/api/v1.0/companies/0/logs/jobs/'),
+                $this->equalTo(null),
+                $this->equalTo([
+                    'Accept' => 'application/json',
+                    'Content-Type' => 'application/json',
+                    'Authorization' => 'Bearer token',
+                ])
+            ],
+            'response' => [
+                'fixture' => 'get_job_log_response_success.json'
             ]
         ];
     }

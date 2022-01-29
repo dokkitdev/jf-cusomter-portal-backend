@@ -66,8 +66,42 @@ class JobRepository extends BaseRepository
         if (Arr::has($this->filter, 'postal_code')) {
             $postalCode = str_replace(' ', '', $this->filter['postal_code']);
 
-            $this->query->whereHas('simpro_site', function ($query) use ($postalCode) {
+            $this->query->whereHas('site', function ($query) use ($postalCode) {
                 $query->where(DB::raw("REPLACE(postal_code, ' ', '')"), $postalCode);
+            });
+        }
+
+        return $this;
+    }
+
+    public function filterByPriority(): self
+    {
+        if (Arr::has($this->filter, 'priority')) {
+            $this->query->where(function ($query) {
+                foreach ($this->filter['priority'] as $priority) {
+                    $loweredQuery = mb_strtolower($priority);
+                    $query->orWhere(DB::raw("lower(priority)"), 'like', "%{$loweredQuery}%");
+                }
+            });
+        }
+
+        return $this;
+    }
+
+    public function filterByOrderNo(): self
+    {
+        if (Arr::has($this->filter, 'order_no_query')) {
+            $this->query->where($this->getQuerySearchCallbackWithValue('order_no', $this->filter['order_no_query']));
+        }
+
+        return $this;
+    }
+
+    public function filterByUprn(): self
+    {
+        if (Arr::has($this->filter, 'uprn_query')) {
+            $this->query->whereHas('site', function ($query) {
+                return $query->where($this->getQuerySearchCallbackWithValue('uprn', $this->filter['uprn_query']));
             });
         }
 

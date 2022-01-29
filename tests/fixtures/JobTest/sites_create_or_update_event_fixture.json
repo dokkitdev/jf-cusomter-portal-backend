@@ -1,0 +1,203 @@
+[
+    {
+        "id": 1,
+        "simpro_site_id": 1,
+        "name": "Name 1",
+        "uprn": null,
+        "postal_code": "UB8 1JG",
+        "country": null,
+        "city": null,
+        "county": null,
+        "address": "Charter Place",
+        "created_at": null,
+        "updated_at": null,
+        "site_contacts": [
+            {
+                "id": 1,
+                "site_id": 1,
+                "simpro_contact_id": 1,
+                "title": "Title",
+                "name": "Name",
+                "given_name": null,
+                "family_name": null,
+                "email": null,
+                "work_phone": null,
+                "cell_phone": null,
+                "position": null,
+                "is_primary": true,
+                "created_at": null,
+                "updated_at": null
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "simpro_site_id": 2,
+        "name": "Name 2",
+        "uprn": null,
+        "postal_code": null,
+        "country": null,
+        "city": null,
+        "county": null,
+        "address": null,
+        "created_at": null,
+        "updated_at": null,
+        "site_contacts": [
+            {
+                "id": 2,
+                "site_id": 2,
+                "simpro_contact_id": 2,
+                "title": "Title",
+                "name": "Name",
+                "given_name": null,
+                "family_name": null,
+                "email": null,
+                "work_phone": null,
+                "cell_phone": null,
+                "position": null,
+                "is_primary": true,
+                "created_at": null,
+                "updated_at": null
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "simpro_site_id": 3,
+        "name": "Name 3",
+        "uprn": null,
+        "postal_code": null,
+        "country": null,
+        "city": null,
+        "county": null,
+        "address": null,
+        "created_at": null,
+        "updated_at": null,
+        "site_contacts": [
+            {
+                "id": 3,
+                "site_id": 3,
+                "simpro_contact_id": 3,
+                "title": "Title",
+                "name": "Name",
+                "given_name": null,
+                "family_name": null,
+                "email": null,
+                "work_phone": null,
+                "cell_phone": null,
+                "position": null,
+                "is_primary": false,
+                "created_at": null,
+                "updated_at": null
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "simpro_site_id": 4,
+        "name": "Name 4",
+        "uprn": null,
+        "postal_code": null,
+        "country": null,
+        "city": null,
+        "county": null,
+        "address": null,
+        "created_at": null,
+        "updated_at": null,
+        "site_contacts": [
+            {
+                "id": 4,
+                "site_id": 4,
+                "simpro_contact_id": 4,
+                "title": "Title",
+                "name": "Name",
+                "given_name": null,
+                "family_name": null,
+                "email": null,
+                "work_phone": null,
+                "cell_phone": null,
+                "position": null,
+                "is_primary": true,
+                "created_at": null,
+                "updated_at": null
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "simpro_site_id": 5,
+        "name": "Name 5",
+        "uprn": null,
+        "postal_code": null,
+        "country": null,
+        "city": null,
+        "county": null,
+        "address": null,
+        "created_at": null,
+        "updated_at": null,
+        "site_contacts": []
+    },
+    {
+        "id": 6,
+        "simpro_site_id": 2406,
+        "name": "Odeon Cinema - Beckenham",
+        "uprn": null,
+        "postal_code": "BR3 1DY",
+        "country": "",
+        "city": "Beckenham",
+        "county": "Kent",
+        "address": "The High Street",
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z",
+        "site_contacts": [
+            {
+                "id": 5,
+                "site_id": 6,
+                "simpro_contact_id": 10862,
+                "title": "",
+                "name": "Daniel Lawrence",
+                "given_name": "Daniel",
+                "family_name": "Lawrence",
+                "email": "Daniel.Lawrence@ngbailey.co.uk",
+                "work_phone": "",
+                "cell_phone": "",
+                "position": "Site Supervisor",
+                "is_primary": false,
+                "created_at": "2018-11-11T11:11:11.000000Z",
+                "updated_at": "2018-11-11T11:11:11.000000Z"
+            },
+            {
+                "id": 6,
+                "site_id": 6,
+                "simpro_contact_id": 10863,
+                "title": "",
+                "name": "Nezam Uddin",
+                "given_name": "Nezam",
+                "family_name": "Uddin",
+                "email": "ContractAdmin@ngbailey.co.uk",
+                "work_phone": "",
+                "cell_phone": "",
+                "position": "Contract Admin",
+                "is_primary": false,
+                "created_at": "2018-11-11T11:11:11.000000Z",
+                "updated_at": "2018-11-11T11:11:11.000000Z"
+            },
+            {
+                "id": 7,
+                "site_id": 6,
+                "simpro_contact_id": 10861,
+                "title": "",
+                "name": "Peter Driussi",
+                "given_name": "Peter",
+                "family_name": "Driussi",
+                "email": "Peter.Driussi@ngbailey.co.uk",
+                "work_phone": "",
+                "cell_phone": "",
+                "position": "Contracts Manager",
+                "is_primary": true,
+                "created_at": "2018-11-11T11:11:11.000000Z",
+                "updated_at": "2018-11-11T11:11:11.000000Z"
+            }
+        ]
+    }
+]

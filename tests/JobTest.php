@@ -96,7 +96,7 @@ class JobTest extends TestCase
 
         $response->assertStatus(Response::HTTP_OK);
 
-        $this->exportJson('get_job_fixture.json', $response->json());
+        $this->assertEqualsFixture('get_job_fixture.json', $response->json());
     }
 
     public function testGetNoPermission()

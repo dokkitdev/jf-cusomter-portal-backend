@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DocumentController;
+use App\Http\Controllers\JobAttachmentController;
+use App\Http\Controllers\JobController;
 use App\Http\Controllers\SiteContactController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\StatusController;
@@ -57,6 +59,13 @@ Route::group(['middleware' => 'auth'], function () {
     Route::put('/site-contacts/{id}', ['uses' => SiteContactController::class . '@update']);
     Route::delete('/site-contacts/{id}', ['uses' => SiteContactController::class . '@delete']);
     Route::get('/site-contacts/{id}', ['uses' => SiteContactController::class . '@get']);
+
+    Route::post('/jobs/create-in-simpro', ['uses' => JobController::class . '@createInSimpro']);
+    Route::get('/jobs/cost-centers', ['uses' => JobController::class . '@getCostCenters']);
+    Route::get('/jobs/{id}', ['uses' => JobController::class . '@get']);
+    Route::get('/jobs', ['uses' => JobController::class . '@search']);
+
+    Route::get('/job-attachments/download/{id}', ['uses' => JobAttachmentController::class . '@download']);
 });
 
 Route::group(['middleware' => 'guest'], function () {

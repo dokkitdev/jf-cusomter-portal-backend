@@ -15,6 +15,7 @@ class SimproJobService extends EntityService
 {
     protected CustomerService $customerService;
     protected SiteService $siteService;
+    protected JobService $jobService;
 
     public function __construct()
     {
@@ -22,6 +23,7 @@ class SimproJobService extends EntityService
 
         $this->customerService = app(CustomerService::class);
         $this->siteService = app(SiteService::class);
+        $this->jobService = app(JobService::class);
     }
 
     public function handleJob(SimproJob $webhook)
@@ -29,6 +31,11 @@ class SimproJobService extends EntityService
         $event = $webhook['data']['ID'];
 
         switch ($event) {
+            case 'job.created':
+            case 'job.updated':
+                return $this->jobService->createOrUpdateBySimpro($webhook);
+            case 'job.deleted':
+                return $this->jobService->deleteBySimpro($webhook);
             case 'site.created':
             case 'site.updated':
                 return $this->siteService->createOrUpdateBySimpro($webhook);

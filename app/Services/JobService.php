@@ -51,6 +51,7 @@ class JobService extends BaseService
 
         return $this->repository
             ->with(Arr::get($filters, 'with', []))
+            ->withCount(Arr::get($filters, 'with_count', []))
             ->searchQuery($filters)
             ->filterByIntQuery('simpro_job_id')
             ->filterBy('customer_id')
@@ -58,29 +59,49 @@ class JobService extends BaseService
             ->filterBy('customer.name', 'customer_name')
             ->filterBy('site.name', 'site_name')
             ->filterByPostalCode()
+            ->filterByPriority()
+            ->filterByOrderNo()
+            ->filterByUprn()
             ->filterByList('cost_center_name', 'cost_center_name')
             ->filterByList('stage', 'stage')
             ->filterByList('job_status', 'job_status')
             ->filterByRecentSchedule()
             ->filterByQuery(['site.name', 'site.postal_code', 'customer.name'])
+            ->filterFrom('date_created', false, 'date_created_from')
+            ->filterTo('date_created', false, 'date_created_to')
+            ->filterFrom('made_safe_date', false, 'made_safe_date_from')
+            ->filterTo('made_safe_date', false, 'made_safe_date_to')
+            ->filterFrom('completion_date', false, 'completion_date_from')
+            ->filterTo('completion_date', false, 'completion_date_to')
+            ->filterFrom('due_date', false, 'due_date_from')
+            ->filterTo('due_date', false, 'due_date_to')
             ->filterByOnlyPermitted()
             ->getSearchResults();
     }
 
+    public function getCostCenters()
+    {
+        $costCenterPages = $this->simproClient->getCostCenters($this->companyId);
+
+        $costCenters = [];
+        foreach ($costCenterPages as $costCenterPage) {
+            $costCenters = array_merge($costCenters, $costCenterPage);
+        }
+
+        return $costCenters;
+    }
+
     public function createInSimpro(array $data): array
     {
-        $simproSite = $this->siteService->with(['customer'])->find($data['site_id']);
+        $site = $this->siteService->with(['customers'])->find($data['site_id']);
 
-        $defaultTag = $this->settingService->get('default_tag');
-
-        $jobStatus = config('defaults.job_status');
+        $tag = $this->getAuthUser()->role_id === Role::CUSTOMER ? config('defaults.customer_job_request_tag') : config('defaults.call_center_job_request_tag') ;
 
         $jobData = [
-            'Type' => 'Project',
-            'Customer' => Arr::get($simproSite, 'simpro_customer.customer_id'),
-            'Site' => $simproSite['site_id'],
-            'Tags' => [$defaultTag['ID']],
-            'Status' => $jobStatus
+            'Type' => 'Service',
+            'Customer' => Arr::get($site, 'customer.0.simpro_customer_id'),
+            'Site' => $site['simpro_site_id'],
+            'Tags' => [$tag],
         ];
 
         if (Arr::has($data, 'description')) {

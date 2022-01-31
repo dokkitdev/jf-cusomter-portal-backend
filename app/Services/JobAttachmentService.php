@@ -27,13 +27,7 @@ class JobAttachmentService extends EntityService
 
     public function syncBySimpro(int $companyId, int $simproJobId, int $jobId): void
     {
-        $simproJobAttachmentsPages = $this->simproClient->getAsGenerator(
-            "companies/{$companyId}/jobs/{$simproJobId}/attachments/files/",
-            [
-                'columns' => 'ID,Filename,Public,DateAdded',
-                'Public' => 'true'
-            ]
-        );
+        $simproJobAttachmentsPages = $this->simproClient->getJobAttachments($companyId, $jobId);
 
         $jobAttachments = $this->repository->get(['job_id' => $jobId]);
 
@@ -71,9 +65,11 @@ class JobAttachmentService extends EntityService
         $simproJobId = $attachment['job']['simpro_job_id'];
         $simproAttachmentId = $attachment['simpro_attachment_id'];
 
-        $file = $this->simproClient->downloadJobAttachment($this->companyId, $simproJobId, $simproAttachmentId);
+        if (!Storage::exists($simproAttachmentId)) {
+            $file = $this->simproClient->downloadJobAttachment($this->companyId, $simproJobId, $simproAttachmentId);
 
-        Storage::put($simproAttachmentId, base64_decode($file['Base64Data']));
+            Storage::put($simproAttachmentId, base64_decode($file['Base64Data']));
+        }
 
         return $attachment;
     }

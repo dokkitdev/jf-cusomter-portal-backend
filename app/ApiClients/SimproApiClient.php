@@ -236,6 +236,37 @@ class SimproApiClient
         return $this->makeRequest('get', $url);
     }
 
+    public function getCustomers(int $companyId, string $type)
+    {
+        $url = $this->getUrl("companies/{$companyId}/customers/{$type}/");
+
+        return $this->getAsGenerator($url);
+    }
+
+    public function getJobAttachments(int $companyId, int $jobId)
+    {
+        $url = $this->getUrl("companies/{$companyId}/jobs/{$jobId}/attachments/files/");
+
+        return $this->getAsGenerator($url, [
+            'columns' => 'ID,Filename,Public,DateAdded',
+            'Public' => 'true'
+        ]);
+    }
+
+    public function getCostCenters(int $companyId)
+    {
+        $url = $this->getUrl("companies/{$companyId}/setup/accounts/costCenters/");
+
+        return $this->getAsGenerator($url);
+    }
+
+    public function getSchedules(int $companyId, int $jobId)
+    {
+        $url = $this->getUrl("companies/{$companyId}/schedules/");
+
+        return $this->getAsGenerator($url, ['Reference' => "{$jobId}%"]);
+    }
+
     public function getAsGenerator(string $url, array $additionalFilters = [], int $pageSize = 250, array $headers = []): Generator
     {
         $page = 1;

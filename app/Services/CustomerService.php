@@ -50,10 +50,8 @@ class CustomerService extends BaseService
 
     public function syncCustomers(): void
     {
-        $typeCompanies = Customer::TYPE_COMPANIES;
-        $companiesPages = $this->simproClient->getAsGenerator("companies/{$this->companyId}/customers/{$typeCompanies}/");
-        $typeIndividuals = Customer::TYPE_INDIVIDUALS;
-        $individualPages = $this->simproClient->getAsGenerator("companies/{$this->companyId}/customers/{$typeIndividuals}/");
+        $companiesPages = $this->simproClient->getCustomers($this->companyId, Customer::TYPE_COMPANIES);
+        $individualPages = $this->simproClient->getCustomers($this->companyId, Customer::TYPE_INDIVIDUALS);
 
         $companiesMapped = [];
         foreach ($companiesPages as $companyPage) {

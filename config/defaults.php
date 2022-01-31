@@ -15,5 +15,7 @@ return [
 
     'password_hash_lifetime' => env('PASSWORD_HASH_LIFETIME', 1),
 
-    'site_uprn_custom_field_id' => 8
+    'site_uprn_custom_field_id' => 8,
+    'customer_job_request_tag' => 21,
+    'call_center_job_request_tag' => 22
 ];

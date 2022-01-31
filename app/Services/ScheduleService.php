@@ -28,10 +28,7 @@ class ScheduleService extends EntityService
 
     public function createOrUpdateManyBySimpro(int $companyId, int $simproJobId, int $jobId): void
     {
-        $schedulePages = $this->simproClient->getAsGenerator(
-            "companies/{$companyId}/schedules/",
-            ['Reference' => "{$simproJobId}%"]
-        );
+        $schedulePages = $this->simproClient->getSchedules($companyId, $simproJobId);
 
         foreach ($schedulePages as $schedulePage) {
             foreach ($schedulePage as $simproSchedule) {

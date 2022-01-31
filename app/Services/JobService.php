@@ -81,7 +81,7 @@ class JobService extends BaseService
 
     public function getCostCenters()
     {
-        $costCenterPages = $this->simproClient->getAsGenerator("companies/{$this->companyId}/setup/accounts/costCenters/");
+        $costCenterPages = $this->simproClient->getCostCenters($this->companyId);
 
         $costCenters = [];
         foreach ($costCenterPages as $costCenterPage) {
@@ -95,7 +95,7 @@ class JobService extends BaseService
     {
         $site = $this->siteService->with(['customers'])->find($data['site_id']);
 
-        $tag = $this->getAuthUser()->role_id === Role::CUSTOMER ? 'tbc' : 'tbc' ;
+        $tag = $this->getAuthUser()->role_id === Role::CUSTOMER ? config('defaults.customer_job_request_tag') : config('defaults.call_center_job_request_tag') ;
 
         $jobData = [
             'Type' => 'Service',

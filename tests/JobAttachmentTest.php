@@ -26,8 +26,6 @@ class JobAttachmentTest extends TestCase
 
     public function testDownloadJobAttachment()
     {
-        $this->mockDownloadJobAttachment();
-
         Storage::put('8EgYd8urKKzzqcdDTKsKcpW9xWHxtwsKSoCscR3R7g4', 'content');
 
         $response = $this->actingAs($this->customer)->json('get', '/job-attachments/download/1');

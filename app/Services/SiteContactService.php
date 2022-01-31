@@ -29,9 +29,11 @@ class SiteContactService extends BaseService
 
     public function create(array $data): Model
     {
+        $site = app(SiteService::class)->first($data['site_id']);
+
         $contactData = $this->prepareContactData($data);
 
-        $contact = $this->simproClient->postSiteContact($this->companyId, $data['site_id'], $contactData);
+        $contact = $this->simproClient->postSiteContact($this->companyId, $site['simpro_site_id'], $contactData);
 
         $data['simpro_contact_id'] = $contact['ID'];
         $data['name'] = trim("{$data['given_name']} {$data['family_name']}");

@@ -44,7 +44,8 @@ INSERT INTO customer_site(id, customer_id, site_id) VALUES
 
 INSERT INTO simpro_log(id, loggable_id, loggable_type, handle_status, handle_result) VALUES
 (1, 1, 'sites', 'new', null),
-(2, 1, 'jobs', 'new', null);
+(2, 1, 'jobs', 'new', null),
+(3, 1, 'assets', 'new', null);
 
 INSERT INTO jobs(id, simpro_job_id, site_id, customer_id, stage) VALUES
 (1, 1, 1, 1, 'Progress'),
@@ -61,3 +62,43 @@ INSERT INTO job_attachments(id, job_id, simpro_attachment_id, name) VALUES
 
 INSERT INTO job_work_orders(id, job_id, simpro_section_id, simpro_cost_center_id, simpro_work_order_id, name, description, date) VALUES
 (1, 1, 0, 0, 0, 'Test', 'Test', '2020-10-06');
+
+INSERT INTO assets(id, simpro_asset_id, site_id, name, last_test_date, next_service_date, last_test_result, service_level_name, archived) VALUES
+(1, 1, 1, 'Name 1', '2016-10-20', '2016-10-20', 'Test result...', 'Service level...', false),
+(2, 2, 1, 'Name 2', '2016-10-20', '2016-10-20', 'Test result...', 'Service level...', false),
+(3, 3, 1, 'Name 3', null, null, 'Test result...', 'Service level...', true),
+(4, 4, 1, 'Name 4', null, null, null, null, false),
+(5, 5, 1, 'Name 5', null, null, null, null, false),
+(6, 6, 2, 'Name 6', null, null, null, null, false),
+(7, 7, 3, 'Name 7', null, null, null, null, false),
+(8, 8, 4,  null, null, null, null, null, false),
+(9, 9, 4, null, null, null, null, null, false),
+(10, 10, 4, null, null, null, null, null, false);
+
+INSERT INTO asset_custom_fields(id, asset_id, simpro_custom_field_id, name, value) VALUES
+(1, 1, 1, 'name', 'value'),
+(2, 1, 2, 'name', 'value'),
+(3, 2, 3, 'name', 'value'),
+(4, 3, 4, 'name', 'value');
+
+INSERT INTO asset_attachments(id, asset_id, simpro_attachment_id, name) VALUES
+(1, 1, 'link1', 'name'),
+(2, 1, 'link2', 'name'),
+(3, 2, 'link3', 'name'),
+(4, 3, 'link4', 'name');
+
+INSERT INTO asset_test_records(id, asset_id, job_id, name, test_date, notes, result) VALUES
+(1, 1, 1, 'name', '2016-10-20', 'Some notes...', 'Result...'),
+(2, 1, 2, 'name', '2016-10-20', 'Some notes...', 'Result...'),
+(3, 2, 1, 'name', '2016-10-20', 'Some notes...', 'Result...'),
+(4, 3, 2, 'name', '2016-10-20', 'Some notes...', 'Result...');
+
+INSERT INTO asset_test_record_readings(id, asset_test_record_id, name, value) VALUES
+(1, 1, 'name', 'value'),
+(2, 2, 'name', 'value'),
+(3, 3, 'name', 'value'),
+(4, 4, 'name', 'value');
+
+INSERT INTO asset_log_histories(id, assets_pulled_at, assets_count) VALUES
+(1, '2021-05-20 07:00:00', 100),
+(2, '2021-05-20 08:00:00', 100);

@@ -157,9 +157,9 @@ class JobService extends BaseService
 
         $simproJob = $this->simproClient->getJob($companyId, $simproJobId);
 
-        $customer = $this->customerService->getOrCreateBySimpro($companyId, $simproJob['Customer']);
+        $customer = $this->customerService->firstOrCreateBySimpro($companyId, $simproJob['Customer']['ID']);
 
-        $site = $this->siteService->getOrCreateBySimpro($companyId, $simproJob['Site']['ID'], $customer['id']);
+        $site = $this->siteService->firstOrCreateBySimpro($companyId, $simproJob['Site']['ID']);
 
         $job = $this->createOrUpdate($companyId, $simproJob, $customer['id'], $site['id']);
 

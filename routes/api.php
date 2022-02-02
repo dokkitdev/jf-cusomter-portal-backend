@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AssetController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\JobAttachmentController;
@@ -66,6 +67,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/jobs', ['uses' => JobController::class . '@search']);
 
     Route::get('/job-attachments/download/{id}', ['uses' => JobAttachmentController::class . '@download']);
+
+    Route::get('/assets/service-levels', ['uses' => AssetController::class . '@getServiceLevels']);
+    Route::get('/assets/{id}', ['uses' => AssetController::class . '@get']);
+    Route::get('/assets', ['uses' => AssetController::class . '@search']);
+
+    Route::get('/asset-attachments/{id}/download', ['uses' => AssetController::class . '@download']);
 });
 
 Route::group(['middleware' => 'guest'], function () {

@@ -1,0 +1,42 @@
+[
+    {
+        "ID": 9,
+        "Name": "Annual - 1 Hour Drain"
+    },
+    {
+        "ID": 10,
+        "Name": "Annual - 3 Hour Drain"
+    },
+    {
+        "ID": 2,
+        "Name": "Annually"
+    },
+    {
+        "ID": 5,
+        "Name": "Fortnightly"
+    },
+    {
+        "ID": 7,
+        "Name": "Monthly"
+    },
+    {
+        "ID": 4,
+        "Name": "Quarterly"
+    },
+    {
+        "ID": 1,
+        "Name": "Six Monthly"
+    },
+    {
+        "ID": 6,
+        "Name": "Thrice Yearly"
+    },
+    {
+        "ID": 42,
+        "Name": "Tri-Weekly"
+    },
+    {
+        "ID": 3,
+        "Name": "Weekly"
+    }
+]

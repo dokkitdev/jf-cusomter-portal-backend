@@ -21,6 +21,7 @@ class AssetService extends BaseService
     protected AssetCustomFieldService $assetCustomFieldService;
     protected AssetAttachmentService $assetAttachmentService;
     protected AssetTestRecordService $assetTestRecordService;
+    protected int $companyId;
 
     public function __construct()
     {
@@ -28,11 +29,25 @@ class AssetService extends BaseService
 
         $this->setRepository(AssetRepository::class);
 
+        $this->companyId = config('services.simpro.company_id');
+
         $this->simproClient = app(SimproApiClient::class);
         $this->siteService = app(SiteService::class);
         $this->assetCustomFieldService = app(AssetCustomFieldService::class);
         $this->assetAttachmentService = app(AssetAttachmentService::class);
         $this->assetTestRecordService = app(AssetTestRecordService::class);
+    }
+
+    public function getAssetServiceLevels()
+    {
+        $assetServiceLevelPages = $this->simproClient->getAssetServiceLevelSetup($this->companyId);
+
+        $serviceLevels = [];
+        foreach ($assetServiceLevelPages as $assetServiceLevelPage) {
+            $serviceLevels = array_merge($serviceLevels, $assetServiceLevelPage);
+        }
+
+        return $serviceLevels;
     }
 
     public function search(array $filters): LengthAwarePaginator
@@ -54,6 +69,9 @@ class AssetService extends BaseService
             ->filterByList('service_level_name', 'service_level_names')
             ->filterByQuery(['name'])
             ->filterByQueryWithValue('location', 'location_query')
+            ->filterByQueryWithValue('customer_name', 'customer_name_query')
+            ->filterByQueryWithValue('make', 'make_query')
+            ->filterByQueryWithValue('model', 'model_query')
             ->filterBy('last_test_date')
             ->filterFrom('last_test_date', false, 'last_test_date_from')
             ->filterTo('last_test_date', false, 'last_test_date_to')

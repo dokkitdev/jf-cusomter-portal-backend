@@ -1,0 +1,17 @@
+{
+    "id": 7,
+    "simpro_asset_id": 7,
+    "site_id": 3,
+    "name": "Name 7",
+    "customer_name": null,
+    "location": null,
+    "make": null,
+    "model": null,
+    "last_test_date": null,
+    "next_service_date": null,
+    "last_test_result": null,
+    "service_level_name": null,
+    "archived": false,
+    "created_at": null,
+    "updated_at": null
+}

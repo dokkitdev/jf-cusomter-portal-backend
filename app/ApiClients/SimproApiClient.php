@@ -274,6 +274,13 @@ class SimproApiClient
         return $this->getAsGenerator($url);
     }
 
+    public function getAssetServiceLevelSetup(int $companyId): Generator
+    {
+        $url = $this->getUrl("companies/{$companyId}/setup/assets/serviceLevels/");
+
+        return $this->getAsGenerator($url);
+    }
+
     public function getAsGenerator(string $url, array $additionalFilters = [], int $pageSize = 250, array $headers = []): Generator
     {
         $page = 1;

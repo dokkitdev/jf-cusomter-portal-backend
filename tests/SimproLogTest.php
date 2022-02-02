@@ -116,7 +116,7 @@ class SimproLogTest extends TestCase
 
     public function testHandleAssetsLogCommand()
     {
-        $this->mockCreateOrUpdateAsset();
+        $this->mockHandleAssetLog();
 
         $this->artisan('simpro:handle-log assets')->assertExitCode(0);
 

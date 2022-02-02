@@ -71,7 +71,7 @@ class AssetTest extends TestCase
         $this->assertEqualsFixture('simpro_jobs_fixture.json', $simproJob);
 
         $assets = Asset::orderBy('id')->get()->toArray();
-        $this->exportJson('asset_delete_event_fixture.json', $assets);
+        $this->assertEqualsFixture('asset_delete_event_fixture.json', $assets);
     }
 
     public function testGet()

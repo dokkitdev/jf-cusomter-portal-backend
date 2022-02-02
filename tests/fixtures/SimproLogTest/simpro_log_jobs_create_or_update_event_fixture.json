@@ -7,5 +7,14 @@
         "handle_result": null,
         "created_at": null,
         "updated_at": null
+    },
+    {
+        "id": 3,
+        "loggable_id": 1,
+        "loggable_type": "assets",
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": null,
+        "updated_at": null
     }
 ]

@@ -14,6 +14,7 @@ class SimproLog extends Model
 
     const LOGGABLE_TYPE_SITES = 'sites';
     const LOGGABLE_TYPE_JOBS = 'jobs';
+    const LOGGABLE_TYPE_ASSETS = 'assets';
 
     protected $table = 'simpro_log';
 

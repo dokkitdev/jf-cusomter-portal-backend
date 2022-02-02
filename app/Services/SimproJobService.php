@@ -16,6 +16,7 @@ class SimproJobService extends EntityService
     protected CustomerService $customerService;
     protected SiteService $siteService;
     protected JobService $jobService;
+    protected AssetService $assetService;
 
     public function __construct()
     {
@@ -24,6 +25,7 @@ class SimproJobService extends EntityService
         $this->customerService = app(CustomerService::class);
         $this->siteService = app(SiteService::class);
         $this->jobService = app(JobService::class);
+        $this->assetService = app(AssetService::class);
     }
 
     public function handleJob(SimproJob $webhook)
@@ -41,6 +43,11 @@ class SimproJobService extends EntityService
                 return $this->siteService->createOrUpdateBySimpro($webhook);
             case 'site.deleted':
                 return $this->siteService->deleteBySimpro($webhook);
+            case 'asset.created':
+            case 'asset.updated':
+                return $this->assetService->updateOrCreateBySimpro($webhook);
+            case 'asset.deleted':
+                return $this->assetService->deleteBySimpro($webhook);
             case 'company.customer.created':
             case 'company.customer.updated':
                 return $this->customerService->createOrUpdateBySimpro($webhook, Customer::TYPE_COMPANIES);

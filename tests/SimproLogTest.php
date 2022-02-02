@@ -2,6 +2,7 @@
 
 namespace App\Tests;
 
+use App\Models\Asset;
 use App\Models\Customer;
 use App\Models\Job;
 use App\Models\JobAttachment;
@@ -96,5 +97,39 @@ class SimproLogTest extends TestCase
 
         $jobWorkOrders = JobWorkOrder::orderBy('id')->get()->toArray();
         $this->assertEqualsFixture('job_work_orders_create_or_update_event_fixture.json', $jobWorkOrders);
+    }
+
+    public function testGetAssetsToLogCommand()
+    {
+        $this->mockGetAssets();
+
+        $this->artisan('simpro:save-simpro-log assets')->assertExitCode(0);
+
+        $assetLogs = SimproLog::orderBy('id')->get()->toArray();
+        $this->assertEqualsFixture('simpro_log_assets_fixture.json', $assetLogs);
+
+        $this->assertDatabaseHas('asset_log_histories', [
+            'assets_pulled_at' => '2018-11-11 10:41:11.000000',
+            'assets_count' => 250
+        ]);
+    }
+
+    public function testHandleAssetsLogCommand()
+    {
+        $this->mockCreateOrUpdateAsset();
+
+        $this->artisan('simpro:handle-log assets')->assertExitCode(0);
+
+        $assetlogs = SimproLog::orderBy('id')->get()->toArray();
+        $this->assertEqualsFixture('simpro_log_assets_create_or_update_event_fixture.json', $assetlogs);
+
+        $assets = Asset::orderBy('id')->with([
+            'site.customers',
+            'asset_custom_fields',
+            'asset_attachments',
+            'asset_test_records.job',
+            'asset_test_records.asset_test_record_readings'
+        ])->get()->toArray();
+        $this->assertEqualsFixture('asset_create_or_update_event_fixture.json', $assets);
     }
 }

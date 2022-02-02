@@ -236,14 +236,14 @@ class SimproApiClient
         return $this->makeRequest('get', $url);
     }
 
-    public function getCustomers(int $companyId, string $type)
+    public function getCustomers(int $companyId, string $type): Generator
     {
         $url = $this->getUrl("companies/{$companyId}/customers/{$type}/");
 
         return $this->getAsGenerator($url);
     }
 
-    public function getJobAttachments(int $companyId, int $jobId)
+    public function getJobAttachments(int $companyId, int $jobId): Generator
     {
         $url = $this->getUrl("companies/{$companyId}/jobs/{$jobId}/attachments/files/");
 
@@ -253,18 +253,25 @@ class SimproApiClient
         ]);
     }
 
-    public function getCostCenters(int $companyId)
+    public function getCostCenters(int $companyId): Generator
     {
         $url = $this->getUrl("companies/{$companyId}/setup/accounts/costCenters/");
 
         return $this->getAsGenerator($url);
     }
 
-    public function getSchedules(int $companyId, int $jobId)
+    public function getSchedules(int $companyId, int $jobId): Generator
     {
         $url = $this->getUrl("companies/{$companyId}/schedules/");
 
         return $this->getAsGenerator($url, ['Reference' => "{$jobId}%"]);
+    }
+
+    public function getAssetAttachments(int $companyId, int $siteId, int $assetId): Generator
+    {
+        $url = $this->getUrl("companies/{$companyId}/sites/{$siteId}/assets/{$assetId}/attachments/files/");
+
+        return $this->getAsGenerator($url);
     }
 
     public function getAsGenerator(string $url, array $additionalFilters = [], int $pageSize = 250, array $headers = []): Generator

@@ -101,7 +101,7 @@ trait SimproTestTrait
         ]);
     }
 
-    protected function mockCreateOrUpdateAsset()
+    protected function mockHandleAssetLog()
     {
         $this->mockHttpRequestService([
             $this->getAsset(),
@@ -126,6 +126,26 @@ trait SimproTestTrait
             $this->getSite(),
             $this->getSiteContacts(),
             $this->getJobLog(),
+            $this->getJobAttachments('get_job_attachments_response_success.json'),
+            $this->getJobAttachments('get_job_attachments_empty_response_success.json'),
+        ]);
+    }
+
+    protected function mockCreateOrUpdateAsset()
+    {
+        $this->mockHttpRequestService([
+            $this->getAsset(),
+            $this->getSite(),
+            $this->getSiteContacts(),
+            $this->getCustomer(),
+            $this->getAssetServiceLevels(),
+            $this->getAssetAttachments('get_asset_attachments_response_success.json'),
+            $this->getAssetAttachments('get_asset_attachments_empty_response_success.json'),
+            $this->getAssetTestHistories(),
+            $this->getJob(),
+            $this->getJobAttachments('get_job_attachments_response_success.json'),
+            $this->getJobAttachments('get_job_attachments_empty_response_success.json'),
+            $this->getJob(),
             $this->getJobAttachments('get_job_attachments_response_success.json'),
             $this->getJobAttachments('get_job_attachments_empty_response_success.json'),
         ]);

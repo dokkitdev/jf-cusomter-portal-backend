@@ -1,0 +1,21 @@
+[
+    {
+        "id": 1,
+        "data": {
+            "ID": "job.created",
+            "build": "pfsgroup.simprosuite.com",
+            "description": "Job #test has been crashed.",
+            "name": "Job",
+            "action": "created",
+            "reference": {
+                "companyID": 0,
+                "jobID": 2406
+            },
+            "date_triggered": "2019-12-18T11:52:29+00:00"
+        },
+        "handle_status": "error",
+        "handle_result": [],
+        "created_at": null,
+        "updated_at": null
+    }
+]

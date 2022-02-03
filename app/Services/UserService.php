@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Jobs\SendMailJob;
 use App\Mails\ForgotPasswordMail;
 use App\Mails\InvitationMail;
+use App\Models\Job;
 use App\Models\Role;
 use Carbon\Carbon;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
@@ -20,11 +21,15 @@ use Illuminate\Support\Facades\Hash;
  */
 class UserService extends BaseService
 {
+    protected JobService $jobService;
+
     public function __construct()
     {
         parent::__construct();
 
         $this->setRepository(UserRepository::class);
+
+        $this->jobService = app(JobService::class);
     }
 
     public function search(array $filters): LengthAwarePaginator
@@ -126,6 +131,47 @@ class UserService extends BaseService
             ->update($id, $data);
 
         $this->sendInvitationEmail($user['email'], $data['set_password_hash']);
+    }
+
+    public function getDashboardCounters(): array
+    {
+        $data = [
+            'per_page' => 0,
+            'all' => 1,
+        ];
+
+        $todaysJobs = $this->jobService->search(array_merge($data, [
+            'date_created' => now()->format('Y-m-d')
+        ]));
+
+        $outOfHoursJobs = $this->jobService->search(array_merge($data, [
+            'out_of_hours' => true
+        ]));
+
+        $data['stage'] = [Job::PENDING_STAGE];
+        $pendingJobs = $this->jobService->search($data);
+
+        $data['stage'] = [Job::PROGRESS_STAGE];
+        $progressJobs = $this->jobService->search($data);
+
+        $data['stage'] = [Job::COMPLETE_STAGE];
+        $completeJobs = $this->jobService->search($data);
+
+        $data['stage'] = [Job::INVOICED_STAGE];
+        $invoicedJobs = $this->jobService->search($data);
+
+        $data['stage'] = [Job::ARCHIVED_STAGE];
+        $archivedJobs = $this->jobService->search($data);
+
+        return [
+            'todays_jobs_total' => $todaysJobs->total(),
+            'out_of_hours_jobs_total' => $outOfHoursJobs->total(),
+            'pending_jobs_total' => $pendingJobs->total(),
+            'progress_jobs_total' => $progressJobs->total(),
+            'complete_jobs_total' => $completeJobs->total(),
+            'invoiced_jobs_total' => $invoicedJobs->total(),
+            'archived_jobs_total' => $archivedJobs->total(),
+        ];
     }
 
     protected function sendInvitationEmail(string $email, string $hash): void

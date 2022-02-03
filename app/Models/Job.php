@@ -36,6 +36,7 @@ class Job extends Model
         'completion_date',
         'due_date',
         'recent_schedule_id',
+        'logged_create_date'
     ];
 
     protected $hidden = ['pivot'];

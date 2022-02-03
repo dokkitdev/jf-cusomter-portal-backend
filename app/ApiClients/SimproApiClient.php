@@ -205,13 +205,13 @@ class SimproApiClient
         ]);
     }
 
-    public function getJobLog(int $companyId, int $jobId): array
+    public function getJobLog(int $companyId, int $jobId, string $message): array
     {
         $url = $this->getUrl("companies/{$companyId}/logs/jobs/");
 
         return $this->makeRequest('get', $url, [
             'JobID' => $jobId,
-            'Message' => 'Job status set to Job : Made Safe'
+            'Message' => $message
         ]);
     }
 

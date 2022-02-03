@@ -18,7 +18,8 @@
             "due_date": null,
             "created_at": null,
             "updated_at": null,
-            "recent_schedule_id": null
+            "recent_schedule_id": null,
+            "logged_create_date": null
         },
         {
             "id": 2,
@@ -37,7 +38,8 @@
             "due_date": null,
             "created_at": null,
             "updated_at": null,
-            "recent_schedule_id": null
+            "recent_schedule_id": null,
+            "logged_create_date": null
         }
     ],
     "first_page_url": "http:\/\/localhost\/jobs?page=1",

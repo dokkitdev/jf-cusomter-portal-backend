@@ -67,6 +67,7 @@ class JobService extends BaseService
             ->filterByList('job_status', 'job_status')
             ->filterByRecentSchedule()
             ->filterByQuery(['site.name', 'site.postal_code', 'customer.name'])
+            ->filterBy('date_created')
             ->filterFrom('date_created', false, 'date_created_from')
             ->filterTo('date_created', false, 'date_created_to')
             ->filterFrom('made_safe_date', false, 'made_safe_date_from')
@@ -75,6 +76,7 @@ class JobService extends BaseService
             ->filterTo('completion_date', false, 'completion_date_to')
             ->filterFrom('due_date', false, 'due_date_from')
             ->filterTo('due_date', false, 'due_date_to')
+            ->filterByOutOfHours()
             ->filterByOnlyPermitted()
             ->getSearchResults();
     }
@@ -170,7 +172,8 @@ class JobService extends BaseService
 
     protected function createOrUpdate(int $companyId, array $simproJob, int $customerId, int $siteId): Model
     {
-        $jobLog = $this->simproClient->getJobLog($companyId, $simproJob['ID']);
+        $madeSafeJobLog = $this->simproClient->getJobLog($companyId, $simproJob['ID'], 'Job status set to Job : Made Safe');
+        $createdJobLog = $this->simproClient->getJobLog($companyId, $simproJob['ID'], 'Created Job');
 
         return $this->repository->updateOrCreate(['simpro_job_id' => $simproJob['ID']], [
             'customer_id' => $customerId,
@@ -182,9 +185,10 @@ class JobService extends BaseService
             'stage' => Arr::get($simproJob, 'Stage'),
             'job_status' => Arr::get($simproJob, 'Status.Name'),
             'date_created' => Arr::get($simproJob, 'DateIssued'),
-            'made_safe_date' => Arr::get($jobLog, '0.DateLogged'),
+            'made_safe_date' => Arr::get($madeSafeJobLog, '0.DateLogged'),
             'completion_date' => Arr::get($simproJob, 'CompletedDate'),
             'due_date' => Arr::get($simproJob, 'DueDate'),
+            'logged_create_date' => Arr::get($createdJobLog, '0.DateLogged'),
         ]);
     }
 

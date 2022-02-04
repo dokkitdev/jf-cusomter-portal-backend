@@ -112,7 +112,8 @@
                     "due_date": null,
                     "created_at": null,
                     "updated_at": null,
-                    "recent_schedule_id": null
+                    "recent_schedule_id": null,
+                    "logged_create_date": null
                 },
                 "asset_test_record_readings": [
                     {
@@ -152,7 +153,8 @@
                     "due_date": null,
                     "created_at": null,
                     "updated_at": null,
-                    "recent_schedule_id": null
+                    "recent_schedule_id": null,
+                    "logged_create_date": null
                 },
                 "asset_test_record_readings": [
                     {
@@ -263,7 +265,8 @@
                     "due_date": null,
                     "created_at": null,
                     "updated_at": null,
-                    "recent_schedule_id": null
+                    "recent_schedule_id": null,
+                    "logged_create_date": null
                 },
                 "asset_test_record_readings": [
                     {
@@ -374,7 +377,8 @@
                     "due_date": null,
                     "created_at": null,
                     "updated_at": null,
-                    "recent_schedule_id": null
+                    "recent_schedule_id": null,
+                    "logged_create_date": null
                 },
                 "asset_test_record_readings": [
                     {
@@ -861,7 +865,8 @@
                     "due_date": "2021-02-23 00:00:00",
                     "created_at": "2018-11-11T11:11:11.000000Z",
                     "updated_at": "2018-11-11T11:11:11.000000Z",
-                    "recent_schedule_id": null
+                    "recent_schedule_id": null,
+                    "logged_create_date": "2022-01-27 09:20:05"
                 },
                 "asset_test_record_readings": []
             },
@@ -892,7 +897,8 @@
                     "due_date": "2021-02-23 00:00:00",
                     "created_at": "2018-11-11T11:11:11.000000Z",
                     "updated_at": "2018-11-11T11:11:11.000000Z",
-                    "recent_schedule_id": null
+                    "recent_schedule_id": null,
+                    "logged_create_date": "2022-01-27 09:20:05"
                 },
                 "asset_test_record_readings": [
                     {
@@ -1052,7 +1058,8 @@
                     "due_date": "2021-02-23 00:00:00",
                     "created_at": "2018-11-11T11:11:11.000000Z",
                     "updated_at": "2018-11-11T11:11:11.000000Z",
-                    "recent_schedule_id": null
+                    "recent_schedule_id": null,
+                    "logged_create_date": "2022-01-27 09:20:05"
                 },
                 "asset_test_record_readings": [
                     {

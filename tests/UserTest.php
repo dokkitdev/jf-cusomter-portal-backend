@@ -15,6 +15,7 @@ class UserTest extends TestCase
 
     protected $admin;
     protected $user;
+    protected $customer;
 
     public function setUp(): void
     {
@@ -22,6 +23,7 @@ class UserTest extends TestCase
 
         $this->admin = User::find(1);
         $this->user = User::find(2);
+        $this->customer = User::find(3);
     }
 
     public function testCreate()
@@ -348,6 +350,31 @@ class UserTest extends TestCase
     public function testResendInvitationNoAuth()
     {
         $response = $this->json('post', '/users/1/resend-invitation');
+
+        $response->assertStatus(Response::HTTP_UNAUTHORIZED);
+    }
+
+    public function testGetDashboard()
+    {
+        $response = $this->actingAs($this->customer)->json('get', '/dashboard');
+
+        $response->assertStatus(Response::HTTP_OK);
+
+        $this->assertEqualsFixture('get_dashboard_by_user.json', $response->json());
+    }
+
+    public function testGetDashboardByAdmin()
+    {
+        $response = $this->actingAs($this->admin)->json('get', '/dashboard');
+
+        $response->assertStatus(Response::HTTP_OK);
+
+        $this->assertEqualsFixture('get_dashboard_by_admin.json', $response->json());
+    }
+
+    public function testGetDashboardNoAuth()
+    {
+        $response = $this->json('get', '/dashboard');
 
         $response->assertStatus(Response::HTTP_UNAUTHORIZED);
     }

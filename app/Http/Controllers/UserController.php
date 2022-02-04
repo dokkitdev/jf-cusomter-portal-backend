@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Users\GetDashboardRequest;
 use App\Http\Requests\Users\ResendInvitationRequest;
 use App\Services\UserService;
 use App\Http\Requests\Users\GetUserRequest;
@@ -29,6 +30,13 @@ class UserController extends Controller
         $result = $service
             ->with($request->onlyValidated('with', []))
             ->find($id);
+
+        return response()->json($result);
+    }
+
+    public function dashboard(GetDashboardRequest $request, UserService $service)
+    {
+        $result = $service->getDashboardCounters();
 
         return response()->json($result);
     }

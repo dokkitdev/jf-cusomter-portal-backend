@@ -34,6 +34,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/profile', ['uses' => UserController::class . '@profile']);
     Route::put('/profile', ['uses' => UserController::class . '@updateProfile']);
 
+    Route::get('/dashboard', ['uses' => UserController::class . '@dashboard']);
+
     Route::post('/media', ['uses' => MediaController::class . '@create']);
     Route::delete('/media/{id}', ['uses' => MediaController::class . '@delete']);
     Route::get('/media/{id}/download', ['uses' => MediaController::class . '@download']);

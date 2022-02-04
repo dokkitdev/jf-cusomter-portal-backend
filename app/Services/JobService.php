@@ -172,8 +172,8 @@ class JobService extends BaseService
 
     protected function createOrUpdate(int $companyId, array $simproJob, int $customerId, int $siteId): Model
     {
-        $madeSafeJobLog = $this->simproClient->getJobLog($companyId, $simproJob['ID'], 'Job status set to Job : Made Safe');
-        $createdJobLog = $this->simproClient->getJobLog($companyId, $simproJob['ID'], 'Created Job');
+        $madeSafeJobLog = $this->simproClient->getMadeSafeJobLog($companyId, $simproJob['ID']);
+        $createdJobLog = $this->simproClient->getCreatedJobLog($companyId, $simproJob['ID']);
 
         return $this->repository->updateOrCreate(['simpro_job_id' => $simproJob['ID']], [
             'customer_id' => $customerId,

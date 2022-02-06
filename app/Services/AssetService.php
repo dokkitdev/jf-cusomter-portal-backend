@@ -108,7 +108,7 @@ class AssetService extends BaseService
 
         $site = $this->siteService->firstOrCreateBySimpro($companyId, $simproSiteId);
 
-        $asset = $this->createOrUpdate($companyId, $simproAsset, $site['id']);
+        $asset = $this->createOrUpdate($companyId, $simproAsset, $site['id'], $site['simpro_site_id']);
 
         $this->assetCustomFieldService->syncByAsset($simproAsset, $asset['id']);
 
@@ -119,7 +119,7 @@ class AssetService extends BaseService
         return $asset;
     }
 
-    protected function createOrUpdate(int $companyId, array $simproAsset, int $simproSiteId): Model
+    protected function createOrUpdate(int $companyId, array $simproAsset, int $siteId, int $simproSiteId): Model
     {
         $serviceLevel = $this->findRecentServiceLevel($this->simproClient->getAssetServiceLevels($companyId, $simproSiteId, $simproAsset['ID']));
 
@@ -130,7 +130,7 @@ class AssetService extends BaseService
         return $this->repository->updateOrCreate([
             'simpro_asset_id' => $simproAsset['ID'],
         ], [
-            'site_id' => $simproSiteId,
+            'site_id' => $siteId,
             'name' => Arr::get($simproAsset, 'AssetType.Name'),
             'customer_name' => Arr::get($simproAsset, 'CustomerContract.Name'),
             'last_test_date' => Arr::get($simproAsset, 'LastTest.Date'),

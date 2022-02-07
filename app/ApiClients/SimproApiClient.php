@@ -248,14 +248,14 @@ class SimproApiClient
 
     public function getCustomers(int $companyId, string $type): Generator
     {
-        $url = $this->getUrl("companies/{$companyId}/customers/{$type}/");
+        $url = "companies/{$companyId}/customers/{$type}/";
 
         return $this->getAsGenerator($url);
     }
 
     public function getJobAttachments(int $companyId, int $jobId): Generator
     {
-        $url = $this->getUrl("companies/{$companyId}/jobs/{$jobId}/attachments/files/");
+        $url = "companies/{$companyId}/jobs/{$jobId}/attachments/files/";
 
         return $this->getAsGenerator($url, [
             'columns' => 'ID,Filename,Public,DateAdded',
@@ -265,28 +265,28 @@ class SimproApiClient
 
     public function getCostCenters(int $companyId): Generator
     {
-        $url = $this->getUrl("companies/{$companyId}/setup/accounts/costCenters/");
+        $url = "companies/{$companyId}/setup/accounts/costCenters/";
 
         return $this->getAsGenerator($url);
     }
 
     public function getSchedules(int $companyId, int $jobId): Generator
     {
-        $url = $this->getUrl("companies/{$companyId}/schedules/");
+        $url = "companies/{$companyId}/schedules/";
 
         return $this->getAsGenerator($url, ['Reference' => "{$jobId}%"]);
     }
 
     public function getAssetAttachments(int $companyId, int $siteId, int $assetId): Generator
     {
-        $url = $this->getUrl("companies/{$companyId}/sites/{$siteId}/assets/{$assetId}/attachments/files/");
+        $url = "companies/{$companyId}/sites/{$siteId}/assets/{$assetId}/attachments/files/";
 
         return $this->getAsGenerator($url);
     }
 
     public function getAssetServiceLevelSetup(int $companyId): Generator
     {
-        $url = $this->getUrl("companies/{$companyId}/setup/assets/serviceLevels/");
+        $url = "companies/{$companyId}/setup/assets/serviceLevels/";
 
         return $this->getAsGenerator($url);
     }

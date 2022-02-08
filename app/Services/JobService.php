@@ -104,6 +104,7 @@ class JobService extends BaseService
             'Customer' => Arr::get($site, 'customer.0.simpro_customer_id'),
             'Site' => $site['simpro_site_id'],
             'Tags' => [$tag],
+            'DueDate' => now()->addDays(3)->format('Y-m-d')
         ];
 
         if (Arr::has($data, 'description')) {

@@ -220,6 +220,24 @@ class JobTest extends TestCase
         $response->assertStatus(Response::HTTP_UNAUTHORIZED);
     }
 
+    public function testGetStatuses()
+    {
+        $this->mockGetCostCenters();
+
+        $response = $this->actingAs($this->customer)->json('get', '/jobs/statuses');
+
+        $response->assertStatus(Response::HTTP_OK);
+
+        $this->assertEqualsFixture('get_statuses_fixture.json', $response->json());
+    }
+
+    public function testGetStatusesNoAuth()
+    {
+        $response = $this->json('get', '/jobs/statuses');
+
+        $response->assertStatus(Response::HTTP_UNAUTHORIZED);
+    }
+
     public function testCreateRequest()
     {
         $this->mockCreatejobRequest();

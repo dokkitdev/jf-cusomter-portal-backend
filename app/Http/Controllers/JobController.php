@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Jobs\CreateInSimproJobRequest;
 use App\Http\Requests\Jobs\GetCostCentersRequest;
 use App\Http\Requests\Jobs\GetJobRequest;
+use App\Http\Requests\Jobs\GetStatusesRequest;
 use App\Http\Requests\Jobs\SearchJobRequest;
 use App\Services\JobService;
 use Illuminate\Support\Arr;
@@ -52,6 +53,13 @@ class JobController extends Controller
     public function getCostCenters(GetCostCentersRequest $request, JobService $service)
     {
         $result = $service->getCostCenters();
+
+        return response()->json($result);
+    }
+
+    public function getStatuses(GetStatusesRequest $request, JobService $service)
+    {
+        $result = $service->getStatuses();
 
         return response()->json($result);
     }

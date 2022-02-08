@@ -93,6 +93,18 @@ class JobService extends BaseService
         return $costCenters;
     }
 
+    public function getStatuses()
+    {
+        $jobStatusPages = $this->simproClient->getJobStatuses($this->companyId);
+
+        $jobStatuses = [];
+        foreach ($jobStatusPages as $jobStatusPage) {
+            $jobStatuses = array_merge($jobStatuses, $jobStatusPage);
+        }
+
+        return $jobStatuses;
+    }
+
     public function createInSimpro(array $data): array
     {
         $site = $this->siteService->with(['customers'])->find($data['site_id']);

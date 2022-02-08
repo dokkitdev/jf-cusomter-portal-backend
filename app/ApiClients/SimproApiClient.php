@@ -270,6 +270,13 @@ class SimproApiClient
         return $this->getAsGenerator($url);
     }
 
+    public function getJobStatuses(int $companyId): Generator
+    {
+        $url = "companies/{$companyId}/setup/statusCodes/projects/";
+
+        return $this->getAsGenerator($url);
+    }
+
     public function getSchedules(int $companyId, int $jobId): Generator
     {
         $url = "companies/{$companyId}/schedules/";

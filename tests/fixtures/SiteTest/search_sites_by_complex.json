@@ -12,7 +12,8 @@
             "county": null,
             "address": "Charter Place",
             "created_at": null,
-            "updated_at": null
+            "updated_at": null,
+            "primary_site_contact_name": "Name"
         }
     ],
     "first_page_url": "http:\/\/localhost\/sites?page=1",

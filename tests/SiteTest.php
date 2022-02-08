@@ -122,6 +122,7 @@ class SiteTest extends TestCase
                 'filter' => [
                     'simpro_site_id' => 1,
                     'name_query' => 'name',
+                    'order_by' => 'primary_site_contact.name'
                 ],
                 'result' => 'search_sites_by_complex.json'
             ],

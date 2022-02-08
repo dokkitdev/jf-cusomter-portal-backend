@@ -2,13 +2,8 @@
 
 namespace App\Models;
 
-use RonasIT\Support\Traits\ModelTrait;
-use Illuminate\Database\Eloquent\Model;
-
-class AssetCustomField extends Model
+class AssetCustomField extends BaseModel
 {
-    use ModelTrait;
-
     protected $fillable = [
         'asset_id',
         'simpro_custom_field_id',

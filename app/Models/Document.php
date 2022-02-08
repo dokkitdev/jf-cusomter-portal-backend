@@ -2,13 +2,8 @@
 
 namespace App\Models;
 
-use RonasIT\Support\Traits\ModelTrait;
-use Illuminate\Database\Eloquent\Model;
-
-class Document extends Model
+class Document extends BaseModel
 {
-    use ModelTrait;
-
     protected $fillable = [
         'media_id',
         'title',

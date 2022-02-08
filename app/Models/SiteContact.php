@@ -2,13 +2,8 @@
 
 namespace App\Models;
 
-use RonasIT\Support\Traits\ModelTrait;
-use Illuminate\Database\Eloquent\Model;
-
-class SiteContact extends Model
+class SiteContact extends BaseModel
 {
-    use ModelTrait;
-
     protected $fillable = [
         'site_id',
         'simpro_contact_id',

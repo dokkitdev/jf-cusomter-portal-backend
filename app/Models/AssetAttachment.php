@@ -2,13 +2,8 @@
 
 namespace App\Models;
 
-use RonasIT\Support\Traits\ModelTrait;
-use Illuminate\Database\Eloquent\Model;
-
-class AssetAttachment extends Model
+class AssetAttachment extends BaseModel
 {
-    use ModelTrait;
-
     protected $fillable = [
         'asset_id',
         'simpro_attachment_id',

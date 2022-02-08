@@ -3,13 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Builder;
-use RonasIT\Support\Traits\ModelTrait;
-use Illuminate\Database\Eloquent\Model;
 
-class Asset extends Model
+class Asset extends BaseModel
 {
-    use ModelTrait;
-
     protected $fillable = [
         'simpro_asset_id',
         'site_id',

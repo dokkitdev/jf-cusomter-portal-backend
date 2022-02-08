@@ -2,14 +2,10 @@
 
 namespace App\Models;
 
-use RonasIT\Support\Traits\ModelTrait;
-use Illuminate\Database\Eloquent\Model;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
-class Setting extends Model
+class Setting extends BaseModel
 {
-    use ModelTrait;
-
     public $incrementing = false;
 
     protected $primaryKey = 'name';

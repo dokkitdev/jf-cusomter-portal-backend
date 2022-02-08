@@ -2,13 +2,8 @@
 
 namespace App\Models;
 
-use RonasIT\Support\Traits\ModelTrait;
-use Illuminate\Database\Eloquent\Model;
-
-class SimproLog extends Model
+class SimproLog extends BaseModel
 {
-    use ModelTrait;
-
     const HANDLE_STATUS_NEW = 'new';
     const HANDLE_STATUS_ERROR = 'error';
 

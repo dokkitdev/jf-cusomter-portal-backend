@@ -101,7 +101,7 @@ class JobService extends BaseService
 
         $jobData = [
             'Type' => 'Service',
-            'Customer' => Arr::get($site, 'customer.0.simpro_customer_id'),
+            'Customer' => Arr::get($site, 'customers.0.simpro_customer_id'),
             'Site' => $site['simpro_site_id'],
             'Tags' => [$tag],
             'DueDate' => now()->addDays(3)->format('Y-m-d')

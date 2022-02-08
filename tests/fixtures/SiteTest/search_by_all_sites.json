@@ -12,7 +12,8 @@
             "county": null,
             "address": "Charter Place",
             "created_at": null,
-            "updated_at": null
+            "updated_at": null,
+            "customer_id": null
         },
         {
             "id": 2,
@@ -25,7 +26,8 @@
             "county": null,
             "address": null,
             "created_at": null,
-            "updated_at": null
+            "updated_at": null,
+            "customer_id": null
         },
         {
             "id": 3,
@@ -38,7 +40,8 @@
             "county": null,
             "address": null,
             "created_at": null,
-            "updated_at": null
+            "updated_at": null,
+            "customer_id": null
         },
         {
             "id": 4,
@@ -51,7 +54,8 @@
             "county": null,
             "address": null,
             "created_at": null,
-            "updated_at": null
+            "updated_at": null,
+            "customer_id": null
         }
     ],
     "first_page_url": "http:\/\/localhost\/sites?page=1",

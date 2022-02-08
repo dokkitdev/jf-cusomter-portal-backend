@@ -13,6 +13,7 @@
             "address": "Charter Place",
             "created_at": null,
             "updated_at": null,
+            "customer_id": null,
             "primary_site_contact_name": "Name"
         }
     ],

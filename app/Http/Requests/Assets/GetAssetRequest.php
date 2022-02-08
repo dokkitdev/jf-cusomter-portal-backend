@@ -10,7 +10,7 @@ class GetAssetRequest extends Request
     {
         return [
             'with' => 'array',
-            'with.*' => 'string|in:site,site.customers,asset_custom_fields,asset_attachments,asset_test_records,asset_test_records.job,asset_test_records.asset_test_record_readings',
+            'with.*' => 'string|in:site,site.customers,site.customer,asset_custom_fields,asset_attachments,asset_test_records,asset_test_records.job,asset_test_records.asset_test_record_readings',
         ];
     }
 

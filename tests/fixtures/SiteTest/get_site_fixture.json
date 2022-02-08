@@ -10,6 +10,7 @@
     "address": "Charter Place",
     "created_at": null,
     "updated_at": null,
+    "customer_id": null,
     "site_contacts": [
         {
             "id": 1,

@@ -146,7 +146,7 @@ class DocumentTest extends TestCase
             ],
             [
                 'filter' => [
-                    'order_by' => 'created_at',
+                    'order_by' => 'media.created_at',
                     'desc' => true,
                     'created_at_from' => '2016-10-20',
                     'created_at_to' => '2016-10-21',

@@ -2,13 +2,8 @@
 
 namespace App\Models;
 
-use RonasIT\Support\Traits\ModelTrait;
-use Illuminate\Database\Eloquent\Model;
-
-class Customer extends Model
+class Customer extends BaseModel
 {
-    use ModelTrait;
-
     const TYPE_COMPANIES = 'companies';
     const TYPE_INDIVIDUALS = 'individuals';
 

@@ -2,13 +2,8 @@
 
 namespace App\Models;
 
-use RonasIT\Support\Traits\ModelTrait;
-use Illuminate\Database\Eloquent\Model;
-
-class Schedule extends Model
+class Schedule extends BaseModel
 {
-    use ModelTrait;
-
     protected $fillable = [
         'job_id',
         'simpro_schedule_id',

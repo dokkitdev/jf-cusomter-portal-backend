@@ -2,14 +2,12 @@
 
 namespace App\Models;
 
-use RonasIT\Support\Traits\ModelTrait;
-use Illuminate\Database\Eloquent\Model;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Media extends Model
+class Media extends BaseModel
 {
-    use ModelTrait, SoftDeletes;
+    use SoftDeletes;
 
     protected $fillable = [
         'link',

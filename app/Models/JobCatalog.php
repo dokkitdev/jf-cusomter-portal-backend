@@ -2,13 +2,8 @@
 
 namespace App\Models;
 
-use RonasIT\Support\Traits\ModelTrait;
-use Illuminate\Database\Eloquent\Model;
-
-class JobCatalog extends Model
+class JobCatalog extends BaseModel
 {
-    use ModelTrait;
-
     protected $fillable = [
         'job_id',
         'simpro_section_id',

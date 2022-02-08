@@ -2,13 +2,8 @@
 
 namespace App\Models;
 
-use RonasIT\Support\Traits\ModelTrait;
-use Illuminate\Database\Eloquent\Model;
-
-class AssetTestRecord extends Model
+class AssetTestRecord extends BaseModel
 {
-    use ModelTrait;
-
     protected $fillable = [
         'asset_id',
         'job_id',

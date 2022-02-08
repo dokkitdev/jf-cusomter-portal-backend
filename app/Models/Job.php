@@ -3,13 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Builder;
-use RonasIT\Support\Traits\ModelTrait;
-use Illuminate\Database\Eloquent\Model;
 
-class Job extends Model
+class Job extends BaseModel
 {
-    use ModelTrait;
-
     const PENDING_STAGE = 'Pending';
     const PROGRESS_STAGE = 'Progress';
     const COMPLETE_STAGE = 'Complete';

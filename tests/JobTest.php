@@ -228,7 +228,7 @@ class JobTest extends TestCase
 
         $response->assertStatus(Response::HTTP_OK);
 
-        $this->exportJson('get_statuses_fixture.json', $response->json());
+        $this->assertEqualsFixture('get_statuses_fixture.json', $response->json());
     }
 
     public function testGetStatusesNoAuth()

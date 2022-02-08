@@ -11,6 +11,7 @@
         "address": "Charter Place",
         "created_at": null,
         "updated_at": null,
+        "customer_id": null,
         "site_contacts": [
             {
                 "id": 1,
@@ -42,6 +43,7 @@
         "address": null,
         "created_at": null,
         "updated_at": null,
+        "customer_id": null,
         "site_contacts": [
             {
                 "id": 2,
@@ -73,6 +75,7 @@
         "address": null,
         "created_at": null,
         "updated_at": null,
+        "customer_id": null,
         "site_contacts": [
             {
                 "id": 3,
@@ -104,6 +107,7 @@
         "address": null,
         "created_at": null,
         "updated_at": null,
+        "customer_id": null,
         "site_contacts": [
             {
                 "id": 4,
@@ -135,6 +139,7 @@
         "address": null,
         "created_at": null,
         "updated_at": null,
+        "customer_id": null,
         "site_contacts": []
     },
     {
@@ -149,6 +154,7 @@
         "address": "40\/41 Store Street",
         "created_at": "2018-11-11T11:11:11.000000Z",
         "updated_at": "2018-11-11T11:11:11.000000Z",
+        "customer_id": 1,
         "site_contacts": [
             {
                 "id": 5,

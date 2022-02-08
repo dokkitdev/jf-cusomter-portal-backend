@@ -14,7 +14,8 @@ class Site extends BaseModel
         'postal_code',
         'city',
         'country',
-        'county'
+        'county',
+        'customer_id'
     ];
 
     protected $hidden = ['pivot'];
@@ -29,6 +30,11 @@ class Site extends BaseModel
     public function customers()
     {
         return $this->belongsToMany(Customer::class);
+    }
+
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class);
     }
 
     public function site_contacts()

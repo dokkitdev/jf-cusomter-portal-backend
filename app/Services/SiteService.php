@@ -140,6 +140,8 @@ class SiteService extends BaseService
         }
         $site->customers()->sync($customerIds);
 
+        $site = $this->repository->update($site['id'], ['customer_id' => Arr::get($customerIds, '0')]);
+
         return $site;
     }
 

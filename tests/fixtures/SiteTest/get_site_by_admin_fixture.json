@@ -9,5 +9,6 @@
     "county": null,
     "address": null,
     "created_at": null,
-    "updated_at": null
+    "updated_at": null,
+    "customer_id": null
 }

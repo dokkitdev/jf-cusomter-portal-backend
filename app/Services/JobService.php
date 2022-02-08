@@ -107,13 +107,13 @@ class JobService extends BaseService
 
     public function createInSimpro(array $data): array
     {
-        $site = $this->siteService->with(['customers'])->find($data['site_id']);
+        $site = $this->siteService->with(['customer'])->find($data['site_id']);
 
         $tag = $this->getAuthUser()->role_id === Role::CUSTOMER ? config('defaults.customer_job_request_tag') : config('defaults.call_center_job_request_tag') ;
 
         $jobData = [
             'Type' => 'Service',
-            'Customer' => Arr::get($site, 'customers.0.simpro_customer_id'),
+            'Customer' => Arr::get($site, 'customer.simpro_customer_id'),
             'Site' => $site['simpro_site_id'],
             'Tags' => [$tag],
             'DueDate' => now()->addDays(3)->format('Y-m-d')

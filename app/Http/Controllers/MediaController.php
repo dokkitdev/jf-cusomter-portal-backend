@@ -42,6 +42,6 @@ class MediaController extends Controller
     {
         $media = $service->find($id);
 
-        return Storage::download($media['link'], $media['name']);
+        return Storage::download($service->getFilePathFromUrl($media['link']), $media['name']);
     }
 }

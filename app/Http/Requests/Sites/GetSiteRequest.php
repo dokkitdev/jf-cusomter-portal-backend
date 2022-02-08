@@ -10,7 +10,7 @@ class GetSiteRequest extends Request
     {
         return [
             'with' => 'array',
-            'with.*' => "string|in:site_contacts,primary_site_contact,customers",
+            'with.*' => "string|in:site_contacts,primary_site_contact,customers,customer",
             'with_count' => 'array',
             'with_count.*' => 'string|in:open_jobs'
         ];

@@ -1,0 +1,32 @@
+<?php
+
+namespace App\Services;
+
+use Illuminate\Database\Eloquent\Model;
+use RonasIT\Support\Services\EntityService;
+
+class SimproWebhookService extends EntityService
+{
+    protected SimproJobService $simproJobService;
+
+    public function __construct()
+    {
+        $this->simproJobService = app(SimproJobService::class);
+    }
+
+    public function isWebhookVerified(string $header, string $body): bool
+    {
+        $webhookSecret = config('services.simpro.webhook_secret');
+
+        if (is_null($webhookSecret)) {
+            return true;
+        }
+
+        return hash_equals($header, hash_hmac('sha1', $body, $webhookSecret));
+    }
+
+    public function process(array $data): Model
+    {
+        return $this->simproJobService->create(['data' => $data]);
+    }
+}

@@ -14,7 +14,7 @@ class SimproWebhookService extends EntityService
         $this->simproJobService = app(SimproJobService::class);
     }
 
-    public function isWebhookVerified(string $header, string $body): bool
+    public function isWebhookVerified(?string $header, string $body): bool
     {
         $webhookSecret = config('services.simpro.webhook_secret');
 

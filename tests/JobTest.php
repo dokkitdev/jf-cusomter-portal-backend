@@ -48,7 +48,7 @@ class JobTest extends TestCase
         $simproJob = SimproJob::orderBy('id')->get()->toArray();
         $this->assertEqualsFixture('simpro_jobs_fixture.json', $simproJob);
 
-        $job = Job::orderBy('id')->get()->toArray();
+        $job = Job::with(['job_no_access_dates'])->orderBy('id')->get()->toArray();
         $this->assertEqualsFixture('job_create_or_update_event_fixture.json', $job);
 
         $customer = Customer::orderBy('id')->get()->toArray();

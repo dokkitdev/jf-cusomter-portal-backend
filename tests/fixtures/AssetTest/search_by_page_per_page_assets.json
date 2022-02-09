@@ -16,7 +16,10 @@
             "service_level_name": "Service level...",
             "archived": false,
             "created_at": null,
-            "updated_at": null
+            "updated_at": null,
+            "last_cp12_date": null,
+            "asset_type": null,
+            "custom_asset_type_value": null
         },
         {
             "id": 2,
@@ -33,7 +36,10 @@
             "service_level_name": "Service level...",
             "archived": false,
             "created_at": null,
-            "updated_at": null
+            "updated_at": null,
+            "last_cp12_date": null,
+            "asset_type": null,
+            "custom_asset_type_value": null
         }
     ],
     "first_page_url": "http:\/\/localhost\/assets?page=1",

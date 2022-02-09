@@ -16,5 +16,7 @@
     "created_at": null,
     "updated_at": null,
     "recent_schedule_id": null,
-    "logged_create_date": null
+    "logged_create_date": null,
+    "logged_completion_date": null,
+    "next_schedule_id": null
 }

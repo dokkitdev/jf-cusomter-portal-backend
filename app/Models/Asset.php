@@ -18,7 +18,10 @@ class Asset extends BaseModel
         'next_service_date',
         'last_test_result',
         'service_level_name',
-        'archived'
+        'archived',
+        'asset_type',
+        'last_cp12_date',
+        'custom_asset_type_value'
     ];
 
     protected $hidden = ['pivot'];

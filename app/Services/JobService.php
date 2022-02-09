@@ -24,6 +24,7 @@ class JobService extends BaseService
     protected JobCatalogService $jobCatalogService;
     protected JobAttachmentService $jobAttachmentService;
     protected JobWorkOrderService $jobWorkOrderService;
+    protected JobNoAccessDateService $jobNoAccessDateService;
 
     public function __construct()
     {
@@ -39,6 +40,7 @@ class JobService extends BaseService
         $this->jobCatalogService = app(JobCatalogService::class);
         $this->jobAttachmentService = app(JobAttachmentService::class);
         $this->jobWorkOrderService = app(JobWorkOrderService::class);
+        $this->jobNoAccessDateService = app(JobNoAccessDateService::class);
     }
 
     public function search(array $filters): LengthAwarePaginator
@@ -151,8 +153,6 @@ class JobService extends BaseService
 
         $job = $this->createOrUpdate($companyId, $simproJob, $customer['id'], $site['id']);
 
-        app(ScheduleService::class)->createOrUpdateManyBySimpro($companyId, $simproJobId, $job['id']);
-
         $this->jobCatalogService->syncBySimpro($simproJob, $job['id']);
 
         $this->jobAttachmentService->syncBySimpro($companyId, $simproJobId, $job['id']);
@@ -187,8 +187,9 @@ class JobService extends BaseService
     {
         $madeSafeJobLog = $this->simproClient->getMadeSafeJobLog($companyId, $simproJob['ID']);
         $createdJobLog = $this->simproClient->getCreatedJobLog($companyId, $simproJob['ID']);
+        $completedJobLog = $this->simproClient->getCompletedJobLog($companyId, $simproJob['ID']);
 
-        return $this->repository->updateOrCreate(['simpro_job_id' => $simproJob['ID']], [
+        $job = $this->repository->updateOrCreate(['simpro_job_id' => $simproJob['ID']], [
             'customer_id' => $customerId,
             'site_id' => $siteId,
             'order_no' => Arr::get($simproJob, 'OrderNo'),
@@ -202,7 +203,14 @@ class JobService extends BaseService
             'completion_date' => Arr::get($simproJob, 'CompletedDate'),
             'due_date' => Arr::get($simproJob, 'DueDate'),
             'logged_create_date' => Arr::get($createdJobLog, '0.DateLogged'),
+            'logged_completion_date' => Arr::get($completedJobLog, '0.DateLogged'),
         ]);
+
+        $this->jobNoAccessDateService->syncBySimpro($companyId, $simproJob['ID'], $job['id']);
+
+        app(ScheduleService::class)->createOrUpdateManyBySimpro($companyId, $simproJob['ID'], $job['id']);
+
+        return $job;
     }
 
     public function deleteBySimpro(SimproJob $webhook): int

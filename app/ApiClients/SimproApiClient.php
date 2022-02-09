@@ -225,6 +225,16 @@ class SimproApiClient
         return  $this->getJobLog($companyId, $jobId, 'Created Job');
     }
 
+    public function getCompletedJobLog(int $companyId, int $jobId): array
+    {
+        return  $this->getJobLog($companyId, $jobId, '%Completed%');
+    }
+
+    public function getNoAccessJobLog(int $companyId, int $jobId): array
+    {
+        return  $this->getJobLog($companyId, $jobId, 'Job status set to Job : No Access');
+    }
+
     public function postJob(int $companyId, array $data): array
     {
         $url = $this->getUrl("companies/{$companyId}/jobs/");

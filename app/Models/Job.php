@@ -32,7 +32,9 @@ class Job extends BaseModel
         'completion_date',
         'due_date',
         'recent_schedule_id',
-        'logged_create_date'
+        'logged_create_date',
+        'logged_completion_date',
+        'next_schedule_id'
     ];
 
     protected $hidden = ['pivot'];
@@ -77,5 +79,10 @@ class Job extends BaseModel
     public function job_work_orders()
     {
         return $this->hasMany(JobWorkOrder::class);
+    }
+
+    public function job_no_access_dates()
+    {
+        return $this->hasMany(JobNoAccessDate::class);
     }
 }

@@ -37,6 +37,8 @@ class ScheduleService extends EntityService
         }
 
         $this->setRecentScheduleToJob($jobId);
+
+        $this->setNextScheduleToJob($jobId);
     }
 
     public function updateOrCreateBySimpro(SimproJob $webhook): Model
@@ -52,6 +54,8 @@ class ScheduleService extends EntityService
         $schedule = $this->createOrUpdate($simproSchedule, $job['id']);
 
         $this->setRecentScheduleToJob($job['id']);
+
+        $this->setNextScheduleToJob($job['id']);
 
         return $schedule;
     }
@@ -73,6 +77,8 @@ class ScheduleService extends EntityService
         ]);
 
         $this->setRecentScheduleToJob($job['id']);
+
+        $this->setNextScheduleToJob($job['id']);
 
         return $result;
     }
@@ -98,6 +104,15 @@ class ScheduleService extends EntityService
 
         $this->jobService->update($jobId, [
             'recent_schedule_id' => Arr::get($recentSchedule, 'id')
+        ]);
+    }
+
+    protected function setNextScheduleToJob(int $jobId): void
+    {
+        $nextSchedule = $this->repository->getNextSchedule($jobId);
+
+        $this->jobService->update($jobId, [
+            'next_schedule_id' => Arr::get($nextSchedule, 'id')
         ]);
     }
 

@@ -15,6 +15,9 @@
         "archived": false,
         "created_at": null,
         "updated_at": null,
+        "last_cp12_date": null,
+        "asset_type": null,
+        "custom_asset_type_value": null,
         "site": {
             "id": 1,
             "simpro_site_id": 1,
@@ -114,7 +117,9 @@
                     "created_at": null,
                     "updated_at": null,
                     "recent_schedule_id": null,
-                    "logged_create_date": null
+                    "logged_create_date": null,
+                    "logged_completion_date": null,
+                    "next_schedule_id": null
                 },
                 "asset_test_record_readings": [
                     {
@@ -155,7 +160,9 @@
                     "created_at": null,
                     "updated_at": null,
                     "recent_schedule_id": null,
-                    "logged_create_date": null
+                    "logged_create_date": null,
+                    "logged_completion_date": null,
+                    "next_schedule_id": null
                 },
                 "asset_test_record_readings": [
                     {
@@ -186,6 +193,9 @@
         "archived": false,
         "created_at": null,
         "updated_at": null,
+        "last_cp12_date": null,
+        "asset_type": null,
+        "custom_asset_type_value": null,
         "site": {
             "id": 1,
             "simpro_site_id": 1,
@@ -268,7 +278,9 @@
                     "created_at": null,
                     "updated_at": null,
                     "recent_schedule_id": null,
-                    "logged_create_date": null
+                    "logged_create_date": null,
+                    "logged_completion_date": null,
+                    "next_schedule_id": null
                 },
                 "asset_test_record_readings": [
                     {
@@ -299,6 +311,9 @@
         "archived": true,
         "created_at": null,
         "updated_at": null,
+        "last_cp12_date": null,
+        "asset_type": null,
+        "custom_asset_type_value": null,
         "site": {
             "id": 1,
             "simpro_site_id": 1,
@@ -381,7 +396,9 @@
                     "created_at": null,
                     "updated_at": null,
                     "recent_schedule_id": null,
-                    "logged_create_date": null
+                    "logged_create_date": null,
+                    "logged_completion_date": null,
+                    "next_schedule_id": null
                 },
                 "asset_test_record_readings": [
                     {
@@ -412,6 +429,9 @@
         "archived": false,
         "created_at": null,
         "updated_at": null,
+        "last_cp12_date": null,
+        "asset_type": null,
+        "custom_asset_type_value": null,
         "site": {
             "id": 1,
             "simpro_site_id": 1,
@@ -464,6 +484,9 @@
         "archived": false,
         "created_at": null,
         "updated_at": null,
+        "last_cp12_date": null,
+        "asset_type": null,
+        "custom_asset_type_value": null,
         "site": {
             "id": 1,
             "simpro_site_id": 1,
@@ -516,6 +539,9 @@
         "archived": false,
         "created_at": null,
         "updated_at": null,
+        "last_cp12_date": null,
+        "asset_type": null,
+        "custom_asset_type_value": null,
         "site": {
             "id": 2,
             "simpro_site_id": 2,
@@ -560,6 +586,9 @@
         "archived": false,
         "created_at": null,
         "updated_at": null,
+        "last_cp12_date": null,
+        "asset_type": null,
+        "custom_asset_type_value": null,
         "site": {
             "id": 3,
             "simpro_site_id": 3,
@@ -604,6 +633,9 @@
         "archived": false,
         "created_at": null,
         "updated_at": null,
+        "last_cp12_date": null,
+        "asset_type": null,
+        "custom_asset_type_value": null,
         "site": {
             "id": 4,
             "simpro_site_id": 4,
@@ -656,6 +688,9 @@
         "archived": false,
         "created_at": null,
         "updated_at": null,
+        "last_cp12_date": null,
+        "asset_type": null,
+        "custom_asset_type_value": null,
         "site": {
             "id": 4,
             "simpro_site_id": 4,
@@ -708,6 +743,9 @@
         "archived": false,
         "created_at": null,
         "updated_at": null,
+        "last_cp12_date": null,
+        "asset_type": null,
+        "custom_asset_type_value": null,
         "site": {
             "id": 4,
             "simpro_site_id": 4,
@@ -760,6 +798,9 @@
         "archived": false,
         "created_at": "2018-11-11T11:11:11.000000Z",
         "updated_at": "2018-11-11T11:11:11.000000Z",
+        "last_cp12_date": null,
+        "asset_type": "1",
+        "custom_asset_type_value": null,
         "site": {
             "id": 6,
             "simpro_site_id": 1700,
@@ -876,8 +917,10 @@
                     "due_date": "2021-02-23 00:00:00",
                     "created_at": "2018-11-11T11:11:11.000000Z",
                     "updated_at": "2018-11-11T11:11:11.000000Z",
-                    "recent_schedule_id": null,
-                    "logged_create_date": "2022-01-27 09:20:05"
+                    "recent_schedule_id": 2,
+                    "logged_create_date": "2022-01-27 09:20:05",
+                    "logged_completion_date": "2022-01-27 09:20:05",
+                    "next_schedule_id": 2
                 },
                 "asset_test_record_readings": []
             },
@@ -908,8 +951,10 @@
                     "due_date": "2021-02-23 00:00:00",
                     "created_at": "2018-11-11T11:11:11.000000Z",
                     "updated_at": "2018-11-11T11:11:11.000000Z",
-                    "recent_schedule_id": null,
-                    "logged_create_date": "2022-01-27 09:20:05"
+                    "recent_schedule_id": 2,
+                    "logged_create_date": "2022-01-27 09:20:05",
+                    "logged_completion_date": "2022-01-27 09:20:05",
+                    "next_schedule_id": 2
                 },
                 "asset_test_record_readings": [
                     {
@@ -1069,8 +1114,10 @@
                     "due_date": "2021-02-23 00:00:00",
                     "created_at": "2018-11-11T11:11:11.000000Z",
                     "updated_at": "2018-11-11T11:11:11.000000Z",
-                    "recent_schedule_id": null,
-                    "logged_create_date": "2022-01-27 09:20:05"
+                    "recent_schedule_id": 2,
+                    "logged_create_date": "2022-01-27 09:20:05",
+                    "logged_completion_date": "2022-01-27 09:20:05",
+                    "next_schedule_id": 2
                 },
                 "asset_test_record_readings": [
                     {

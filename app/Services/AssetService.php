@@ -127,11 +127,15 @@ class AssetService extends BaseService
         $makeCustomField = $this->findCustomFieldByName(Arr::get($simproAsset, 'CustomFields'), 'Make');
         $modelCustomField = $this->findCustomFieldByName(Arr::get($simproAsset, 'CustomFields'), 'Model');
 
+        $assetTypeCustomField = $this->findCustomFieldById(Arr::get($simproAsset, 'CustomFields'), 15);
+        $cp12CustomField = $this->findCustomFieldById(Arr::get($simproAsset, 'CustomFields'), 59);
+
         return $this->repository->updateOrCreate([
             'simpro_asset_id' => $simproAsset['ID'],
         ], [
             'site_id' => $siteId,
             'name' => Arr::get($simproAsset, 'AssetType.Name'),
+            'asset_type' => Arr::get($simproAsset, 'AssetType.ID'),
             'customer_name' => Arr::get($simproAsset, 'CustomerContract.Name'),
             'last_test_date' => Arr::get($simproAsset, 'LastTest.Date'),
             'next_service_date' => Arr::get($serviceLevel, 'ServiceDate'),
@@ -141,6 +145,8 @@ class AssetService extends BaseService
             'location' => Arr::get($locationCustomField, 'Value'),
             'make' => Arr::get($makeCustomField, 'Value'),
             'model' => Arr::get($modelCustomField, 'Value'),
+            'last_cp12_date' => Arr::get($cp12CustomField, 'Value', Arr::get($simproAsset, 'LastTest.Date')),
+            'custom_asset_type_value' => Arr::get($assetTypeCustomField, 'Value')
         ]);
     }
 
@@ -160,6 +166,13 @@ class AssetService extends BaseService
     {
         return collect($customFields)->first(function ($customField) use ($name) {
             return Arr::get($customField, 'CustomField.Name') === $name;
+        });
+    }
+
+    protected function findCustomFieldById(array $customFields, int $id): ?array
+    {
+        return collect($customFields)->first(function ($customField) use ($id) {
+            return Arr::get($customField, 'CustomField.ID') === $id;
         });
     }
 }

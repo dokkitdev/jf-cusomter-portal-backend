@@ -14,7 +14,10 @@
         "service_level_name": "Service level...",
         "archived": false,
         "created_at": null,
-        "updated_at": null
+        "updated_at": null,
+        "last_cp12_date": null,
+        "asset_type": null,
+        "custom_asset_type_value": null
     },
     {
         "id": 2,
@@ -31,7 +34,10 @@
         "service_level_name": "Service level...",
         "archived": false,
         "created_at": null,
-        "updated_at": null
+        "updated_at": null,
+        "last_cp12_date": null,
+        "asset_type": null,
+        "custom_asset_type_value": null
     },
     {
         "id": 3,
@@ -48,7 +54,10 @@
         "service_level_name": "Service level...",
         "archived": true,
         "created_at": null,
-        "updated_at": null
+        "updated_at": null,
+        "last_cp12_date": null,
+        "asset_type": null,
+        "custom_asset_type_value": null
     },
     {
         "id": 4,
@@ -65,7 +74,10 @@
         "service_level_name": null,
         "archived": false,
         "created_at": null,
-        "updated_at": null
+        "updated_at": null,
+        "last_cp12_date": null,
+        "asset_type": null,
+        "custom_asset_type_value": null
     },
     {
         "id": 5,
@@ -82,7 +94,10 @@
         "service_level_name": null,
         "archived": false,
         "created_at": null,
-        "updated_at": null
+        "updated_at": null,
+        "last_cp12_date": null,
+        "asset_type": null,
+        "custom_asset_type_value": null
     },
     {
         "id": 6,
@@ -99,7 +114,10 @@
         "service_level_name": null,
         "archived": false,
         "created_at": null,
-        "updated_at": null
+        "updated_at": null,
+        "last_cp12_date": null,
+        "asset_type": null,
+        "custom_asset_type_value": null
     },
     {
         "id": 7,
@@ -116,7 +134,10 @@
         "service_level_name": null,
         "archived": false,
         "created_at": null,
-        "updated_at": null
+        "updated_at": null,
+        "last_cp12_date": null,
+        "asset_type": null,
+        "custom_asset_type_value": null
     },
     {
         "id": 8,
@@ -133,7 +154,10 @@
         "service_level_name": null,
         "archived": false,
         "created_at": null,
-        "updated_at": null
+        "updated_at": null,
+        "last_cp12_date": null,
+        "asset_type": null,
+        "custom_asset_type_value": null
     },
     {
         "id": 9,
@@ -150,7 +174,10 @@
         "service_level_name": null,
         "archived": false,
         "created_at": null,
-        "updated_at": null
+        "updated_at": null,
+        "last_cp12_date": null,
+        "asset_type": null,
+        "custom_asset_type_value": null
     },
     {
         "id": 10,
@@ -167,7 +194,10 @@
         "service_level_name": null,
         "archived": false,
         "created_at": null,
-        "updated_at": null
+        "updated_at": null,
+        "last_cp12_date": null,
+        "asset_type": null,
+        "custom_asset_type_value": null
     },
     {
         "id": 11,
@@ -184,6 +214,9 @@
         "service_level_name": "Quarterly",
         "archived": false,
         "created_at": "2018-11-11T11:11:11.000000Z",
-        "updated_at": "2018-11-11T11:11:11.000000Z"
+        "updated_at": "2018-11-11T11:11:11.000000Z",
+        "last_cp12_date": null,
+        "asset_type": "1",
+        "custom_asset_type_value": null
     }
 ]

@@ -10,7 +10,7 @@ class GetJobRequest extends Request
     {
         return [
             'with' => 'array',
-            'with.*' => 'string|in:site,customer,recent_schedule,schedules,job_catalogs,job_attachments,job_work_orders',
+            'with.*' => 'string|in:site,customer,recent_schedule,schedules,job_catalogs,job_attachments,job_work_orders,job_no_access_dates',
             'with_count' => 'array',
             'with_count.*' => 'string|in:job_attachments'
         ];

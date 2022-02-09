@@ -5,6 +5,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\JobAttachmentController;
 use App\Http\Controllers\JobController;
+use App\Http\Controllers\SimproWebhookController;
 use App\Http\Controllers\SiteContactController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\StatusController;
@@ -87,4 +88,6 @@ Route::group(['middleware' => 'guest'], function () {
     Route::post('/auth/token/check', ['uses' => AuthController::class . '@checkRestoreToken']);
 
     Route::get('/status', ['uses' => StatusController::class . '@status']);
+
+    Route::post('/simpro-webhook', ['uses' => SimproWebhookController::class . '@process']);
 });

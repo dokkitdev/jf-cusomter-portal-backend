@@ -1,0 +1,5 @@
+INSERT INTO simpro_jobs(id, data, handle_status, handle_result, created_at) VALUES
+  (1, '{"ID": "test.updated", "build": "pfsgroup.simprosuite.com", "description": "Test #1 has been updated.", "name": "Test", "action": "updated", "reference": {"testID": 1}, "date_triggered": "2019-12-18T11:52:29+00:00"}', 'error', '{}', '2016-10-20 11:05:00'),
+  (2, '{"ID": "test.updated", "build": "pfsgroup.simprosuite.com", "description": "Test #1 has been updated.", "name": "Test", "action": "updated", "reference": {"testID": 1}, "date_triggered": "2019-12-18T11:52:29+00:00"}', 'error', '{}', '2017-10-20 11:05:00'),
+  (3, '{"ID": "test.updated", "build": "pfsgroup.simprosuite.com", "description": "Test #1 has been updated.", "name": "Test", "action": "updated", "reference": {"testID": 1}, "date_triggered": "2019-12-18T11:52:29+00:00"}', 'error', '{}', '2018-10-20 11:05:00'),
+  (4, '{"ID": "test.updated", "build": "pfsgroup.simprosuite.com", "description": "Test #1 has been updated.", "name": "Test", "action": "updated", "reference": {"testID": 1}, "date_triggered": "2019-12-18T11:52:29+00:00"}', 'error', '{}', '2019-10-20 11:05:00');

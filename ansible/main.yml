@@ -17,7 +17,7 @@ composer: true
 migrations: true
 
 # enable cronjob
-cronjob: false
+cronjob: true
 
 # enable worker
 worker: true

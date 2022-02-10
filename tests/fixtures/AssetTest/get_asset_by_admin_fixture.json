@@ -15,6 +15,6 @@
     "created_at": null,
     "updated_at": null,
     "last_cp12_date": null,
-    "asset_type": null,
+    "asset_type": 3,
     "custom_asset_type_value": null
 }

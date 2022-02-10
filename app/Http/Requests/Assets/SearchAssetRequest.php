@@ -8,7 +8,33 @@ class SearchAssetRequest extends Request
 {
     public function rules(): array
     {
+        $with = implode(',', [
+            'site',
+            'site.primary_site_contact',
+            'site.customers',
+            'site.customer',
+            'asset_custom_fields',
+            'asset_attachments',
+            'asset_test_records',
+            'asset_test_records.job',
+            'asset_test_records.asset_test_record_readings',
+
+            'asset_test_record',
+            'asset_test_record.job',
+            'asset_test_record.job.customer',
+            'asset_test_record.job.job_no_access_dates',
+            'asset_test_record.job.next_schedule'
+        ]);
+
         return [
+            'cp12_status' => 'string',
+            'asset_type' => 'integer',
+            'custom_asset_type_value' => 'string',
+            'job_stage' => 'string',
+            'job_due_date_from' => 'date',
+            'job_due_date_to' => 'date',
+            'job_logged_completion_date_from',
+            'job_logged_completion_date_to',
             'customer_name_query' => 'string',
             'location_query' => 'string',
             'make_query' => 'string',
@@ -33,7 +59,7 @@ class SearchAssetRequest extends Request
             'order_by' => 'string',
             'desc' => 'boolean',
             'with' => 'array',
-            'with.*' => 'string|in:site,site.customers,site.customer,asset_custom_fields,asset_attachments,asset_test_records,asset_test_records.job,asset_test_records.asset_test_record_readings',
+            'with.*' => "string|in:{$with}",
         ];
     }
 }

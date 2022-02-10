@@ -6,6 +6,14 @@ use Illuminate\Database\Eloquent\Builder;
 
 class Asset extends BaseModel
 {
+    const RESULT_PASS = 'Pass';
+    const RESULT_FAIL = 'Fail';
+    const RESULT_NO_TEST = 'No Test';
+
+    const CP12_STATUS_ON_TIME = 'On Time';
+    const CP12_STATUS_DUE = 'Due';
+    const CP12_STATUS_OVERDUE = 'Overdue';
+
     protected $fillable = [
         'simpro_asset_id',
         'site_id',
@@ -51,5 +59,13 @@ class Asset extends BaseModel
     public function asset_test_records()
     {
         return $this->hasMany(AssetTestRecord::class);
+    }
+
+    public function asset_test_record()
+    {
+        return $this->hasOne(AssetTestRecord::class)
+            ->whereNotNull('job_id')
+            ->whereIn('result', [self::RESULT_PASS, self::RESULT_FAIL])
+            ->orderBy('id');
     }
 }

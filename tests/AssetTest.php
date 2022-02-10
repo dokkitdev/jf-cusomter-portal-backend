@@ -143,6 +143,21 @@ class AssetTest extends TestCase
                 ],
                 'result' => 'search_assets_complex.json'
             ],
+            [
+                'filter' => [
+                    'order_by' => 'last_cp12_date',
+                    'desc' => true,
+                    'asset_type' => 4,
+                    'cp12_status' => 'On Time',
+                    'with' => [
+                        'site.primary_site_contact',
+                        'asset_test_record.job.customer',
+                        'asset_test_record.job.job_no_access_dates',
+                        'asset_test_record.job.next_schedule'
+                    ]
+                ],
+                'result' => 'search_assets_report.json'
+            ],
         ];
     }
 

@@ -34,11 +34,16 @@ class AssetTestRecordService extends BaseService
         $this->repository->delete(['asset_id' => $assetId]);
 
         foreach ($testHistories as $testHistory) {
-            $job = $this->jobService->firstOrCreateBySimpro($companyId, Arr::get($testHistory, 'Job.ID'));
+            $jobID = null;
+            if (Arr::get($testHistory, 'Job.ID')) {
+                $job = $this->jobService->firstOrCreateBySimpro($companyId, Arr::get($testHistory, 'Job.ID'));
+                $jobID = $job['id'];
+            }
+
 
             $testRecord = $this->repository->create([
                 'asset_id' => $assetId,
-                'job_id' => $job['id'],
+                'job_id' => $jobID,
                 'name' => Arr::get($testHistory, 'TestRecord.Employee.Name'),
                 'test_date' => Arr::get($testHistory, 'TestRecord.Date'),
                 'notes' => Arr::get($testHistory, 'TestRecord.Notes'),

@@ -61,6 +61,11 @@ class Job extends BaseModel
         return $this->belongsTo(Schedule::class, 'recent_schedule_id', 'id');
     }
 
+    public function next_schedule()
+    {
+        return $this->belongsTo(Schedule::class, 'next_schedule_id', 'id');
+    }
+
     public function schedules()
     {
         return $this->hasMany(Schedule::class);

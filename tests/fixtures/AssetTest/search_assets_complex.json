@@ -17,8 +17,8 @@
             "archived": false,
             "created_at": null,
             "updated_at": null,
-            "last_cp12_date": null,
-            "asset_type": null,
+            "last_cp12_date": "2021-01-06",
+            "asset_type": 4,
             "custom_asset_type_value": null
         }
     ],

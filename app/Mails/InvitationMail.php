@@ -12,7 +12,7 @@ class InvitationMail extends BaseMail
         parent::__construct(
             $to,
             $data,
-            'Invitation to the JF Customer Portal',
+            'Invitation to the James Frew Portal',
             'emails.invitation'
         );
 

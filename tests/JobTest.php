@@ -286,6 +286,17 @@ class JobTest extends TestCase
         $response->assertStatus(Response::HTTP_NOT_FOUND);
     }
 
+    public function testCreateRequestCustomerNotExists()
+    {
+        $response = $this->actingAs($this->admin)->json('post', '/jobs/create-in-simpro', [
+            'site_id' => 5,
+            'description' => 'Test job...',
+            'files' => $this->files
+        ]);
+
+        $response->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY);
+    }
+
     public function testCreateRequestNoAuth()
     {
         $response = $this->json('post', '/jobs/create-in-simpro', [

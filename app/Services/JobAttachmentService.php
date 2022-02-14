@@ -27,7 +27,7 @@ class JobAttachmentService extends EntityService
 
     public function syncBySimpro(int $companyId, int $simproJobId, int $jobId): void
     {
-        $simproJobAttachmentsPages = $this->simproClient->getJobAttachments($companyId, $jobId);
+        $simproJobAttachmentsPages = $this->simproClient->getJobAttachments($companyId, $simproJobId);
 
         $jobAttachments = $this->repository->get(['job_id' => $jobId]);
 

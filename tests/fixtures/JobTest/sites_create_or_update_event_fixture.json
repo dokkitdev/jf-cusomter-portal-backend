@@ -11,7 +11,7 @@
         "address": "Charter Place",
         "created_at": null,
         "updated_at": null,
-        "customer_id": null,
+        "customer_id": 1,
         "site_contacts": [
             {
                 "id": 1,
@@ -43,7 +43,7 @@
         "address": null,
         "created_at": null,
         "updated_at": null,
-        "customer_id": null,
+        "customer_id": 2,
         "site_contacts": [
             {
                 "id": 2,
@@ -75,7 +75,7 @@
         "address": null,
         "created_at": null,
         "updated_at": null,
-        "customer_id": null,
+        "customer_id": 3,
         "site_contacts": [
             {
                 "id": 3,
@@ -107,7 +107,7 @@
         "address": null,
         "created_at": null,
         "updated_at": null,
-        "customer_id": null,
+        "customer_id": 1,
         "site_contacts": [
             {
                 "id": 4,

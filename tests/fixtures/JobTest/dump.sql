@@ -20,12 +20,12 @@ INSERT INTO customer_user(id, customer_id, user_id) VALUES
 (1, 1, 3),
 (2, 2, 3);
 
-INSERT INTO sites(id, simpro_site_id, name, postal_code, address) VALUES
-(1, 1, 'Name 1', 'UB8 1JG', 'Charter Place'),
-(2, 2, 'Name 2', null, null),
-(3, 3, 'Name 3', null, null),
-(4, 4, 'Name 4', null, null),
-(5, 5, 'Name 5', null, null);
+INSERT INTO sites(id, simpro_site_id, name, postal_code, address, customer_id) VALUES
+(1, 1, 'Name 1', 'UB8 1JG', 'Charter Place', 1),
+(2, 2, 'Name 2', null, null, 2),
+(3, 3, 'Name 3', null, null, 3),
+(4, 4, 'Name 4', null, null, 1),
+(5, 5, 'Name 5', null, null, null);
 
 INSERT INTO site_contacts(id, site_id, simpro_contact_id, title, name, is_primary) VALUES
 (1, 1, 1, 'Title', 'Name', true),

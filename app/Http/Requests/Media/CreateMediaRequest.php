@@ -11,7 +11,7 @@ class CreateMediaRequest extends Request
         $types = implode(',', config('defaults.permitted_media_types'));
 
         return [
-            'file' => "file|required|max:15360|mimes:{$types}",
+            'file' => "file|required|max:153600|mimes:{$types}",
             'is_public' => 'boolean',
         ];
     }

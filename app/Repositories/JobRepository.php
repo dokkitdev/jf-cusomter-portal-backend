@@ -4,7 +4,6 @@ namespace App\Repositories;
 
 use App\Models\Job;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 
@@ -22,6 +21,15 @@ class JobRepository extends BaseRepository
     {
         if (Arr::has($this->filter, 'job_has_user')) {
             $this->query->onlyPermitted($this->filter['job_has_user']);
+        }
+
+        return $this;
+    }
+
+    public function filterByOutOfHours(): self
+    {
+        if (Arr::get($this->filter, 'out_of_hours')) {
+            $this->query->outOfHours();
         }
 
         return $this;
@@ -111,23 +119,7 @@ class JobRepository extends BaseRepository
 
     public function getOutOfHoursCount(?int $userId): int
     {
-        $now = now()->format('Y-m-d');
-
-        $query = $this->getQuery()
-            ->where('date_created', $now)
-            ->where(function (Builder $query) use ($now) {
-                return $query
-                    ->where(function (Builder $query) use ($now) {
-                        return $query
-                            ->where('logged_create_date', '>=', "{$now} 00:00:00")
-                            ->where('logged_create_date', '<', "{$now} 08:00:00");
-                    })
-                    ->orWhere(function (Builder $query) use ($now) {
-                        return $query
-                            ->where('logged_create_date', '>=', "{$now} 17:00:00")
-                            ->where('logged_create_date', '<=', "{$now} 23:59:59");
-                    });
-            });
+        $query = $this->getQuery()->outOfHours();
 
         if ($userId) {
             $query->onlyPermitted($userId);

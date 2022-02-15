@@ -9,6 +9,7 @@ class SearchJobRequest extends Request
     public function rules(): array
     {
         return [
+            'out_of_hours' => 'boolean',
             'simpro_job_id' => 'integer',
             'customer_id' => 'integer',
             'site_id' => 'integer',

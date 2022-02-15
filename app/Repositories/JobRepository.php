@@ -27,31 +27,6 @@ class JobRepository extends BaseRepository
         return $this;
     }
 
-    public function filterByOutOfHours(): self
-    {
-        $now = now()->format('Y-m-d');
-
-        if (Arr::has($this->filter, 'out_of_hours')) {
-            $this->query
-                ->where('date_created', $now)
-                ->where(function (Builder $query) use ($now) {
-                    return $query
-                        ->where(function (Builder $query) use ($now) {
-                            return $query
-                                ->where('logged_create_date', '>=', "{$now} 00:00:00")
-                                ->where('logged_create_date', '<', "{$now} 08:00:00");
-                        })
-                        ->orWhere(function (Builder $query) use ($now) {
-                            return $query
-                                ->where('logged_create_date', '>=', "{$now} 17:00:00")
-                                ->where('logged_create_date', '<=', "{$now} 23:59:59");
-                        });
-                });
-        }
-
-        return $this;
-    }
-
     public function filterByRecentSchedule(): self
     {
         if (Arr::has($this->filter, 'appointment_from') || Arr::has($this->filter, 'appointment_to') ||
@@ -132,5 +107,43 @@ class JobRepository extends BaseRepository
         }
 
         return $this;
+    }
+
+    public function getOutOfHoursCount(?int $userId): int
+    {
+        $now = now()->format('Y-m-d');
+
+        $query = $this->getQuery()
+            ->where('date_created', $now)
+            ->where(function (Builder $query) use ($now) {
+                return $query
+                    ->where(function (Builder $query) use ($now) {
+                        return $query
+                            ->where('logged_create_date', '>=', "{$now} 00:00:00")
+                            ->where('logged_create_date', '<', "{$now} 08:00:00");
+                    })
+                    ->orWhere(function (Builder $query) use ($now) {
+                        return $query
+                            ->where('logged_create_date', '>=', "{$now} 17:00:00")
+                            ->where('logged_create_date', '<=', "{$now} 23:59:59");
+                    });
+            });
+
+        if ($userId) {
+            $query->onlyPermitted($userId);
+        }
+
+        return $query->count();
+    }
+
+    public function getCountWithPermissions(?int $userId, array $where = []): int
+    {
+        $query = $this->getQuery($where);
+
+        if ($userId) {
+            $query->onlyPermitted($userId);
+        }
+
+        return $query->count();
     }
 }

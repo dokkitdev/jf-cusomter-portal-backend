@@ -55,6 +55,7 @@ prefix: K8S_SECRET_
 # php config
 php_version: "7.4" # 5.6, 7.0, 7.1, 7.2, 7.3
 php_max_execution_time: "120"
+php_memory_limit: "768M"
 php_default_version_debian: "{{ php_version }}"
 php_versions_debian: "{{ php_version }}"
 php_enable_webserver: false
@@ -98,6 +99,8 @@ nginx_vhosts:
           fastcgi_pass unix:/var/run/php/php{{ php_version }}-fpm.sock;
           fastcgi_index index.php;
           fastcgi_read_timeout 300;
+          fastcgi_buffers 16 16k;
+          fastcgi_buffer_size 32k;
           fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
           include fastcgi_params;
       }

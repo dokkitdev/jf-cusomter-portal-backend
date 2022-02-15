@@ -67,7 +67,7 @@ class MediaTest extends TestCase
     {
         $this->actingAs($this->admin)->json('post', '/media', ['file' => $this->file]);
 
-        $this->assertEquals(1, Media::where('link', 'like', 'url')->count());
+        $this->assertEquals(1, Media::where('link', 'like', '/%')->count());
     }
 
     public function testCreateCheckResponse()
@@ -81,7 +81,7 @@ class MediaTest extends TestCase
             'link' => $responseData['link']
         ]);
 
-        //Storage::disk('local')->assertExists($this->getFilePathFromUrl($responseData['link']));
+        Storage::disk('local')->assertExists($this->getFilePathFromUrl($responseData['link']));
 
         $this->clearUploadedFilesFolder();
     }

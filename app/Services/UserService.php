@@ -135,42 +135,32 @@ class UserService extends BaseService
 
     public function getDashboardCounters(): array
     {
-        $data = [
-            'per_page' => 0,
-            'all' => 1,
-        ];
+        $authUser = $this->getAuthUser();
 
-        $todaysJobs = $this->jobService->search(array_merge($data, [
-            'date_created' => now()->format('Y-m-d')
-        ]));
+        $authUserId = $authUser->role_id === Role::CUSTOMER ? $authUser->id : null;
 
-        $outOfHoursJobs = $this->jobService->search(array_merge($data, [
-            'out_of_hours' => true
-        ]));
+        $todaysJobsCount = $this->jobService->getCountWithPermissions($authUserId, ['date_created' => now()->format('Y-m-d')]);
 
-        $data['stage'] = [Job::PENDING_STAGE];
-        $pendingJobs = $this->jobService->search($data);
+        $outOfHoursJobsCount = $this->jobService->getOutOfHoursCount($authUserId);
 
-        $data['stage'] = [Job::PROGRESS_STAGE];
-        $progressJobs = $this->jobService->search($data);
+        $pendingJobsCount = $this->jobService->getCountWithPermissions($authUserId, ['stage' => Job::PENDING_STAGE]);
 
-        $data['stage'] = [Job::COMPLETE_STAGE];
-        $completeJobs = $this->jobService->search($data);
+        $progressJobsCount = $this->jobService->getCountWithPermissions($authUserId, ['stage' => Job::PROGRESS_STAGE]);
 
-        $data['stage'] = [Job::INVOICED_STAGE];
-        $invoicedJobs = $this->jobService->search($data);
+        $completeJobsCount = $this->jobService->getCountWithPermissions($authUserId, ['stage' => Job::COMPLETE_STAGE]);
 
-        $data['stage'] = [Job::ARCHIVED_STAGE];
-        $archivedJobs = $this->jobService->search($data);
+        $invoicedJobsCount = $this->jobService->getCountWithPermissions($authUserId, ['stage' => Job::INVOICED_STAGE]);
+
+        $archivedJobsCount = $this->jobService->getCountWithPermissions($authUserId, ['stage' => Job::ARCHIVED_STAGE]);
 
         return [
-            'todays_jobs_total' => $todaysJobs->total(),
-            'out_of_hours_jobs_total' => $outOfHoursJobs->total(),
-            'pending_jobs_total' => $pendingJobs->total(),
-            'progress_jobs_total' => $progressJobs->total(),
-            'complete_jobs_total' => $completeJobs->total(),
-            'invoiced_jobs_total' => $invoicedJobs->total(),
-            'archived_jobs_total' => $archivedJobs->total(),
+            'todays_jobs_total' => $todaysJobsCount,
+            'out_of_hours_jobs_total' => $outOfHoursJobsCount,
+            'pending_jobs_total' => $pendingJobsCount,
+            'progress_jobs_total' => $progressJobsCount,
+            'complete_jobs_total' => $completeJobsCount,
+            'invoiced_jobs_total' => $invoicedJobsCount,
+            'archived_jobs_total' => $archivedJobsCount,
         ];
     }
 

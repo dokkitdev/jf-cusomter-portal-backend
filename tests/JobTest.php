@@ -169,6 +169,12 @@ class JobTest extends TestCase
                 ],
                 'result' => 'search_by_priority_jobs.json'
             ],
+            [
+                'filter' => [
+                    'out_of_hours' => true,
+                ],
+                'result' => 'search_by_out_of_hours_jobs.json'
+            ],
         ];
     }
 

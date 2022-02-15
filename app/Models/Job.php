@@ -46,6 +46,27 @@ class Job extends BaseModel
         });
     }
 
+    public function scopeOutOfHours(Builder $query): Builder
+    {
+        $now = now()->format('Y-m-d');
+
+        return $query
+            ->where('date_created', $now)
+            ->where(function (Builder $query) use ($now) {
+                return $query
+                    ->where(function (Builder $query) use ($now) {
+                        return $query
+                            ->where('logged_create_date', '>=', "{$now} 00:00:00")
+                            ->where('logged_create_date', '<', "{$now} 08:00:00");
+                    })
+                    ->orWhere(function (Builder $query) use ($now) {
+                        return $query
+                            ->where('logged_create_date', '>=', "{$now} 17:00:00")
+                            ->where('logged_create_date', '<=', "{$now} 23:59:59");
+                    });
+            });
+    }
+
     public function customer()
     {
         return $this->belongsTo(Customer::class);

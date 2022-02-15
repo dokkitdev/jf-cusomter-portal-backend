@@ -78,6 +78,7 @@ class JobService extends BaseService
             ->filterTo('completion_date', false, 'completion_date_to')
             ->filterFrom('due_date', false, 'due_date_from')
             ->filterTo('due_date', false, 'due_date_to')
+            ->filterByOutOfHours()
             ->filterByOnlyPermitted()
             ->getSearchResults();
     }

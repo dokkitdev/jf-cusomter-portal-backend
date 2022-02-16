@@ -32,6 +32,7 @@ class SearchJobRequest extends Request
             'start_time_to' => 'date',
             'end_time_from' => 'date',
             'end_time_to' => 'date',
+            'date_created' => 'date',
             'date_created_from' => 'date',
             'date_created_to' => 'date',
             'made_safe_date_from' => 'date',

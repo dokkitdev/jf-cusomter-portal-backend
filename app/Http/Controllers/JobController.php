@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\JobsExport;
 use App\Http\Requests\Jobs\CreateInSimproJobRequest;
 use App\Http\Requests\Jobs\GetCostCentersRequest;
 use App\Http\Requests\Jobs\GetJobRequest;
@@ -9,6 +10,7 @@ use App\Http\Requests\Jobs\GetStatusesRequest;
 use App\Http\Requests\Jobs\SearchJobRequest;
 use App\Services\JobService;
 use Illuminate\Support\Arr;
+use Maatwebsite\Excel\Facades\Excel;
 use Symfony\Component\HttpFoundation\Response;
 
 class JobController extends Controller
@@ -48,6 +50,11 @@ class JobController extends Controller
         $result = $service->search($request->onlyValidated());
 
         return response()->json($result);
+    }
+
+    public function export(SearchJobRequest $request, JobService $service)
+    {
+        return Excel::download(new JobsExport($service, $request->onlyValidated()), 'jobs.csv');
     }
 
     public function getCostCenters(GetCostCentersRequest $request, JobService $service)

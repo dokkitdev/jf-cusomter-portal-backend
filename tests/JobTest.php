@@ -208,6 +208,33 @@ class JobTest extends TestCase
         $this->assertEqualsFixture("admin_{$fixture}", $response->json());
     }
 
+    public function testExport()
+    {
+        $response = $this->actingAs($this->customer)->json('get', '/jobs/export', [
+            'with' => ['recent_schedule', 'customer', 'site']
+        ]);
+
+        $response->assertStatus(Response::HTTP_OK);
+    }
+
+    public function testExportAsAdmin()
+    {
+        $response = $this->actingAs($this->admin)->json('get', '/jobs/export', [
+            'with' => ['recent_schedule', 'customer', 'site']
+        ]);
+
+        $response->assertStatus(Response::HTTP_OK);
+    }
+
+    public function testExportNoAuth()
+    {
+        $response = $this->json('get', '/jobs/export', [
+            'with' => ['recent_schedule', 'customer', 'site']
+        ]);
+
+        $response->assertStatus(Response::HTTP_UNAUTHORIZED);
+    }
+
     public function testGetCostCenters()
     {
         $this->mockGetCostCenters();

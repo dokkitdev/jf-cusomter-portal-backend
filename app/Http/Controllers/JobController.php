@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exports\JobsExport;
+use App\Exports\JobsReportExport;
 use App\Http\Requests\Jobs\CreateInSimproJobRequest;
 use App\Http\Requests\Jobs\GetCostCentersRequest;
 use App\Http\Requests\Jobs\GetJobRequest;
@@ -55,6 +56,11 @@ class JobController extends Controller
     public function export(SearchJobRequest $request, JobService $service)
     {
         return Excel::download(new JobsExport($service, $request->onlyValidated()), 'jobs.csv');
+    }
+
+    public function exportReport(SearchJobRequest $request, JobService $service)
+    {
+        return Excel::download(new JobsReportExport($service, $request->onlyValidated()), 'jobs_report.csv');
     }
 
     public function getCostCenters(GetCostCentersRequest $request, JobService $service)

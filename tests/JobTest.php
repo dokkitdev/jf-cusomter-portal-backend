@@ -250,6 +250,45 @@ class JobTest extends TestCase
         $response->assertStatus(Response::HTTP_UNAUTHORIZED);
     }
 
+    public function testReportExport()
+    {
+        Excel::fake();
+
+        $response = $this->actingAs($this->customer)->json('get', '/jobs/report/export', [
+            'all' => 1,
+            'with' => ['site'],
+        ]);
+
+        $response->assertStatus(Response::HTTP_OK);
+
+        Excel::assertDownloaded('jobs_report.csv');
+    }
+
+    public function testReportExportAsAdmin()
+    {
+        Excel::fake();
+
+        $response = $this->actingAs($this->admin)->json('get', '/jobs/report/export', [
+            'all' => 1,
+            'with' => ['site'],
+        ]);
+
+        $response->assertStatus(Response::HTTP_OK);
+
+        Excel::assertDownloaded('jobs_report.csv');
+    }
+
+    public function testReportExportNoAuth()
+    {
+        $response = $this->json('get', '/jobs/report/export', [
+            'all' => 1,
+            'with' => ['recent_schedule', 'customer', 'site'],
+            'with_count' => ['job_attachments']
+        ]);
+
+        $response->assertStatus(Response::HTTP_UNAUTHORIZED);
+    }
+
     public function testGetCostCenters()
     {
         $this->mockGetCostCenters();

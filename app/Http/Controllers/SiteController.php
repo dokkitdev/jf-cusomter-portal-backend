@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\SitesExport;
 use App\Http\Requests\Sites\GetSiteRequest;
 use App\Http\Requests\Sites\SearchSiteRequest;
 use App\Http\Requests\Sites\UpdateSiteRequest;
 use App\Services\SiteService;
+use Maatwebsite\Excel\Facades\Excel;
 use Symfony\Component\HttpFoundation\Response;
 
 class SiteController extends Controller
@@ -32,5 +34,10 @@ class SiteController extends Controller
         $result = $service->search($request->onlyValidated());
 
         return response()->json($result);
+    }
+
+    public function export(SearchSiteRequest $request, SiteService $service)
+    {
+        return Excel::download(new SitesExport($service, $request->onlyValidated()), 'sites.csv');
     }
 }

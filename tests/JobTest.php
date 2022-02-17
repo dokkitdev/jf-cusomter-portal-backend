@@ -13,6 +13,7 @@ use App\Models\Site;
 use App\Models\User;
 use App\Tests\Support\SimproTestTrait;
 use Illuminate\Http\UploadedFile;
+use Maatwebsite\Excel\Facades\Excel;
 use Symfony\Component\HttpFoundation\Response;
 
 class JobTest extends TestCase
@@ -210,26 +211,37 @@ class JobTest extends TestCase
 
     public function testExport()
     {
+        Excel::fake();
+
         $response = $this->actingAs($this->customer)->json('get', '/jobs/export', [
-            'with' => ['recent_schedule', 'customer', 'site']
+            'with' => ['recent_schedule', 'customer', 'site'],
+            'with_count' => ['job_attachments']
         ]);
 
         $response->assertStatus(Response::HTTP_OK);
+
+        Excel::assertDownloaded('jobs.csv');
     }
 
     public function testExportAsAdmin()
     {
+        Excel::fake();
+
         $response = $this->actingAs($this->admin)->json('get', '/jobs/export', [
-            'with' => ['recent_schedule', 'customer', 'site']
+            'with' => ['recent_schedule', 'customer', 'site'],
+            'with_count' => ['job_attachments']
         ]);
 
         $response->assertStatus(Response::HTTP_OK);
+
+        Excel::assertDownloaded('jobs.csv');
     }
 
     public function testExportNoAuth()
     {
         $response = $this->json('get', '/jobs/export', [
-            'with' => ['recent_schedule', 'customer', 'site']
+            'with' => ['recent_schedule', 'customer', 'site'],
+            'with_count' => ['job_attachments']
         ]);
 
         $response->assertStatus(Response::HTTP_UNAUTHORIZED);

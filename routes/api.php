@@ -56,6 +56,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/documents', ['uses' => DocumentController::class . '@search']);
 
     Route::put('/sites/{id}', ['uses' => SiteController::class . '@update']);
+    Route::get('/sites/export', ['uses' => SiteController::class . '@export']);
     Route::get('/sites/{id}', ['uses' => SiteController::class . '@get']);
     Route::get('/sites', ['uses' => SiteController::class . '@search']);
 

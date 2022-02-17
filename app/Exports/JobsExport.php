@@ -28,6 +28,7 @@ class JobsExport implements FromCollection, WithHeadings, WithMapping
     public function headings(): array
     {
         return [
+            'Created Date',
             'Job#',
             'Order#',
             'Customer',
@@ -58,6 +59,7 @@ class JobsExport implements FromCollection, WithHeadings, WithMapping
         }
 
         return [
+            $row['date_created'] ? Carbon::parse($row['date_created'])->format('M d Y') : null,
             $row['simpro_job_id'],
             $row['order_no'],
             Arr::get($row, 'customer.name'),

@@ -68,6 +68,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/jobs/create-in-simpro', ['uses' => JobController::class . '@createInSimpro']);
     Route::get('/jobs/cost-centers', ['uses' => JobController::class . '@getCostCenters']);
     Route::get('/jobs/statuses', ['uses' => JobController::class . '@getStatuses']);
+    Route::get('/jobs/report/export', ['uses' => JobController::class . '@exportReport']);
     Route::get('/jobs/export', ['uses' => JobController::class . '@export']);
     Route::get('/jobs/{id}', ['uses' => JobController::class . '@get']);
     Route::get('/jobs', ['uses' => JobController::class . '@search']);

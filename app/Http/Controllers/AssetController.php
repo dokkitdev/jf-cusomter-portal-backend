@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\AssetsReportExport;
 use App\Exports\AssetsExport;
 use App\Http\Requests\Assets\GetAssetRequest;
 use App\Http\Requests\Assets\GetAssetServiceLevelsRequest;
@@ -40,6 +41,11 @@ class AssetController extends Controller
     public function export(SearchAssetRequest $request, AssetService $service)
     {
         return Excel::download(new AssetsExport($service, $request->onlyValidated()), 'assets.csv');
+    }
+
+    public function exportReport(SearchAssetRequest $request, AssetService $service)
+    {
+        return Excel::download(new AssetsReportExport($service, $request->onlyValidated()), 'assets_report.csv');
     }
 
     public function getServiceLevels(GetAssetServiceLevelsRequest $request, AssetService $service)

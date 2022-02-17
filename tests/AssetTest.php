@@ -230,6 +230,60 @@ class AssetTest extends TestCase
         $response->assertStatus(Response::HTTP_UNAUTHORIZED);
     }
 
+    public function testReportExport()
+    {
+        Excel::fake();
+
+        $response = $this->actingAs($this->customer)->json('get', '/assets/report/export', [
+            'all' => 1,
+            'order_by' => 'last_cp12_date',
+            'desc' => true,
+            'asset_type' => 4,
+            'with' => [
+                'site.primary_site_contact',
+                'asset_test_record.job.customer',
+                'asset_test_record.job.next_schedule',
+                'asset_test_record.job.job_no_access_dates',
+            ],
+        ]);
+
+        $response->assertStatus(Response::HTTP_OK);
+
+        Excel::assertDownloaded('assets_report.csv');
+    }
+
+    public function testReportExportAsAdmin()
+    {
+        Excel::fake();
+
+        $response = $this->actingAs($this->admin)->json('get', '/assets/report/export', [
+            'all' => 1,
+            'order_by' => 'last_cp12_date',
+            'desc' => true,
+            'asset_type' => 4,
+            'with' => [
+                'site.primary_site_contact',
+                'asset_test_record.job.customer',
+                'asset_test_record.job.next_schedule',
+                'asset_test_record.job.job_no_access_dates',
+            ],
+        ]);
+
+        $response->assertStatus(Response::HTTP_OK);
+
+        Excel::assertDownloaded('assets_report.csv');
+    }
+
+    public function testReportExportNoAuth()
+    {
+        $response = $this->json('get', '/assets/report/export', [
+            'all' => 1,
+            'with' => ['site'],
+        ]);
+
+        $response->assertStatus(Response::HTTP_UNAUTHORIZED);
+    }
+
     public function testDownloadAssetAttachment()
     {
         Storage::put('link1', 'content');

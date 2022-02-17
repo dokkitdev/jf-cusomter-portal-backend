@@ -214,6 +214,7 @@ class JobTest extends TestCase
         Excel::fake();
 
         $response = $this->actingAs($this->customer)->json('get', '/jobs/export', [
+            'all' => 1,
             'with' => ['recent_schedule', 'customer', 'site'],
             'with_count' => ['job_attachments']
         ]);
@@ -228,6 +229,7 @@ class JobTest extends TestCase
         Excel::fake();
 
         $response = $this->actingAs($this->admin)->json('get', '/jobs/export', [
+            'all' => 1,
             'with' => ['recent_schedule', 'customer', 'site'],
             'with_count' => ['job_attachments']
         ]);
@@ -240,6 +242,7 @@ class JobTest extends TestCase
     public function testExportNoAuth()
     {
         $response = $this->json('get', '/jobs/export', [
+            'all' => 1,
             'with' => ['recent_schedule', 'customer', 'site'],
             'with_count' => ['job_attachments']
         ]);

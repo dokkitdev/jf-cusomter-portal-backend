@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\AssetsExport;
 use App\Http\Requests\Assets\GetAssetRequest;
 use App\Http\Requests\Assets\GetAssetServiceLevelsRequest;
 use App\Http\Requests\Assets\SearchAssetRequest;
@@ -9,6 +10,7 @@ use App\Http\Requests\Assets\DownloadAssetAttachmentRequest;
 use App\Services\AssetAttachmentService;
 use App\Services\AssetService;
 use Illuminate\Support\Facades\Storage;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AssetController extends Controller
 {
@@ -33,6 +35,11 @@ class AssetController extends Controller
         $result = $service->search($request->onlyValidated());
 
         return response()->json($result);
+    }
+
+    public function export(SearchAssetRequest $request, AssetService $service)
+    {
+        return Excel::download(new AssetsExport($service, $request->onlyValidated()), 'assets.csv');
     }
 
     public function getServiceLevels(GetAssetServiceLevelsRequest $request, AssetService $service)

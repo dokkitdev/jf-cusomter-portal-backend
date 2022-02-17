@@ -71,7 +71,7 @@ class AssetService extends BaseService
             ->filterBy('custom_asset_type_value')
             ->filterByIntQuery('simpro_asset_id')
             ->filterBy('asset_test_records.job_id')
-            ->filterBy('site.simpro_customer_id')
+            ->filterBy('site.customer_id')
             ->filterBy('site_id')
             ->filterBy('archived')
             ->filterByList('service_level_name', 'service_level_names')
@@ -88,6 +88,8 @@ class AssetService extends BaseService
             ->filterTo('next_service_date', false, 'next_service_date_to')
             ->filterByLastTestResult()
             ->filterByOnlyPermitted()
+            ->filterBySiteName()
+            ->filterBySiteUprn()
             ->getSearchResults();
     }
 

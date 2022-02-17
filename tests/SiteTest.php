@@ -165,6 +165,7 @@ class SiteTest extends TestCase
         Excel::fake();
 
         $response = $this->actingAs($this->customer)->json('get', '/sites/export', [
+            'all' => 1,
             'with' => ['customer', 'primary_site_contact'],
             'with_count' => ['open_jobs']
         ]);
@@ -179,6 +180,7 @@ class SiteTest extends TestCase
         Excel::fake();
 
         $response = $this->actingAs($this->admin)->json('get', '/sites/export', [
+            'all' => 1,
             'with' => ['customer', 'primary_site_contact'],
             'with_count' => ['open_jobs']
         ]);
@@ -191,6 +193,7 @@ class SiteTest extends TestCase
     public function testExportNoAuth()
     {
         $response = $this->json('get', '/sites/export', [
+            'all' => 1,
             'with' => ['customer', 'primary_site_contact'],
             'with_count' => ['open_jobs']
         ]);

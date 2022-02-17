@@ -75,6 +75,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/job-attachments/download/{id}', ['uses' => JobAttachmentController::class . '@download']);
 
     Route::get('/assets/service-levels', ['uses' => AssetController::class . '@getServiceLevels']);
+    Route::get('/assets/export', ['uses' => AssetController::class . '@export']);
     Route::get('/assets/{id}', ['uses' => AssetController::class . '@get']);
     Route::get('/assets', ['uses' => AssetController::class . '@search']);
 

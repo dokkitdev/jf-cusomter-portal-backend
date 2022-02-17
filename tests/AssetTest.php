@@ -12,6 +12,7 @@ use App\Models\Site;
 use App\Models\User;
 use App\Tests\Support\SimproTestTrait;
 use Illuminate\Support\Facades\Storage;
+use Maatwebsite\Excel\Facades\Excel;
 use Symfony\Component\HttpFoundation\Response;
 
 class AssetTest extends TestCase
@@ -189,6 +190,44 @@ class AssetTest extends TestCase
         $response->assertStatus(Response::HTTP_OK);
 
         $this->assertEqualsFixture("admin_{$fixture}", $response->json());
+    }
+
+    public function testExport()
+    {
+        Excel::fake();
+
+        $response = $this->actingAs($this->customer)->json('get', '/assets/export', [
+            'all' => 1,
+            'with' => ['site'],
+        ]);
+
+        $response->assertStatus(Response::HTTP_OK);
+
+        Excel::assertDownloaded('assets.csv');
+    }
+
+    public function testExportAsAdmin()
+    {
+        Excel::fake();
+
+        $response = $this->actingAs($this->admin)->json('get', '/assets/export', [
+            'all' => 1,
+            'with' => ['site'],
+        ]);
+
+        $response->assertStatus(Response::HTTP_OK);
+
+        Excel::assertDownloaded('assets.csv');
+    }
+
+    public function testExportNoAuth()
+    {
+        $response = $this->json('get', '/assets/export', [
+            'all' => 1,
+            'with' => ['site'],
+        ]);
+
+        $response->assertStatus(Response::HTTP_UNAUTHORIZED);
     }
 
     public function testDownloadAssetAttachment()

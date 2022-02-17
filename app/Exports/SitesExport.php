@@ -21,8 +21,6 @@ class SitesExport implements FromCollection, WithHeadings, WithMapping
 
     public function collection()
     {
-        $this->filters['all'] = 1;
-
         return $this->service->search($this->filters);
     }
 

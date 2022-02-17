@@ -27,6 +27,8 @@ class SearchAssetRequest extends Request
         ]);
 
         return [
+            'site_name_query' => 'string',
+            'site_uprn_query' => 'string',
             'cp12_status' => 'string',
             'asset_type' => 'integer',
             'custom_asset_type_value' => 'string',

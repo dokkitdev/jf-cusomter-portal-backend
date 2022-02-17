@@ -58,4 +58,26 @@ class AssetRepository extends BaseRepository
 
         return $this;
     }
+
+    public function filterBySiteName(): self
+    {
+        if (Arr::has($this->filter, 'site_name_query')) {
+            $this->query->whereHas('site', function (Builder $query) {
+                return $query->where($this->getQuerySearchCallbackWithValue('name', $this->filter['site_name_query']));
+            });
+        }
+
+        return $this;
+    }
+
+    public function filterBySiteUprn(): self
+    {
+        if (Arr::has($this->filter, 'site_uprn_query')) {
+            $this->query->whereHas('site', function (Builder $query) {
+                return $query->where($this->getQuerySearchCallbackWithValue('uprn', $this->filter['site_uprn_query']));
+            });
+        }
+
+        return $this;
+    }
 }

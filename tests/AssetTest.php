@@ -141,6 +141,8 @@ class AssetTest extends TestCase
                     'last_test_result_query' => 'Test result',
                     'service_level_names' => ['Service level...'],
                     'simpro_asset_id' => 1,
+                    'site_name_query' => 'Name 1',
+                    'site_uprn_query' => 'uprn 1'
                 ],
                 'result' => 'search_assets_complex.json'
             ],

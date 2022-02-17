@@ -8,6 +8,7 @@ use App\Models\SiteContact;
 use App\Models\User;
 use App\Tests\Support\SimproTestTrait;
 use Illuminate\Support\Arr;
+use Maatwebsite\Excel\Facades\Excel;
 use Symfony\Component\HttpFoundation\Response;
 
 class SiteTest extends TestCase
@@ -157,6 +158,44 @@ class SiteTest extends TestCase
         $response->assertStatus(Response::HTTP_OK);
 
         $this->assertEqualsFixture("admin_$fixture", $response->json());
+    }
+
+    public function testExport()
+    {
+        Excel::fake();
+
+        $response = $this->actingAs($this->customer)->json('get', '/sites/export', [
+            'with' => ['customer', 'primary_site_contact'],
+            'with_count' => ['open_jobs']
+        ]);
+
+        $response->assertStatus(Response::HTTP_OK);
+
+        Excel::assertDownloaded('sites.csv');
+    }
+
+    public function testExportAsAdmin()
+    {
+        Excel::fake();
+
+        $response = $this->actingAs($this->admin)->json('get', '/sites/export', [
+            'with' => ['customer', 'primary_site_contact'],
+            'with_count' => ['open_jobs']
+        ]);
+
+        $response->assertStatus(Response::HTTP_OK);
+
+        Excel::assertDownloaded('sites.csv');
+    }
+
+    public function testExportNoAuth()
+    {
+        $response = $this->json('get', '/sites/export', [
+            'with' => ['customer', 'primary_site_contact'],
+            'with_count' => ['open_jobs']
+        ]);
+
+        $response->assertStatus(Response::HTTP_UNAUTHORIZED);
     }
 
     public function testUpdate()

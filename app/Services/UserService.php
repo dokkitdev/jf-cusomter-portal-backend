@@ -139,7 +139,10 @@ class UserService extends BaseService
 
         $authUserId = $authUser->role_id === Role::CUSTOMER ? $authUser->id : null;
 
-        $todaysJobsCount = $this->jobService->getCountWithPermissions($authUserId, ['date_created' => now()->format('Y-m-d')]);
+        $todaysJobsCount = $this->jobService->getCountWithPermissions($authUserId, [
+            'date_created' => now()->format('Y-m-d'),
+            'stage' => Job::PENDING_STAGE
+        ]);
 
         $outOfHoursJobsCount = $this->jobService->getOutOfHoursCount($authUserId);
 

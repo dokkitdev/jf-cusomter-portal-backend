@@ -21,7 +21,8 @@
             "recent_schedule_id": null,
             "logged_create_date": null,
             "logged_completion_date": null,
-            "next_schedule_id": null
+            "next_schedule_id": null,
+            "site_postal_code": "ub8 1jg"
         },
         {
             "id": 2,
@@ -43,7 +44,8 @@
             "recent_schedule_id": null,
             "logged_create_date": null,
             "logged_completion_date": null,
-            "next_schedule_id": null
+            "next_schedule_id": null,
+            "site_postal_code": "ub8 1jg"
         },
         {
             "id": 3,
@@ -65,7 +67,8 @@
             "recent_schedule_id": null,
             "logged_create_date": null,
             "logged_completion_date": null,
-            "next_schedule_id": null
+            "next_schedule_id": null,
+            "site_postal_code": "ub8 1jg"
         },
         {
             "id": 4,
@@ -87,7 +90,8 @@
             "recent_schedule_id": null,
             "logged_create_date": null,
             "logged_completion_date": null,
-            "next_schedule_id": null
+            "next_schedule_id": null,
+            "site_postal_code": "ub8 1jg"
         },
         {
             "id": 5,
@@ -109,7 +113,8 @@
             "recent_schedule_id": null,
             "logged_create_date": null,
             "logged_completion_date": null,
-            "next_schedule_id": null
+            "next_schedule_id": null,
+            "site_postal_code": "ub8 1jg"
         },
         {
             "id": 6,
@@ -131,7 +136,8 @@
             "recent_schedule_id": null,
             "logged_create_date": null,
             "logged_completion_date": null,
-            "next_schedule_id": null
+            "next_schedule_id": null,
+            "site_postal_code": "ub8 1jg"
         }
     ],
     "first_page_url": "http:\/\/localhost\/jobs?page=1",

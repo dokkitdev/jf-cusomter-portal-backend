@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\DB;
 use RonasIT\Support\Traits\ModelTrait;
 
 class BaseModel extends Model
@@ -27,6 +28,10 @@ class BaseModel extends Model
             $queries = $this->getQueriesList($query, $relations);
             $prevQuery = array_shift($queries);
             array_pop($queries);
+
+            if ($orderField === 'postal_code') {
+                $orderField = DB::raw("LOWER({$orderField})");
+            }
 
             $this
                 ->applyManyToManyStrategy($prevQuery, $manyToManyStrategy)

@@ -160,7 +160,7 @@ class JobTest extends TestCase
             ],
             [
                 'filter' => [
-                    'postal_code' => 'UB8 1JG',
+                    'postal_code' => 'ub8 1JG',
                 ],
                 'result' => 'search_by_postal_code_jobs.json'
             ],

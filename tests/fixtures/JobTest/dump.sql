@@ -20,12 +20,12 @@ INSERT INTO customer_user(id, customer_id, user_id) VALUES
 (1, 1, 3),
 (2, 2, 3);
 
-INSERT INTO sites(id, simpro_site_id, name, postal_code, address, customer_id) VALUES
-(1, 1, 'Name 1', 'UB8 1JG', 'Charter Place', 1),
-(2, 2, 'Name 2', null, null, 2),
-(3, 3, 'Name 3', null, null, 3),
-(4, 4, 'Name 4', null, null, 1),
-(5, 5, 'Name 5', null, null, null);
+INSERT INTO sites(id, simpro_site_id, name, postal_code, address, customer_id, uprn) VALUES
+(1, 1, 'Name 1', 'UB8 1JG', 'Charter Place', 1, 'GSP-211226'),
+(2, 2, 'Name 2', null, null, 2, null),
+(3, 3, 'Name 3', null, null, 3, null),
+(4, 4, 'Name 4', null, null, 1, null),
+(5, 5, 'Name 5', null, null, null, null);
 
 INSERT INTO site_contacts(id, site_id, simpro_contact_id, title, name, is_primary) VALUES
 (1, 1, 1, 'Title', 'Name', true),
@@ -45,17 +45,17 @@ INSERT INTO simpro_log(id, loggable_id, loggable_type, handle_status, handle_res
 (1, 1, 'sites', 'new', null),
 (2, 1, 'jobs', 'new', null);
 
-INSERT INTO jobs(id, simpro_job_id, site_id, customer_id, stage, priority) VALUES
-(1, 1, 1, 1, 'Progress', 'Fire Alarm - Standard 8 Hours'),
-(2, 2, 1, 1, 'Progress', 'Fire Alarm - Standard'),
-(3, 3, 1, 1, 'Progress', 'Intruder Alarm - Standard 4 Hours'),
-(4, 4, 1, 2, 'Complete', null),
-(5, 5, 1, 2, 'Archived', null),
-(6, 6, 2, 2, 'Archived', null),
-(7, 7, 3, 3, 'Archived', null),
-(8, 8, 4, 3, 'Complete', null),
-(9, 9, 4, 3, 'Progress', null),
-(10, 10, 4, 3, 'Progress', null);
+INSERT INTO jobs(id, simpro_job_id, site_id, customer_id, stage, priority, order_no) VALUES
+(1, 1, 1, 1, 'Progress', 'Fire Alarm - Standard 8 Hours', 'CN3268'),
+(2, 2, 1, 1, 'Progress', 'Fire Alarm - Standard', null),
+(3, 3, 1, 1, 'Progress', 'Intruder Alarm - Standard 4 Hours', null),
+(4, 4, 1, 2, 'Complete', null, null),
+(5, 5, 1, 2, 'Archived', null, null),
+(6, 6, 2, 2, 'Archived', null, null),
+(7, 7, 3, 3, 'Archived', null, null),
+(8, 8, 4, 3, 'Complete', null, null),
+(9, 9, 4, 3, 'Progress', null, null),
+(10, 10, 4, 3, 'Progress', null, null);
 
 INSERT INTO schedules(id, job_id, simpro_schedule_id, name, date, start_time, end_time) VALUES
 (1, 1, 1, 'Name', '2016-10-20 11:05:00', '2016-10-20 11:05:00', '2016-10-20 11:05:00');

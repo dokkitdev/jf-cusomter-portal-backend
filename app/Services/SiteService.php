@@ -42,6 +42,10 @@ class SiteService extends BaseService
             $filters['site_has_user'] = $authUser['id'];
         }
 
+        if (Arr::get($filters, 'order_by') === 'postal_code') {
+            $filters['order_by'] = DB::raw('LOWER(postal_code)');
+        }
+
         return $this->repository
             ->with(Arr::get($filters, 'with', []))
             ->withCount(Arr::get($filters, 'with_count', []))

@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Models\Site;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 /**
  * @property Site $model
@@ -28,9 +29,9 @@ class SiteRepository extends BaseRepository
     public function filterByPostalCode(): self
     {
         if (Arr::has($this->filter, 'postal_code')) {
-            $postalCode = str_replace(' ', '', $this->filter['postal_code']);
+            $postalCode = Str::lower(str_replace(' ', '', $this->filter['postal_code']));
 
-            $this->query->where(DB::raw("REPLACE(postal_code, ' ', '')"), $postalCode);
+            $this->query->where(DB::raw("LOWER(REPLACE(postal_code, ' ', ''))"), $postalCode);
         }
 
         return $this;

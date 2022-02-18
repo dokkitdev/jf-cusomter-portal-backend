@@ -122,7 +122,7 @@ class SiteTest extends TestCase
             [
                 'filter' => [
                     'simpro_site_id' => 1,
-                    'name_query' => 'name',
+                    'postal_code' => 'ub8 1JG',
                     'order_by' => 'primary_site_contact.name'
                 ],
                 'result' => 'search_sites_by_complex.json'

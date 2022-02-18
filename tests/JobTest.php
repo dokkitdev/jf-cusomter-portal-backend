@@ -134,7 +134,10 @@ class JobTest extends TestCase
     {
         return [
             [
-                'filter' => ['all' => 1],
+                'filter' => [
+                    'all' => 1,
+                    'order_by' => 'site.postal_code'
+                ],
                 'result' => 'search_by_all_jobs.json'
             ],
             [

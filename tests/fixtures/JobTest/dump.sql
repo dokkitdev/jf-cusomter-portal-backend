@@ -22,9 +22,9 @@ INSERT INTO customer_user(id, customer_id, user_id) VALUES
 
 INSERT INTO sites(id, simpro_site_id, name, postal_code, address, customer_id, uprn) VALUES
 (1, 1, 'Name 1', 'UB8 1JG', 'Charter Place', 1, 'GSP-211226'),
-(2, 2, 'Name 2', null, null, 2, null),
-(3, 3, 'Name 3', null, null, 3, null),
-(4, 4, 'Name 4', null, null, 1, null),
+(2, 2, 'Name 2', 'ub8 1JG', null, 2, null),
+(3, 3, 'Name 3', 'UB1 1JG', null, 3, null),
+(4, 4, 'Name 4', 'ub2 1JG', null, 1, null),
 (5, 5, 'Name 5', null, null, null, null);
 
 INSERT INTO site_contacts(id, site_id, simpro_contact_id, title, name, is_primary) VALUES

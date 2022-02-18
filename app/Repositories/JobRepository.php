@@ -6,6 +6,7 @@ use App\Models\Job;
 use Carbon\Carbon;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 /**
  * @property Job $model
@@ -73,10 +74,10 @@ class JobRepository extends BaseRepository
     public function filterByPostalCode(): self
     {
         if (Arr::has($this->filter, 'postal_code')) {
-            $postalCode = str_replace(' ', '', $this->filter['postal_code']);
+            $postalCode = Str::lower(str_replace(' ', '', $this->filter['postal_code']));
 
             $this->query->whereHas('site', function ($query) use ($postalCode) {
-                $query->where(DB::raw("REPLACE(postal_code, ' ', '')"), $postalCode);
+                return $query->where(DB::raw("LOWER(REPLACE(postal_code, ' ', ''))"), $postalCode);
             });
         }
 

@@ -6,7 +6,7 @@
             "simpro_job_id": 1,
             "customer_id": 1,
             "site_id": 1,
-            "order_no": null,
+            "order_no": "CN3268",
             "description": null,
             "priority": "Fire Alarm - Standard 8 Hours",
             "cost_center_name": null,

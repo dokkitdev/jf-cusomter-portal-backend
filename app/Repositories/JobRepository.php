@@ -118,6 +118,17 @@ class JobRepository extends BaseRepository
         return $this;
     }
 
+    public function filterBySiteName(): self
+    {
+        if (Arr::has($this->filter, 'site_name')) {
+            $this->query->whereHas('site', function ($query) {
+                return $query->where($this->getQuerySearchCallbackWithValue('name', $this->filter['site_name']));
+            });
+        }
+
+        return $this;
+    }
+
     public function getOutOfHoursCount(?int $userId): int
     {
         $query = $this->getQuery()->outOfHours();

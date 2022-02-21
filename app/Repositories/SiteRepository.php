@@ -31,7 +31,7 @@ class SiteRepository extends BaseRepository
         if (Arr::has($this->filter, 'postal_code')) {
             $postalCode = Str::lower(str_replace(' ', '', $this->filter['postal_code']));
 
-            $this->query->where(DB::raw("LOWER(REPLACE(postal_code, ' ', ''))"), $postalCode);
+            $this->query->where($this->getQuerySearchCallbackWithValue(DB::raw("REPLACE(postal_code, ' ', '')"), $postalCode));
         }
 
         return $this;

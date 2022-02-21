@@ -77,7 +77,7 @@ class JobRepository extends BaseRepository
             $postalCode = Str::lower(str_replace(' ', '', $this->filter['postal_code']));
 
             $this->query->whereHas('site', function ($query) use ($postalCode) {
-                return $query->where(DB::raw("LOWER(REPLACE(postal_code, ' ', ''))"), $postalCode);
+                return $query->where($this->getQuerySearchCallbackWithValue(DB::raw("REPLACE(postal_code, ' ', '')"), $postalCode));
             });
         }
 

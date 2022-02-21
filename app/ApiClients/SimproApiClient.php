@@ -14,14 +14,14 @@ class SimproApiClient
         $this->httpRequestService = app(HttpRequestService::class);
     }
 
-    public function getCustomerInvoice(int $companyId, int $invoiceId): array
+    public function getCustomerInvoice(int $companyId, int $invoiceId): ?array
     {
         $url = $this->getUrl("companies/{$companyId}/customerInvoices/{$invoiceId}");
 
         return $this->makeRequest('get', $url);
     }
 
-    public function getWorkOrders(int $companyId, int $jobId, int $sectionId, int $costCenterId): array
+    public function getWorkOrders(int $companyId, int $jobId, int $sectionId, int $costCenterId): ?array
     {
         $url = $this->getUrl("companies/{$companyId}/jobs/{$jobId}/sections/{$sectionId}/costCenters/{$costCenterId}/workOrders/");
 
@@ -31,7 +31,7 @@ class SimproApiClient
         ]);
     }
 
-    public function downloadQuoteAttachment(int $companyId, int $quoteId, string $attachmentId): array
+    public function downloadQuoteAttachment(int $companyId, int $quoteId, string $attachmentId): ?array
     {
         $url = $this->getUrl("companies/{$companyId}/quotes/{$quoteId}/attachments/files/{$attachmentId}");
 
@@ -40,7 +40,7 @@ class SimproApiClient
         ]);
     }
 
-    public function downloadAssetAttachment(int $companyId, int $siteId, int $assetId, string $attachmentId): array
+    public function downloadAssetAttachment(int $companyId, int $siteId, int $assetId, string $attachmentId): ?array
     {
         $url = $this->getUrl("companies/{$companyId}/sites/{$siteId}/assets/{$assetId}/attachments/files/{$attachmentId}");
 
@@ -49,7 +49,7 @@ class SimproApiClient
         ]);
     }
 
-    public function downloadJobAttachment(int $companyId, int $jobId, string $attachmentId): array
+    public function downloadJobAttachment(int $companyId, int $jobId, string $attachmentId): ?array
     {
         $url = $this->getUrl("companies/{$companyId}/jobs/{$jobId}/attachments/files/{$attachmentId}");
 
@@ -58,21 +58,21 @@ class SimproApiClient
         ]);
     }
 
-    public function postJobAttachment(int $companyId, int $jobId, array $data): array
+    public function postJobAttachment(int $companyId, int $jobId, array $data): ?array
     {
         $url = $this->getUrl("companies/{$companyId}/jobs/{$jobId}/attachments/files/");
 
         return $this->makeRequest('post', $url, $data);
     }
 
-    public function postQuoteAttachment(int $companyId, int $quoteId, array $data): array
+    public function postQuoteAttachment(int $companyId, int $quoteId, array $data): ?array
     {
         $url = $this->getUrl("companies/{$companyId}/quotes/{$quoteId}/attachments/files/");
 
         return $this->makeRequest('post', $url, $data);
     }
 
-    public function getQuote(int $companyId, int $quoteId): array
+    public function getQuote(int $companyId, int $quoteId): ?array
     {
         $url = $this->getUrl("companies/{$companyId}/quotes/{$quoteId}");
 
@@ -81,14 +81,14 @@ class SimproApiClient
         ]);
     }
 
-    public function getAsset(int $companyId, int $assetId): array
+    public function getAsset(int $companyId, int $assetId): ?array
     {
         $url = $this->getUrl("companies/{$companyId}/customerAssets/{$assetId}");
 
         return $this->makeRequest('get', $url);
     }
 
-    public function getAssetServiceLevels(int $companyId, int $siteId, int $assetId): array
+    public function getAssetServiceLevels(int $companyId, int $siteId, int $assetId): ?array
     {
         $url = $this->getUrl("companies/{$companyId}/sites/{$siteId}/assets/{$assetId}/serviceLevels/");
 
@@ -97,7 +97,7 @@ class SimproApiClient
         ]);
     }
 
-    public function getAssetTestHistories(int $companyId, int $siteId, int $assetId): array
+    public function getAssetTestHistories(int $companyId, int $siteId, int $assetId): ?array
     {
         $url = $this->getUrl("companies/{$companyId}/sites/{$siteId}/assets/{$assetId}/testHistory/");
 
@@ -106,14 +106,14 @@ class SimproApiClient
         ]);
     }
 
-    public function patchQuote(int $companyId, int $quoteId, array $data): array
+    public function patchQuote(int $companyId, int $quoteId, array $data): ?array
     {
         $url = $this->getUrl("companies/{$companyId}/quotes/{$quoteId}");
 
         return $this->makeRequest('patch', $url, $data);
     }
 
-    public function getQuoteAttachments(int $companyId, int $quoteId): array
+    public function getQuoteAttachments(int $companyId, int $quoteId): ?array
     {
         $url = $this->getUrl("companies/{$companyId}/quotes/{$quoteId}/attachments/files/");
 
@@ -123,28 +123,28 @@ class SimproApiClient
         ]);
     }
 
-    public function getQuoteNote(int $companyId, int $quoteId, int $noteId): array
+    public function getQuoteNote(int $companyId, int $quoteId, int $noteId): ?array
     {
         $url = $this->getUrl("companies/{$companyId}/quotes/{$quoteId}/notes/{$noteId}");
 
         return $this->makeRequest('get', $url);
     }
 
-    public function postQuoteNote(int $companyId, int $quoteId, array $data): array
+    public function postQuoteNote(int $companyId, int $quoteId, array $data): ?array
     {
         $url = $this->getUrl("companies/{$companyId}/quotes/{$quoteId}/notes/");
 
         return $this->makeRequest('post', $url, $data);
     }
 
-    public function getSchedule(int $companyId, int $scheduleId): array
+    public function getSchedule(int $companyId, int $scheduleId): ?array
     {
         $url = $this->getUrl("companies/{$companyId}/schedules/{$scheduleId}");
 
         return $this->makeRequest('get', $url);
     }
 
-    public function getSite(int $companyId, int $siteId): array
+    public function getSite(int $companyId, int $siteId): ?array
     {
         $url = $this->getUrl("companies/{$companyId}/sites/{$siteId}");
 
@@ -158,7 +158,7 @@ class SimproApiClient
         return $this->makeRequest('patch', $url, $data);
     }
 
-    public function getSiteContacts(int $companyId, int $siteId): array
+    public function getSiteContacts(int $companyId, int $siteId): ?array
     {
         $url = $this->getUrl("companies/{$companyId}/sites/{$siteId}/contacts/");
 
@@ -168,7 +168,7 @@ class SimproApiClient
         ]);
     }
 
-    public function postSiteContact(int $companyId, int $siteId, array $data): array
+    public function postSiteContact(int $companyId, int $siteId, array $data): ?array
     {
         $url = $this->getUrl("companies/{$companyId}/sites/{$siteId}/contacts/");
 
@@ -196,7 +196,7 @@ class SimproApiClient
         return $this->makeRequest('patch', $url, $data);
     }
 
-    public function getJob(int $companyId, int $jobId): array
+    public function getJob(int $companyId, int $jobId): ?array
     {
         $url = $this->getUrl("companies/{$companyId}/jobs/{$jobId}");
 
@@ -205,7 +205,7 @@ class SimproApiClient
         ]);
     }
 
-    public function getJobLog(int $companyId, int $jobId, string $message): array
+    public function getJobLog(int $companyId, int $jobId, string $message): ?array
     {
         $url = $this->getUrl("companies/{$companyId}/logs/jobs/");
 
@@ -215,41 +215,41 @@ class SimproApiClient
         ]);
     }
 
-    public function getMadeSafeJobLog(int $companyId, int $jobId): array
+    public function getMadeSafeJobLog(int $companyId, int $jobId): ?array
     {
         return  $this->getJobLog($companyId, $jobId, 'Job status set to Job : Made Safe');
     }
 
-    public function getCreatedJobLog(int $companyId, int $jobId): array
+    public function getCreatedJobLog(int $companyId, int $jobId): ?array
     {
         return  $this->getJobLog($companyId, $jobId, 'Created Job');
     }
 
-    public function getCompletedJobLog(int $companyId, int $jobId): array
+    public function getCompletedJobLog(int $companyId, int $jobId): ?array
     {
         return  $this->getJobLog($companyId, $jobId, '%Completed%');
     }
 
-    public function getNoAccessJobLog(int $companyId, int $jobId): array
+    public function getNoAccessJobLog(int $companyId, int $jobId): ?array
     {
         return  $this->getJobLog($companyId, $jobId, 'Job status set to Job : No Access');
     }
 
-    public function postJob(int $companyId, array $data): array
+    public function postJob(int $companyId, array $data): ?array
     {
         $url = $this->getUrl("companies/{$companyId}/jobs/");
 
         return $this->makeRequest('post', $url, $data);
     }
 
-    public function postQuote(int $companyId, array $data): array
+    public function postQuote(int $companyId, array $data): ?array
     {
         $url = $this->getUrl("companies/{$companyId}/quotes/");
 
         return $this->makeRequest('post', $url, $data);
     }
 
-    public function getCustomer(int $companyId, string $type, int $customerId): array
+    public function getCustomer(int $companyId, string $type, int $customerId): ?array
     {
         $url = $this->getUrl("companies/{$companyId}/customers/{$type}/{$customerId}");
 

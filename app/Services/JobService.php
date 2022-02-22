@@ -9,6 +9,7 @@ use App\Repositories\JobRepository;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Carbon;
 
 /**
  * @property JobRepository $repository
@@ -189,6 +190,17 @@ class JobService extends BaseService
         $createdJobLog = $this->simproClient->getCreatedJobLog($companyId, $simproJob['ID']);
         $completedJobLog = $this->simproClient->getCompletedJobLog($companyId, $simproJob['ID']);
 
+        $calculatedDueDate = null;
+
+        if (Arr::get($createdJobLog, '0.DateLogged') && Arr::get($simproJob, 'ResponseTime')) {
+            $loggedCreateDate = Carbon::parse(Arr::get($createdJobLog, '0.DateLogged'));
+
+            $calculatedDueDate = $loggedCreateDate
+                ->addDays(Arr::get($simproJob, 'ResponseTime.Days', 0))
+                ->addHours(Arr::get($simproJob, 'ResponseTime.Hours', 0))
+                ->addMinutes(Arr::get($simproJob, 'ResponseTime.Minutes', 0));
+        }
+
         $job = $this->repository->updateOrCreate(['simpro_job_id' => $simproJob['ID']], [
             'customer_id' => $customerId,
             'site_id' => $siteId,
@@ -201,8 +213,8 @@ class JobService extends BaseService
             'date_created' => Arr::get($simproJob, 'DateIssued'),
             'made_safe_date' => Arr::get($madeSafeJobLog, '0.DateLogged'),
             'completion_date' => Arr::get($simproJob, 'CompletedDate'),
-            'due_date' => Arr::get($simproJob, 'DueDate'),
-            'logged_create_date' => Arr::get($createdJobLog, '0.DateLogged'),
+            'due_date' => $calculatedDueDate ? $calculatedDueDate->format('Y-m-d H:i:s') : Arr::get($simproJob, 'DueDate'),
+            'logged_create_date' => Arr::get($createdJobLog, '0.DateLogged', Arr::get($simproJob, 'DateIssued')),
             'logged_completion_date' => Arr::get($completedJobLog, '0.DateLogged'),
         ]);
 

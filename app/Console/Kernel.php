@@ -21,11 +21,13 @@ class Kernel extends ConsoleKernel
         $assets = SimproLog::LOGGABLE_TYPE_ASSETS;
         $schedule->command("simpro:handle-log {$assets}")->everyMinute()->withoutOverlapping()->runInBackground();
 
-        $schedule->command('simpro:handle-jobs')->everyMinute()->withoutOverlapping();
+        $schedule->command('simpro:handle-jobs 0')->everyMinute()->withoutOverlapping()->runInBackground();
+
+        $schedule->command('simpro:handle-jobs 1')->everyMinute()->withoutOverlapping()->runInBackground();
 
         $schedule->command("simpro:save-simpro-log {$assets}")->hourly()->withoutOverlapping()->runInBackground();
 
-        $schedule->command('clear:set-password-hash')->hourly();
+        $schedule->command('clear:set-password-hash')->hourly()->withoutOverlapping()->runInBackground();
     }
 
     protected function commands()

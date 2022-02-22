@@ -21,9 +21,11 @@ class Kernel extends ConsoleKernel
         $assets = SimproLog::LOGGABLE_TYPE_ASSETS;
         $schedule->command("simpro:handle-log {$assets}")->everyMinute()->withoutOverlapping()->runInBackground();
 
-        $schedule->command('simpro:handle-jobs 0')->everyMinute()->withoutOverlapping()->runInBackground();
-
-        $schedule->command('simpro:handle-jobs 1')->everyMinute()->withoutOverlapping()->runInBackground();
+        $schedule->command('simpro:handle-jobs job')->everyMinute()->withoutOverlapping()->runInBackground();
+        $schedule->command('simpro:handle-jobs site')->everyMinute()->withoutOverlapping()->runInBackground();
+        $schedule->command('simpro:handle-jobs asset')->everyMinute()->withoutOverlapping()->runInBackground();
+        $schedule->command('simpro:handle-jobs company')->everyMinute()->withoutOverlapping()->runInBackground();
+        $schedule->command('simpro:handle-jobs individual')->everyMinute()->withoutOverlapping()->runInBackground();
 
         $schedule->command("simpro:save-simpro-log {$assets}")->hourly()->withoutOverlapping()->runInBackground();
 

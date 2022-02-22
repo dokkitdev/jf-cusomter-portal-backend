@@ -4,7 +4,6 @@ namespace App\Repositories;
 
 use App\Models\SimproJob;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\DB;
 use RonasIT\Support\Repositories\BaseRepository;
 
 /**
@@ -17,15 +16,15 @@ class SimproJobRepository extends BaseRepository
         $this->setModel(SimproJob::class);
     }
 
-    public function getForHandle(int $limit = 100, ?string $mod = null): Collection
+    public function getForHandle(int $limit = 100, ?string $eventId = null): Collection
     {
         $query = $this
             ->getQuery(['handle_status' => SimproJob::HANDLE_STATUS_NEW])
             ->orderBy('id')
             ->limit($limit);
 
-        if ($mod !== null) {
-            $query->where(DB::raw('id % 2'), $mod);
+        if ($eventId) {
+            $query->where('data->ID', 'LIKE', "{$eventId}.%");
         }
 
         return $query->get();

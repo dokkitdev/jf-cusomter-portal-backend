@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Asset;
+use App\Models\Job;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
@@ -54,6 +55,10 @@ class AssetRepository extends BaseRepository
             if ($this->filter['cp12_status'] === Asset::CP12_STATUS_OVERDUE) {
                 $this->query->where(DB::raw("last_cp12_date + interval '1 year'"), '<=', now()->format('Y-m-d'));
             }
+
+            $this->query->whereDoesntHave('asset_test_record.job', function (Builder $query) {
+                return $query->where('stage', '!=', Job::COMPLETE_STAGE);
+            });
         }
 
         return $this;

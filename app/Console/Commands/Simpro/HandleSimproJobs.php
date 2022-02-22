@@ -9,7 +9,7 @@ use Exception;
 
 class HandleSimproJobs extends Command
 {
-    protected $signature = 'simpro:handle-jobs';
+    protected $signature = 'simpro:handle-jobs {mod?}';
 
     protected $description = 'Handle Simpro jobs';
 
@@ -17,10 +17,12 @@ class HandleSimproJobs extends Command
 
     public function handle(): void
     {
+        $mod = $this->argument('mod');
+
         $this->simproJobService = app(SimproJobService::class);
 
         $this->simproJobService
-            ->getForHandle(1000)
+            ->getForHandle(1000, $mod)
             ->each(function ($job) {
                 try {
                     $this->simproJobService->handleJob($job);

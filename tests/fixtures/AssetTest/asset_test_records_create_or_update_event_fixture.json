@@ -6,7 +6,7 @@
         "name": "name",
         "test_date": "2016-10-20",
         "notes": "Some notes...",
-        "result": "Result...",
+        "result": "Pass",
         "created_at": null,
         "updated_at": null,
         "asset_test_record_readings": [
@@ -27,7 +27,7 @@
         "name": "name",
         "test_date": "2016-10-20",
         "notes": "Some notes...",
-        "result": "Result...",
+        "result": "Pass",
         "created_at": null,
         "updated_at": null,
         "asset_test_record_readings": [
@@ -48,7 +48,7 @@
         "name": "name",
         "test_date": "2016-10-20",
         "notes": "Some notes...",
-        "result": "Result...",
+        "result": "Pass",
         "created_at": null,
         "updated_at": null,
         "asset_test_record_readings": [
@@ -69,7 +69,7 @@
         "name": "name",
         "test_date": "2016-10-20",
         "notes": "Some notes...",
-        "result": "Result...",
+        "result": "Pass",
         "created_at": null,
         "updated_at": null,
         "asset_test_record_readings": [
@@ -85,6 +85,78 @@
     },
     {
         "id": 5,
+        "asset_id": 4,
+        "job_id": 2,
+        "name": "name",
+        "test_date": "2016-10-20",
+        "notes": "Some notes...",
+        "result": "Pass",
+        "created_at": null,
+        "updated_at": null,
+        "asset_test_record_readings": []
+    },
+    {
+        "id": 6,
+        "asset_id": 5,
+        "job_id": 1,
+        "name": "name",
+        "test_date": "2016-10-20",
+        "notes": "Some notes...",
+        "result": "Pass",
+        "created_at": null,
+        "updated_at": null,
+        "asset_test_record_readings": []
+    },
+    {
+        "id": 7,
+        "asset_id": 6,
+        "job_id": 2,
+        "name": "name",
+        "test_date": "2016-10-20",
+        "notes": "Some notes...",
+        "result": "Pass",
+        "created_at": null,
+        "updated_at": null,
+        "asset_test_record_readings": []
+    },
+    {
+        "id": 8,
+        "asset_id": 7,
+        "job_id": 2,
+        "name": "name",
+        "test_date": "2016-10-20",
+        "notes": "Some notes...",
+        "result": "Pass",
+        "created_at": null,
+        "updated_at": null,
+        "asset_test_record_readings": []
+    },
+    {
+        "id": 9,
+        "asset_id": 8,
+        "job_id": 1,
+        "name": "name",
+        "test_date": "2016-10-20",
+        "notes": "Some notes...",
+        "result": "Pass",
+        "created_at": null,
+        "updated_at": null,
+        "asset_test_record_readings": []
+    },
+    {
+        "id": 10,
+        "asset_id": 9,
+        "job_id": 2,
+        "name": "name",
+        "test_date": "2016-10-20",
+        "notes": "Some notes...",
+        "result": "Pass",
+        "created_at": null,
+        "updated_at": null,
+        "asset_test_record_readings": []
+    },
+    {
+        "id": 11,
         "asset_id": 11,
         "job_id": 3,
         "name": null,
@@ -96,7 +168,7 @@
         "asset_test_record_readings": []
     },
     {
-        "id": 6,
+        "id": 12,
         "asset_id": 11,
         "job_id": 3,
         "name": "Craig Norton",
@@ -108,7 +180,7 @@
         "asset_test_record_readings": [
             {
                 "id": 5,
-                "asset_test_record_id": 6,
+                "asset_test_record_id": 12,
                 "name": "Is the panel still supported by the manufacturer?",
                 "value": "Yes",
                 "created_at": "2018-11-11T11:11:11.000000Z",
@@ -116,7 +188,7 @@
             },
             {
                 "id": 6,
-                "asset_test_record_id": 6,
+                "asset_test_record_id": 12,
                 "name": "Correctly sized fuses fitted (including supply)?",
                 "value": "Yes",
                 "created_at": "2018-11-11T11:11:11.000000Z",
@@ -124,7 +196,7 @@
             },
             {
                 "id": 7,
-                "asset_test_record_id": 6,
+                "asset_test_record_id": 12,
                 "name": "Spur & supply cable conform?",
                 "value": "Yes",
                 "created_at": "2018-11-11T11:11:11.000000Z",
@@ -132,7 +204,7 @@
             },
             {
                 "id": 8,
-                "asset_test_record_id": 6,
+                "asset_test_record_id": 12,
                 "name": "Earth cable present?",
                 "value": "Yes",
                 "created_at": "2018-11-11T11:11:11.000000Z",
@@ -140,7 +212,7 @@
             },
             {
                 "id": 9,
-                "asset_test_record_id": 6,
+                "asset_test_record_id": 12,
                 "name": "Quiescent current (Amps) (IQ)",
                 "value": "0.312",
                 "created_at": "2018-11-11T11:11:11.000000Z",
@@ -148,7 +220,7 @@
             },
             {
                 "id": 10,
-                "asset_test_record_id": 6,
+                "asset_test_record_id": 12,
                 "name": "Alarm current (Amps) (IA)",
                 "value": "1.278",
                 "created_at": "2018-11-11T11:11:11.000000Z",
@@ -156,7 +228,7 @@
             },
             {
                 "id": 11,
-                "asset_test_record_id": 6,
+                "asset_test_record_id": 12,
                 "name": "Standby period (Hours)",
                 "value": "24",
                 "created_at": "2018-11-11T11:11:11.000000Z",
@@ -164,7 +236,7 @@
             },
             {
                 "id": 12,
-                "asset_test_record_id": 6,
+                "asset_test_record_id": 12,
                 "name": "Alarm time (Hours)",
                 "value": "0.5",
                 "created_at": "2018-11-11T11:11:11.000000Z",
@@ -172,7 +244,7 @@
             },
             {
                 "id": 13,
-                "asset_test_record_id": 6,
+                "asset_test_record_id": 12,
                 "name": "Load Test Result",
                 "value": "9.66ah",
                 "created_at": "2018-11-11T11:11:11.000000Z",
@@ -180,7 +252,7 @@
             },
             {
                 "id": 14,
-                "asset_test_record_id": 6,
+                "asset_test_record_id": 12,
                 "name": "Battery pass load test?",
                 "value": "Yes",
                 "created_at": "2018-11-11T11:11:11.000000Z",
@@ -188,7 +260,7 @@
             },
             {
                 "id": 15,
-                "asset_test_record_id": 6,
+                "asset_test_record_id": 12,
                 "name": "Battery required",
                 "value": "12ah",
                 "created_at": "2018-11-11T11:11:11.000000Z",
@@ -196,7 +268,7 @@
             },
             {
                 "id": 16,
-                "asset_test_record_id": 6,
+                "asset_test_record_id": 12,
                 "name": "Line voltage (Volts DC)",
                 "value": "28.87",
                 "created_at": "2018-11-11T11:11:11.000000Z",
@@ -204,7 +276,7 @@
             },
             {
                 "id": 17,
-                "asset_test_record_id": 6,
+                "asset_test_record_id": 12,
                 "name": "On charge voltage (Volts DC)",
                 "value": "27.07",
                 "created_at": "2018-11-11T11:11:11.000000Z",
@@ -212,7 +284,7 @@
             },
             {
                 "id": 18,
-                "asset_test_record_id": 6,
+                "asset_test_record_id": 12,
                 "name": "Battery dated and under 4 years old?",
                 "value": "Yes",
                 "created_at": "2018-11-11T11:11:11.000000Z",
@@ -220,7 +292,7 @@
             },
             {
                 "id": 19,
-                "asset_test_record_id": 6,
+                "asset_test_record_id": 12,
                 "name": "Batteries installed",
                 "value": "2 x 12v 17ah",
                 "created_at": "2018-11-11T11:11:11.000000Z",
@@ -228,7 +300,7 @@
             },
             {
                 "id": 20,
-                "asset_test_record_id": 6,
+                "asset_test_record_id": 12,
                 "name": "Battery date",
                 "value": "2019-01-10",
                 "created_at": "2018-11-11T11:11:11.000000Z",
@@ -237,7 +309,7 @@
         ]
     },
     {
-        "id": 7,
+        "id": 13,
         "asset_id": 11,
         "job_id": 3,
         "name": "Simon Ranson",
@@ -249,7 +321,7 @@
         "asset_test_record_readings": [
             {
                 "id": 21,
-                "asset_test_record_id": 7,
+                "asset_test_record_id": 13,
                 "name": "Is the panel still supported by the manufacturer?",
                 "value": "Yes",
                 "created_at": "2018-11-11T11:11:11.000000Z",
@@ -257,7 +329,7 @@
             },
             {
                 "id": 22,
-                "asset_test_record_id": 7,
+                "asset_test_record_id": 13,
                 "name": "Correctly sized fuses fitted (including supply)?",
                 "value": "Yes",
                 "created_at": "2018-11-11T11:11:11.000000Z",
@@ -265,7 +337,7 @@
             },
             {
                 "id": 23,
-                "asset_test_record_id": 7,
+                "asset_test_record_id": 13,
                 "name": "Spur & supply cable conform?",
                 "value": "Yes",
                 "created_at": "2018-11-11T11:11:11.000000Z",
@@ -273,7 +345,7 @@
             },
             {
                 "id": 24,
-                "asset_test_record_id": 7,
+                "asset_test_record_id": 13,
                 "name": "Earth cable present?",
                 "value": "Yes",
                 "created_at": "2018-11-11T11:11:11.000000Z",
@@ -281,7 +353,7 @@
             },
             {
                 "id": 25,
-                "asset_test_record_id": 7,
+                "asset_test_record_id": 13,
                 "name": "Quiescent current (Amps) (IQ)",
                 "value": "nt",
                 "created_at": "2018-11-11T11:11:11.000000Z",
@@ -289,7 +361,7 @@
             },
             {
                 "id": 26,
-                "asset_test_record_id": 7,
+                "asset_test_record_id": 13,
                 "name": "Alarm current (Amps) (IA)",
                 "value": "nt",
                 "created_at": "2018-11-11T11:11:11.000000Z",
@@ -297,7 +369,7 @@
             },
             {
                 "id": 27,
-                "asset_test_record_id": 7,
+                "asset_test_record_id": 13,
                 "name": "Standby period (Hours)",
                 "value": "24",
                 "created_at": "2018-11-11T11:11:11.000000Z",
@@ -305,7 +377,7 @@
             },
             {
                 "id": 28,
-                "asset_test_record_id": 7,
+                "asset_test_record_id": 13,
                 "name": "Alarm time (Hours)",
                 "value": "0.5",
                 "created_at": "2018-11-11T11:11:11.000000Z",
@@ -313,7 +385,7 @@
             },
             {
                 "id": 29,
-                "asset_test_record_id": 7,
+                "asset_test_record_id": 13,
                 "name": "Load Test Result",
                 "value": "not tested",
                 "created_at": "2018-11-11T11:11:11.000000Z",
@@ -321,7 +393,7 @@
             },
             {
                 "id": 30,
-                "asset_test_record_id": 7,
+                "asset_test_record_id": 13,
                 "name": "Battery required",
                 "value": "17ah",
                 "created_at": "2018-11-11T11:11:11.000000Z",
@@ -329,7 +401,7 @@
             },
             {
                 "id": 31,
-                "asset_test_record_id": 7,
+                "asset_test_record_id": 13,
                 "name": "Line voltage (Volts DC)",
                 "value": "28.80",
                 "created_at": "2018-11-11T11:11:11.000000Z",
@@ -337,7 +409,7 @@
             },
             {
                 "id": 32,
-                "asset_test_record_id": 7,
+                "asset_test_record_id": 13,
                 "name": "On charge voltage (Volts DC)",
                 "value": "27.18",
                 "created_at": "2018-11-11T11:11:11.000000Z",
@@ -345,7 +417,7 @@
             },
             {
                 "id": 33,
-                "asset_test_record_id": 7,
+                "asset_test_record_id": 13,
                 "name": "Battery dated and under 4 years old?",
                 "value": "Yes",
                 "created_at": "2018-11-11T11:11:11.000000Z",
@@ -353,7 +425,7 @@
             },
             {
                 "id": 34,
-                "asset_test_record_id": 7,
+                "asset_test_record_id": 13,
                 "name": "Battery date",
                 "value": "2019-01-10",
                 "created_at": "2018-11-11T11:11:11.000000Z",

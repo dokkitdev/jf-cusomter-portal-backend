@@ -46,9 +46,9 @@ INSERT INTO simpro_log(id, loggable_id, loggable_type, handle_status, handle_res
 (2, 1, 'jobs', 'new', null),
 (3, 1, 'assets', 'new', null);
 
-INSERT INTO jobs(id, simpro_job_id, site_id, customer_id, stage) VALUES
-(1, 1, 1, 1, 'Progress'),
-(2, 2, 1, 1, 'Progress');
+INSERT INTO jobs(id, simpro_job_id, site_id, customer_id, stage, logged_completion_date) VALUES
+(1, 1, 1, 1, 'Progress', '2021-02-22 11:11:11'),
+(2, 2, 1, 1, 'Progress', '2022-02-22 11:11:11');
 
 INSERT INTO schedules(id, job_id, simpro_schedule_id, name, date, start_time, end_time) VALUES
 (1, 1, 1, 'Name', '2016-10-20 11:05:00', '2016-10-20 11:05:00', '2016-10-20 11:05:00');
@@ -87,10 +87,16 @@ INSERT INTO asset_attachments(id, asset_id, simpro_attachment_id, name) VALUES
 (4, 3, 'link4', 'name');
 
 INSERT INTO asset_test_records(id, asset_id, job_id, name, test_date, notes, result) VALUES
-(1, 1, 1, 'name', '2016-10-20', 'Some notes...', 'Result...'),
-(2, 1, 2, 'name', '2016-10-20', 'Some notes...', 'Result...'),
-(3, 2, 1, 'name', '2016-10-20', 'Some notes...', 'Result...'),
-(4, 3, 2, 'name', '2016-10-20', 'Some notes...', 'Result...');
+(1, 1, 1, 'name', '2016-10-20', 'Some notes...', 'Pass'),
+(2, 1, 2, 'name', '2016-10-20', 'Some notes...', 'Pass'),
+(3, 2, 1, 'name', '2016-10-20', 'Some notes...', 'Pass'),
+(4, 3, 2, 'name', '2016-10-20', 'Some notes...', 'Pass'),
+(5, 4, 2, 'name', '2016-10-20', 'Some notes...', 'Pass'),
+(6, 5, 1, 'name', '2016-10-20', 'Some notes...', 'Pass'),
+(7, 6, 2, 'name', '2016-10-20', 'Some notes...', 'Pass'),
+(8, 7, 2, 'name', '2016-10-20', 'Some notes...', 'Pass'),
+(9, 8, 1, 'name', '2016-10-20', 'Some notes...', 'Pass'),
+(10, 9, 2, 'name', '2016-10-20', 'Some notes...', 'Pass');
 
 INSERT INTO asset_test_record_readings(id, asset_test_record_id, name, value) VALUES
 (1, 1, 'name', 'value'),

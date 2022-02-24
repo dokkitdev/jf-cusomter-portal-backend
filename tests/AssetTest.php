@@ -148,10 +148,12 @@ class AssetTest extends TestCase
             ],
             [
                 'filter' => [
-                    'order_by' => 'last_cp12_date',
+                    'order_by' => 'asset_test_record.job.customer.name',
                     'desc' => true,
                     'asset_type' => 4,
                     'cp12_status' => 'On Time',
+                    'job_logged_completion_date_from' => '2022-02-22 11:11:11',
+                    'job_logged_completion_date_to' => '2022-02-22 11:11:11',
                     'with' => [
                         'site.primary_site_contact',
                         'asset_test_record.job.customer',

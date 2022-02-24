@@ -61,12 +61,7 @@ class AssetService extends BaseService
         return $this->repository
             ->with(Arr::get($filters, 'with', []))
             ->searchQuery($filters)
-            ->filterByCP12Status()
             ->filterBy('asset_test_record.job.stage', 'job_stage')
-            ->filterFrom('asset_test_record.job.due_date', false, 'job_due_date_from')
-            ->filterTo('asset_test_record.job.due_date', false, 'job_due_date_to')
-            ->filterFrom('asset_test_record.job.logged_completion_date', false, 'job_logged_completion_date_from')
-            ->filterTo('asset_test_record.job.logged_completion_date', false, 'job_logged_completion_date_to')
             ->filterBy('asset_type')
             ->filterBy('custom_asset_type_value')
             ->filterByIntQuery('simpro_asset_id')
@@ -90,6 +85,9 @@ class AssetService extends BaseService
             ->filterByOnlyPermitted()
             ->filterBySiteName()
             ->filterBySiteUprn()
+            ->filterByCP12Status()
+            ->filterByJobDueDate()
+            ->filterByJobLoggedCompletionDate()
             ->getSearchResults();
     }
 

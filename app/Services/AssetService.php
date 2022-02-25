@@ -180,22 +180,26 @@ class AssetService extends BaseService
 
         $assetTestRecord = $this->assetTestRecordService->getAssetTestRecordForReport($asset['id']);
 
-        if ($assetTestRecord) {
-            $data['asset_test_record_id'] = $assetTestRecord['id'];
-            $data['job_id'] = $assetTestRecord['job_id'];
-            $data['customer_id'] = Arr::get($assetTestRecord, 'job.customer.id');
-            $data['next_schedule_id'] = Arr::get($assetTestRecord, 'job.next_schedule.id');
+        $data['asset_test_record_id'] = Arr::get($assetTestRecord, 'id');
+        $data['job_id'] = Arr::get($assetTestRecord, 'job_id');
+        $data['customer_id'] = Arr::get($assetTestRecord, 'job.customer.id');
+        $data['next_schedule_id'] = Arr::get($assetTestRecord, 'job.next_schedule.id');
 
-            if (Arr::has($assetTestRecord, 'job.job_no_access_dates')) {
-                $noAccessDates = Arr::get($assetTestRecord, 'job.job_no_access_dates');
+        $data["no_access_date_1"] = null;
+        $data["no_access_date_2"] = null;
+        $data["no_access_date_3"] = null;
+        $data["no_access_date_4"] = null;
+        $data["no_access_date_5"] = null;
 
-                foreach ($noAccessDates as $key => $value) {
-                    $index = $key + 1;
-                    $data["no_access_date_{$index}"] = $value['date'];
+        if (Arr::has($assetTestRecord, 'job.job_no_access_dates')) {
+            $noAccessDates = Arr::get($assetTestRecord, 'job.job_no_access_dates');
 
-                    if ($index === 5) {
-                        break;
-                    }
+            foreach ($noAccessDates as $key => $value) {
+                $index = $key + 1;
+                $data["no_access_date_{$index}"] = $value['date'];
+
+                if ($index === 5) {
+                    break;
                 }
             }
         }

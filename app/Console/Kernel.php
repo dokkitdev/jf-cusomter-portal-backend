@@ -19,7 +19,16 @@ class Kernel extends ConsoleKernel
         $schedule->command("simpro:handle-log {$sites}")->everyMinute()->withoutOverlapping()->runInBackground();
 
         $assets = SimproLog::LOGGABLE_TYPE_ASSETS;
-        $schedule->command("simpro:handle-log {$assets}")->everyMinute()->withoutOverlapping()->runInBackground();
+        $schedule->command("simpro:handle-log {$assets} 10 0")->everyMinute()->withoutOverlapping()->runInBackground();
+        $schedule->command("simpro:handle-log {$assets} 10 1")->everyMinute()->withoutOverlapping()->runInBackground();
+        $schedule->command("simpro:handle-log {$assets} 10 2")->everyMinute()->withoutOverlapping()->runInBackground();
+        $schedule->command("simpro:handle-log {$assets} 10 3")->everyMinute()->withoutOverlapping()->runInBackground();
+        $schedule->command("simpro:handle-log {$assets} 10 4")->everyMinute()->withoutOverlapping()->runInBackground();
+        $schedule->command("simpro:handle-log {$assets} 10 5")->everyMinute()->withoutOverlapping()->runInBackground();
+        $schedule->command("simpro:handle-log {$assets} 10 6")->everyMinute()->withoutOverlapping()->runInBackground();
+        $schedule->command("simpro:handle-log {$assets} 10 7")->everyMinute()->withoutOverlapping()->runInBackground();
+        $schedule->command("simpro:handle-log {$assets} 10 8")->everyMinute()->withoutOverlapping()->runInBackground();
+        $schedule->command("simpro:handle-log {$assets} 10 9")->everyMinute()->withoutOverlapping()->runInBackground();
 
         $schedule->command('simpro:handle-jobs job')->everyMinute()->withoutOverlapping()->runInBackground();
         $schedule->command('simpro:handle-jobs site')->everyMinute()->withoutOverlapping()->runInBackground();

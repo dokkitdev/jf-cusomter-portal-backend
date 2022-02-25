@@ -4,6 +4,10 @@ namespace App\Models;
 
 class AssetTestRecord extends BaseModel
 {
+    const RESULT_PASS = 'Pass';
+    const RESULT_FAIL = 'Fail';
+    const RESULT_NO_TEST = 'No Test';
+
     protected $fillable = [
         'asset_id',
         'job_id',

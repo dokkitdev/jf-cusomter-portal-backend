@@ -45,25 +45,25 @@ class AssetsReportExport implements FromCollection, WithHeadings, WithMapping
 
     public function map($row): array
     {
-        $completionDate = Arr::get($row, 'asset_test_record.job.completion_date');
+        $completionDate = Arr::get($row, 'job.completion_date');
         $lastCP12Date = $row['last_test_date'] ?? $row['last_cp12_date'];
-        $nextScheduledDate = Arr::get($row, 'asset_test_record.job.next_schedule.date');
+        $nextScheduledDate = Arr::get($row, 'next_schedule.date');
 
         $map = [
             Arr::get($row, 'site.uprn'),
-            Arr::get($row, 'asset_test_record.job.order_no'),
-            Arr::get($row, 'asset_test_record.job.customer.name'),
+            Arr::get($row, 'job.order_no'),
+            Arr::get($row, 'job_customer.name'),
             Arr::get($row, 'site.name'),
             Arr::get($row, 'site.address'),
             Arr::get($row, 'site.primary_site_contact.name'),
             $completionDate ? Carbon::parse($completionDate)->format('M d Y') : null,
             $lastCP12Date ? Carbon::parse($lastCP12Date)->format('M d Y') : null,
             $nextScheduledDate ? Carbon::parse($nextScheduledDate)->format('M d Y') : null,
-            Arr::get($row, 'asset_test_record.job.job_status'),
-            Arr::get($row, 'asset_test_record.job.simpro_job_id'),
+            Arr::get($row, 'job.job_status'),
+            Arr::get($row, 'job.simpro_job_id'),
         ];
 
-        $jobNoAccessDates = Arr::get($row, 'asset_test_record.job.job_no_access_dates', []);
+        $jobNoAccessDates = Arr::get($row, 'job.job_no_access_dates', []);
 
         foreach ($jobNoAccessDates as $jobNoAccessDate) {
             $map[] = $jobNoAccessDate['date'] ? Carbon::parse($jobNoAccessDate['date'])->format('M d Y') : null;

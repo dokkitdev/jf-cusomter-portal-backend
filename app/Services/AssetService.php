@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\ApiClients\SimproApiClient;
+use App\Models\Asset;
 use App\Models\Role;
 use App\Models\SimproJob;
 use App\Repositories\AssetRepository;
@@ -58,15 +59,19 @@ class AssetService extends BaseService
             $filters['asset_has_user'] = $authUser['id'];
         }
 
-        return $this->repository
+        if (Arr::get($filters, 'report')) {
+            $filters['with'][] = 'job';
+        }
+
+        $assets = $this->repository
             ->with(Arr::get($filters, 'with', []))
             ->searchQuery($filters)
-            ->filterBy('asset_test_record.job.stage', 'job_stage')
+            ->filterBy('job.stage', 'job_stage')
             ->filterBy('asset_type')
             ->filterBy('custom_asset_type_value')
             ->filterByIntQuery('simpro_asset_id')
-            ->filterBy('asset_test_records.job_id')
-            ->filterBy('site.customer_id')
+            ->filterBy('job_id')
+            ->filterBy('customer_id')
             ->filterBy('site_id')
             ->filterBy('archived')
             ->filterByList('service_level_name', 'service_level_names')
@@ -81,6 +86,7 @@ class AssetService extends BaseService
             ->filterBy('next_service_date')
             ->filterFrom('next_service_date', false, 'next_service_date_from')
             ->filterTo('next_service_date', false, 'next_service_date_to')
+            ->filterByReport()
             ->filterByLastTestResult()
             ->filterByOnlyPermitted()
             ->filterBySiteName()
@@ -89,6 +95,14 @@ class AssetService extends BaseService
             ->filterByJobDueDate()
             ->filterByJobLoggedCompletionDate()
             ->getSearchResults();
+
+        if (Arr::get($filters, 'report')) {
+            $assets->map(function (Asset $asset) {
+                return $asset->append('cp12_status');
+            });
+        }
+
+        return $assets;
     }
 
     public function updateOrCreateBySimpro(SimproJob $webhook): Model
@@ -124,6 +138,8 @@ class AssetService extends BaseService
 
         $this->assetTestRecordService->syncByAsset($companyId, $simproSiteId, $simproAssetId, $asset['id']);
 
+        $asset = $this->updateReportFields($asset);
+
         return $asset;
     }
 
@@ -156,6 +172,35 @@ class AssetService extends BaseService
             'last_cp12_date' => Arr::get($cp12CustomField, 'Value', Arr::get($simproAsset, 'LastTest.Date')),
             'custom_asset_type_value' => Arr::get($assetTypeCustomField, 'Value')
         ]);
+    }
+
+    protected function updateReportFields(Model $asset): Model
+    {
+        $data = [];
+
+        $assetTestRecord = $this->assetTestRecordService->getAssetTestRecordForReport($asset['id']);
+
+        if ($assetTestRecord) {
+            $data['asset_test_record_id'] = $assetTestRecord['id'];
+            $data['job_id'] = $assetTestRecord['job_id'];
+            $data['customer_id'] = Arr::get($assetTestRecord, 'job.customer.id');
+            $data['next_schedule_id'] = Arr::get($assetTestRecord, 'job.next_schedule.id');
+
+            if (Arr::has($assetTestRecord, 'job.job_no_access_dates')) {
+                $noAccessDates = Arr::get($assetTestRecord, 'job.job_no_access_dates');
+
+                foreach ($noAccessDates as $key => $value) {
+                    $index = $key + 1;
+                    $data["no_access_date_{$index}"] = $value['date'];
+
+                    if ($index === 5) {
+                        break;
+                    }
+                }
+            }
+        }
+
+        return $this->repository->update($asset['id'], $data);
     }
 
     protected function getAssetId(SimproJob $webhook): string

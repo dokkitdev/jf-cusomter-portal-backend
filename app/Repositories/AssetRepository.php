@@ -56,7 +56,7 @@ class AssetRepository extends BaseRepository
                 $this->query->where(DB::raw("last_cp12_date + interval '1 year'"), '<=', now()->format('Y-m-d'));
             }
 
-            $this->query->whereDoesntHave('asset_test_record.job', function (Builder $query) {
+            $this->query->whereDoesntHave('job', function (Builder $query) {
                 return $query->where('stage', Job::COMPLETE_STAGE);
             });
         }
@@ -89,7 +89,7 @@ class AssetRepository extends BaseRepository
     public function filterByJobLoggedCompletionDate(): self
     {
         if (Arr::get($this->filter, 'job_logged_completion_date_from') || Arr::get($this->filter, 'job_logged_completion_date_to')) {
-            $this->query->whereHas('asset_test_record.job', function (Builder $query) {
+            $this->query->whereHas('job', function (Builder $query) {
                 $query->where(function (Builder $query) {
                     if (Arr::get($this->filter, 'job_logged_completion_date_from')) {
                         $query->where('logged_completion_date', '>=', $this->filter['job_logged_completion_date_from']);
@@ -108,7 +108,7 @@ class AssetRepository extends BaseRepository
     public function filterByJobDueDate(): self
     {
         if (Arr::get($this->filter, 'job_due_date_from') || Arr::get($this->filter, 'job_due_date_to')) {
-            $this->query->whereHas('asset_test_record.job', function (Builder $query) {
+            $this->query->whereHas('job', function (Builder $query) {
                 $query->where(function (Builder $query) {
                     if (Arr::get($this->filter, 'job_due_date_from')) {
                         $query->where('due_date', '>=', $this->filter['job_due_date_from']);
@@ -118,6 +118,19 @@ class AssetRepository extends BaseRepository
                         $query->where('due_date', '<=', $this->filter['job_due_date_to']);
                     }
                 });
+            });
+        }
+
+        return $this;
+    }
+
+    public function filterByReport()
+    {
+        if (Arr::get($this->filter, 'report')) {
+            $this->query->where(function (Builder $query) {
+                $query
+                    ->where('asset_type', 4)
+                    ->whereNotNull('job_id');
             });
         }
 

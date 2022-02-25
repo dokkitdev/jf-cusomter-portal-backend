@@ -148,17 +148,18 @@ class AssetTest extends TestCase
             ],
             [
                 'filter' => [
-                    'order_by' => 'asset_test_record.job.customer.name',
+                    'order_by' => 'job_customer.name',
                     'desc' => true,
-                    'asset_type' => 4,
+                    'report' => true,
                     'cp12_status' => 'On Time',
                     'job_logged_completion_date_from' => '2022-02-22 11:11:11',
                     'job_logged_completion_date_to' => '2022-02-22 11:11:11',
                     'with' => [
                         'site.primary_site_contact',
-                        'asset_test_record.job.customer',
-                        'asset_test_record.job.job_no_access_dates',
-                        'asset_test_record.job.next_schedule'
+                        'asset_test_record',
+                        'job',
+                        'job_customer',
+                        'next_schedule'
                     ]
                 ],
                 'result' => 'search_assets_report.json'
@@ -242,12 +243,14 @@ class AssetTest extends TestCase
             'all' => 1,
             'order_by' => 'last_cp12_date',
             'desc' => true,
-            'asset_type' => 4,
+            'report' => true,
             'with' => [
                 'site.primary_site_contact',
-                'asset_test_record.job.customer',
-                'asset_test_record.job.next_schedule',
-                'asset_test_record.job.job_no_access_dates',
+                'asset_test_record',
+                'job',
+                'job_customer',
+                'next_schedule',
+                'job.job_no_access_dates',
             ],
         ]);
 
@@ -264,12 +267,14 @@ class AssetTest extends TestCase
             'all' => 1,
             'order_by' => 'last_cp12_date',
             'desc' => true,
-            'asset_type' => 4,
+            'report' => true,
             'with' => [
                 'site.primary_site_contact',
-                'asset_test_record.job.customer',
-                'asset_test_record.job.next_schedule',
-                'asset_test_record.job.job_no_access_dates',
+                'asset_test_record',
+                'job',
+                'job_customer',
+                'next_schedule',
+                'job.job_no_access_dates',
             ],
         ]);
 

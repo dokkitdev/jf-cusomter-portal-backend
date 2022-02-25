@@ -65,10 +65,10 @@ class JobsReportExport implements FromCollection, WithHeadings, WithMapping
             $row['description'],
             $row['priority'],
             Arr::get($row, 'site.address') . ' ' . Arr::get($row, 'site.postal_code'),
-            $row['date_created'] ? Carbon::parse($row['date_created'])->format('M d Y H:i') : null,
+            $row['logged_create_date'] ? Carbon::parse($row['logged_create_date'])->format('M d Y H:i') : null,
             $row['due_date'] ? Carbon::parse($row['due_date'])->format('M d Y H:i') : null,
             $row['made_safe_date'] ? Carbon::parse($row['made_safe_date'])->format('M d Y H:i') : null,
-            $row['completion_date'] ? Carbon::parse($row['completion_date'])->format('M d Y H:i') : null,
+            $row['logged_completion_date'] ? Carbon::parse($row['logged_completion_date'])->format('M d Y H:i') : null,
         ];
     }
 }

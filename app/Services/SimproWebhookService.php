@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
 use RonasIT\Support\Services\EntityService;
 
 class SimproWebhookService extends EntityService
@@ -27,6 +28,15 @@ class SimproWebhookService extends EntityService
 
     public function process(array $data): Model
     {
-        return $this->simproJobService->create(['data' => $data]);
+        $simproEntityId = null;
+
+        if ($data['name'] === 'Job') {
+            $simproEntityId = Arr::get($data, 'reference.jobID');
+        }
+
+        return $this->simproJobService->create([
+            'data' => $data,
+            'simpro_entity_id' => $simproEntityId
+        ]);
     }
 }

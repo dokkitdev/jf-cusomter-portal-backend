@@ -10,7 +10,8 @@ class SimproJob extends BaseModel
     protected $fillable = [
         'data',
         'handle_status',
-        'handle_result'
+        'handle_result',
+        'simpro_entity_id'
     ];
 
     protected $hidden = ['pivot'];

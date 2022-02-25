@@ -16,5 +16,14 @@
     "updated_at": null,
     "last_cp12_date": null,
     "asset_type": 3,
-    "custom_asset_type_value": null
+    "custom_asset_type_value": null,
+    "asset_test_record_id": null,
+    "job_id": 1,
+    "customer_id": 1,
+    "next_schedule_id": null,
+    "no_access_date_1": null,
+    "no_access_date_2": null,
+    "no_access_date_3": null,
+    "no_access_date_4": null,
+    "no_access_date_5": null
 }

@@ -43,6 +43,7 @@ class SimproLogService extends EntityService
             ->searchQuery($filters)
             ->filterBy('loggable_type')
             ->filterBy('handle_status')
+            ->filterByMod()
             ->getSearchResults();
     }
 
@@ -64,7 +65,7 @@ class SimproLogService extends EntityService
         }
     }
 
-    public function handle(string $loggableType): void
+    public function handle(string $loggableType, ?string $divider = null, ?string $mod = null): void
     {
         $simproLogs = $this->search([
             'loggable_type' => $loggableType,
@@ -72,6 +73,8 @@ class SimproLogService extends EntityService
             'page' => 1,
             'per_page' => 1000,
             'order_by' => 'id',
+            'divider' => $divider,
+            'mod' => $mod
         ]);
 
         if ($simproLogs->isNotEmpty()) {

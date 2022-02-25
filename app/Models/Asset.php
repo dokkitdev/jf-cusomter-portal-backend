@@ -3,13 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Carbon;
 
 class Asset extends BaseModel
 {
-    const RESULT_PASS = 'Pass';
-    const RESULT_FAIL = 'Fail';
-    const RESULT_NO_TEST = 'No Test';
-
     const CP12_STATUS_ON_TIME = 'On Time';
     const CP12_STATUS_DUE = 'Due';
     const CP12_STATUS_OVERDUE = 'Overdue';
@@ -29,7 +27,17 @@ class Asset extends BaseModel
         'archived',
         'asset_type',
         'last_cp12_date',
-        'custom_asset_type_value'
+        'custom_asset_type_value',
+        'asset_test_record_id',
+        'job_id',
+        'customer_id',
+        'next_schedule_id',
+        'cp12_status',
+        'no_access_date_1',
+        'no_access_date_2',
+        'no_access_date_3',
+        'no_access_date_4',
+        'no_access_date_5',
     ];
 
     protected $hidden = ['pivot'];
@@ -39,6 +47,29 @@ class Asset extends BaseModel
         return $query->whereHas('site.customers.users', function ($query) use ($userId) {
             return $query->where('user_id', $userId);
         });
+    }
+
+    public function getCp12StatusAttribute()
+    {
+        $status = null;
+
+        if ((Arr::get($this, 'job.stage') !== Job::COMPLETE_STAGE) && $this->last_cp12_date) {
+            $lastCP12DateAndYear = Carbon::parse($this->last_cp12_date)->addYear();
+
+            if ($lastCP12DateAndYear->lessThanOrEqualTo(now()->format('Y-m-d'))) {
+                $status = self::CP12_STATUS_OVERDUE;
+            }
+
+            if ($lastCP12DateAndYear->greaterThan(now()->format('Y-m-d')) && $lastCP12DateAndYear->lessThan(now()->addDays(28)->format('Y-m-d'))) {
+                $status = self::CP12_STATUS_DUE;
+            }
+
+            if ($lastCP12DateAndYear->greaterThan(now()->addDays(28)->format('Y-m-d'))) {
+                $status = self::CP12_STATUS_ON_TIME;
+            }
+        }
+
+        return $status;
     }
 
     public function site()
@@ -63,9 +94,21 @@ class Asset extends BaseModel
 
     public function asset_test_record()
     {
-        return $this->hasOne(AssetTestRecord::class)
-            ->whereNotNull('job_id')
-            ->whereIn('result', [self::RESULT_PASS, self::RESULT_FAIL])
-            ->orderBy('id');
+        return $this->hasOne(AssetTestRecord::class);
+    }
+
+    public function job()
+    {
+        return $this->belongsTo(Job::class);
+    }
+
+    public function job_customer()
+    {
+        return $this->belongsTo(Customer::class, 'customer_id', 'id');
+    }
+
+    public function next_schedule()
+    {
+        return $this->belongsTo(Schedule::class, 'next_schedule_id', 'id');
     }
 }

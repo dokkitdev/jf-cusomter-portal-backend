@@ -16,6 +16,7 @@
         "handle_status": "error",
         "handle_result": [],
         "created_at": null,
-        "updated_at": null
+        "updated_at": null,
+        "simpro_entity_id": null
     }
 ]

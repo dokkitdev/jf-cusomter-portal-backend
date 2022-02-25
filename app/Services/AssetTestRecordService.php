@@ -40,7 +40,6 @@ class AssetTestRecordService extends BaseService
                 $jobID = $job['id'];
             }
 
-
             $testRecord = $this->repository->create([
                 'asset_id' => $assetId,
                 'job_id' => $jobID,

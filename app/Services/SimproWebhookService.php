@@ -30,7 +30,7 @@ class SimproWebhookService extends EntityService
     {
         $simproEntityId = null;
 
-        if ($data['name'] === 'Job') {
+        if (($data['name'] === 'Job') || ($data['name'] === 'Job schedule')) {
             $simproEntityId = Arr::get($data, 'reference.jobID');
         }
 

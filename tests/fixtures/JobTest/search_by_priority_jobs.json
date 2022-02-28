@@ -7,7 +7,7 @@
             "customer_id": 1,
             "site_id": 1,
             "order_no": "CN3268",
-            "description": null,
+            "description": "<div style=\"font-size: 10pt;\">LOW PRESSURE AT BOILER&nbsp;<\/div><div style=\"font-size: 10pt;\">as per email and arranged with tenant&nbsp;<\/div><div style=\"font-size: 10pt;\">PM CALL<\/div>",
             "priority": "Fire Alarm - Standard 8 Hours",
             "cost_center_name": null,
             "stage": "Progress",

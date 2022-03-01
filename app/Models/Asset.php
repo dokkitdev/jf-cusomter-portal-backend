@@ -54,17 +54,17 @@ class Asset extends BaseModel
         $status = null;
 
         if ((Arr::get($this, 'job.stage') !== Job::COMPLETE_STAGE) && $this->last_cp12_date) {
-            $lastCP12DateAndYear = Carbon::parse($this->last_cp12_date)->addYear();
+            $lastCP12DateAndYear = Carbon::parse($this->last_cp12_date)->startOfDay()->addYear();
 
-            if ($lastCP12DateAndYear->lessThanOrEqualTo(now()->format('Y-m-d'))) {
+            if ($lastCP12DateAndYear->lessThanOrEqualTo(now()->startOfDay())) {
                 $status = self::CP12_STATUS_OVERDUE;
             }
 
-            if ($lastCP12DateAndYear->greaterThan(now()->format('Y-m-d')) && $lastCP12DateAndYear->lessThan(now()->addDays(28)->format('Y-m-d'))) {
+            if ($lastCP12DateAndYear->greaterThan(now()->startOfDay()) && $lastCP12DateAndYear->lessThan(now()->addDays(28)->startOfDay())) {
                 $status = self::CP12_STATUS_DUE;
             }
 
-            if ($lastCP12DateAndYear->greaterThan(now()->addDays(28)->format('Y-m-d'))) {
+            if ($lastCP12DateAndYear->greaterThan(now()->addDays(28)->startOfDay())) {
                 $status = self::CP12_STATUS_ON_TIME;
             }
         }

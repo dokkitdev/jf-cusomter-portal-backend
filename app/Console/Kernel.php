@@ -30,7 +30,12 @@ class Kernel extends ConsoleKernel
         $schedule->command("simpro:handle-log {$assets} 10 8")->everyMinute()->withoutOverlapping()->runInBackground();
         $schedule->command("simpro:handle-log {$assets} 10 9")->everyMinute()->withoutOverlapping()->runInBackground();
 
-        $schedule->command('simpro:handle-jobs job')->everyMinute()->withoutOverlapping()->runInBackground();
+        $schedule->command('simpro:handle-jobs job 5 0')->everyMinute()->withoutOverlapping()->runInBackground();
+        $schedule->command('simpro:handle-jobs job 5 1')->everyMinute()->withoutOverlapping()->runInBackground();
+        $schedule->command('simpro:handle-jobs job 5 2')->everyMinute()->withoutOverlapping()->runInBackground();
+        $schedule->command('simpro:handle-jobs job 5 3')->everyMinute()->withoutOverlapping()->runInBackground();
+        $schedule->command('simpro:handle-jobs job 5 4')->everyMinute()->withoutOverlapping()->runInBackground();
+
         $schedule->command('simpro:handle-jobs site')->everyMinute()->withoutOverlapping()->runInBackground();
         $schedule->command('simpro:handle-jobs asset')->everyMinute()->withoutOverlapping()->runInBackground();
         $schedule->command('simpro:handle-jobs company')->everyMinute()->withoutOverlapping()->runInBackground();

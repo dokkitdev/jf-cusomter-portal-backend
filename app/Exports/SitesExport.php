@@ -42,7 +42,7 @@ class SitesExport implements FromCollection, WithHeadings, WithMapping
         return [
             Arr::get($row, 'customer.name'),
             $row['name'],
-            $row['uprn'],
+            (string) $row['uprn'],
             $row['address'],
             $row['postal_code'],
             Arr::get($row, 'primary_site_contact.name'),

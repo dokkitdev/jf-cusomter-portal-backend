@@ -48,7 +48,7 @@ class AssetsExport implements FromCollection, WithHeadings, WithMapping
         return [
             $row['simpro_asset_id'],
             $row['customer_name'],
-            Arr::get($row, 'site.uprn'),
+            (string) Arr::get($row, 'site.uprn'),
             Arr::get($row, 'site.name'),
             $row['name'],
             $row['location'],

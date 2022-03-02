@@ -50,7 +50,7 @@ class AssetsReportExport implements FromCollection, WithHeadings, WithMapping
         $nextScheduledDate = Arr::get($row, 'next_schedule.date');
 
         $map = [
-            Arr::get($row, 'site.uprn'),
+            (string) Arr::get($row, 'site.uprn'),
             Arr::get($row, 'job.order_no'),
             Arr::get($row, 'job_customer.name'),
             Arr::get($row, 'site.name'),

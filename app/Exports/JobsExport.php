@@ -63,7 +63,7 @@ class JobsExport implements FromCollection, WithHeadings, WithMapping
             $row['simpro_job_id'],
             $row['order_no'],
             Arr::get($row, 'customer.name'),
-            Arr::get($row, 'site.uprn'),
+            (string) Arr::get($row, 'site.uprn'),
             Arr::get($row, 'site.name'),
             Arr::get($row, 'site.postal_code'),
             $row['cost_center_name'],

@@ -59,7 +59,7 @@ class JobsReportExport implements FromCollection, WithHeadings, WithMapping
 
         return [
             $status,
-            Arr::get($row, 'site.uprn'),
+            (string) Arr::get($row, 'site.uprn'),
             $row['simpro_job_id'],
             $row['order_no'],
             $row['description'] ? $this->getDescription($row['description']) : null,

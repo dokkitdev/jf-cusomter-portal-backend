@@ -6,6 +6,7 @@ use App\Exports\AssetsReportExport;
 use App\Exports\AssetsExport;
 use App\Http\Requests\Assets\GetAssetRequest;
 use App\Http\Requests\Assets\GetAssetServiceLevelsRequest;
+use App\Http\Requests\Assets\GetAssetTypesRequest;
 use App\Http\Requests\Assets\SearchAssetRequest;
 use App\Http\Requests\Assets\DownloadAssetAttachmentRequest;
 use App\Services\AssetAttachmentService;
@@ -51,6 +52,13 @@ class AssetController extends Controller
     public function getServiceLevels(GetAssetServiceLevelsRequest $request, AssetService $service)
     {
         $result = $service->getAssetServiceLevels();
+
+        return response()->json($result);
+    }
+
+    public function getTypes(GetAssetTypesRequest $request, AssetService $service)
+    {
+        $result = $service->getAssetTypes();
 
         return response()->json($result);
     }

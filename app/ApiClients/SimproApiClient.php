@@ -308,6 +308,13 @@ class SimproApiClient
         return $this->getAsGenerator($url);
     }
 
+    public function getAssetTypeSetup(int $companyId): Generator
+    {
+        $url = "companies/{$companyId}/setup/assetTypes/";
+
+        return $this->getAsGenerator($url);
+    }
+
     public function getAsGenerator(string $url, array $additionalFilters = [], int $pageSize = 250, array $headers = []): Generator
     {
         $page = 1;

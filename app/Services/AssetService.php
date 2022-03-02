@@ -51,6 +51,18 @@ class AssetService extends BaseService
         return $serviceLevels;
     }
 
+    public function getAssetTypes()
+    {
+        $assetTypePages = $this->simproClient->getAssetTypeSetup($this->companyId);
+
+        $assetTypes = [];
+        foreach ($assetTypePages as $assetTypePage) {
+            $assetTypes = array_merge($assetTypes, $assetTypePage);
+        }
+
+        return $assetTypes;
+    }
+
     public function search(array $filters): LengthAwarePaginator
     {
         $authUser = $this->getAuthUser();
@@ -66,7 +78,7 @@ class AssetService extends BaseService
         $assets = $this->repository
             ->with(Arr::get($filters, 'with', []))
             ->searchQuery($filters)
-            ->filterBy('job.stage', 'job_stage')
+            ->filterByList('job.stage', 'job_stage')
             ->filterBy('asset_type')
             ->filterBy('custom_asset_type_value')
             ->filterByIntQuery('simpro_asset_id')

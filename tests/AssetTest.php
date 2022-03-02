@@ -151,6 +151,7 @@ class AssetTest extends TestCase
                     'order_by' => 'job_customer.name',
                     'desc' => true,
                     'report' => true,
+                    'job_stage' => ['Progress', 'Complete'],
                     'cp12_status' => 'On Time',
                     'job_logged_completion_date_from' => '2022-02-22 11:11:11',
                     'job_logged_completion_date_to' => '2022-02-22 11:11:11',
@@ -332,6 +333,24 @@ class AssetTest extends TestCase
     public function testGetAssetServiceLevelsNoAuth()
     {
         $response = $this->json('get', '/assets/service-levels');
+
+        $response->assertStatus(Response::HTTP_UNAUTHORIZED);
+    }
+
+    public function testGetAssetTypes()
+    {
+        $this->mockGetAssetTypes();
+
+        $response = $this->actingAs($this->customer)->json('get', '/assets/types');
+
+        $response->assertStatus(Response::HTTP_OK);
+
+        $this->assertEqualsFixture('get_asset_types_fixture.json', $response->json());
+    }
+
+    public function testGetAssetTypesNoAuth()
+    {
+        $response = $this->json('get', '/assets/types');
 
         $response->assertStatus(Response::HTTP_UNAUTHORIZED);
     }

@@ -256,6 +256,13 @@ class SimproApiClient
         return $this->makeRequest('get', $url);
     }
 
+    public function getAssetTypeSetup(int $companyId): ?array
+    {
+        $url = $this->getUrl("companies/{$companyId}/setup/assetTypes/4/customFields/15");
+
+        return $this->makeRequest('get', $url);
+    }
+
     public function getCustomers(int $companyId, string $type): Generator
     {
         $url = "companies/{$companyId}/customers/{$type}/";
@@ -304,13 +311,6 @@ class SimproApiClient
     public function getAssetServiceLevelSetup(int $companyId): Generator
     {
         $url = "companies/{$companyId}/setup/assets/serviceLevels/";
-
-        return $this->getAsGenerator($url);
-    }
-
-    public function getAssetTypeSetup(int $companyId): Generator
-    {
-        $url = "companies/{$companyId}/setup/assetTypes/";
 
         return $this->getAsGenerator($url);
     }

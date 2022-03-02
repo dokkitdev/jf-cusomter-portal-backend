@@ -199,7 +199,6 @@ trait SimproTestTrait
     {
         $this->mockHttpRequestService([
             $this->getAssetsTypes('get_asset_types_response_success.json'),
-            $this->getAssetsTypes('get_asset_types_empty_response_success.json'),
         ]);
     }
 

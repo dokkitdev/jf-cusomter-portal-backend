@@ -1,34 +1,18 @@
 [
-    {
-        "ID": 2,
-        "Name": "Alarms"
-    },
-    {
-        "ID": 3,
-        "Name": "Customer Satisfaction Survey"
-    },
-    {
-        "ID": 4,
-        "Name": "Gas Appliance"
-    },
-    {
-        "ID": 9,
-        "Name": "Gas Safety Inspection"
-    },
-    {
-        "ID": 6,
-        "Name": "Installation Tightness Test - After Work"
-    },
-    {
-        "ID": 5,
-        "Name": "Installation Tightness Test - Before Work"
-    },
-    {
-        "ID": 8,
-        "Name": "Meter Capped"
-    },
-    {
-        "ID": 7,
-        "Name": "Pipework"
-    }
+    "Boiler",
+    "Hob",
+    "Cooker",
+    "Fire",
+    "Water Heater",
+    "Space Heater",
+    "Warm Air",
+    "Combi",
+    "BBU",
+    "HOB",
+    "compact 29he",
+    "Electric Heater",
+    "Electric Thermal Sto",
+    "Heater",
+    "OTHER",
+    "Tumble Dryer"
 ]

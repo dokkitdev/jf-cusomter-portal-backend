@@ -81,3 +81,14 @@ deploy_development:
     url:  https://dev.${DOMAIN}
   only:
     - development
+
+deploy_production:
+  extends: .deploy_ansible
+  variables:
+    PLAYBOOK: prod.yml
+    HOSTS_FILE: hosts.prod
+  environment:
+    name: "production"
+    url:  https://api.jamesfrewportal.co.uk
+  only:
+    - production

@@ -1,10 +1,10 @@
 # install python
 - name: check existing python
   strategy: linear
-  hosts: dev
+  hosts: prod
   gather_facts: false
   vars_files:
-    - main.yml
+    - main.prod.yml
   tasks:
     - name: check for python
       raw: test -e /usr/bin/python
@@ -24,16 +24,6 @@
       pip: name=psycopg2-binary
   tags:
     - python
-
-# prepare env and deploy app 
-- name: deploy app 
-  hosts: dev
-  vars_files:
-    - main.yml
-  roles:
-    - { role: "laravel-deploy" }
-  tags:
-    - deploy
 
 - name: deploy app 
   hosts: prod

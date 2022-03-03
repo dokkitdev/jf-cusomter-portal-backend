@@ -34,12 +34,3 @@
     - { role: "laravel-deploy" }
   tags:
     - deploy
-
-- name: deploy app 
-  hosts: prod
-  vars_files:
-    - main.prod.yml
-  roles:
-    - { role: "laravel-deploy" }
-  tags:
-    - deploy

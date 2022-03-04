@@ -9,7 +9,7 @@ use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
 
-class AssetsExport implements FromCollection, WithHeadings, WithMapping
+class AssetsExport extends BaseExport implements FromCollection, WithHeadings, WithMapping
 {
     protected AssetService $service;
     protected array $filters;
@@ -47,7 +47,7 @@ class AssetsExport implements FromCollection, WithHeadings, WithMapping
     {
         return [
             $row['simpro_asset_id'],
-            $row['customer_name'],
+            Arr::get($row, 'site.customer.name'),
             (string) Arr::get($row, 'site.uprn'),
             Arr::get($row, 'site.name'),
             $row['name'],

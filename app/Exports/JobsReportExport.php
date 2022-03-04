@@ -9,7 +9,7 @@ use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
 
-class JobsReportExport implements FromCollection, WithHeadings, WithMapping
+class JobsReportExport extends BaseExport implements FromCollection, WithHeadings, WithMapping
 {
     protected JobService $service;
     protected array $filters;
@@ -70,18 +70,5 @@ class JobsReportExport implements FromCollection, WithHeadings, WithMapping
             $row['made_safe_date'] ? Carbon::parse($row['made_safe_date'])->format('M d Y H:i') : null,
             $row['logged_completion_date'] ? Carbon::parse($row['logged_completion_date'])->format('M d Y H:i') : null,
         ];
-    }
-
-    protected function getDescription(?string $string): ?string
-    {
-        $strippedString = str_replace("&nbsp;", ' ', strip_tags($string, 'null'));
-
-        if ($strippedString) {
-            $exploded = explode('.', $strippedString);
-            $trimmed = array_map('trim', $exploded);
-            $strippedString = implode('. ', $trimmed);
-        }
-
-        return $strippedString;
     }
 }

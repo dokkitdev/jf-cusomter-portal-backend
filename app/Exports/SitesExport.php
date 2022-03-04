@@ -8,7 +8,7 @@ use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
 
-class SitesExport implements FromCollection, WithHeadings, WithMapping
+class SitesExport extends BaseExport implements FromCollection, WithHeadings, WithMapping
 {
     protected SiteService $service;
     protected array $filters;

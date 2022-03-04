@@ -218,7 +218,7 @@ class AssetTest extends TestCase
 
         $response = $this->actingAs($this->admin)->json('get', '/assets/export', [
             'all' => 1,
-            'with' => ['site'],
+            'with' => ['site.customer'],
         ]);
 
         $response->assertStatus(Response::HTTP_OK);

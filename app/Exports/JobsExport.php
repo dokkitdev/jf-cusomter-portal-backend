@@ -9,7 +9,7 @@ use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
 
-class JobsExport implements FromCollection, WithHeadings, WithMapping
+class JobsExport extends BaseExport implements FromCollection, WithHeadings, WithMapping
 {
     protected JobService $service;
     protected array $filters;
@@ -31,6 +31,7 @@ class JobsExport implements FromCollection, WithHeadings, WithMapping
             'Created Date',
             'Job#',
             'Order#',
+            'Description',
             'Customer',
             'Site UPRN',
             'Site Name',
@@ -62,6 +63,7 @@ class JobsExport implements FromCollection, WithHeadings, WithMapping
             $row['date_created'] ? Carbon::parse($row['date_created'])->format('M d Y') : null,
             $row['simpro_job_id'],
             $row['order_no'],
+            $row['description'] ? $this->getDescription($row['description']) : null,
             Arr::get($row, 'customer.name'),
             (string) Arr::get($row, 'site.uprn'),
             Arr::get($row, 'site.name'),

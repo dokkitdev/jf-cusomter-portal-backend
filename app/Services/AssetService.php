@@ -221,7 +221,7 @@ class AssetService extends BaseService
         return $matches[0];
     }
 
-    protected function findRecentServiceLevel(array $serviceLevels): ?array
+    protected function findRecentServiceLevel(?array $serviceLevels): ?array
     {
         return collect($serviceLevels)->sortByDesc('ServiceDate')->first();
     }

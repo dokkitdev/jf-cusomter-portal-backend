@@ -167,13 +167,15 @@ class SimproLogService extends EntityService
         $assetsCount = 0;
 
         foreach ($assetsPages as $assetsPage) {
-            $assetsCount += count($assetsPage);
+            if ($assetsPage) {
+                $assetsCount += count($assetsPage);
 
-            foreach ($assetsPage as $simproAsset) {
-                $this->repository->updateOrCreate([
-                    'loggable_id' => $simproAsset['ID'],
-                    'loggable_type' => $loggableType
-                ], []);
+                foreach ($assetsPage as $simproAsset) {
+                    $this->repository->updateOrCreate([
+                        'loggable_id' => $simproAsset['ID'],
+                        'loggable_type' => $loggableType
+                    ], []);
+                }
             }
         }
 

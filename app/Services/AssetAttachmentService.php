@@ -33,19 +33,21 @@ class AssetAttachmentService extends BaseService
         $assetAttachments = $this->repository->get(['asset_id' => $assetId]);
 
         foreach ($simproAttachmentsPages as $simproAttachmentsPage) {
-            foreach ($simproAttachmentsPage as $simproAttachment) {
-                $simproAttachmentId = $simproAttachment['ID'];
-                $data = [
-                    'asset_id' => $assetId,
-                    'simpro_attachment_id' => $simproAttachmentId,
-                    'name' => $simproAttachment['Filename'],
-                ];
-                $attachment = $assetAttachments->firstWhere('simpro_attachment_id', $simproAttachmentId);
-                if ($attachment) {
-                    $this->repository->update($attachment['id'], $data);
-                    $assetAttachments = $assetAttachments->where('id', '!=', $attachment['id']);
-                } else {
-                    $this->repository->create($data);
+            if ($simproAttachmentsPage) {
+                foreach ($simproAttachmentsPage as $simproAttachment) {
+                    $simproAttachmentId = $simproAttachment['ID'];
+                    $data = [
+                        'asset_id' => $assetId,
+                        'simpro_attachment_id' => $simproAttachmentId,
+                        'name' => $simproAttachment['Filename'],
+                    ];
+                    $attachment = $assetAttachments->firstWhere('simpro_attachment_id', $simproAttachmentId);
+                    if ($attachment) {
+                        $this->repository->update($attachment['id'], $data);
+                        $assetAttachments = $assetAttachments->where('id', '!=', $attachment['id']);
+                    } else {
+                        $this->repository->create($data);
+                    }
                 }
             }
         }

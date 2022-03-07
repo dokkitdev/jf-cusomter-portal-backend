@@ -32,20 +32,22 @@ class JobAttachmentService extends EntityService
         $jobAttachments = $this->repository->get(['job_id' => $jobId]);
 
         foreach ($simproJobAttachmentsPages as $simproJobAttachmentsPage) {
-            foreach ($simproJobAttachmentsPage as $simproJobAttachment) {
-                $simproJobAttachmentId = $simproJobAttachment['ID'];
-                $data = [
-                    'job_id' => $jobId,
-                    'simpro_attachment_id' => $simproJobAttachmentId,
-                    'name' => $simproJobAttachment['Filename'],
-                    'date_added' => empty($simproJobAttachment['DateAdded']) ? null : $simproJobAttachment['DateAdded'],
-                ];
-                $attachment = $jobAttachments->firstWhere('simpro_attachment_id', $simproJobAttachmentId);
-                if ($attachment) {
-                    $this->repository->update($attachment['id'], $data);
-                    $jobAttachments = $jobAttachments->where('id', '!=', $attachment['id']);
-                } else {
-                    $this->repository->create($data);
+            if ($simproJobAttachmentsPage) {
+                foreach ($simproJobAttachmentsPage as $simproJobAttachment) {
+                    $simproJobAttachmentId = $simproJobAttachment['ID'];
+                    $data = [
+                        'job_id' => $jobId,
+                        'simpro_attachment_id' => $simproJobAttachmentId,
+                        'name' => $simproJobAttachment['Filename'],
+                        'date_added' => empty($simproJobAttachment['DateAdded']) ? null : $simproJobAttachment['DateAdded'],
+                    ];
+                    $attachment = $jobAttachments->firstWhere('simpro_attachment_id', $simproJobAttachmentId);
+                    if ($attachment) {
+                        $this->repository->update($attachment['id'], $data);
+                        $jobAttachments = $jobAttachments->where('id', '!=', $attachment['id']);
+                    } else {
+                        $this->repository->create($data);
+                    }
                 }
             }
         }

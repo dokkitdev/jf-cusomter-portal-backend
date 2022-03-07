@@ -33,28 +33,30 @@ class AssetTestRecordService extends BaseService
 
         $this->repository->delete(['asset_id' => $assetId]);
 
-        foreach ($testHistories as $testHistory) {
-            $jobID = null;
-            if (Arr::get($testHistory, 'Job.ID')) {
-                $job = $this->jobService->firstOrCreateBySimpro($companyId, Arr::get($testHistory, 'Job.ID'));
-                $jobID = $job['id'];
-            }
+        if ($testHistories) {
+            foreach ($testHistories as $testHistory) {
+                $jobID = null;
+                if (Arr::get($testHistory, 'Job.ID')) {
+                    $job = $this->jobService->firstOrCreateBySimpro($companyId, Arr::get($testHistory, 'Job.ID'));
+                    $jobID = $job['id'];
+                }
 
-            $testRecord = $this->repository->create([
-                'asset_id' => $assetId,
-                'job_id' => $jobID,
-                'name' => Arr::get($testHistory, 'TestRecord.Employee.Name'),
-                'test_date' => Arr::get($testHistory, 'TestRecord.Date'),
-                'notes' => Arr::get($testHistory, 'TestRecord.Notes'),
-                'result' => Arr::get($testHistory, 'TestRecord.Result')
-            ]);
-
-            foreach ($testHistory['TestReadings'] as $testReading) {
-                $this->assetTestRecordReadingService->create([
-                    'asset_test_record_id' => $testRecord['id'],
-                    'name' => $testReading['Name'],
-                    'value' => $testReading['Value'],
+                $testRecord = $this->repository->create([
+                    'asset_id' => $assetId,
+                    'job_id' => $jobID,
+                    'name' => Arr::get($testHistory, 'TestRecord.Employee.Name'),
+                    'test_date' => Arr::get($testHistory, 'TestRecord.Date'),
+                    'notes' => Arr::get($testHistory, 'TestRecord.Notes'),
+                    'result' => Arr::get($testHistory, 'TestRecord.Result')
                 ]);
+
+                foreach ($testHistory['TestReadings'] as $testReading) {
+                    $this->assetTestRecordReadingService->create([
+                        'asset_test_record_id' => $testRecord['id'],
+                        'name' => $testReading['Name'],
+                        'value' => $testReading['Value'],
+                    ]);
+                }
             }
         }
     }

@@ -94,26 +94,28 @@ class SiteContactService extends BaseService
 
         $siteContacts = $this->repository->get(['site_id' => $siteId]);
 
-        foreach ($contacts as $contact) {
-            $data = [
-                'site_id' => $siteId,
-                'simpro_contact_id' => $contact['ID'],
-                'title' => $contact['Title'],
-                'name' => trim("{$contact['GivenName']} {$contact['FamilyName']}"),
-                'given_name' => $contact['GivenName'],
-                'family_name' => $contact['FamilyName'],
-                'email' => $contact['Email'],
-                'work_phone' => $contact['WorkPhone'],
-                'cell_phone' => $contact['CellPhone'],
-                'position' => $contact['Position'],
-                'is_primary' => ($contact['PrimaryContact'] === true)
-            ];
-            $siteContact = $siteContacts->firstWhere('simpro_contact_id', $contact['ID']);
-            if ($siteContact) {
-                $this->repository->update($siteContact['id'], $data);
-                $siteContacts = $siteContacts->where('id', '!=', $siteContact['id']);
-            } else {
-                $this->repository->create($data);
+        if ($contacts) {
+            foreach ($contacts as $contact) {
+                $data = [
+                    'site_id' => $siteId,
+                    'simpro_contact_id' => $contact['ID'],
+                    'title' => $contact['Title'],
+                    'name' => trim("{$contact['GivenName']} {$contact['FamilyName']}"),
+                    'given_name' => $contact['GivenName'],
+                    'family_name' => $contact['FamilyName'],
+                    'email' => $contact['Email'],
+                    'work_phone' => $contact['WorkPhone'],
+                    'cell_phone' => $contact['CellPhone'],
+                    'position' => $contact['Position'],
+                    'is_primary' => ($contact['PrimaryContact'] === true)
+                ];
+                $siteContact = $siteContacts->firstWhere('simpro_contact_id', $contact['ID']);
+                if ($siteContact) {
+                    $this->repository->update($siteContact['id'], $data);
+                    $siteContacts = $siteContacts->where('id', '!=', $siteContact['id']);
+                } else {
+                    $this->repository->create($data);
+                }
             }
         }
 

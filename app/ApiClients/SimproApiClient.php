@@ -222,7 +222,7 @@ class SimproApiClient
 
     public function getCreatedJobLog(int $companyId, int $jobId): ?array
     {
-        return  $this->getJobLog($companyId, $jobId, 'Created Job');
+        return  $this->getJobLog($companyId, $jobId, 'Created%');
     }
 
     public function getCompletedJobLog(int $companyId, int $jobId): ?array

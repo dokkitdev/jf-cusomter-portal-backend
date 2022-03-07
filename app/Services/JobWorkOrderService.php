@@ -60,16 +60,18 @@ class JobWorkOrderService extends EntityService
             foreach ($costCenters as $costCenter) {
                 $costCenterId = $costCenter['ID'];
                 $workOrders = $this->simproClient->getWorkOrders($companyId, $simproJob['ID'], $sectionId, $costCenterId);
-                foreach ($workOrders as $workOrder) {
-                    $allWorkOrders[] = [
-                        'job_id' => $jobId,
-                        'simpro_section_id' => $sectionId,
-                        'simpro_cost_center_id' => $costCenterId,
-                        'simpro_work_order_id' => $workOrder['ID'],
-                        'name' => (Arr::get($workOrder, 'Staff.Type') === 'employee') ? Arr::get($workOrder, 'Staff.Name') : 'Other Engineer',
-                        'description' => Arr::get($workOrder, 'DescriptionNotes'),
-                        'date' => Arr::get($workOrder, 'WorkOrderDate'),
-                    ];
+                if ($workOrders) {
+                    foreach ($workOrders as $workOrder) {
+                        $allWorkOrders[] = [
+                            'job_id' => $jobId,
+                            'simpro_section_id' => $sectionId,
+                            'simpro_cost_center_id' => $costCenterId,
+                            'simpro_work_order_id' => $workOrder['ID'],
+                            'name' => (Arr::get($workOrder, 'Staff.Type') === 'employee') ? Arr::get($workOrder, 'Staff.Name') : 'Other Engineer',
+                            'description' => Arr::get($workOrder, 'DescriptionNotes'),
+                            'date' => Arr::get($workOrder, 'WorkOrderDate'),
+                        ];
+                    }
                 }
             }
         }

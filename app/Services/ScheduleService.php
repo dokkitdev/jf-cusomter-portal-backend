@@ -31,8 +31,10 @@ class ScheduleService extends EntityService
         $schedulePages = $this->simproClient->getSchedules($companyId, $simproJobId);
 
         foreach ($schedulePages as $schedulePage) {
-            foreach ($schedulePage as $simproSchedule) {
-                $this->createOrUpdate($simproSchedule, $jobId);
+            if ($schedulePage) {
+                foreach ($schedulePage as $simproSchedule) {
+                    $this->createOrUpdate($simproSchedule, $jobId);
+                }
             }
         }
 
@@ -41,7 +43,7 @@ class ScheduleService extends EntityService
         $this->setNextScheduleToJob($jobId);
     }
 
-    public function updateOrCreateBySimpro(SimproJob $webhook): Model
+    public function updateOrCreateBySimpro(SimproJob $webhook): ?Model
     {
         $companyId = $webhook['data']['reference']['companyID'];
         $simproJobId = $webhook['data']['reference']['jobID'];
@@ -51,7 +53,11 @@ class ScheduleService extends EntityService
 
         $simproSchedule = $this->simproClient->getSchedule($companyId, $scheduleId);
 
-        $schedule = $this->createOrUpdate($simproSchedule, $job['id']);
+        $schedule = null;
+
+        if ($simproSchedule) {
+            $schedule = $this->createOrUpdate($simproSchedule, $job['id']);
+        }
 
         $this->setRecentScheduleToJob($job['id']);
 

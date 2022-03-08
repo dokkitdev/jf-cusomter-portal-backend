@@ -9,6 +9,7 @@ use App\Repositories\SimproLogRepository;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Arr;
 use RonasIT\Support\Services\EntityService;
 
 /**
@@ -52,10 +53,23 @@ class SimproLogService extends EntityService
         if ($loggableType === SimproLog::LOGGABLE_TYPE_ASSETS) {
             $this->saveAllAssets($loggableType);
         } else {
-            $pages = $this->simproClient->getAsGenerator("companies/{$this->companyId}/{$loggableType}/");
+            $data = [];
+
+            if ($loggableType === 'jobs') {
+                $data['columns'] = 'ID,Customer';
+            }
+
+            $pages = $this->simproClient->getAsGenerator("companies/{$this->companyId}/{$loggableType}/", $data);
 
             foreach ($pages as $page) {
                 foreach ($page as $item) {
+
+                    if ($loggableType === 'jobs') {
+                        if (!in_array(Arr::get($item, 'Customer.ID'), [12, 27, 6102])) {
+                            continue;
+                        }
+                    }
+
                     $this->repository->updateOrCreate([
                         'loggable_id' => $item['ID'],
                         'loggable_type' => $loggableType

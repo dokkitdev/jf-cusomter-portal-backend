@@ -38,7 +38,7 @@ class Kernel extends ConsoleKernel
         $schedule->command("simpro:handle-log {$assets} 5 3")->environments(['production'])->everyMinute()->skip($this->skipCriterias())->withoutOverlapping()->runInBackground();
         $schedule->command("simpro:handle-log {$assets} 5 4")->environments(['production'])->everyMinute()->skip($this->skipCriterias())->withoutOverlapping()->runInBackground();
 
-        //$schedule->command("simpro:save-simpro-log {$assets}")->environments(['production'])->hourly()->skip($this->skipCriterias())->withoutOverlapping()->runInBackground();
+        $schedule->command("simpro:save-simpro-log {$assets}")->environments(['production'])->hourly()->skip($this->skipCriterias())->withoutOverlapping()->runInBackground();
 
 
 

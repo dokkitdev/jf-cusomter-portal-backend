@@ -77,6 +77,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/assets/service-levels', ['uses' => AssetController::class . '@getServiceLevels']);
     Route::get('/assets/types', ['uses' => AssetController::class . '@getTypes']);
+    Route::get('/assets/names', ['uses' => AssetController::class . '@getNames']);
     Route::get('/assets/report/export', ['uses' => AssetController::class . '@exportReport']);
     Route::get('/assets/export', ['uses' => AssetController::class . '@export']);
     Route::get('/assets/{id}', ['uses' => AssetController::class . '@get']);

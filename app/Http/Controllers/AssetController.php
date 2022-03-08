@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Exports\AssetsReportExport;
 use App\Exports\AssetsExport;
+use App\Http\Requests\Assets\GetAssetNamesRequest;
 use App\Http\Requests\Assets\GetAssetRequest;
 use App\Http\Requests\Assets\GetAssetServiceLevelsRequest;
 use App\Http\Requests\Assets\GetAssetTypesRequest;
@@ -59,6 +60,13 @@ class AssetController extends Controller
     public function getTypes(GetAssetTypesRequest $request, AssetService $service)
     {
         $result = $service->getAssetTypes();
+
+        return response()->json($result);
+    }
+
+    public function getNames(GetAssetNamesRequest $request, AssetService $service)
+    {
+        $result = $service->getAssetNames();
 
         return response()->json($result);
     }

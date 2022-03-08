@@ -10,6 +10,7 @@ use App\Repositories\AssetRepository;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 
 /**
  * @property AssetRepository $repository
@@ -58,6 +59,13 @@ class AssetService extends BaseService
         return $assetTypes['ListItems'];
     }
 
+    public function getAssetNames()
+    {
+        $assetNames = $this->simproClient->getAssetNames($this->companyId);
+
+        return $assetNames;
+    }
+
     public function search(array $filters): LengthAwarePaginator
     {
         $authUser = $this->getAuthUser();
@@ -81,6 +89,7 @@ class AssetService extends BaseService
             ->filterBy('customer_id')
             ->filterBy('site_id')
             ->filterBy('archived')
+            ->filterByList('name', 'names')
             ->filterByList('service_level_name', 'service_level_names')
             ->filterByQuery(['name'])
             ->filterByQueryWithValue('location', 'location_query')
@@ -161,6 +170,8 @@ class AssetService extends BaseService
         $assetTypeCustomField = $this->findCustomFieldById(Arr::get($simproAsset, 'CustomFields'), 15);
         $cp12CustomField = $this->findCustomFieldById(Arr::get($simproAsset, 'CustomFields'), 59);
 
+        $expiryDateCustomField = $this->findCustomFieldByContainedString(Arr::get($simproAsset, 'CustomFields'), 'Expiry Date');
+
         return $this->repository->updateOrCreate([
             'simpro_asset_id' => $simproAsset['ID'],
         ], [
@@ -177,7 +188,8 @@ class AssetService extends BaseService
             'make' => Arr::get($makeCustomField, 'Value'),
             'model' => Arr::get($modelCustomField, 'Value'),
             'last_cp12_date' => Arr::get($cp12CustomField, 'Value', Arr::get($simproAsset, 'LastTest.Date')),
-            'custom_asset_type_value' => Arr::get($assetTypeCustomField, 'Value')
+            'custom_asset_type_value' => Arr::get($assetTypeCustomField, 'Value'),
+            'expiry_date' => Arr::get($expiryDateCustomField, 'Value'),
         ]);
     }
 
@@ -230,6 +242,13 @@ class AssetService extends BaseService
     {
         return collect($customFields)->first(function ($customField) use ($name) {
             return Arr::get($customField, 'CustomField.Name') === $name;
+        });
+    }
+
+    protected function findCustomFieldByContainedString(array $customFields, string $string): ?array
+    {
+        return collect($customFields)->first(function ($customField) use ($string) {
+            return Str::contains(Arr::get($customField, 'CustomField.Name', ''), $string);
         });
     }
 

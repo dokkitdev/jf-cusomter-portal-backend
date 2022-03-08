@@ -27,6 +27,7 @@
         "no_access_date_3": null,
         "no_access_date_4": null,
         "no_access_date_5": null,
+        "expiry_date": null,
         "site": {
             "id": 1,
             "simpro_site_id": 1,
@@ -214,6 +215,7 @@
         "no_access_date_3": null,
         "no_access_date_4": null,
         "no_access_date_5": null,
+        "expiry_date": null,
         "site": {
             "id": 1,
             "simpro_site_id": 1,
@@ -341,6 +343,7 @@
         "no_access_date_3": null,
         "no_access_date_4": null,
         "no_access_date_5": null,
+        "expiry_date": null,
         "site": {
             "id": 1,
             "simpro_site_id": 1,
@@ -468,6 +471,7 @@
         "no_access_date_3": null,
         "no_access_date_4": null,
         "no_access_date_5": null,
+        "expiry_date": null,
         "site": {
             "id": 1,
             "simpro_site_id": 1,
@@ -532,6 +536,7 @@
         "no_access_date_3": null,
         "no_access_date_4": null,
         "no_access_date_5": null,
+        "expiry_date": null,
         "site": {
             "id": 1,
             "simpro_site_id": 1,
@@ -596,6 +601,7 @@
         "no_access_date_3": null,
         "no_access_date_4": null,
         "no_access_date_5": null,
+        "expiry_date": null,
         "site": {
             "id": 2,
             "simpro_site_id": 2,
@@ -652,6 +658,7 @@
         "no_access_date_3": null,
         "no_access_date_4": null,
         "no_access_date_5": null,
+        "expiry_date": null,
         "site": {
             "id": 3,
             "simpro_site_id": 3,
@@ -708,6 +715,7 @@
         "no_access_date_3": null,
         "no_access_date_4": null,
         "no_access_date_5": null,
+        "expiry_date": null,
         "site": {
             "id": 4,
             "simpro_site_id": 4,
@@ -772,6 +780,7 @@
         "no_access_date_3": null,
         "no_access_date_4": null,
         "no_access_date_5": null,
+        "expiry_date": null,
         "site": {
             "id": 4,
             "simpro_site_id": 4,
@@ -836,6 +845,7 @@
         "no_access_date_3": null,
         "no_access_date_4": null,
         "no_access_date_5": null,
+        "expiry_date": null,
         "site": {
             "id": 4,
             "simpro_site_id": 4,
@@ -900,6 +910,7 @@
         "no_access_date_3": null,
         "no_access_date_4": null,
         "no_access_date_5": null,
+        "expiry_date": null,
         "site": {
             "id": 6,
             "simpro_site_id": 1700,

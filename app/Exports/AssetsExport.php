@@ -39,7 +39,8 @@ class AssetsExport extends BaseExport implements FromCollection, WithHeadings, W
             'Last Test Result',
             'Last Test Date',
             'Service Level',
-            'Next Service Date'
+            'Next Service Date',
+            'Expiry Date',
         ];
     }
 
@@ -58,6 +59,7 @@ class AssetsExport extends BaseExport implements FromCollection, WithHeadings, W
             $row['last_test_date'] ? Carbon::parse($row['last_test_date'])->format('M d Y') : null,
             $row['service_level_name'],
             $row['next_service_date'] ? Carbon::parse($row['next_service_date'])->format('M d Y') : null,
+            $row['expiry_date'] ? Carbon::parse($row['expiry_date'])->format('M d Y') : null,
         ];
     }
 }

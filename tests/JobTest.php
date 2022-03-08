@@ -179,6 +179,12 @@ class JobTest extends TestCase
                 ],
                 'result' => 'search_by_out_of_hours_jobs.json'
             ],
+            [
+                'filter' => [
+                    'is_repair' => false,
+                ],
+                'result' => 'search_by_is_repair_jobs.json'
+            ],
         ];
     }
 

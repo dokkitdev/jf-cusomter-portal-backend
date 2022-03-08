@@ -54,7 +54,7 @@ class Asset extends BaseModel
     {
         $status = null;
 
-        if ((Arr::get($this, 'job.stage') !== Job::COMPLETE_STAGE) && $this->last_cp12_date) {
+        if (in_array(Arr::get($this, 'job.stage'), Job::OPEN_STAGES) && $this->last_cp12_date) {
             $lastCP12DateAndYear = Carbon::parse($this->last_cp12_date)->startOfDay()->addYear();
 
             if ($lastCP12DateAndYear->lessThanOrEqualTo(now()->startOfDay())) {

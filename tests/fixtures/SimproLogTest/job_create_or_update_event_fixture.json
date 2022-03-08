@@ -19,7 +19,8 @@
         "recent_schedule_id": null,
         "logged_create_date": null,
         "logged_completion_date": null,
-        "next_schedule_id": null
+        "next_schedule_id": null,
+        "is_repair": false
     },
     {
         "id": 2,
@@ -41,7 +42,8 @@
         "recent_schedule_id": null,
         "logged_create_date": null,
         "logged_completion_date": null,
-        "next_schedule_id": null
+        "next_schedule_id": null,
+        "is_repair": false
     },
     {
         "id": 3,
@@ -63,6 +65,7 @@
         "recent_schedule_id": 2,
         "logged_create_date": "2022-01-27 09:20:05",
         "logged_completion_date": "2022-01-27 09:20:05",
-        "next_schedule_id": 2
+        "next_schedule_id": 2,
+        "is_repair": true
     }
 ]

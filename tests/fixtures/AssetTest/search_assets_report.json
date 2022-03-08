@@ -29,6 +29,7 @@
             "no_access_date_3": null,
             "no_access_date_4": null,
             "no_access_date_5": null,
+            "expiry_date": null,
             "job_customer_name": "Simpro Customer",
             "cp12_status": "On Time",
             "site": {
@@ -92,7 +93,8 @@
                 "recent_schedule_id": null,
                 "logged_create_date": null,
                 "logged_completion_date": "2022-02-22 11:11:11",
-                "next_schedule_id": null
+                "next_schedule_id": null,
+                "is_repair": false
             },
             "job_customer": {
                 "id": 1,
@@ -132,6 +134,7 @@
             "no_access_date_3": null,
             "no_access_date_4": null,
             "no_access_date_5": null,
+            "expiry_date": null,
             "job_customer_name": "Simpro Customer",
             "cp12_status": "On Time",
             "site": {
@@ -195,7 +198,8 @@
                 "recent_schedule_id": null,
                 "logged_create_date": null,
                 "logged_completion_date": "2022-02-22 11:11:11",
-                "next_schedule_id": null
+                "next_schedule_id": null,
+                "is_repair": false
             },
             "job_customer": {
                 "id": 1,

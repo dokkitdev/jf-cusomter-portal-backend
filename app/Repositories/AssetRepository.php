@@ -56,8 +56,8 @@ class AssetRepository extends BaseRepository
                 $this->query->where(DB::raw("last_cp12_date + interval '1 year'"), '<=', now()->format('Y-m-d'));
             }
 
-            $this->query->whereDoesntHave('job', function (Builder $query) {
-                return $query->where('stage', Job::COMPLETE_STAGE);
+            $this->query->whereHas('job', function (Builder $query) {
+                return $query->whereIn('stage', Job::OPEN_STAGES);
             });
         }
 

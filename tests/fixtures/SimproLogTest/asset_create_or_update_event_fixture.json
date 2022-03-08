@@ -27,6 +27,7 @@
         "no_access_date_3": null,
         "no_access_date_4": null,
         "no_access_date_5": null,
+        "expiry_date": null,
         "site": {
             "id": 1,
             "simpro_site_id": 1,
@@ -128,7 +129,8 @@
                     "recent_schedule_id": null,
                     "logged_create_date": null,
                     "logged_completion_date": null,
-                    "next_schedule_id": null
+                    "next_schedule_id": null,
+                    "is_repair": false
                 },
                 "asset_test_record_readings": [
                     {
@@ -171,7 +173,8 @@
                     "recent_schedule_id": null,
                     "logged_create_date": null,
                     "logged_completion_date": null,
-                    "next_schedule_id": null
+                    "next_schedule_id": null,
+                    "is_repair": false
                 },
                 "asset_test_record_readings": [
                     {
@@ -214,6 +217,7 @@
         "no_access_date_3": null,
         "no_access_date_4": null,
         "no_access_date_5": null,
+        "expiry_date": null,
         "site": {
             "id": 1,
             "simpro_site_id": 1,
@@ -298,7 +302,8 @@
                     "recent_schedule_id": null,
                     "logged_create_date": null,
                     "logged_completion_date": null,
-                    "next_schedule_id": null
+                    "next_schedule_id": null,
+                    "is_repair": false
                 },
                 "asset_test_record_readings": [
                     {
@@ -341,6 +346,7 @@
         "no_access_date_3": null,
         "no_access_date_4": null,
         "no_access_date_5": null,
+        "expiry_date": null,
         "site": {
             "id": 1,
             "simpro_site_id": 1,
@@ -425,7 +431,8 @@
                     "recent_schedule_id": null,
                     "logged_create_date": null,
                     "logged_completion_date": null,
-                    "next_schedule_id": null
+                    "next_schedule_id": null,
+                    "is_repair": false
                 },
                 "asset_test_record_readings": [
                     {
@@ -468,6 +475,7 @@
         "no_access_date_3": null,
         "no_access_date_4": null,
         "no_access_date_5": null,
+        "expiry_date": null,
         "site": {
             "id": 1,
             "simpro_site_id": 1,
@@ -532,6 +540,7 @@
         "no_access_date_3": null,
         "no_access_date_4": null,
         "no_access_date_5": null,
+        "expiry_date": null,
         "site": {
             "id": 1,
             "simpro_site_id": 1,
@@ -596,6 +605,7 @@
         "no_access_date_3": null,
         "no_access_date_4": null,
         "no_access_date_5": null,
+        "expiry_date": null,
         "site": {
             "id": 2,
             "simpro_site_id": 2,
@@ -652,6 +662,7 @@
         "no_access_date_3": null,
         "no_access_date_4": null,
         "no_access_date_5": null,
+        "expiry_date": null,
         "site": {
             "id": 3,
             "simpro_site_id": 3,
@@ -708,6 +719,7 @@
         "no_access_date_3": null,
         "no_access_date_4": null,
         "no_access_date_5": null,
+        "expiry_date": null,
         "site": {
             "id": 4,
             "simpro_site_id": 4,
@@ -772,6 +784,7 @@
         "no_access_date_3": null,
         "no_access_date_4": null,
         "no_access_date_5": null,
+        "expiry_date": null,
         "site": {
             "id": 4,
             "simpro_site_id": 4,
@@ -836,6 +849,7 @@
         "no_access_date_3": null,
         "no_access_date_4": null,
         "no_access_date_5": null,
+        "expiry_date": null,
         "site": {
             "id": 4,
             "simpro_site_id": 4,
@@ -900,6 +914,7 @@
         "no_access_date_3": null,
         "no_access_date_4": null,
         "no_access_date_5": null,
+        "expiry_date": null,
         "site": {
             "id": 6,
             "simpro_site_id": 1700,
@@ -1019,7 +1034,8 @@
                     "recent_schedule_id": 2,
                     "logged_create_date": "2022-01-27 09:20:05",
                     "logged_completion_date": "2022-01-27 09:20:05",
-                    "next_schedule_id": 2
+                    "next_schedule_id": 2,
+                    "is_repair": true
                 },
                 "asset_test_record_readings": []
             },
@@ -1053,7 +1069,8 @@
                     "recent_schedule_id": 2,
                     "logged_create_date": "2022-01-27 09:20:05",
                     "logged_completion_date": "2022-01-27 09:20:05",
-                    "next_schedule_id": 2
+                    "next_schedule_id": 2,
+                    "is_repair": true
                 },
                 "asset_test_record_readings": [
                     {
@@ -1216,7 +1233,8 @@
                     "recent_schedule_id": 2,
                     "logged_create_date": "2022-01-27 09:20:05",
                     "logged_completion_date": "2022-01-27 09:20:05",
-                    "next_schedule_id": 2
+                    "next_schedule_id": 2,
+                    "is_repair": true
                 },
                 "asset_test_record_readings": [
                     {

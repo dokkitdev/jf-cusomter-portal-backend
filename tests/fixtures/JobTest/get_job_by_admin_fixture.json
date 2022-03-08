@@ -18,5 +18,6 @@
     "recent_schedule_id": null,
     "logged_create_date": null,
     "logged_completion_date": null,
-    "next_schedule_id": null
+    "next_schedule_id": null,
+    "is_repair": false
 }

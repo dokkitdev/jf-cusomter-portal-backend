@@ -263,6 +263,13 @@ class SimproApiClient
         return $this->makeRequest('get', $url);
     }
 
+    public function getAssetNames(int $companyId): ?array
+    {
+        $url = $this->getUrl("companies/{$companyId}/setup/assetTypes/");
+
+        return $this->makeRequest('get', $url);
+    }
+
     public function getCustomers(int $companyId, string $type): Generator
     {
         $url = "companies/{$companyId}/customers/{$type}/";

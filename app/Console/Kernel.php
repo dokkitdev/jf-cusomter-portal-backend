@@ -12,38 +12,35 @@ class Kernel extends ConsoleKernel
 
     protected function schedule(Schedule $schedule)
     {
-//        $jobs = SimproLog::LOGGABLE_TYPE_JOBS;
-//        $schedule->command("simpro:handle-log {$jobs}")->everyMinute()->withoutOverlapping()->runInBackground();
-//
-//        $sites = SimproLog::LOGGABLE_TYPE_SITES;
-//        $schedule->command("simpro:handle-log {$sites}")->everyMinute()->withoutOverlapping()->runInBackground();
-//
-//        $assets = SimproLog::LOGGABLE_TYPE_ASSETS;
-//        $schedule->command("simpro:handle-log {$assets} 10 0")->everyMinute()->withoutOverlapping()->runInBackground();
-//        $schedule->command("simpro:handle-log {$assets} 10 1")->everyMinute()->withoutOverlapping()->runInBackground();
-//        $schedule->command("simpro:handle-log {$assets} 10 2")->everyMinute()->withoutOverlapping()->runInBackground();
-//        $schedule->command("simpro:handle-log {$assets} 10 3")->everyMinute()->withoutOverlapping()->runInBackground();
-//        $schedule->command("simpro:handle-log {$assets} 10 4")->everyMinute()->withoutOverlapping()->runInBackground();
-//        $schedule->command("simpro:handle-log {$assets} 10 5")->everyMinute()->withoutOverlapping()->runInBackground();
-//        $schedule->command("simpro:handle-log {$assets} 10 6")->everyMinute()->withoutOverlapping()->runInBackground();
-//        $schedule->command("simpro:handle-log {$assets} 10 7")->everyMinute()->withoutOverlapping()->runInBackground();
-//        $schedule->command("simpro:handle-log {$assets} 10 8")->everyMinute()->withoutOverlapping()->runInBackground();
-//        $schedule->command("simpro:handle-log {$assets} 10 9")->everyMinute()->withoutOverlapping()->runInBackground();
-//
-//        $schedule->command('simpro:handle-jobs job 5 0')->everyMinute()->withoutOverlapping()->runInBackground();
-//        $schedule->command('simpro:handle-jobs job 5 1')->everyMinute()->withoutOverlapping()->runInBackground();
-//        $schedule->command('simpro:handle-jobs job 5 2')->everyMinute()->withoutOverlapping()->runInBackground();
-//        $schedule->command('simpro:handle-jobs job 5 3')->everyMinute()->withoutOverlapping()->runInBackground();
-//        $schedule->command('simpro:handle-jobs job 5 4')->everyMinute()->withoutOverlapping()->runInBackground();
-//
-//        $schedule->command('simpro:handle-jobs site')->everyMinute()->withoutOverlapping()->runInBackground();
-//        $schedule->command('simpro:handle-jobs asset')->everyMinute()->withoutOverlapping()->runInBackground();
-//        $schedule->command('simpro:handle-jobs company')->everyMinute()->withoutOverlapping()->runInBackground();
-//        $schedule->command('simpro:handle-jobs individual')->everyMinute()->withoutOverlapping()->runInBackground();
-//
-//        $schedule->command("simpro:save-simpro-log {$assets}")->hourly()->withoutOverlapping()->runInBackground();
+        $schedule->command('simpro:handle-jobs job 5 0')->environments(['production'])->everyMinute()->withoutOverlapping()->runInBackground();
+        $schedule->command('simpro:handle-jobs job 5 1')->environments(['production'])->everyMinute()->withoutOverlapping()->runInBackground();
+        $schedule->command('simpro:handle-jobs job 5 2')->environments(['production'])->everyMinute()->withoutOverlapping()->runInBackground();
+        $schedule->command('simpro:handle-jobs job 5 3')->environments(['production'])->everyMinute()->withoutOverlapping()->runInBackground();
+        $schedule->command('simpro:handle-jobs job 5 4')->environments(['production'])->everyMinute()->withoutOverlapping()->runInBackground();
 
-        $schedule->command('simpro:handle-jobs')->everyMinute()->withoutOverlapping()->runInBackground();
+        $schedule->command('simpro:handle-jobs site')->environments(['production'])->everyMinute()->withoutOverlapping()->runInBackground();
+        $schedule->command('simpro:handle-jobs asset')->environments(['production'])->everyMinute()->withoutOverlapping()->runInBackground();
+        $schedule->command('simpro:handle-jobs company')->environments(['production'])->everyMinute()->withoutOverlapping()->runInBackground();
+        $schedule->command('simpro:handle-jobs individual')->environments(['production'])->everyMinute()->withoutOverlapping()->runInBackground();
+
+
+
+        $jobs = SimproLog::LOGGABLE_TYPE_JOBS;
+        $schedule->command("simpro:handle-log {$jobs}")->environments(['production'])->everyMinute()->skip($this->skipCriterias())->withoutOverlapping()->runInBackground();
+
+        $sites = SimproLog::LOGGABLE_TYPE_SITES;
+        $schedule->command("simpro:handle-log {$sites}")->environments(['production'])->everyMinute()->skip($this->skipCriterias())->withoutOverlapping()->runInBackground();
+
+        $assets = SimproLog::LOGGABLE_TYPE_ASSETS;
+        $schedule->command("simpro:handle-log {$assets} 5 0")->environments(['production'])->everyMinute()->skip($this->skipCriterias())->withoutOverlapping()->runInBackground();
+        $schedule->command("simpro:handle-log {$assets} 5 1")->environments(['production'])->everyMinute()->skip($this->skipCriterias())->withoutOverlapping()->runInBackground();
+        $schedule->command("simpro:handle-log {$assets} 5 2")->environments(['production'])->everyMinute()->skip($this->skipCriterias())->withoutOverlapping()->runInBackground();
+        $schedule->command("simpro:handle-log {$assets} 5 3")->environments(['production'])->everyMinute()->skip($this->skipCriterias())->withoutOverlapping()->runInBackground();
+        $schedule->command("simpro:handle-log {$assets} 5 4")->environments(['production'])->everyMinute()->skip($this->skipCriterias())->withoutOverlapping()->runInBackground();
+
+        //$schedule->command("simpro:save-simpro-log {$assets}")->environments(['production'])->hourly()->skip($this->skipCriterias())->withoutOverlapping()->runInBackground();
+
+
 
         $schedule->command('clear:set-password-hash')->hourly()->withoutOverlapping()->runInBackground();
     }
@@ -54,4 +51,10 @@ class Kernel extends ConsoleKernel
 
         require base_path('routes/console.php');
     }
+
+    protected function skipCriterias()
+    {
+        return now()->isWeekday() && (now()->hour >= 6) && (now()->hour <= 19);
+    }
+
 }

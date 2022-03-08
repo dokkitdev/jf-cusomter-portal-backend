@@ -34,7 +34,8 @@ class Job extends BaseModel
         'recent_schedule_id',
         'logged_create_date',
         'logged_completion_date',
-        'next_schedule_id'
+        'next_schedule_id',
+        'is_repair'
     ];
 
     protected $hidden = ['pivot'];

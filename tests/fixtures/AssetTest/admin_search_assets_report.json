@@ -29,6 +29,7 @@
             "no_access_date_3": null,
             "no_access_date_4": null,
             "no_access_date_5": null,
+            "expiry_date": null,
             "job_customer_name": "Simpro Customer",
             "cp12_status": "On Time",
             "site": {
@@ -132,6 +133,7 @@
             "no_access_date_3": null,
             "no_access_date_4": null,
             "no_access_date_5": null,
+            "expiry_date": null,
             "job_customer_name": "Simpro Customer",
             "cp12_status": "On Time",
             "site": {

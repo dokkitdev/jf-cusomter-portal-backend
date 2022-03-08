@@ -354,4 +354,22 @@ class AssetTest extends TestCase
 
         $response->assertStatus(Response::HTTP_UNAUTHORIZED);
     }
+
+    public function testGetAssetNames()
+    {
+        $this->mockGetAssetNames();
+
+        $response = $this->actingAs($this->customer)->json('get', '/assets/names');
+
+        $response->assertStatus(Response::HTTP_OK);
+
+        $this->assertEqualsFixture('get_asset_names_fixture.json', $response->json());
+    }
+
+    public function testGetAssetNamesNoAuth()
+    {
+        $response = $this->json('get', '/assets/names');
+
+        $response->assertStatus(Response::HTTP_UNAUTHORIZED);
+    }
 }

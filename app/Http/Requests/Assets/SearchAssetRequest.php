@@ -57,6 +57,8 @@ class SearchAssetRequest extends Request
             'last_test_result_query' => 'string',
             'service_level_names' => 'array',
             'service_level_names.*' => 'string',
+            'names' => 'array',
+            'names.*' => 'string',
             'page' => 'integer',
             'per_page' => 'integer',
             'all' => 'integer',

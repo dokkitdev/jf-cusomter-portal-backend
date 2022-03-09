@@ -53,23 +53,10 @@ class SimproLogService extends EntityService
         if ($loggableType === SimproLog::LOGGABLE_TYPE_ASSETS) {
             $this->saveAllAssets($loggableType);
         } else {
-            $data = [];
-
-            if ($loggableType === 'jobs') {
-                $data['columns'] = 'ID,Customer';
-            }
-
-            $pages = $this->simproClient->getAsGenerator("companies/{$this->companyId}/{$loggableType}/", $data);
+            $pages = $this->simproClient->getAsGenerator("companies/{$this->companyId}/{$loggableType}/");
 
             foreach ($pages as $page) {
                 foreach ($page as $item) {
-
-                    if ($loggableType === 'jobs') {
-                        if (!in_array(Arr::get($item, 'Customer.ID'), [12, 27, 6102])) {
-                            continue;
-                        }
-                    }
-
                     $this->repository->updateOrCreate([
                         'loggable_id' => $item['ID'],
                         'loggable_type' => $loggableType

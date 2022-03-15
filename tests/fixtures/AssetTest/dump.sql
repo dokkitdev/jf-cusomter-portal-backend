@@ -51,7 +51,9 @@ INSERT INTO jobs(id, simpro_job_id, site_id, customer_id, stage, logged_completi
 (2, 2, 1, 1, 'Progress', '2022-02-22 11:11:11');
 
 INSERT INTO schedules(id, job_id, simpro_schedule_id, name, date, start_time, end_time) VALUES
-(1, 1, 1, 'Name', '2016-10-20 11:05:00', '2016-10-20 11:05:00', '2016-10-20 11:05:00');
+(1, 2, 1, 'Name', '2016-10-20 11:05:00', '2016-10-20 11:05:00', '2016-10-20 11:05:00'),
+(2, 2, 2, 'Name', '2018-11-20 11:05:00', '2016-10-20 11:05:00', '2016-10-20 11:05:00'),
+(3, 2, 3, 'Name', '2018-11-19 11:05:00', '2016-10-20 11:05:00', '2016-10-20 11:05:00');
 
 INSERT INTO job_catalogs(id, job_id, simpro_section_id, simpro_cost_center_id, simpro_catalog_id, simpro_original_catalog_id, name, part_no, qty) VALUES
 (1, 1, 0, 0, 0, 0, 'Test', 'Test', 1);
@@ -62,17 +64,17 @@ INSERT INTO job_attachments(id, job_id, simpro_attachment_id, name) VALUES
 INSERT INTO job_work_orders(id, job_id, simpro_section_id, simpro_cost_center_id, simpro_work_order_id, name, description, date) VALUES
 (1, 1, 0, 0, 0, 'Test', 'Test', '2020-10-06');
 
-INSERT INTO assets(id, simpro_asset_id, site_id, name, last_test_date, next_service_date, last_test_result, service_level_name, archived, asset_type, last_cp12_date, job_id, customer_id) VALUES
-(1, 1, 1, 'Name 1', '2016-10-20', '2016-10-20', 'Test result...', 'Service level...', false, 4, '2021-01-06', 1, 1),
-(2, 2, 1, 'Name 2', '2016-10-20', '2016-10-20', 'Test result...', 'Service level...', false, 4, '2021-01-07', 2, 1),
-(3, 3, 1, 'Name 3', null, null, 'Test result...', 'Service level...', true, 4, '2021-01-10', 1, 1),
-(4, 4, 1, 'Name 4', null, null, null, null, false, 4, '2021-01-08', 2, 1),
-(5, 5, 1, 'Name 5', null, null, null, null, false, 4, null, 1, 1),
-(6, 6, 2, 'Name 6', null, null, null, null, false, 4, null, 2, 1),
-(7, 7, 3, 'Name 7', null, null, null, null, false, 3, null, 1, 1),
-(8, 8, 4,  null, null, null, null, null, false, 3, null, 2, 1),
-(9, 9, 4, null, null, null, null, null, false, 3, null, 1, 1),
-(10, 10, 4, null, null, null, null, null, false, 3, null, 2, 1);
+INSERT INTO assets(id, simpro_asset_id, site_id, name, last_test_date, next_service_date, last_test_result, service_level_name, archived, asset_type, last_cp12_date, job_id, customer_id, no_access_date_1) VALUES
+(1, 1, 1, 'Name 1', '2016-10-20', '2016-10-20', 'Test result...', 'Service level...', false, 4, '2021-01-06', 1, 1, '2016-10-20'),
+(2, 2, 1, 'Name 2', '2016-10-20', '2016-10-20', 'Test result...', 'Service level...', false, 4, '2021-01-07', 2, 1, '2016-10-20'),
+(3, 3, 1, 'Name 3', null, null, 'Test result...', 'Service level...', true, 4, '2021-01-10', 1, 1, '2016-10-20'),
+(4, 4, 1, 'Name 4', null, null, null, null, false, 4, '2021-01-08', 2, 1, null),
+(5, 5, 1, 'Name 5', null, null, null, null, false, 4, null, 1, 1, null),
+(6, 6, 2, 'Name 6', null, null, null, null, false, 4, null, 2, 1, null),
+(7, 7, 3, 'Name 7', null, null, null, null, false, 3, null, 1, 1, null),
+(8, 8, 4,  null, null, null, null, null, false, 3, null, 2, 1, null),
+(9, 9, 4, null, null, null, null, null, false, 3, null, 1, 1, null),
+(10, 10, 4, null, null, null, null, null, false, 3, null, 2, 1, null);
 
 INSERT INTO asset_custom_fields(id, asset_id, simpro_custom_field_id, name, value) VALUES
 (1, 1, 1, 'name', 'value'),

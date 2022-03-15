@@ -21,7 +21,7 @@
     "job_id": 1,
     "customer_id": 1,
     "next_schedule_id": null,
-    "no_access_date_1": null,
+    "no_access_date_1": "2016-10-20 00:00:00",
     "no_access_date_2": null,
     "no_access_date_3": null,
     "no_access_date_4": null,

@@ -29,6 +29,7 @@ class AssetsReportExport extends BaseExport implements FromCollection, WithHeadi
     {
         return [
             'Site UPRN',
+            'Asset ID',
             'Order#',
             'Customer',
             'Site Name',
@@ -39,7 +40,11 @@ class AssetsReportExport extends BaseExport implements FromCollection, WithHeadi
             'Next Scheduled Date',
             'Status',
             'Job Number',
-            'No Access',
+            'No Access 1',
+            'No Access 2',
+            'No Access 3',
+            'No Access 4',
+            'No Access 5',
         ];
     }
 
@@ -49,26 +54,24 @@ class AssetsReportExport extends BaseExport implements FromCollection, WithHeadi
         $lastCP12Date = $row['last_test_date'] ?? $row['last_cp12_date'];
         $nextScheduledDate = Arr::get($row, 'next_schedule.date');
 
-        $map = [
+        return [
             (string) Arr::get($row, 'site.uprn'),
+            $row['simpro_asset_id'],
             Arr::get($row, 'job.order_no'),
             Arr::get($row, 'job_customer.name'),
             Arr::get($row, 'site.name'),
             Arr::get($row, 'site.address'),
             Arr::get($row, 'site.primary_site_contact.name'),
-            $completionDate ? Carbon::parse($completionDate)->format('M d Y') : null,
-            $lastCP12Date ? Carbon::parse($lastCP12Date)->format('M d Y') : null,
-            $nextScheduledDate ? Carbon::parse($nextScheduledDate)->format('M d Y') : null,
+            $completionDate ? Carbon::parse($completionDate)->format('Y-m-d') : null,
+            $lastCP12Date ? Carbon::parse($lastCP12Date)->format('Y-m-d') : null,
+            $nextScheduledDate ? Carbon::parse($nextScheduledDate)->format('Y-m-d') : null,
             Arr::get($row, 'job.job_status'),
             Arr::get($row, 'job.simpro_job_id'),
+            $row['no_access_date_1'] ? Carbon::parse($row['no_access_date_1'])->format('Y-m-d') : null,
+            $row['no_access_date_2'] ? Carbon::parse($row['no_access_date_2'])->format('Y-m-d') : null,
+            $row['no_access_date_3'] ? Carbon::parse($row['no_access_date_3'])->format('Y-m-d') : null,
+            $row['no_access_date_4'] ? Carbon::parse($row['no_access_date_4'])->format('Y-m-d') : null,
+            $row['no_access_date_5'] ? Carbon::parse($row['no_access_date_5'])->format('Y-m-d') : null,
         ];
-
-        $jobNoAccessDates = Arr::get($row, 'job.job_no_access_dates', []);
-
-        foreach ($jobNoAccessDates as $jobNoAccessDate) {
-            $map[] = $jobNoAccessDate['date'] ? Carbon::parse($jobNoAccessDate['date'])->format('M d Y') : null;
-        }
-
-        return $map;
     }
 }

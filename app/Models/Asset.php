@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class Asset extends BaseModel
 {
@@ -110,6 +111,8 @@ class Asset extends BaseModel
 
     public function next_schedule()
     {
-        return $this->belongsTo(Schedule::class, 'next_schedule_id', 'id');
+        return $this->hasOne(Schedule::class, 'job_id', 'job_id')
+            ->where(DB::raw('cast(date as date)'), '>', now()->format('Y-m-d'))
+            ->orderBy('date');
     }
 }

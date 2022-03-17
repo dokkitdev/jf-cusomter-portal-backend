@@ -25,7 +25,11 @@ class SimproJobRepository extends BaseRepository
             ->limit($limit);
 
         if ($eventId) {
-            $query->where('data->ID', 'LIKE', "{$eventId}.%");
+            $query->where('data->ID', 'LIKE', "{$eventId}%");
+        }
+
+        if ($eventId === 'job') {
+            $query->where('data->ID', '!=', 'job.created');
         }
 
         if ($divider) {

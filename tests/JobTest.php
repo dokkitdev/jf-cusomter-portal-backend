@@ -44,7 +44,7 @@ class JobTest extends TestCase
 
         $this->createSimproJob('simpro_webhook_job_created_fixture.json');
 
-        $this->artisan('simpro:handle-jobs')->assertExitCode(0);
+        $this->artisan('simpro:handle-jobs job.created')->assertExitCode(0);
 
         $simproJob = SimproJob::orderBy('id')->where('handle_status', '!=', SimproJob::HANDLE_STATUS_COMPLETED)->get()->toArray();
         $this->assertEqualsFixture('simpro_jobs_fixture.json', $simproJob);
@@ -75,7 +75,7 @@ class JobTest extends TestCase
     {
         $this->createSimproJob('simpro_webhook_job_deleted_fixture.json');
 
-        $this->artisan('simpro:handle-jobs')->assertExitCode(0);
+        $this->artisan('simpro:handle-jobs job')->assertExitCode(0);
 
         $simproJobs = SimproJob::orderBy('id')->where('handle_status', '!=', SimproJob::HANDLE_STATUS_COMPLETED)->get()->toArray();
         $this->assertEqualsFixture('simpro_jobs_fixture.json', $simproJobs);

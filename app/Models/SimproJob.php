@@ -6,6 +6,7 @@ class SimproJob extends BaseModel
 {
     const HANDLE_STATUS_NEW = 'new';
     const HANDLE_STATUS_ERROR = 'error';
+    const HANDLE_STATUS_COMPLETED = 'completed';
 
     protected $fillable = [
         'data',

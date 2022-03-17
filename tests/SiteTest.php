@@ -36,7 +36,7 @@ class SiteTest extends TestCase
 
         $this->artisan('simpro:handle-jobs')->assertExitCode(0);
 
-        $simproJob = SimproJob::orderBy('id')->get()->toArray();
+        $simproJob = SimproJob::orderBy('id')->where('handle_status', '!=', SimproJob::HANDLE_STATUS_COMPLETED)->get()->toArray();
         $this->assertEqualsFixture('simpro_jobs_fixture.json', $simproJob);
 
         $site = Site::with(['customers'])->orderBy('id')->get()->toArray();
@@ -52,7 +52,7 @@ class SiteTest extends TestCase
 
         $this->artisan('simpro:handle-jobs')->assertExitCode(0);
 
-        $simproJobs = SimproJob::orderBy('id')->get()->toArray();
+        $simproJobs = SimproJob::orderBy('id')->where('handle_status', '!=', SimproJob::HANDLE_STATUS_COMPLETED)->get()->toArray();
         $this->assertEqualsFixture('simpro_jobs_fixture.json', $simproJobs);
 
         $this->assertDatabaseMissing('sites', ['id' => 1]);

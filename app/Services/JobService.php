@@ -210,6 +210,7 @@ class JobService extends BaseService
             'customer_id' => $customerId,
             'site_id' => $siteId,
             'order_no' => Arr::get($simproJob, 'OrderNo'),
+            'name' => Arr::get($simproJob, 'Name'),
             'description' => Arr::get($simproJob, 'Description'),
             'priority' => Arr::get($simproJob, 'ResponseTime.Name'),
             'cost_center_name' => Arr::get($simproJob, 'Sections.0.CostCenters.0.CostCenter.Name'),

@@ -22,7 +22,8 @@
             "logged_create_date": null,
             "logged_completion_date": null,
             "next_schedule_id": null,
-            "is_repair": false
+            "is_repair": false,
+            "name": null
         }
     ],
     "first_page_url": "http:\/\/localhost\/jobs?page=1",

@@ -29,7 +29,11 @@ class HandleSimproJobs extends Command
                 try {
                     $this->simproJobService->handleJob($job);
 
-                    $this->simproJobService->delete($job->id);
+                    //$this->simproJobService->delete($job->id);
+
+                    $this->simproJobService->update($job->id, [
+                        'handle_status' => SimproJob::HANDLE_STATUS_COMPLETED,
+                    ]);
                 } catch (Exception $e) {
                     report($e);
                     $this->simproJobService->update($job->id, [

@@ -50,21 +50,23 @@ class Job extends BaseModel
 
     public function scopeOutOfHours(Builder $query): Builder
     {
-        $now = now()->format('Y-m-d');
+        $yesterday = now()->subDay()->format('Y-m-d');
+        $today = now()->format('Y-m-d');
 
         return $query
-            ->where('date_created', $now)
-            ->where(function (Builder $query) use ($now) {
+            ->where(function (Builder $query) use ($today, $yesterday) {
                 return $query
-                    ->where(function (Builder $query) use ($now) {
+                    ->where(function (Builder $query) use ($today) {
                         return $query
-                            ->where('logged_create_date', '>=', "{$now} 00:00:00")
-                            ->where('logged_create_date', '<', "{$now} 08:00:00");
+                            ->where('date_created', $today)
+                            ->where('logged_create_date', '>=', "{$today} 00:00:00")
+                            ->where('logged_create_date', '<', "{$today} 07:00:00");
                     })
-                    ->orWhere(function (Builder $query) use ($now) {
+                    ->orWhere(function (Builder $query) use ($yesterday) {
                         return $query
-                            ->where('logged_create_date', '>=', "{$now} 17:00:00")
-                            ->where('logged_create_date', '<=', "{$now} 23:59:59");
+                            ->where('date_created', $yesterday)
+                            ->where('logged_create_date', '>=', "{$yesterday} 17:00:00")
+                            ->where('logged_create_date', '<=', "{$yesterday} 23:59:59");
                     });
             });
     }

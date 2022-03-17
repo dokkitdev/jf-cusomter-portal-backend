@@ -21,6 +21,7 @@
         "logged_completion_date": null,
         "next_schedule_id": null,
         "is_repair": false,
+        "name": null,
         "job_no_access_dates": []
     },
     {
@@ -45,6 +46,7 @@
         "logged_completion_date": null,
         "next_schedule_id": null,
         "is_repair": false,
+        "name": null,
         "job_no_access_dates": []
     },
     {
@@ -69,6 +71,7 @@
         "logged_completion_date": null,
         "next_schedule_id": null,
         "is_repair": false,
+        "name": null,
         "job_no_access_dates": []
     },
     {
@@ -93,6 +96,7 @@
         "logged_completion_date": null,
         "next_schedule_id": null,
         "is_repair": false,
+        "name": null,
         "job_no_access_dates": []
     },
     {
@@ -117,6 +121,7 @@
         "logged_completion_date": null,
         "next_schedule_id": null,
         "is_repair": false,
+        "name": null,
         "job_no_access_dates": []
     },
     {
@@ -141,6 +146,7 @@
         "logged_completion_date": null,
         "next_schedule_id": null,
         "is_repair": false,
+        "name": null,
         "job_no_access_dates": []
     },
     {
@@ -165,6 +171,7 @@
         "logged_completion_date": null,
         "next_schedule_id": null,
         "is_repair": false,
+        "name": null,
         "job_no_access_dates": []
     },
     {
@@ -189,6 +196,7 @@
         "logged_completion_date": null,
         "next_schedule_id": null,
         "is_repair": false,
+        "name": null,
         "job_no_access_dates": []
     },
     {
@@ -213,6 +221,7 @@
         "logged_completion_date": null,
         "next_schedule_id": null,
         "is_repair": false,
+        "name": null,
         "job_no_access_dates": []
     },
     {
@@ -237,6 +246,7 @@
         "logged_completion_date": null,
         "next_schedule_id": null,
         "is_repair": false,
+        "name": null,
         "job_no_access_dates": []
     },
     {
@@ -261,6 +271,7 @@
         "logged_completion_date": "2022-01-27 09:20:05",
         "next_schedule_id": 2,
         "is_repair": true,
+        "name": "Reactive - Fire",
         "job_no_access_dates": [
             {
                 "id": 1,

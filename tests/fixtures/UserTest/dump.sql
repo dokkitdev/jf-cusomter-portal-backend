@@ -34,8 +34,8 @@ INSERT INTO customer_site(id, customer_id, site_id) VALUES
 (6, 3, 4);
 
 INSERT INTO jobs(id, simpro_job_id, site_id, customer_id, stage, priority, date_created, logged_create_date) VALUES
-(1, 1, 1, 1, 'Pending', 'Fire Alarm - Standard 8 Hours', '2018-11-11', '2018-11-11 07:00:00'),
-(2, 2, 1, 1, 'Progress', 'Fire Alarm - Standard', '2018-11-11', '2018-11-11 18:00:00'),
+(1, 1, 1, 1, 'Pending', 'Fire Alarm - Standard 8 Hours', '2018-11-11', '2018-11-11 06:00:00'),
+(2, 2, 1, 1, 'Progress', 'Fire Alarm - Standard', '2018-11-10', '2018-11-10 18:00:00'),
 (3, 3, 1, 1, 'Invoiced', 'Intruder Alarm - Standard 4 Hours', '2018-11-11', '2018-11-11 13:00:00'),
 (4, 4, 1, 2, 'Complete', null, null, null),
 (5, 5, 1, 2, 'Archived', null, null, null),

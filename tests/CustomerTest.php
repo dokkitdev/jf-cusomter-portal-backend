@@ -33,7 +33,7 @@ class CustomerTest extends TestCase
 
         $this->artisan('simpro:handle-jobs')->assertExitCode(0);
 
-        $simproJobs = SimproJob::orderBy('id')->get()->toArray();
+        $simproJobs = SimproJob::orderBy('id')->where('handle_status', '!=', SimproJob::HANDLE_STATUS_COMPLETED)->get()->toArray();
         $this->assertEqualsFixture('simpro_jobs_fixture.json', $simproJobs);
 
         $customers = Customer::orderBy('id')->get()->toArray();
@@ -46,7 +46,7 @@ class CustomerTest extends TestCase
 
         $this->artisan('simpro:handle-jobs')->assertExitCode(0);
 
-        $simproJobs = SimproJob::orderBy('id')->get()->toArray();
+        $simproJobs = SimproJob::orderBy('id')->where('handle_status', '!=', SimproJob::HANDLE_STATUS_COMPLETED)->get()->toArray();
         $this->assertEqualsFixture('simpro_jobs_fixture.json', $simproJobs);
 
         $this->assertDatabaseMissing('customers', ['id' => 3]);

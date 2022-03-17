@@ -40,7 +40,7 @@ class AssetTest extends TestCase
 
         $this->artisan('simpro:handle-jobs')->assertExitCode(0);
 
-        $simproJob = SimproJob::orderBy('id')->get()->toArray();
+        $simproJob = SimproJob::orderBy('id')->where('handle_status', '!=', SimproJob::HANDLE_STATUS_COMPLETED)->get()->toArray();
         $this->assertEqualsFixture('simpro_jobs_fixture.json', $simproJob);
 
         $assets = Asset::orderBy('id')->get()->toArray();
@@ -68,7 +68,7 @@ class AssetTest extends TestCase
 
         $this->artisan('simpro:handle-jobs')->assertExitCode(0);
 
-        $simproJob = SimproJob::orderBy('id')->get()->toArray();
+        $simproJob = SimproJob::orderBy('id')->where('handle_status', '!=', SimproJob::HANDLE_STATUS_COMPLETED)->get()->toArray();
         $this->assertEqualsFixture('simpro_jobs_fixture.json', $simproJob);
 
         $assets = Asset::orderBy('id')->get()->toArray();

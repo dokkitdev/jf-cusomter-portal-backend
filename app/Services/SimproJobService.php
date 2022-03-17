@@ -37,6 +37,8 @@ class SimproJobService extends EntityService
         switch ($event) {
             case 'job.created':
             case 'job.updated':
+            case 'job.status':
+            case 'job.stage.complete':
                 return $this->jobService->createOrUpdateBySimpro($webhook);
             case 'job.deleted':
                 return $this->jobService->deleteBySimpro($webhook);

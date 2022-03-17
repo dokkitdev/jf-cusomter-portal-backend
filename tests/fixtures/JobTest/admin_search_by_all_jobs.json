@@ -23,6 +23,7 @@
             "logged_completion_date": null,
             "next_schedule_id": null,
             "is_repair": false,
+            "name": null,
             "site_postal_code": "ub1 1jg"
         },
         {
@@ -47,6 +48,7 @@
             "logged_completion_date": null,
             "next_schedule_id": null,
             "is_repair": false,
+            "name": null,
             "site_postal_code": "ub2 1jg"
         },
         {
@@ -71,6 +73,7 @@
             "logged_completion_date": null,
             "next_schedule_id": null,
             "is_repair": false,
+            "name": null,
             "site_postal_code": "ub2 1jg"
         },
         {
@@ -95,6 +98,7 @@
             "logged_completion_date": null,
             "next_schedule_id": null,
             "is_repair": false,
+            "name": null,
             "site_postal_code": "ub2 1jg"
         },
         {
@@ -119,6 +123,7 @@
             "logged_completion_date": null,
             "next_schedule_id": null,
             "is_repair": false,
+            "name": null,
             "site_postal_code": "ub8 1jg"
         },
         {
@@ -143,6 +148,7 @@
             "logged_completion_date": null,
             "next_schedule_id": null,
             "is_repair": false,
+            "name": null,
             "site_postal_code": "ub8 1jg"
         },
         {
@@ -167,6 +173,7 @@
             "logged_completion_date": null,
             "next_schedule_id": null,
             "is_repair": false,
+            "name": null,
             "site_postal_code": "ub8 1jg"
         },
         {
@@ -191,6 +198,7 @@
             "logged_completion_date": null,
             "next_schedule_id": null,
             "is_repair": false,
+            "name": null,
             "site_postal_code": "ub8 1jg"
         },
         {
@@ -215,6 +223,7 @@
             "logged_completion_date": null,
             "next_schedule_id": null,
             "is_repair": false,
+            "name": null,
             "site_postal_code": "ub8 1jg"
         },
         {
@@ -239,6 +248,7 @@
             "logged_completion_date": null,
             "next_schedule_id": null,
             "is_repair": false,
+            "name": null,
             "site_postal_code": "ub8 1jg"
         }
     ],

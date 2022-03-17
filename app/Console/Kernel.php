@@ -12,6 +12,7 @@ class Kernel extends ConsoleKernel
 
     protected function schedule(Schedule $schedule)
     {
+        $schedule->command('simpro:handle-jobs job.created')->environments(['production'])->everyMinute()->withoutOverlapping()->runInBackground();
         $schedule->command('simpro:handle-jobs job 5 0')->environments(['production'])->everyMinute()->withoutOverlapping()->runInBackground();
         $schedule->command('simpro:handle-jobs job 5 1')->environments(['production'])->everyMinute()->withoutOverlapping()->runInBackground();
         $schedule->command('simpro:handle-jobs job 5 2')->environments(['production'])->everyMinute()->withoutOverlapping()->runInBackground();

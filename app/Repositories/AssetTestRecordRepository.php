@@ -20,7 +20,6 @@ class AssetTestRecordRepository extends BaseRepository
         return $this->getQuery()
             ->where('asset_id', $assetId)
             ->whereNotNull('job_id')
-            ->whereIn('result', [AssetTestRecord::RESULT_PASS, AssetTestRecord::RESULT_FAIL])
             ->orderBy('id')
             ->with(['job.customer', 'job.next_schedule', 'job.job_no_access_dates'])
             ->first();

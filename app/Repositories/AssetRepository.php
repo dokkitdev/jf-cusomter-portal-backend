@@ -6,7 +6,6 @@ use App\Models\Asset;
 use App\Models\Job;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\DB;
 
 /**
  * @property Asset $model
@@ -39,26 +38,47 @@ class AssetRepository extends BaseRepository
     public function filterByCP12Status(): self
     {
         if (Arr::has($this->filter, 'cp12_status')) {
+            $this->query->whereHas('job', function (Builder $query) {
+                return $query->whereIn('stage', Job::OPEN_STAGES);
+            });
+
             if ($this->filter['cp12_status'] === Asset::CP12_STATUS_ON_TIME) {
-                $this->query->where(DB::raw("last_cp12_date + interval '1 year'"), '>', now()->addDays(28)->format('Y-m-d'));
+                $this->query->where(function (Builder $query) {
+                    return $query
+                        ->whereNull('last_cp12_date')
+                        ->orWhere(function (Builder $query) {
+                            return $query
+                                ->whereNotNull('last_cp12_date')
+                                ->whereNotNull('last_test_date')
+                                ->whereRaw('(last_cp12_date - last_test_date) <= 393');
+                        });
+                });
             }
 
             if ($this->filter['cp12_status'] === Asset::CP12_STATUS_DUE) {
                 $this->query
-                    ->where(function (Builder $query) {
-                        return $query
-                            ->where(DB::raw("last_cp12_date + interval '1 year'"), '>', now()->format('Y-m-d'))
-                            ->where(DB::raw("last_cp12_date + interval '1 year'"), '<', now()->addDays(28)->format('Y-m-d'));
-                    });
+                    ->whereNotNull('last_cp12_date')
+                    ->whereNull('last_test_date')
+                    ->whereRaw('(last_cp12_date - CURRENT_DATE) <= 393');
             }
 
             if ($this->filter['cp12_status'] === Asset::CP12_STATUS_OVERDUE) {
-                $this->query->where(DB::raw("last_cp12_date + interval '1 year'"), '<=', now()->format('Y-m-d'));
+                $this->query->where(function (Builder $query) {
+                    return $query
+                        ->where(function (Builder $query) {
+                            return $query
+                                ->whereNotNull('last_cp12_date')
+                                ->whereNull('last_test_date')
+                                ->whereRaw('(last_cp12_date - CURRENT_DATE) > 393');
+                        })
+                        ->orWhere(function (Builder $query) {
+                            return $query
+                                ->whereNotNull('last_cp12_date')
+                                ->whereNotNull('last_test_date')
+                                ->whereRaw('(last_cp12_date - last_test_date) > 393');
+                        });
+                });
             }
-
-            $this->query->whereHas('job', function (Builder $query) {
-                return $query->whereIn('stage', Job::OPEN_STAGES);
-            });
         }
 
         return $this;

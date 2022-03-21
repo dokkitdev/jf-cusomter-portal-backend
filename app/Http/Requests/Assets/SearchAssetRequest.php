@@ -46,6 +46,7 @@ class SearchAssetRequest extends Request
             'model_query' => 'string',
             'simpro_asset_id' => 'integer',
             'customer_id' => 'integer',
+            'job_customer_id' => 'integer',
             'site_id' => 'integer',
             'archived' => 'boolean',
             'last_test_date' => 'date',

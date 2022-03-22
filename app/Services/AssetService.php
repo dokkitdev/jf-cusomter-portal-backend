@@ -194,7 +194,7 @@ class AssetService extends BaseService
         ]);
     }
 
-    protected function updateReportFields(Model $asset): Model
+    public function updateReportFields(Model $asset): Model
     {
         $data = [];
 

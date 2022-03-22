@@ -372,4 +372,12 @@ class AssetTest extends TestCase
 
         $response->assertStatus(Response::HTTP_UNAUTHORIZED);
     }
+
+    public function testUpdateAssetsCommand()
+    {
+        $this->artisan('simpro:update-assets')->assertExitCode(0);
+
+        $assets = Asset::orderBy('id')->get()->toArray();
+        $this->assertEqualsFixture('update_assets_command_fixture.json', $assets);
+    }
 }

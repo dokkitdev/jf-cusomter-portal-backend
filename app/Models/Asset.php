@@ -55,19 +55,29 @@ class Asset extends BaseModel
     {
         $status = null;
 
-        if (in_array(Arr::get($this, 'job.stage'), Job::OPEN_STAGES) && $this->last_cp12_date) {
-            $lastCP12DateAndYear = Carbon::parse($this->last_cp12_date)->startOfDay()->addYear();
-
-            if ($lastCP12DateAndYear->lessThanOrEqualTo(now()->startOfDay())) {
-                $status = self::CP12_STATUS_OVERDUE;
-            }
-
-            if ($lastCP12DateAndYear->greaterThan(now()->startOfDay()) && $lastCP12DateAndYear->lessThan(now()->addDays(28)->startOfDay())) {
-                $status = self::CP12_STATUS_DUE;
-            }
-
-            if ($lastCP12DateAndYear->greaterThan(now()->addDays(28)->startOfDay())) {
+        if (in_array(Arr::get($this, 'job.stage'), Job::OPEN_STAGES)) {
+            if (!$this->last_cp12_date) {
                 $status = self::CP12_STATUS_ON_TIME;
+            } else {
+                $lastCP12Date = Carbon::parse($this->last_cp12_date)->startOfDay();
+
+                if (!$this->last_test_date) {
+                    $nowDate = now()->startOfDay();
+
+                    if ($nowDate->diffInDays($lastCP12Date, false) <= 393) {
+                        $status = self::CP12_STATUS_DUE;
+                    } else {
+                        $status = self::CP12_STATUS_OVERDUE;
+                    }
+                } else {
+                    $lastTestDate = Carbon::parse($this->last_test_date)->startOfDay();
+
+                    if ($lastTestDate->diffInDays($lastCP12Date, false) <= 393) {
+                        $status = self::CP12_STATUS_ON_TIME;
+                    } else {
+                        $status = self::CP12_STATUS_OVERDUE;
+                    }
+                }
             }
         }
 

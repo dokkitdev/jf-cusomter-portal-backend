@@ -3,7 +3,6 @@
 namespace App\Repositories;
 
 use App\Models\Asset;
-use App\Models\Job;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Arr;
 
@@ -38,28 +37,29 @@ class AssetRepository extends BaseRepository
     public function filterByCP12Status(): self
     {
         if (Arr::has($this->filter, 'cp12_status')) {
-            $this->query->whereHas('job', function (Builder $query) {
-                return $query->whereIn('stage', Job::OPEN_STAGES);
-            });
-
             if ($this->filter['cp12_status'] === Asset::CP12_STATUS_ON_TIME) {
                 $this->query->where(function (Builder $query) {
                     return $query
-                        ->whereNull('last_cp12_date')
-                        ->orWhere(function (Builder $query) {
+                        ->where(function (Builder $query) {
                             return $query
-                                ->whereNotNull('last_cp12_date')
-                                ->whereNotNull('last_test_date')
-                                ->whereRaw('(last_cp12_date - last_test_date) <= 393');
-                        });
+                                ->whereNull('last_cp12_date')
+                                ->whereNull('last_test_date');
+                        })
+                        ->orWhereRaw('(COALESCE(last_test_date, last_cp12_date) - CURRENT_DATE) < 338');
                 });
             }
 
             if ($this->filter['cp12_status'] === Asset::CP12_STATUS_DUE) {
-                $this->query
-                    ->whereNotNull('last_cp12_date')
-                    ->whereNull('last_test_date')
-                    ->whereRaw('(last_cp12_date - CURRENT_DATE) <= 393');
+                $this->query->where(function (Builder $query) {
+                    return $query
+                        ->where(function (Builder $query) {
+                            return $query
+                                ->whereNotNull('last_test_date')
+                                ->orWhereNotNull('last_cp12_date');
+                        })
+                        ->whereRaw('(COALESCE(last_test_date, last_cp12_date) - CURRENT_DATE) > 337')
+                        ->whereRaw('(COALESCE(last_test_date, last_cp12_date) - CURRENT_DATE) < 367');
+                });
             }
 
             if ($this->filter['cp12_status'] === Asset::CP12_STATUS_OVERDUE) {
@@ -67,16 +67,10 @@ class AssetRepository extends BaseRepository
                     return $query
                         ->where(function (Builder $query) {
                             return $query
-                                ->whereNotNull('last_cp12_date')
-                                ->whereNull('last_test_date')
-                                ->whereRaw('(last_cp12_date - CURRENT_DATE) > 393');
-                        })
-                        ->orWhere(function (Builder $query) {
-                            return $query
-                                ->whereNotNull('last_cp12_date')
                                 ->whereNotNull('last_test_date')
-                                ->whereRaw('(last_cp12_date - last_test_date) > 393');
-                        });
+                                ->orWhereNotNull('last_cp12_date');
+                        })
+                        ->whereRaw('(COALESCE(last_test_date, last_cp12_date) - CURRENT_DATE) > 366');
                 });
             }
         }

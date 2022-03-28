@@ -214,7 +214,9 @@ class AssetService extends BaseService
         if (Arr::has($assetTestRecord, 'job.job_no_access_dates')) {
             $noAccessDates = Arr::get($assetTestRecord, 'job.job_no_access_dates');
 
-            foreach ($noAccessDates as $key => $value) {
+            $noAccessDatesSorted = $noAccessDates->sortBy('id');
+
+            foreach ($noAccessDatesSorted as $key => $value) {
                 $index = $key + 1;
                 $data["no_access_date_{$index}"] = $value['date'];
 

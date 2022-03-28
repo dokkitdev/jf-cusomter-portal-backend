@@ -39,6 +39,7 @@ class SimproJobService extends EntityService
             case 'job.updated':
             case 'job.status':
             case 'job.stage.complete':
+            case 'job.stage.archived':
                 return $this->jobService->createOrUpdateBySimpro($webhook);
             case 'job.deleted':
                 return $this->jobService->deleteBySimpro($webhook);

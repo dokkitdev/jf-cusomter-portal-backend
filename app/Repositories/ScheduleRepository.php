@@ -28,7 +28,7 @@ class ScheduleRepository extends BaseRepository
     {
         return $this
             ->getQuery(['job_id' => $jobId])
-            ->where(DB::raw('cast(date as date)'), '>', now()->format('Y-m-d'))
+            ->where(DB::raw('cast(date as date)'), '>=', now()->format('Y-m-d'))
             ->orderBy('date')
             ->first();
     }

@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 
@@ -53,35 +52,25 @@ class Asset extends BaseModel
 
     public function getCp12StatusAttribute()
     {
-        $status = null;
-
-        if (in_array(Arr::get($this, 'job.stage'), Job::OPEN_STAGES)) {
-            if (!$this->last_cp12_date) {
-                $status = self::CP12_STATUS_ON_TIME;
-            } else {
-                $lastCP12Date = Carbon::parse($this->last_cp12_date)->startOfDay();
-
-                if (!$this->last_test_date) {
-                    $nowDate = now()->startOfDay();
-
-                    if ($nowDate->diffInDays($lastCP12Date, false) <= 393) {
-                        $status = self::CP12_STATUS_DUE;
-                    } else {
-                        $status = self::CP12_STATUS_OVERDUE;
-                    }
-                } else {
-                    $lastTestDate = Carbon::parse($this->last_test_date)->startOfDay();
-
-                    if ($lastTestDate->diffInDays($lastCP12Date, false) <= 393) {
-                        $status = self::CP12_STATUS_ON_TIME;
-                    } else {
-                        $status = self::CP12_STATUS_OVERDUE;
-                    }
-                }
-            }
+        if (!$this->last_test_date && !$this->last_cp12_date) {
+            return self::CP12_STATUS_ON_TIME;
         }
 
-        return $status;
+        $date = $this->last_test_date ?? $this->last_cp12_date;
+
+        $date = Carbon::parse($date)->startOfDay();
+
+        $diffInDays = now()->startOfDay()->diffInDays($date, false);
+
+        if ($diffInDays < 338) {
+            return self::CP12_STATUS_ON_TIME;
+        }
+
+        if ($diffInDays > 366) {
+            return self::CP12_STATUS_OVERDUE;
+        }
+
+        return self::CP12_STATUS_DUE;
     }
 
     public function site()
@@ -122,7 +111,7 @@ class Asset extends BaseModel
     public function next_schedule()
     {
         return $this->hasOne(Schedule::class, 'job_id', 'job_id')
-            ->where(DB::raw('cast(date as date)'), '>', now()->format('Y-m-d'))
+            ->where(DB::raw('cast(date as date)'), '>=', now()->format('Y-m-d'))
             ->orderBy('date');
     }
 }

@@ -11,20 +11,20 @@ class UpdateAssets extends Command
 
     protected $description = 'Update Assets';
 
+    protected $count = 0;
+
     public function handle(): void
     {
         $service = app(AssetService::class);
 
-        $count = 0;
-
-        $service->chunk(1000, function ($assets) use ($service, $count) {
+        $service->chunk(1000, function ($assets) use ($service) {
             foreach ($assets as $asset) {
                 $service->updateReportFields($asset);
 
-                $count++;
+                $this->count++;
             }
 
-            $this->line($count);
+            $this->line($this->count);
         });
 
         $this->line('Assets updated');

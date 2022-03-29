@@ -217,15 +217,20 @@ class AssetService extends BaseService
 
             $noAccessDatesSorted = $noAccessDates->sortBy('id');
 
-            foreach ($noAccessDatesSorted as $key => $value) {
-                $index = $key + 1;
+            $index = 1;
+
+            foreach ($noAccessDatesSorted as $value) {
                 $data["no_access_date_{$index}"] = $value['date'];
 
                 if ($index === 5) {
                     break;
                 }
+
+                $index++;
             }
         }
+
+        $data['sortable_date'] = $asset['last_test_date'] ?? $asset['last_cp12_date'];
 
         return $this->repository->update($asset['id'], $data);
     }

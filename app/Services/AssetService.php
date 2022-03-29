@@ -188,9 +188,10 @@ class AssetService extends BaseService
             'location' => Arr::get($locationCustomField, 'Value'),
             'make' => Arr::get($makeCustomField, 'Value'),
             'model' => Arr::get($modelCustomField, 'Value'),
-            'last_cp12_date' => Arr::get($cp12CustomField, 'Value', Arr::get($simproAsset, 'LastTest.Date')),
+            'last_cp12_date' => Arr::get($cp12CustomField, 'Value'),
             'custom_asset_type_value' => Arr::get($assetTypeCustomField, 'Value'),
             'expiry_date' => Arr::get($expiryDateCustomField, 'Value'),
+            'sortable_date' => Arr::get($simproAsset, 'LastTest.Date', Arr::get($cp12CustomField, 'Value')),
         ]);
     }
 

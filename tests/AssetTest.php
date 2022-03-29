@@ -380,4 +380,12 @@ class AssetTest extends TestCase
         $assets = Asset::orderBy('id')->get()->toArray();
         $this->assertEqualsFixture('update_assets_command_fixture.json', $assets);
     }
+
+    public function testUpdateAssetsDateCommand()
+    {
+        $this->artisan('simpro:update-assets-date')->assertExitCode(0);
+
+        $assets = Asset::orderBy('id')->get()->toArray();
+        $this->assertEqualsFixture('update_assets_date_command_fixture.json', $assets);
+    }
 }

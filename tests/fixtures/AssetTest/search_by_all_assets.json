@@ -29,7 +29,8 @@
             "no_access_date_3": null,
             "no_access_date_4": null,
             "no_access_date_5": null,
-            "expiry_date": null
+            "expiry_date": null,
+            "sortable_date": null
         },
         {
             "id": 2,
@@ -59,7 +60,8 @@
             "no_access_date_3": null,
             "no_access_date_4": null,
             "no_access_date_5": null,
-            "expiry_date": null
+            "expiry_date": null,
+            "sortable_date": null
         },
         {
             "id": 3,
@@ -89,7 +91,8 @@
             "no_access_date_3": null,
             "no_access_date_4": null,
             "no_access_date_5": null,
-            "expiry_date": null
+            "expiry_date": null,
+            "sortable_date": null
         },
         {
             "id": 4,
@@ -119,7 +122,8 @@
             "no_access_date_3": null,
             "no_access_date_4": null,
             "no_access_date_5": null,
-            "expiry_date": null
+            "expiry_date": null,
+            "sortable_date": null
         },
         {
             "id": 5,
@@ -149,7 +153,8 @@
             "no_access_date_3": null,
             "no_access_date_4": null,
             "no_access_date_5": null,
-            "expiry_date": null
+            "expiry_date": null,
+            "sortable_date": null
         },
         {
             "id": 6,
@@ -179,7 +184,8 @@
             "no_access_date_3": null,
             "no_access_date_4": null,
             "no_access_date_5": null,
-            "expiry_date": null
+            "expiry_date": null,
+            "sortable_date": null
         },
         {
             "id": 8,
@@ -209,7 +215,8 @@
             "no_access_date_3": null,
             "no_access_date_4": null,
             "no_access_date_5": null,
-            "expiry_date": null
+            "expiry_date": null,
+            "sortable_date": null
         },
         {
             "id": 9,
@@ -239,7 +246,8 @@
             "no_access_date_3": null,
             "no_access_date_4": null,
             "no_access_date_5": null,
-            "expiry_date": null
+            "expiry_date": null,
+            "sortable_date": null
         },
         {
             "id": 10,
@@ -269,7 +277,8 @@
             "no_access_date_3": null,
             "no_access_date_4": null,
             "no_access_date_5": null,
-            "expiry_date": null
+            "expiry_date": null,
+            "sortable_date": null
         }
     ],
     "first_page_url": "http:\/\/localhost\/assets?page=1",

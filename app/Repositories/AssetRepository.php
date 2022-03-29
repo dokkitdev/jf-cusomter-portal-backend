@@ -45,7 +45,8 @@ class AssetRepository extends BaseRepository
                                 ->whereNull('last_cp12_date')
                                 ->whereNull('last_test_date');
                         })
-                        ->orWhereRaw('(COALESCE(last_test_date, last_cp12_date) - CURRENT_DATE) < 338');
+                        ->orWhereRaw('ABS((COALESCE(last_test_date, last_cp12_date) - CURRENT_DATE)) < 338')
+                        ->orWhereRaw('EXTRACT(YEAR FROM COALESCE(last_test_date, last_cp12_date)) > EXTRACT(YEAR FROM CURRENT_DATE)');
                 });
             }
 
@@ -57,8 +58,9 @@ class AssetRepository extends BaseRepository
                                 ->whereNotNull('last_test_date')
                                 ->orWhereNotNull('last_cp12_date');
                         })
-                        ->whereRaw('(COALESCE(last_test_date, last_cp12_date) - CURRENT_DATE) > 337')
-                        ->whereRaw('(COALESCE(last_test_date, last_cp12_date) - CURRENT_DATE) < 367');
+                        ->whereRaw('ABS((COALESCE(last_test_date, last_cp12_date) - CURRENT_DATE)) > 337')
+                        ->whereRaw('ABS((COALESCE(last_test_date, last_cp12_date) - CURRENT_DATE)) < 367')
+                        ->whereRaw('EXTRACT(YEAR FROM COALESCE(last_test_date, last_cp12_date)) < EXTRACT(YEAR FROM CURRENT_DATE)');
                 });
             }
 
@@ -70,7 +72,8 @@ class AssetRepository extends BaseRepository
                                 ->whereNotNull('last_test_date')
                                 ->orWhereNotNull('last_cp12_date');
                         })
-                        ->whereRaw('(COALESCE(last_test_date, last_cp12_date) - CURRENT_DATE) > 366');
+                        ->whereRaw('ABS((COALESCE(last_test_date, last_cp12_date) - CURRENT_DATE)) > 366')
+                        ->whereRaw('EXTRACT(YEAR FROM COALESCE(last_test_date, last_cp12_date)) < EXTRACT(YEAR FROM CURRENT_DATE)');
                 });
             }
         }

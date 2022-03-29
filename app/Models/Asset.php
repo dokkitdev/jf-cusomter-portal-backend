@@ -61,9 +61,9 @@ class Asset extends BaseModel
 
         $date = Carbon::parse($date)->startOfDay();
 
-        $diffInDays = now()->startOfDay()->diffInDays($date, false);
+        $diffInDays = now()->startOfDay()->diffInDays($date);
 
-        if ($diffInDays < 338) {
+        if (($diffInDays < 338) || ($date->year > now()->year)) {
             return self::CP12_STATUS_ON_TIME;
         }
 

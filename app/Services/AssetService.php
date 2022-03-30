@@ -191,7 +191,6 @@ class AssetService extends BaseService
             'last_cp12_date' => Arr::get($cp12CustomField, 'Value'),
             'custom_asset_type_value' => Arr::get($assetTypeCustomField, 'Value'),
             'expiry_date' => Arr::get($expiryDateCustomField, 'Value'),
-            'sortable_date' => Arr::get($simproAsset, 'LastTest.Date', Arr::get($cp12CustomField, 'Value')),
         ]);
     }
 
@@ -230,7 +229,10 @@ class AssetService extends BaseService
             }
         }
 
-        $data['sortable_date'] = $asset['last_test_date'] ?? $asset['last_cp12_date'];
+        $testRecordDate = $this->assetTestRecordService->getAssetTestRecordDateForReport($asset['id']);
+
+        $data['test_record_date'] = $testRecordDate;
+        $data['sortable_date'] = $asset['last_test_date'] ?? $testRecordDate ?? $asset['last_cp12_date'] ?? null;
 
         return $this->repository->update($asset['id'], $data);
     }

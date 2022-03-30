@@ -40,7 +40,8 @@ class Asset extends BaseModel
         'no_access_date_4',
         'no_access_date_5',
         'expiry_date',
-        'sortable_date'
+        'sortable_date',
+        'test_record_date'
     ];
 
     protected $hidden = ['pivot'];

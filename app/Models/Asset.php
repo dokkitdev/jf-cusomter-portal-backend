@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 
@@ -53,6 +54,10 @@ class Asset extends BaseModel
 
     public function getCp12StatusAttribute()
     {
+        if (!in_array(Arr::get($this, 'job.stage'), Job::OPEN_STAGES)) {
+            return null;
+        }
+
         if (!$this->last_test_date && !$this->last_cp12_date) {
             return self::CP12_STATUS_ON_TIME;
         }
@@ -61,9 +66,9 @@ class Asset extends BaseModel
 
         $date = Carbon::parse($date)->startOfDay();
 
-        $diffInDays = now()->startOfDay()->diffInDays($date, false);
+        $diffInDays = now()->startOfDay()->diffInDays($date);
 
-        if ($diffInDays < 338) {
+        if (($diffInDays < 338) || ($date->year > now()->year)) {
             return self::CP12_STATUS_ON_TIME;
         }
 

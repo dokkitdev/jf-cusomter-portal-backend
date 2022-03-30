@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Asset;
+use App\Models\Job;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Arr;
 
@@ -37,6 +38,10 @@ class AssetRepository extends BaseRepository
     public function filterByCP12Status(): self
     {
         if (Arr::has($this->filter, 'cp12_status')) {
+            $this->query->whereHas('job', function ($query) {
+                return $query->whereIn('stage', Job::OPEN_STAGES);
+            });
+
             if ($this->filter['cp12_status'] === Asset::CP12_STATUS_ON_TIME) {
                 $this->query->where(function (Builder $query) {
                     return $query

@@ -47,11 +47,10 @@ class AssetRepository extends BaseRepository
                     return $query
                         ->where(function (Builder $query) {
                             return $query
-                                ->whereNull('last_cp12_date')
-                                ->whereNull('last_test_date');
+                                ->whereNull('sortable_date');
                         })
-                        ->orWhereRaw('ABS((COALESCE(last_test_date, last_cp12_date) - CURRENT_DATE)) < 338')
-                        ->orWhereRaw('EXTRACT(YEAR FROM COALESCE(last_test_date, last_cp12_date)) > EXTRACT(YEAR FROM CURRENT_DATE)');
+                        ->orWhereRaw('ABS((sortable_date - CURRENT_DATE)) < 338')
+                        ->orWhereRaw('EXTRACT(YEAR FROM sortable_date) > EXTRACT(YEAR FROM CURRENT_DATE)');
                 });
             }
 
@@ -60,12 +59,11 @@ class AssetRepository extends BaseRepository
                     return $query
                         ->where(function (Builder $query) {
                             return $query
-                                ->whereNotNull('last_test_date')
-                                ->orWhereNotNull('last_cp12_date');
+                                ->whereNotNull('sortable_date');
                         })
-                        ->whereRaw('ABS((COALESCE(last_test_date, last_cp12_date) - CURRENT_DATE)) > 337')
-                        ->whereRaw('ABS((COALESCE(last_test_date, last_cp12_date) - CURRENT_DATE)) < 367')
-                        ->whereRaw('EXTRACT(YEAR FROM COALESCE(last_test_date, last_cp12_date)) < EXTRACT(YEAR FROM CURRENT_DATE)');
+                        ->whereRaw('ABS((sortable_date - CURRENT_DATE)) > 337')
+                        ->whereRaw('ABS((sortable_date - CURRENT_DATE)) < 367')
+                        ->whereRaw('EXTRACT(YEAR FROM sortable_date) < EXTRACT(YEAR FROM CURRENT_DATE)');
                 });
             }
 
@@ -74,11 +72,10 @@ class AssetRepository extends BaseRepository
                     return $query
                         ->where(function (Builder $query) {
                             return $query
-                                ->whereNotNull('last_test_date')
-                                ->orWhereNotNull('last_cp12_date');
+                                ->whereNotNull('sortable_date');
                         })
-                        ->whereRaw('ABS((COALESCE(last_test_date, last_cp12_date) - CURRENT_DATE)) > 366')
-                        ->whereRaw('EXTRACT(YEAR FROM COALESCE(last_test_date, last_cp12_date)) < EXTRACT(YEAR FROM CURRENT_DATE)');
+                        ->whereRaw('ABS((sortable_date - CURRENT_DATE)) > 366')
+                        ->whereRaw('EXTRACT(YEAR FROM sortable_date) < EXTRACT(YEAR FROM CURRENT_DATE)');
                 });
             }
         }

@@ -59,13 +59,11 @@ class Asset extends BaseModel
             return null;
         }
 
-        if (!$this->last_test_date && !$this->last_cp12_date) {
+        if (!$this->sortable_date) {
             return self::CP12_STATUS_ON_TIME;
         }
 
-        $date = $this->last_test_date ?? $this->last_cp12_date;
-
-        $date = Carbon::parse($date)->startOfDay();
+        $date = Carbon::parse($this->sortable_date)->startOfDay();
 
         $diffInDays = now()->startOfDay()->diffInDays($date);
 

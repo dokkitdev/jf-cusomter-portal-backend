@@ -30,7 +30,8 @@
             "no_access_date_4": null,
             "no_access_date_5": null,
             "expiry_date": null,
-            "sortable_date": null
+            "sortable_date": "2016-10-20",
+            "test_record_date": null
         }
     ],
     "first_page_url": "http:\/\/localhost\/assets?page=1",

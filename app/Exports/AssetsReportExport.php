@@ -51,7 +51,7 @@ class AssetsReportExport extends BaseExport implements FromCollection, WithHeadi
     public function map($row): array
     {
         $completionDate = Arr::get($row, 'job.completion_date');
-        $lastCP12Date = $row['last_test_date'] ?? $row['last_cp12_date'];
+        $lastCP12Date = $row['sortable_date'];
         $nextScheduledDate = Arr::get($row, 'next_schedule.date');
 
         return [

@@ -31,6 +31,7 @@
             "no_access_date_5": null,
             "expiry_date": null,
             "sortable_date": null,
+            "test_record_date": null,
             "job_customer_name": "Simpro Customer",
             "cp12_status": "On Time",
             "site": {

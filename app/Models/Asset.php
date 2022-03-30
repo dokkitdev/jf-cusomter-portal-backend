@@ -40,7 +40,8 @@ class Asset extends BaseModel
         'no_access_date_4',
         'no_access_date_5',
         'expiry_date',
-        'sortable_date'
+        'sortable_date',
+        'test_record_date'
     ];
 
     protected $hidden = ['pivot'];
@@ -58,13 +59,11 @@ class Asset extends BaseModel
             return null;
         }
 
-        if (!$this->last_test_date && !$this->last_cp12_date) {
+        if (!$this->sortable_date) {
             return self::CP12_STATUS_ON_TIME;
         }
 
-        $date = $this->last_test_date ?? $this->last_cp12_date;
-
-        $date = Carbon::parse($date)->startOfDay();
+        $date = Carbon::parse($this->sortable_date)->startOfDay();
 
         $diffInDays = now()->startOfDay()->diffInDays($date);
 

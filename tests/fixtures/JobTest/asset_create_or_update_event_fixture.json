@@ -18,9 +18,9 @@
         "last_cp12_date": "2021-01-06",
         "asset_type": 4,
         "custom_asset_type_value": null,
-        "asset_test_record_id": 1,
-        "job_id": 1,
-        "customer_id": 1,
+        "asset_test_record_id": null,
+        "job_id": null,
+        "customer_id": null,
         "next_schedule_id": null,
         "no_access_date_1": null,
         "no_access_date_2": null,
@@ -29,7 +29,7 @@
         "no_access_date_5": null,
         "expiry_date": null,
         "sortable_date": "2016-10-20",
-        "test_record_date": "2016-10-20"
+        "test_record_date": null
     },
     {
         "id": 2,
@@ -82,9 +82,9 @@
         "last_cp12_date": "2021-01-10",
         "asset_type": 4,
         "custom_asset_type_value": null,
-        "asset_test_record_id": 4,
-        "job_id": 2,
-        "customer_id": 1,
+        "asset_test_record_id": null,
+        "job_id": null,
+        "customer_id": null,
         "next_schedule_id": null,
         "no_access_date_1": null,
         "no_access_date_2": null,
@@ -92,8 +92,8 @@
         "no_access_date_4": null,
         "no_access_date_5": null,
         "expiry_date": null,
-        "sortable_date": "2016-10-20",
-        "test_record_date": "2016-10-20"
+        "sortable_date": "2021-01-10",
+        "test_record_date": null
     },
     {
         "id": 4,
@@ -146,9 +146,9 @@
         "last_cp12_date": null,
         "asset_type": 4,
         "custom_asset_type_value": null,
-        "asset_test_record_id": 6,
-        "job_id": 1,
-        "customer_id": 1,
+        "asset_test_record_id": null,
+        "job_id": null,
+        "customer_id": null,
         "next_schedule_id": null,
         "no_access_date_1": null,
         "no_access_date_2": null,
@@ -156,8 +156,8 @@
         "no_access_date_4": null,
         "no_access_date_5": null,
         "expiry_date": null,
-        "sortable_date": "2016-10-20",
-        "test_record_date": "2016-10-20"
+        "sortable_date": null,
+        "test_record_date": null
     },
     {
         "id": 6,
@@ -210,9 +210,9 @@
         "last_cp12_date": null,
         "asset_type": 3,
         "custom_asset_type_value": null,
-        "asset_test_record_id": 8,
-        "job_id": 2,
-        "customer_id": 1,
+        "asset_test_record_id": null,
+        "job_id": null,
+        "customer_id": null,
         "next_schedule_id": null,
         "no_access_date_1": null,
         "no_access_date_2": null,
@@ -220,8 +220,8 @@
         "no_access_date_4": null,
         "no_access_date_5": null,
         "expiry_date": null,
-        "sortable_date": "2016-10-20",
-        "test_record_date": "2016-10-20"
+        "sortable_date": null,
+        "test_record_date": null
     },
     {
         "id": 8,
@@ -274,9 +274,9 @@
         "last_cp12_date": null,
         "asset_type": 3,
         "custom_asset_type_value": null,
-        "asset_test_record_id": 10,
-        "job_id": 2,
-        "customer_id": 1,
+        "asset_test_record_id": null,
+        "job_id": null,
+        "customer_id": null,
         "next_schedule_id": null,
         "no_access_date_1": null,
         "no_access_date_2": null,
@@ -284,8 +284,8 @@
         "no_access_date_4": null,
         "no_access_date_5": null,
         "expiry_date": null,
-        "sortable_date": "2016-10-20",
-        "test_record_date": "2016-10-20"
+        "sortable_date": null,
+        "test_record_date": null
     },
     {
         "id": 10,
@@ -318,37 +318,5 @@
         "expiry_date": null,
         "sortable_date": null,
         "test_record_date": null
-    },
-    {
-        "id": 11,
-        "simpro_asset_id": 10000,
-        "site_id": 6,
-        "name": "Fire Alarm - Panel",
-        "customer_name": "United Facilities Management Ltd - 36-38 Cornhill - Fire Alarm",
-        "location": "Ground floor reception",
-        "make": null,
-        "model": null,
-        "last_test_date": null,
-        "next_service_date": "2021-08-01",
-        "last_test_result": "No Test",
-        "service_level_name": "Quarterly",
-        "archived": false,
-        "created_at": "2018-11-11T11:11:11.000000Z",
-        "updated_at": "2018-11-11T11:11:11.000000Z",
-        "last_cp12_date": null,
-        "asset_type": 1,
-        "custom_asset_type_value": null,
-        "asset_test_record_id": 11,
-        "job_id": 3,
-        "customer_id": 4,
-        "next_schedule_id": 4,
-        "no_access_date_1": "2022-01-27 09:20:05",
-        "no_access_date_2": null,
-        "no_access_date_3": null,
-        "no_access_date_4": null,
-        "no_access_date_5": null,
-        "expiry_date": null,
-        "sortable_date": "2021-02-25",
-        "test_record_date": "2021-02-25"
     }
 ]

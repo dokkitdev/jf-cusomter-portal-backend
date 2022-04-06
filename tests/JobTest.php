@@ -2,6 +2,7 @@
 
 namespace App\Tests;
 
+use App\Models\Asset;
 use App\Models\Job;
 use App\Models\JobAttachment;
 use App\Models\JobCatalog;
@@ -69,6 +70,9 @@ class JobTest extends TestCase
 
         $jobWorkOrders = JobWorkOrder::orderBy('id')->get()->toArray();
         $this->assertEqualsFixture('job_work_orders_create_or_update_event_fixture.json', $jobWorkOrders);
+
+        $assets = Asset::orderBy('id')->get()->toArray();
+        $this->assertEqualsFixture('asset_create_or_update_event_fixture.json', $assets);
     }
 
     public function testDeleteJobEvent()

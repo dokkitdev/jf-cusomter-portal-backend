@@ -205,11 +205,11 @@ class AssetService extends BaseService
         $data['customer_id'] = Arr::get($assetTestRecord, 'job.customer.id');
         $data['next_schedule_id'] = Arr::get($assetTestRecord, 'job.next_schedule.id');
 
-        $data["no_access_date_1"] = null;
-        $data["no_access_date_2"] = null;
-        $data["no_access_date_3"] = null;
-        $data["no_access_date_4"] = null;
-        $data["no_access_date_5"] = null;
+        $data['no_access_date_1'] = null;
+        $data['no_access_date_2'] = null;
+        $data['no_access_date_3'] = null;
+        $data['no_access_date_4'] = null;
+        $data['no_access_date_5'] = null;
 
         if (Arr::has($assetTestRecord, 'job.job_no_access_dates')) {
             $noAccessDates = Arr::get($assetTestRecord, 'job.job_no_access_dates');
@@ -235,6 +235,13 @@ class AssetService extends BaseService
         $data['sortable_date'] = $asset['last_test_date'] ?? $testRecordDate ?? $asset['last_cp12_date'] ?? null;
 
         return $this->repository->update($asset['id'], $data);
+    }
+
+    public function updateReportFieldsFromJob(int $jobId): void
+    {
+        $this->repository->get(['job_id' => $jobId])->each(function (Asset $asset) {
+            $this->updateReportFields($asset);
+        });
     }
 
     protected function getAssetId(SimproJob $webhook): string

@@ -125,14 +125,14 @@ class AssetService extends BaseService
     public function updateOrCreateBySimpro(SimproJob $webhook): Model
     {
         $companyId = 0;
-        $assetId = $this->getAssetId($webhook);
+        $assetId = $this->getAssetId(Arr::get($webhook, 'data.description'));
 
         return $this->createOrUpdateAsset($companyId, $assetId);
     }
 
     public function deleteBySimpro(SimproJob $webhook): int
     {
-        $simproAssetId = $this->getAssetId($webhook);
+        $simproAssetId = $this->getAssetId(Arr::get($webhook, 'data.description'));
 
         return $this->repository->delete([
             'simpro_asset_id' => $simproAssetId,
@@ -244,9 +244,9 @@ class AssetService extends BaseService
         });
     }
 
-    protected function getAssetId(SimproJob $webhook): string
+    public function getAssetId(string $description): string
     {
-        preg_match('/(\d+)/', $webhook['data']['description'], $matches);
+        preg_match('/(\d+)/', $description, $matches);
 
         return $matches[0];
     }

@@ -133,7 +133,7 @@ class CustomerService extends BaseService
     public function createOrUpdateBySimpro(SimproJob $webhook, string $type): void
     {
         $companyId = $webhook['data']['reference']['companyID'];
-        $customerId = $this->getCustomerId($webhook);
+        $customerId = $this->getCustomerId(Arr::get($webhook, 'data.description'));
 
         $customer = $this->simproClient->getCustomer($companyId, $type, $customerId);
 
@@ -147,12 +147,19 @@ class CustomerService extends BaseService
 
     public function deleteBySimpro(SimproJob $webhook, string $type): void
     {
-        $customerId = $this->getCustomerId($webhook);
+        $customerId = $this->getCustomerId(Arr::get($webhook, 'data.description'));
 
         $this->repository->delete([
             'simpro_customer_id' => $customerId,
             'type' => $type
         ]);
+    }
+
+    public function getCustomerId(string $description): string
+    {
+        preg_match('/(\d+)/', $description, $matches);
+
+        return $matches[0];
     }
 
     protected function getName(array $customer, string $type): string
@@ -162,12 +169,5 @@ class CustomerService extends BaseService
         }
 
         return $customer['CompanyName'];
-    }
-
-    protected function getCustomerId(SimproJob $webhook): string
-    {
-        preg_match('/(\d+)/', $webhook['data']['description'], $matches);
-
-        return $matches[0];
     }
 }

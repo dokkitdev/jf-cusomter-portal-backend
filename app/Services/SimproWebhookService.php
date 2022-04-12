@@ -9,10 +9,14 @@ use RonasIT\Support\Services\EntityService;
 class SimproWebhookService extends EntityService
 {
     protected SimproJobService $simproJobService;
+    protected AssetService $assetService;
+    protected CustomerService $customerService;
 
     public function __construct()
     {
         $this->simproJobService = app(SimproJobService::class);
+        $this->assetService = app(AssetService::class);
+        $this->customerService = app(CustomerService::class);
     }
 
     public function isWebhookVerified(?string $header, string $body): bool
@@ -30,8 +34,24 @@ class SimproWebhookService extends EntityService
     {
         $simproEntityId = null;
 
-        if (($data['name'] === 'Job') || ($data['name'] === 'Job schedule')) {
+        if ($data['name'] === 'Job') {
             $simproEntityId = Arr::get($data, 'reference.jobID');
+        }
+
+        if ($data['name'] === 'Job schedule') {
+            $simproEntityId = Arr::get($data, 'reference.scheduleID');
+        }
+
+        if ($data['name'] === 'Asset') {
+            $simproEntityId = $this->assetService->getAssetId(Arr::get($data, 'description'));
+        }
+
+        if ($data['name'] === 'Site') {
+            $simproEntityId = Arr::get($data, 'reference.siteID');
+        }
+
+        if (($data['name'] === 'Company customer') || ($data['name'] === 'Individual customer')) {
+            $simproEntityId = $this->customerService->getCustomerId(Arr::get($data, 'description'));
         }
 
         return $this->simproJobService->create([

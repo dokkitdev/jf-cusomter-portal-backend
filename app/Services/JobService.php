@@ -229,7 +229,7 @@ class JobService extends BaseService
 
         app(ScheduleService::class)->createOrUpdateManyBySimpro($companyId, $simproJob['ID'], $job['id']);
 
-        app(AssetService::class)->updateReportFieldsFromJob(1);
+        app(AssetService::class)->updateReportFieldsFromJob($job['id']);
 
         return $job;
     }

@@ -682,6 +682,13 @@ trait SimproTestTrait
         ]);
     }
 
+    protected function mockUpdateJobMadeSafe()
+    {
+        $this->mockHttpRequestService([
+            $this->getJobLog(),
+        ]);
+    }
+
     protected function mockGetCustomer()
     {
         $this->mockHttpRequestService([

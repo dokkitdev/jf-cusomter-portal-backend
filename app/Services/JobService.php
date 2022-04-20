@@ -217,7 +217,7 @@ class JobService extends BaseService
             'stage' => Arr::get($simproJob, 'Stage'),
             'job_status' => Arr::get($simproJob, 'Status.Name'),
             'date_created' => Arr::get($simproJob, 'DateIssued'),
-            'made_safe_date' => Arr::get($madeSafeJobLog, '0.DateLogged'),
+            'made_safe_date' => Arr::get(Arr::last($madeSafeJobLog), 'DateLogged'),
             'completion_date' => Arr::get($simproJob, 'CompletedDate'),
             'due_date' => $calculatedDueDate ? $calculatedDueDate->format('Y-m-d H:i:s') : Arr::get($simproJob, 'DueDate'),
             'logged_create_date' => Arr::get($createdJobLog, '0.DateLogged', Arr::get($simproJob, 'DateIssued')),

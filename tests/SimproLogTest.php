@@ -78,7 +78,7 @@ class SimproLogTest extends TestCase
         $this->assertEqualsFixture('simpro_log_jobs_create_or_update_event_fixture.json', $jobLogs);
 
         $job = Job::orderBy('id')->get()->toArray();
-        $this->exportJson('job_update_made_safe_fixture.json', $job);
+        $this->assertEqualsFixture('job_update_made_safe_fixture.json', $job);
     }
 
 //    public function testHandleJobLogCommand()

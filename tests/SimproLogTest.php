@@ -70,7 +70,7 @@ class SimproLogTest extends TestCase
 
     public function testHandleJobLogCommand()
     {
-        $this->mockCreateOrUpdateJob();
+        $this->mockUpdateJobMadeSafe();
 
         $this->artisan('simpro:handle-log jobs')->assertExitCode(0);
 
@@ -78,26 +78,39 @@ class SimproLogTest extends TestCase
         $this->assertEqualsFixture('simpro_log_jobs_create_or_update_event_fixture.json', $jobLogs);
 
         $job = Job::orderBy('id')->get()->toArray();
-        $this->assertEqualsFixture('job_create_or_update_event_fixture.json', $job);
-
-        $simproCustomer = Customer::orderBy('id')->get()->toArray();
-        $this->assertEqualsFixture('customers_create_or_update_event_fixture.json', $simproCustomer);
-
-        $simproSite = Site::orderBy('id')->with(['site_contacts'])->get()->toArray();
-        $this->assertEqualsFixture('sites_create_or_update_event_fixture.json', $simproSite);
-
-        $schedules = Schedule::orderBy('id')->get()->toArray();
-        $this->assertEqualsFixture('schedules_create_or_update_event_fixture.json', $schedules);
-
-        $jobCatalogs = JobCatalog::orderBy('id')->get()->toArray();
-        $this->assertEqualsFixture('job_catalogs_create_or_update_event_fixture.json', $jobCatalogs);
-
-        $jobAttachments = JobAttachment::orderBy('id')->get()->toArray();
-        $this->assertEqualsFixture('job_attachments_create_or_update_event_fixture.json', $jobAttachments);
-
-        $jobWorkOrders = JobWorkOrder::orderBy('id')->get()->toArray();
-        $this->assertEqualsFixture('job_work_orders_create_or_update_event_fixture.json', $jobWorkOrders);
+        $this->exportJson('job_update_made_safe_fixture.json', $job);
     }
+
+//    public function testHandleJobLogCommand()
+//    {
+//        $this->mockCreateOrUpdateJob();
+//
+//        $this->artisan('simpro:handle-log jobs')->assertExitCode(0);
+//
+//        $jobLogs = SimproLog::orderBy('id')->get()->toArray();
+//        $this->assertEqualsFixture('simpro_log_jobs_create_or_update_event_fixture.json', $jobLogs);
+//
+//        $job = Job::orderBy('id')->get()->toArray();
+//        $this->assertEqualsFixture('job_create_or_update_event_fixture.json', $job);
+//
+//        $simproCustomer = Customer::orderBy('id')->get()->toArray();
+//        $this->assertEqualsFixture('customers_create_or_update_event_fixture.json', $simproCustomer);
+//
+//        $simproSite = Site::orderBy('id')->with(['site_contacts'])->get()->toArray();
+//        $this->assertEqualsFixture('sites_create_or_update_event_fixture.json', $simproSite);
+//
+//        $schedules = Schedule::orderBy('id')->get()->toArray();
+//        $this->assertEqualsFixture('schedules_create_or_update_event_fixture.json', $schedules);
+//
+//        $jobCatalogs = JobCatalog::orderBy('id')->get()->toArray();
+//        $this->assertEqualsFixture('job_catalogs_create_or_update_event_fixture.json', $jobCatalogs);
+//
+//        $jobAttachments = JobAttachment::orderBy('id')->get()->toArray();
+//        $this->assertEqualsFixture('job_attachments_create_or_update_event_fixture.json', $jobAttachments);
+//
+//        $jobWorkOrders = JobWorkOrder::orderBy('id')->get()->toArray();
+//        $this->assertEqualsFixture('job_work_orders_create_or_update_event_fixture.json', $jobWorkOrders);
+//    }
 
     public function testGetAssetsToLogCommand()
     {

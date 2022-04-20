@@ -125,16 +125,22 @@ class SimproLogService extends EntityService
 
     protected function handleJob(SimproLog $simproLog): void
     {
-        $simproJob = new SimproJob([
-            'data' => [
-                'reference' => [
-                    'companyID' => 0,
-                    'jobID' => $simproLog['loggable_id']
-                ]
-            ]
-        ]);
+//        $simproJob = new SimproJob([
+//            'data' => [
+//                'reference' => [
+//                    'companyID' => 0,
+//                    'jobID' => $simproLog['loggable_id']
+//                ]
+//            ]
+//        ]);
+//
+//        $this->jobService->createOrUpdateBySimpro($simproJob);
 
-        $this->jobService->createOrUpdateBySimpro($simproJob);
+        $madeSafeJobLog = $this->simproClient->getMadeSafeJobLog(0, $simproLog['loggable_id']);
+
+        $this->jobService->update(['simpro_job_id' => $simproLog['loggable_id']], [
+            'made_safe_date' => Arr::get(Arr::last($madeSafeJobLog), 'DateLogged')
+        ]);
     }
 
     protected function handleAsset(SimproLog $simproLog): void

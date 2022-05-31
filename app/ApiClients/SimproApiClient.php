@@ -205,14 +205,20 @@ class SimproApiClient
         ]);
     }
 
-    public function getJobLog(int $companyId, int $jobId, string $message): ?array
+    public function getJobLog(int $companyId, int $jobId, string $message, ?string $order = null): ?array
     {
         $url = $this->getUrl("companies/{$companyId}/logs/jobs/");
 
-        return $this->makeRequest('get', $url, [
+        $data = [
             'JobID' => $jobId,
             'Message' => $message
-        ]);
+        ];
+
+        if ($order) {
+            $data['orderby'] = $order;
+        }
+
+        return $this->makeRequest('get', $url, $data);
     }
 
     public function getMadeSafeJobLog(int $companyId, int $jobId): ?array
@@ -227,7 +233,7 @@ class SimproApiClient
 
     public function getCompletedJobLog(int $companyId, int $jobId): ?array
     {
-        return  $this->getJobLog($companyId, $jobId, '%Completed%');
+        return  $this->getJobLog($companyId, $jobId, '%Completed Pending%', 'ID');
     }
 
     public function getNoAccessJobLog(int $companyId, int $jobId): ?array

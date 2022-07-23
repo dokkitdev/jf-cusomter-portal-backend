@@ -18,5 +18,5 @@ return [
     'site_uprn_custom_field_id' => 8,
     'customer_job_request_tag' => 21,
     'call_center_job_request_tag' => 22,
-    'repair_job_custom_field_id' => 8
+    'repair_job_custom_field_ids' => [8, 9]
 ];

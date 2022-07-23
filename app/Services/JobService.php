@@ -202,9 +202,14 @@ class JobService extends BaseService
                 ->addMinutes(Arr::get($simproJob, 'ResponseTime.Minutes', 0));
         }
 
-        $repairCostCenter = collect(Arr::get($simproJob, 'Sections'))->first(function ($section) {
-            return Arr::get($section, 'CostCenters.0.CostCenter.ID') === config('defaults.repair_job_custom_field_id');
-        });
+        $repairCostCenterIds = config('defaults.repair_job_custom_field_ids');
+        $isJobRepair = false;
+        foreach (Arr::get($simproJob, 'Sections') as $section) {
+            if (in_array(Arr::get($section, 'CostCenters.0.CostCenter.ID'), $repairCostCenterIds)) {
+                $isJobRepair = true;
+                break;
+            }
+        }
 
         $job = $this->repository->updateOrCreate(['simpro_job_id' => $simproJob['ID']], [
             'customer_id' => $customerId,
@@ -222,7 +227,7 @@ class JobService extends BaseService
             'due_date' => $calculatedDueDate ? $calculatedDueDate->format('Y-m-d H:i:s') : Arr::get($simproJob, 'DueDate'),
             'logged_create_date' => Arr::get($createdJobLog, '0.DateLogged', Arr::get($simproJob, 'DateIssued')),
             'logged_completion_date' => Arr::get($completedJobLog, '0.DateLogged'),
-            'is_repair' => (bool) $repairCostCenter
+            'is_repair' => $isJobRepair,
         ]);
 
         $this->jobNoAccessDateService->syncBySimpro($companyId, $simproJob['ID'], $job['id']);

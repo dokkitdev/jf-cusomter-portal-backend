@@ -4,6 +4,8 @@ namespace App\ApiClients;
 
 use Generator;
 use App\Services\HttpRequestService;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 
 class SimproApiClient
 {
@@ -205,7 +207,7 @@ class SimproApiClient
         ]);
     }
 
-    public function getJobLog(int $companyId, int $jobId, string $message, ?string $order = null): ?array
+    public function getJobLog(int $companyId, int $jobId, string $message): ?array
     {
         $url = $this->getUrl("companies/{$companyId}/logs/jobs/");
 
@@ -213,10 +215,6 @@ class SimproApiClient
             'JobID' => $jobId,
             'Message' => $message
         ];
-
-        if ($order) {
-            $data['orderby'] = $order;
-        }
 
         return $this->makeRequest('get', $url, $data);
     }
@@ -233,7 +231,17 @@ class SimproApiClient
 
     public function getCompletedJobLog(int $companyId, int $jobId): ?array
     {
-        return  $this->getJobLog($companyId, $jobId, '%Completed Pending%', 'ID');
+        $response = $this->getJobLog($companyId, $jobId, '%Completed Pending%');
+
+        usort($response, function ($rowA, $rowB) {
+            if ($rowA['ID'] === $rowB['ID']) {
+                return 0;
+            }
+
+            return ($rowA['ID'] > $rowB['ID']) ? 1 : -1;
+        });
+
+        return $response;
     }
 
     public function getNoAccessJobLog(int $companyId, int $jobId): ?array

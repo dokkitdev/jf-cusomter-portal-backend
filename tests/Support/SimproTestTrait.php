@@ -117,18 +117,7 @@ trait SimproTestTrait
             $this->getSiteContacts(),
             $this->getJobLog(),
             $this->getJobLog(),
-            $this->getJobLog(),
-            $this->getJobLog(),
-            $this->getSchedules('get_schedules_response_success.json'),
-            $this->getSchedules('get_schedules_empty_response_success.json'),
-            $this->getJobAttachments('get_job_attachments_response_success.json'),
-            $this->getJobAttachments('get_job_attachments_empty_response_success.json'),
-            $this->getJob(),
-            $this->getSite(),
-            $this->getSiteContacts(),
-            $this->getJobLog(),
-            $this->getJobLog(),
-            $this->getJobLog(),
+            $this->getCompletedJobLog(),
             $this->getJobLog(),
             $this->getSchedules('get_schedules_response_success.json'),
             $this->getSchedules('get_schedules_empty_response_success.json'),
@@ -139,7 +128,18 @@ trait SimproTestTrait
             $this->getSiteContacts(),
             $this->getJobLog(),
             $this->getJobLog(),
+            $this->getCompletedJobLog(),
             $this->getJobLog(),
+            $this->getSchedules('get_schedules_response_success.json'),
+            $this->getSchedules('get_schedules_empty_response_success.json'),
+            $this->getJobAttachments('get_job_attachments_response_success.json'),
+            $this->getJobAttachments('get_job_attachments_empty_response_success.json'),
+            $this->getJob(),
+            $this->getSite(),
+            $this->getSiteContacts(),
+            $this->getJobLog(),
+            $this->getJobLog(),
+            $this->getCompletedJobLog(),
             $this->getJobLog(),
             $this->getSchedules('get_schedules_response_success.json'),
             $this->getSchedules('get_schedules_empty_response_success.json'),
@@ -672,7 +672,7 @@ trait SimproTestTrait
             $this->getSiteContacts(),
             $this->getJobLog(),
             $this->getJobLog(),
-            $this->getJobLog(),
+            $this->getCompletedJobLog(),
             $this->getJobLog(),
             $this->getSchedules('get_schedules_response_success.json'),
             $this->getSchedules('get_schedules_empty_response_success.json'),
@@ -1015,6 +1015,25 @@ trait SimproTestTrait
             ],
             'response' => [
                 'fixture' => 'get_job_log_response_success.json'
+            ]
+        ];
+    }
+
+    protected function getCompletedJobLog()
+    {
+        return [
+            'type' => 'get',
+            'arguments' => [
+                $this->equalTo('https://pfsgroup.simprosuite.com/api/v1.0/companies/0/logs/jobs/'),
+                $this->equalTo(null),
+                $this->equalTo([
+                    'Accept' => 'application/json',
+                    'Content-Type' => 'application/json',
+                    'Authorization' => 'Bearer token',
+                ])
+            ],
+            'response' => [
+                'fixture' => 'get_completed_job_log_response_success.json'
             ]
         ];
     }

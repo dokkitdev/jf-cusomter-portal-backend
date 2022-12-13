@@ -238,8 +238,6 @@ class AssetTest extends TestCase
 
     public function testReportExport()
     {
-        Excel::fake();
-
         $response = $this->actingAs($this->customer)->json('get', '/assets/report/export', [
             'all' => 1,
             'order_by' => 'last_cp12_date',
@@ -257,7 +255,9 @@ class AssetTest extends TestCase
 
         $response->assertStatus(Response::HTTP_OK);
 
-        Excel::assertDownloaded('assets_report.csv');
+        $response->assertHeader('Content-Disposition', 'attachment; filename=assets_report.csv');
+
+        $this->assertEquals($this->getFixture('report_export__file.csv'), $response->getFile()->getContent());
     }
 
     public function testReportExportAsAdmin()

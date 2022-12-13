@@ -36,7 +36,8 @@ class AssetsReportExport extends BaseExport implements FromCollection, WithHeadi
             'Site Address',
             'Site Contact',
             'Completion Date',
-            'Last CP12',
+            'Last Test Date',
+            'Next Due (After Completion)',
             'Next Scheduled Date',
             'Status',
             'Job Number',
@@ -51,7 +52,8 @@ class AssetsReportExport extends BaseExport implements FromCollection, WithHeadi
     public function map($row): array
     {
         $completionDate = Arr::get($row, 'job.completion_date');
-        $lastCP12Date = $row['sortable_date'];
+        $lastTestDate = $row['sortable_date'];
+        $nextDue = $row['next_service_date'];
         $nextScheduledDate = Arr::get($row, 'next_schedule.date');
 
         return [
@@ -63,7 +65,8 @@ class AssetsReportExport extends BaseExport implements FromCollection, WithHeadi
             Arr::get($row, 'site.address'),
             Arr::get($row, 'site.primary_site_contact.name'),
             $completionDate ? Carbon::parse($completionDate)->format('Y-m-d') : null,
-            $lastCP12Date ? Carbon::parse($lastCP12Date)->format('Y-m-d') : null,
+            $lastTestDate ? Carbon::parse($lastTestDate)->format('Y-m-d') : null,
+            $nextDue ? Carbon::parse($nextDue)->format('Y-m-d') : null,
             $nextScheduledDate ? Carbon::parse($nextScheduledDate)->format('Y-m-d') : null,
             Arr::get($row, 'job.job_status'),
             Arr::get($row, 'job.simpro_job_id'),

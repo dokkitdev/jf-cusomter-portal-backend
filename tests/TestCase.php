@@ -11,6 +11,8 @@ abstract class TestCase extends BaseTestCase
 {
     use AutoDocTestCaseTrait;
 
+    protected bool $forceExportMode = false;
+
     /**
      * Creates the application.
      *
@@ -31,5 +33,14 @@ abstract class TestCase extends BaseTestCase
         $this->saveDocumentation();
 
         parent::tearDown();
+    }
+
+    public function assertEqualsFixture(string $fixture, $data, bool $exportMode = false): void
+    {
+        if ($exportMode || $this->forceExportMode) {
+            $this->exportJson($fixture, $data);
+        }
+
+        $this->assertEquals($this->getJsonFixture($fixture), $data);
     }
 }

@@ -149,6 +149,7 @@ class AssetRepository extends BaseRepository
             $this->query->where(function (Builder $query) {
                 $query
                     ->where('asset_type', 4)
+                    ->where('archived', false)
                     ->whereNotNull('job_id');
             });
         }

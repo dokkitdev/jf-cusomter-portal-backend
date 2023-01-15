@@ -9,6 +9,8 @@ use Illuminate\Support\Str;
 
 class SimproApiClient
 {
+    protected const MAX_PAGE_SIZE = 250;
+
     protected HttpRequestService $httpRequestService;
 
     public function __construct()
@@ -29,7 +31,7 @@ class SimproApiClient
 
         return $this->makeRequest('get', $url, [
             'columns' => 'ID,Staff,DescriptionNotes,WorkOrderDate',
-            'pageSize' => 250
+            'pageSize' => self::MAX_PAGE_SIZE,
         ]);
     }
 
@@ -90,12 +92,52 @@ class SimproApiClient
         return $this->makeRequest('get', $url);
     }
 
+    public function getArchivedAssets(int $companyId, int $page): array
+    {
+        return $this->makeRequest(
+            'get',
+            $this->getUrl("companies/{$companyId}/customerAssets/"),
+            [
+                'Archived' => 'true',
+                'orderby' => 'ID',
+                'pageSize' => self::MAX_PAGE_SIZE,
+                'page' => $page,
+            ]
+        );
+    }
+
+    public function getArchivedAssetPagesCount(int $companyId): int
+    {
+        $response = $this->getArchivedAssets($companyId, 1);
+
+        if (empty($response)) {
+            return 0;
+        }
+
+        $pageWithData = 1;
+        $pageWithoutData = $this->getArchivedAssetsPageWithoutData($companyId);
+
+        while ($pageWithData < $pageWithoutData - 1) {
+            $middlePage = (int) floor(($pageWithData + $pageWithoutData) / 2);
+
+            $response = $this->getArchivedAssets($companyId, $middlePage);
+
+            if (empty($response)) {
+                $pageWithoutData = $middlePage;
+            } else {
+                $pageWithData = $middlePage;
+            }
+        }
+
+        return $pageWithData;
+    }
+
     public function getAssetServiceLevels(int $companyId, int $siteId, int $assetId): ?array
     {
         $url = $this->getUrl("companies/{$companyId}/sites/{$siteId}/assets/{$assetId}/serviceLevels/");
 
         return $this->makeRequest('get', $url, [
-            'pageSize' => 250
+            'pageSize' => self::MAX_PAGE_SIZE,
         ]);
     }
 
@@ -104,7 +146,7 @@ class SimproApiClient
         $url = $this->getUrl("companies/{$companyId}/sites/{$siteId}/assets/{$assetId}/testHistory/");
 
         return $this->makeRequest('get', $url, [
-            'pageSize' => 250
+            'pageSize' => self::MAX_PAGE_SIZE,
         ]);
     }
 
@@ -121,7 +163,7 @@ class SimproApiClient
 
         return $this->makeRequest('get', $url, [
             'columns' => 'ID,Filename,DateAdded',
-            'pageSize' => 250
+            'pageSize' => self::MAX_PAGE_SIZE,
         ]);
     }
 
@@ -165,7 +207,7 @@ class SimproApiClient
         $url = $this->getUrl("companies/{$companyId}/sites/{$siteId}/contacts/");
 
         return $this->makeRequest('get', $url, [
-            'pageSize' => 250,
+            'pageSize' => self::MAX_PAGE_SIZE,
             'columns' => 'ID,Title,GivenName,FamilyName,Email,WorkPhone,CellPhone,Position,PrimaryContact'
         ]);
     }
@@ -336,7 +378,7 @@ class SimproApiClient
         return $this->getAsGenerator($url);
     }
 
-    public function getAsGenerator(string $url, array $additionalFilters = [], int $pageSize = 250, array $headers = []): Generator
+    public function getAsGenerator(string $url, array $additionalFilters = [], int $pageSize = self::MAX_PAGE_SIZE, array $headers = []): Generator
     {
         $page = 1;
         $url = $this->getUrl($url);
@@ -351,6 +393,19 @@ class SimproApiClient
 
             yield $result;
         } while (!empty($result));
+    }
+
+    protected function getArchivedAssetsPageWithoutData(int $companyId): int
+    {
+        $pageWithoutData = 0;
+
+        do {
+            $pageWithoutData += 1000;
+
+            $response = $this->getArchivedAssets($companyId, $pageWithoutData);
+        } while (!empty($response));
+
+        return $pageWithoutData;
     }
 
     protected function makeRequest(string $method, string $url, array $data = [], array $headers = []): ?array

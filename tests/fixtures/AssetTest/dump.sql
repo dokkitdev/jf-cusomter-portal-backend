@@ -74,7 +74,9 @@ INSERT INTO assets(id, simpro_asset_id, site_id, name, sortable_date, last_test_
 (7, 7, 3, 'Name 7', null, null, null, null, null, false, 3, null, 1, 1, null),
 (8, 8, 4,  null, null, null, null, null, null, false, 3, null, 2, 1, null),
 (9, 9, 4, null, null, null, null, null, null, false, 3, null, 1, 1, null),
-(10, 10, 4, null, null, null, null, null, null, false, 3, null, 2, 1, null);
+(10, 10, 4, null, null, null, null, null, null, false, 3, null, 2, 1, null),
+(11, 11, 1, 'Name 11', '2021-01-10', null, null, 'Test result...', 'Service level...', false, 4, '2021-01-10', 1, 1, '2016-10-20'),
+(12, 12, 2, 'Name 12', null, null, null, null, null, true, 4, null, 2, 1, null);
 
 INSERT INTO asset_custom_fields(id, asset_id, simpro_custom_field_id, name, value) VALUES
 (1, 1, 1, 'name', 'value'),

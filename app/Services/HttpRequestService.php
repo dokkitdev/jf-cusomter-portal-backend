@@ -8,7 +8,7 @@ class HttpRequestService extends RonasHttpRequestService
 {
     public function jsonOrNull(): ?array
     {
-        $stringResponse = (string) $this->response->getBody();
+        $stringResponse = (string) $this->getResponse()->getBody();
 
         return json_decode($stringResponse, true);
     }

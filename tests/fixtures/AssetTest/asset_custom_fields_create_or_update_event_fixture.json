@@ -37,7 +37,7 @@
     },
     {
         "id": 5,
-        "asset_id": 11,
+        "asset_id": 13,
         "simpro_custom_field_id": 1,
         "name": "Location",
         "value": "Ground floor reception",
@@ -46,7 +46,7 @@
     },
     {
         "id": 6,
-        "asset_id": 11,
+        "asset_id": 13,
         "simpro_custom_field_id": 2,
         "name": "Panel\/Node Number",
         "value": "1",
@@ -55,7 +55,7 @@
     },
     {
         "id": 7,
-        "asset_id": 11,
+        "asset_id": 13,
         "simpro_custom_field_id": 3,
         "name": "Log book location",
         "value": "Reception",
@@ -64,7 +64,7 @@
     },
     {
         "id": 8,
-        "asset_id": 11,
+        "asset_id": 13,
         "simpro_custom_field_id": 4,
         "name": "Installation Date",
         "value": "2013-11-25",

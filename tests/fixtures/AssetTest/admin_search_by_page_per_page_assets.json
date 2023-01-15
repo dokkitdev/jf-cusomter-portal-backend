@@ -68,8 +68,8 @@
     ],
     "first_page_url": "http:\/\/localhost\/assets?page=1",
     "from": 1,
-    "last_page": 5,
-    "last_page_url": "http:\/\/localhost\/assets?page=5",
+    "last_page": 6,
+    "last_page_url": "http:\/\/localhost\/assets?page=6",
     "links": [
         {
             "url": null,
@@ -102,6 +102,11 @@
             "active": false
         },
         {
+            "url": "http:\/\/localhost\/assets?page=6",
+            "label": "6",
+            "active": false
+        },
+        {
             "url": "http:\/\/localhost\/assets?page=2",
             "label": "Next &raquo;",
             "active": false
@@ -112,5 +117,5 @@
     "per_page": 2,
     "prev_page_url": null,
     "to": 2,
-    "total": 10
+    "total": 12
 }

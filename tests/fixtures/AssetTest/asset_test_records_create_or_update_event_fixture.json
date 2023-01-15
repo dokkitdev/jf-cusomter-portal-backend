@@ -157,7 +157,7 @@
     },
     {
         "id": 11,
-        "asset_id": 11,
+        "asset_id": 13,
         "job_id": 3,
         "name": null,
         "test_date": null,
@@ -169,7 +169,7 @@
     },
     {
         "id": 12,
-        "asset_id": 11,
+        "asset_id": 13,
         "job_id": 3,
         "name": "Craig Norton",
         "test_date": "2021-02-25",
@@ -310,7 +310,7 @@
     },
     {
         "id": 13,
-        "asset_id": 11,
+        "asset_id": 13,
         "job_id": 3,
         "name": "Simon Ranson",
         "test_date": "2021-01-14",

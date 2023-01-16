@@ -1,0 +1,177 @@
+[
+    {
+        "request": {
+            "type": "get",
+            "url": "https://fake.gassure.simprocloud.com/api/v1.0/companies/0/customerAssets/333",
+            "data": [],
+            "headers": {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": "Bearer fake_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": {
+                "ID": 333,
+                "Site": {
+                    "ID": 22
+                },
+                "Archived": true,
+                "CustomFields": [
+                    {
+                        "CustomField": {
+                            "ID": 17,
+                            "Name": "Location",
+                            "Type": "Text",
+                            "ListItems": null
+                        },
+                        "Value": "Kitchen"
+                    },
+                    {
+                        "CustomField": {
+                            "ID": 19,
+                            "Name": "Make",
+                            "Type": "Text",
+                            "ListItems": null
+                        },
+                        "Value": "Silver Hob"
+                    },
+                    {
+                        "CustomField": {
+                            "ID": 16,
+                            "Name": "Model",
+                            "Type": "Text",
+                            "ListItems": null
+                        },
+                        "Value": "Silver Hob"
+                    },
+                    {
+                        "CustomField": {
+                            "ID": 15,
+                            "Name": "Type",
+                            "Type": "List",
+                            "ListItems": [
+                                "Boiler",
+                                "Hob",
+                                "Cooker",
+                                "Fire",
+                                "Water Heater",
+                                "Space Heater",
+                                "Warm Air",
+                                "Combi",
+                                "BBU",
+                                "HOB",
+                                "compact 29he",
+                                "Electric Heater",
+                                "Electric Thermal Sto",
+                                "Heater",
+                                "OTHER",
+                                "Tumble Dryer"
+                            ]
+                        },
+                        "Value": "Hob"
+                    },
+                    {
+                        "CustomField": {
+                            "ID": 59,
+                            "Name": "Last CP12 Date",
+                            "Type": "Date",
+                            "ListItems": null
+                        },
+                        "Value": null
+                    }
+                ]
+            },
+            "headers": {
+                "any": "headers"
+            }
+        }
+    },
+    {
+        "request": {
+            "type": "get",
+            "url": "https://fake.gassure.simprocloud.com/api/v1.0/companies/0/sites/22/assets/333/serviceLevels/",
+            "data": {
+                "pageSize": 250
+            },
+            "headers": {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": "Bearer fake_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": [
+                {
+                    "ServiceLevel": {
+                        "ID": 1,
+                        "Name": "Annual"
+                    },
+                    "ServiceDate": "2017-11-11"
+                },
+                {
+                    "ServiceLevel": {
+                        "ID": 1,
+                        "Name": "Annual"
+                    },
+                    "ServiceDate": "2019-11-11"
+                },
+                {
+                    "ServiceLevel": {
+                        "ID": 1,
+                        "Name": "Annual"
+                    },
+                    "ServiceDate": "2018-11-11"
+                }
+            ],
+            "headers": {
+                "any": "headers"
+            }
+        }
+    },
+    {
+        "request": {
+            "type": "get",
+            "url": "https://fake.gassure.simprocloud.com/api/v1.0/companies/0/sites/22/assets/333/attachments/files/",
+            "data": {
+                "page": 1,
+                "pageSize": 250
+            },
+            "headers": {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": "Bearer fake_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": [],
+            "headers": {
+                "any": "headers"
+            }
+        }
+    },
+    {
+        "request": {
+            "type": "get",
+            "url": "https://fake.gassure.simprocloud.com/api/v1.0/companies/0/sites/22/assets/333/testHistory/",
+            "data": {
+                "pageSize": 250
+            },
+            "headers": {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": "Bearer fake_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": [],
+            "headers": {
+                "any": "headers"
+            }
+        }
+    }
+]

@@ -7,6 +7,8 @@ use App\LogicServices\SyncArchivedAssetsLogicService;
 
 class SyncArchivedAssetsProcessAssetJob extends AbstractJob
 {
+    public $queue = 'sync_archived_assets:process_asset';
+
     protected int $simproAssetId;
 
     public function __construct(int $simproAssetId)

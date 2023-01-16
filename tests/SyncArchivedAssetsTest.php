@@ -7,15 +7,20 @@ use App\Jobs\SyncArchivedAssets\SyncArchivedAssetsProcessAssetJob;
 use App\Jobs\SyncArchivedAssets\SyncArchivedAssetsProcessPageJob;
 use App\Tests\Support\MockHttpRequestServiceTrait;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Queue;
 
 class SyncArchivedAssetsTest extends TestCase
 {
     use MockHttpRequestServiceTrait;
 
+    protected static Collection $originAssets;
+
     public function setUp(): void
     {
         parent::setUp();
+
+        self::$originAssets = self::$originAssets ?? $this->getDataSet('assets');
 
         Queue::fake();
     }
@@ -86,5 +91,15 @@ class SyncArchivedAssetsTest extends TestCase
         (new SyncArchivedAssetsProcessPageJob(7))->handle();
 
         Queue::assertNothingPushed();
+    }
+
+    //full test: AssetTest::testUpdateAssetEvent()
+    public function testProcessAsset()
+    {
+        $this->mockHttpRequestService($this->getJsonFixture('process_asset__requests_chain.json'));
+
+        (new SyncArchivedAssetsProcessAssetJob(333))->handle();
+
+        $this->assertChangesEqualsFixture('assets', 'process_asset__assets_state.json', self::$originAssets);
     }
 }

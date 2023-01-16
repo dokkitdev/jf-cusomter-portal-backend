@@ -32,6 +32,7 @@ class AssetTest extends TestCase
         $this->customer = User::find(3);
     }
 
+    //referenced by: SyncArchivedAssetsTest::testProcessAsset()
     public function testUpdateAssetEvent()
     {
         $this->mockCreateOrUpdateAsset();

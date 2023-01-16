@@ -3,6 +3,7 @@
 namespace App\Tests;
 
 use App\Jobs\SyncArchivedAssets\SyncArchivedAssetsInitJob;
+use App\Jobs\SyncArchivedAssets\SyncArchivedAssetsProcessAssetJob;
 use App\Jobs\SyncArchivedAssets\SyncArchivedAssetsProcessPageJob;
 use App\Tests\Support\MockHttpRequestServiceTrait;
 use Illuminate\Support\Carbon;
@@ -58,6 +59,31 @@ class SyncArchivedAssetsTest extends TestCase
         $this->mockHttpRequestService($this->getJsonFixture('init__no_assets__requests_chain.json'));
 
         (new SyncArchivedAssetsInitJob())->handle();
+
+        Queue::assertNothingPushed();
+    }
+
+    public function testProcessPage()
+    {
+        $this->mockHttpRequestService($this->getJsonFixture('process_page__requests_chain.json'));
+
+        (new SyncArchivedAssetsProcessPageJob(7))->handle();
+
+        $expectedSimproAssetIds = [333, 555];
+
+        Queue::assertPushed(SyncArchivedAssetsProcessAssetJob::class, count($expectedSimproAssetIds));
+        Queue::assertPushed(SyncArchivedAssetsProcessAssetJob::class, function (SyncArchivedAssetsProcessAssetJob $job) use (&$expectedSimproAssetIds) {
+            $this->assertEquals(array_shift($expectedSimproAssetIds), $job->getSimproAssetId());
+
+            return true;
+        });
+    }
+
+    public function testProcessPageNoOutOfSyncAssets()
+    {
+        $this->mockHttpRequestService($this->getJsonFixture('process_page__no_out_of_sync_assets__requests_chain.json'));
+
+        (new SyncArchivedAssetsProcessPageJob(7))->handle();
 
         Queue::assertNothingPushed();
     }

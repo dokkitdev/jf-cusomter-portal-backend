@@ -3,6 +3,7 @@
 namespace App\Jobs\SyncArchivedAssets;
 
 use App\Jobs\AbstractJob;
+use App\LogicServices\SyncArchivedAssetsLogicService;
 
 class SyncArchivedAssetsProcessAssetJob extends AbstractJob
 {
@@ -15,6 +16,7 @@ class SyncArchivedAssetsProcessAssetJob extends AbstractJob
 
     public function handle()
     {
+        app(SyncArchivedAssetsLogicService::class)->processAsset($this->simproAssetId);
     }
 
     public function getSimproAssetId(): int

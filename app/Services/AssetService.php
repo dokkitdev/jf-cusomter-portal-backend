@@ -139,7 +139,7 @@ class AssetService extends BaseService
         ]);
     }
 
-    protected function createOrUpdateAsset(int $companyId, int $simproAssetId): Model
+    public function createOrUpdateAsset(int $companyId, int $simproAssetId): Model
     {
         $simproAsset = $this->simproClient->getAsset($companyId, $simproAssetId);
 

@@ -52,4 +52,9 @@ class SyncArchivedAssetsLogicService
             }
         }
     }
+
+    public function processAsset(int $simproAssetId)
+    {
+        $this->assetService->createOrUpdateAsset($this->companyId, $simproAssetId);
+    }
 }

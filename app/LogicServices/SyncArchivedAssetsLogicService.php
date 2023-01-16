@@ -3,8 +3,10 @@
 namespace App\LogicServices;
 
 use App\ApiClients\SimproApiClient;
+use App\Jobs\SyncArchivedAssets\SyncArchivedAssetsProcessAssetJob;
 use App\Jobs\SyncArchivedAssets\SyncArchivedAssetsProcessPageJob;
 use App\Services\AssetService;
+use Illuminate\Support\Arr;
 
 class SyncArchivedAssetsLogicService
 {
@@ -31,6 +33,23 @@ class SyncArchivedAssetsLogicService
 
         for ($page = 1; $page <= $pagesCount; $page++) {
             dispatch(new SyncArchivedAssetsProcessPageJob($page));
+        }
+    }
+
+    public function processPage(int $page)
+    {
+        $simproAssetIds = Arr::pluck($this->simproApiClient->getArchivedAssets($this->companyId, $page), 'ID');
+
+        foreach ($simproAssetIds as $simproAssetId) {
+            $asset = $this->assetService->first([
+                'simpro_asset_id' => $simproAssetId,
+            ]);
+
+            if (!empty($asset)) {
+                if ($asset['archived'] === false) {
+                    dispatch(new SyncArchivedAssetsProcessAssetJob($simproAssetId));
+                }
+            }
         }
     }
 }

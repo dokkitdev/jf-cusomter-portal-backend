@@ -3,6 +3,7 @@
 namespace App\Jobs\SyncArchivedAssets;
 
 use App\Jobs\AbstractJob;
+use App\LogicServices\SyncArchivedAssetsLogicService;
 
 class SyncArchivedAssetsProcessPageJob extends AbstractJob
 {
@@ -15,6 +16,7 @@ class SyncArchivedAssetsProcessPageJob extends AbstractJob
 
     public function handle()
     {
+        app(SyncArchivedAssetsLogicService::class)->processPage($this->getPage());
     }
 
     public function getPage(): int

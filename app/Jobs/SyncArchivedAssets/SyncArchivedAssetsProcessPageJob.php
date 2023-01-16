@@ -7,6 +7,8 @@ use App\LogicServices\SyncArchivedAssetsLogicService;
 
 class SyncArchivedAssetsProcessPageJob extends AbstractJob
 {
+    public $queue = 'sync_archived_assets:process_page';
+
     protected int $page;
 
     public function __construct(int $page)

@@ -1,0 +1,17 @@
+{
+    "updated": [
+        {
+            "id": 3,
+            "location": "Kitchen",
+            "make": "Silver Hob",
+            "model": "Silver Hob",
+            "next_service_date": "2019-11-11",
+            "service_level_name": "Annual",
+            "archived": true,
+            "updated_at": "2018-11-11 11:11:11",
+            "custom_asset_type_value": "Hob"
+        }
+    ],
+    "created": [],
+    "deleted": []
+}

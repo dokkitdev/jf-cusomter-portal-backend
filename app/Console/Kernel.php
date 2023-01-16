@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Jobs\SyncArchivedAssets\SyncArchivedAssetsInitJob;
 use App\Models\SimproLog;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
@@ -12,6 +13,8 @@ class Kernel extends ConsoleKernel
 
     protected function schedule(Schedule $schedule)
     {
+        $schedule->job(new SyncArchivedAssetsInitJob())->weekly();
+
         $schedule->command('simpro:handle-jobs job.created')->environments(['production'])->everyMinute()->withoutOverlapping()->runInBackground();
         $schedule->command('simpro:handle-jobs job 5 0')->environments(['production'])->everyMinute()->withoutOverlapping()->runInBackground();
         $schedule->command('simpro:handle-jobs job 5 1')->environments(['production'])->everyMinute()->withoutOverlapping()->runInBackground();

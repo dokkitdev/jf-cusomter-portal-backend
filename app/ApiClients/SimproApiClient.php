@@ -288,7 +288,11 @@ class SimproApiClient
 
     public function getNoAccessJobLog(int $companyId, int $jobId): ?array
     {
-        return  $this->getJobLog($companyId, $jobId, 'Job status set to Job : No Access');
+        return $this->getJobLog(
+            $companyId,
+            $jobId,
+            'in(Job status set to Job : No Access,Job status set to Job: No Gas)',
+        );
     }
 
     public function postJob(int $companyId, array $data): ?array

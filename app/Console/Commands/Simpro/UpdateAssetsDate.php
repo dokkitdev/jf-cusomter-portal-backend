@@ -2,10 +2,10 @@
 
 namespace App\Console\Commands\Simpro;
 
+use App\Console\Commands\AbstractTimeoutCommand;
 use App\Services\AssetService;
-use Illuminate\Console\Command;
 
-class UpdateAssetsDate extends Command
+class UpdateAssetsDate extends AbstractTimeoutCommand
 {
     protected $signature = 'simpro:update-assets-date';
 

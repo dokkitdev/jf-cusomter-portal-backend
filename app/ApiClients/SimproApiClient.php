@@ -4,8 +4,6 @@ namespace App\ApiClients;
 
 use Generator;
 use App\Services\HttpRequestService;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Str;
 
 class SimproApiClient
 {
@@ -418,7 +416,9 @@ class SimproApiClient
 
         $requestData = ($method === 'delete') ? $headers : $data;
 
-        $response = $this->httpRequestService->$method($url, $requestData, $headers);
+        $response = $this->httpRequestService
+            ->set('timeout', config('artisan.timeout_seconds'))
+            ->$method($url, $requestData, $headers);
 
         return $response->jsonOrNull();
     }

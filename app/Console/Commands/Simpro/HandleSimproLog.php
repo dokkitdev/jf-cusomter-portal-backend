@@ -2,10 +2,10 @@
 
 namespace App\Console\Commands\Simpro;
 
+use App\Console\Commands\AbstractTimeoutCommand;
 use App\Services\SimproLogService;
-use Illuminate\Console\Command;
 
-class HandleSimproLog extends Command
+class HandleSimproLog extends AbstractTimeoutCommand
 {
     protected $signature = 'simpro:handle-log {type} {divider?} {mod?}';
 

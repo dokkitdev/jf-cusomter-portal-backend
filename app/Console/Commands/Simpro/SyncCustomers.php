@@ -2,10 +2,10 @@
 
 namespace App\Console\Commands\Simpro;
 
+use App\Console\Commands\AbstractTimeoutCommand;
 use App\Services\CustomerService;
-use Illuminate\Console\Command;
 
-class SyncCustomers extends Command
+class SyncCustomers extends AbstractTimeoutCommand
 {
     protected $signature = 'simpro:sync-customers';
 

@@ -2,10 +2,10 @@
 
 namespace App\Console\Commands\Simpro;
 
+use App\Console\Commands\AbstractTimeoutCommand;
 use App\Services\SimproJobService;
-use Illuminate\Console\Command;
 
-class DeleteErrorJobsHandler extends Command
+class DeleteErrorJobsHandler extends AbstractTimeoutCommand
 {
     protected $signature = 'simpro:delete-error-jobs';
 

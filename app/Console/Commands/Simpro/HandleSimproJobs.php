@@ -2,12 +2,12 @@
 
 namespace App\Console\Commands\Simpro;
 
+use App\Console\Commands\AbstractTimeoutCommand;
 use App\Models\SimproJob;
 use App\Services\SimproJobService;
-use Illuminate\Console\Command;
 use Exception;
 
-class HandleSimproJobs extends Command
+class HandleSimproJobs extends AbstractTimeoutCommand
 {
     protected $signature = 'simpro:handle-jobs {eventId?} {divider?} {mod?}';
 

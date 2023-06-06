@@ -60,6 +60,7 @@ class JobTest extends TestCase
         }
 
         $response = $this->json('post', '/jobs/create-in-simpro', [
+            'name' => 'Test Job Name',
             'site_id' => $siteId,
             'description' => 'Test job...',
             'files' => [
@@ -92,6 +93,7 @@ class JobTest extends TestCase
         $user = app(UserService::class)->find(5);
 
         $response = $this->actingAs($user)->json('post', '/jobs/create-in-simpro', [
+            'name' => 'Test Job Name',
             'site_id' => 7,
             'description' => 'Test job...',
             'files' => [

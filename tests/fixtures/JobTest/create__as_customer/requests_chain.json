@@ -8,8 +8,18 @@
                 "Customer": 66,
                 "Site": 77,
                 "Tags": [21],
-                "DueDate": "2018-11-14",
-                "Description": "Test job..."
+                "DueDate": "2018-11-12",
+                "Description": "Test job...",
+                "Name": "Test Job Name",
+                "Sections": [
+                    {
+                        "CostCenters": [
+                            {
+                                "CostCenter": 8
+                            }
+                        ]
+                    }
+                ]
             },
             "headers": {
                 "Accept": "application/json",

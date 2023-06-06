@@ -39,6 +39,13 @@ abstract class TestCase extends BaseTestCase
         return $app;
     }
 
+    public function setUp(): void
+    {
+        parent::setUp();
+
+        $this->setTestCase();
+    }
+
     public function tearDown(): void
     {
         $this->saveDocumentation();

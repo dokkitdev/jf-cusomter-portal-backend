@@ -117,10 +117,20 @@ class JobService extends BaseService
 
         $jobData = [
             'Type' => 'Service',
+            'Name' => $data['name'],
             'Customer' => Arr::get($site, 'customer.simpro_customer_id'),
             'Site' => $site['simpro_site_id'],
             'Tags' => [$tag],
-            'DueDate' => now()->addDays(3)->format('Y-m-d')
+            'DueDate' => now()->addHours(config('defaults.job_due_date_interval_hours'))->format('Y-m-d'),
+            'Sections' => [
+                [
+                    'CostCenters' => [
+                        [
+                            'CostCenter' => config('defaults.job_cost_center_id'),
+                        ]
+                    ]
+                ]
+            ]
         ];
 
         if (Arr::has($data, 'description')) {

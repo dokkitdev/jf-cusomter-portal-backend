@@ -17,7 +17,7 @@ use Illuminate\Http\UploadedFile;
 use Maatwebsite\Excel\Facades\Excel;
 use Symfony\Component\HttpFoundation\Response;
 
-class JobTest extends TestCase
+class JobTestLegacy extends TestCase
 {
     use SimproTestTrait;
 

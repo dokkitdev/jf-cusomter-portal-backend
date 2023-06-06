@@ -8,6 +8,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
+use ReflectionMethod;
 use RonasIT\Support\Tests\TestCase as BaseTestCase;
 use RonasIT\Support\AutoDoc\Tests\AutoDocTestCaseTrait;
 
@@ -18,6 +19,10 @@ abstract class TestCase extends BaseTestCase
     protected bool $forceExportMode = false;
 
     protected static array $jsonFields = [];
+
+    protected ?string $testCaseName = null;
+    protected array $requiredOriginStates = [];
+    protected array $testCaseOriginStates = [];
 
     /**
      * Creates the application.
@@ -48,6 +53,80 @@ abstract class TestCase extends BaseTestCase
         }
 
         $this->assertEquals($this->getJsonFixture($fixture), $data);
+    }
+
+    public function getFixturePath(string $fixtureName): string
+    {
+        $class = get_class($this);
+        $explodedClass = explode('\\', $class);
+        $className = Arr::last($explodedClass);
+
+        return base_path("tests/fixtures/{$className}/{$this->testCaseName}/{$fixtureName}");
+    }
+
+    protected function setTestCase()
+    {
+        $reflection = new ReflectionMethod(get_class($this) . "::" . $this->getName(false));
+        $docComment = $reflection->getDocComment();
+
+        if (preg_match('/@testCase\s+([a-zA-Z0-9_]+)/', $docComment, $matches)) {
+            $testCaseName = $matches[1];
+        } elseif (preg_match('/@providedTestCase/', $docComment)) {
+            $testCaseName = Arr::last($this->getProvidedData());
+        }
+
+        if (isset($testCaseName)) {
+            $this->loadSpecificTestDump("/{$testCaseName}/dump.sql");
+
+            $this->testCaseName = $testCaseName;
+        }
+
+        $this->loadOriginStates();
+    }
+
+    protected function loadOriginStates()
+    {
+        if (!isset($this->testCaseOriginStates[$this->testCaseName])) {
+            foreach ($this->requiredOriginStates as $table) {
+                $this->testCaseOriginStates[$this->testCaseName][$table] = $this->getDataSet($table);
+            }
+        }
+    }
+
+    protected function getOriginState(string $table): Collection
+    {
+        return $this->testCaseOriginStates[$this->testCaseName][$table];
+    }
+
+    protected function loadSpecificTestDump(?string $dumpFile = null)
+    {
+        if (is_null($dumpFile)) {
+            $dumpFile = 'dump.sql';
+            $clearDb = true;
+        } else {
+            $clearDb = false;
+        }
+
+        $dump = $this->getFixture($dumpFile, false);
+
+        if (empty($dump)) {
+            return;
+        }
+
+        $dump = preg_replace('/--.*/', '', $dump);
+
+        if ($clearDb) {
+            $databaseTables = $this->getTables();
+            $scheme = config('database.default');
+
+            $this->clearDatabase($scheme, $databaseTables, array_merge($this->postgisTables, $this->truncateExceptTables));
+        }
+
+        DB::unprepared($dump);
+
+        if (config('database.default') === 'pgsql') {
+            $this->prepareSequences($this->getTables());
+        }
     }
 
     protected function getChanges(string $table, Collection $originData): array

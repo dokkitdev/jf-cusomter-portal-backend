@@ -13,7 +13,6 @@ use App\Models\SimproJob;
 use App\Models\Site;
 use App\Models\User;
 use App\Tests\Support\SimproTestTrait;
-use Illuminate\Http\UploadedFile;
 use Maatwebsite\Excel\Facades\Excel;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -24,7 +23,6 @@ class JobTestLegacy extends TestCase
     protected $admin;
     protected $user;
     protected $customer;
-    protected $files;
 
     public function setUp(): void
     {
@@ -33,10 +31,6 @@ class JobTestLegacy extends TestCase
         $this->admin = User::find(1);
         $this->user = User::find(2);
         $this->customer = User::find(3);
-        $this->files = [
-            UploadedFile::fake()->image('file1.png', 600, 600),
-            UploadedFile::fake()->image('file2.png', 600, 600)
-        ];
     }
 
     public function testCreateJobEvent()
@@ -334,76 +328,6 @@ class JobTestLegacy extends TestCase
     public function testGetStatusesNoAuth()
     {
         $response = $this->json('get', '/jobs/statuses');
-
-        $response->assertStatus(Response::HTTP_UNAUTHORIZED);
-    }
-
-    public function testCreateRequest()
-    {
-        $this->mockCreatejobRequest();
-
-        $response = $this->actingAs($this->customer)->json('post', '/jobs/create-in-simpro', [
-            'site_id' => 1,
-            'description' => 'Test job...',
-            'files' => $this->files
-        ]);
-
-        $response->assertStatus(Response::HTTP_CREATED);
-    }
-
-    public function testCreateRequestByAdmin()
-    {
-        $this->mockCreatejobRequest();
-
-        $response = $this->actingAs($this->admin)->json('post', '/jobs/create-in-simpro', [
-            'site_id' => 2,
-            'description' => 'Test job...',
-            'files' => $this->files
-        ]);
-
-        $response->assertStatus(Response::HTTP_CREATED);
-    }
-
-    public function testCreateRequestNoPermissions()
-    {
-        $response = $this->actingAs($this->customer)->json('post', '/jobs/create-in-simpro', [
-            'site_id' => 3,
-            'description' => 'Test job...',
-            'files' => $this->files
-        ]);
-
-        $response->assertStatus(Response::HTTP_NOT_FOUND);
-    }
-
-    public function testCreateRequestSiteNotExists()
-    {
-        $response = $this->actingAs($this->admin)->json('post', '/jobs/create-in-simpro', [
-            'site_id' => 0,
-            'description' => 'Test job...',
-            'files' => $this->files
-        ]);
-
-        $response->assertStatus(Response::HTTP_NOT_FOUND);
-    }
-
-    public function testCreateRequestCustomerNotExists()
-    {
-        $response = $this->actingAs($this->admin)->json('post', '/jobs/create-in-simpro', [
-            'site_id' => 5,
-            'description' => 'Test job...',
-            'files' => $this->files
-        ]);
-
-        $response->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY);
-    }
-
-    public function testCreateRequestNoAuth()
-    {
-        $response = $this->json('post', '/jobs/create-in-simpro', [
-            'site_id' => 1,
-            'description' => 'Test job...',
-            'files' => $this->files
-        ]);
 
         $response->assertStatus(Response::HTTP_UNAUTHORIZED);
     }

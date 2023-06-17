@@ -171,9 +171,6 @@ class AssetTest extends TestCase
 
     /**
      * @dataProvider  getSearchFilters
-     *
-     * @param  array $filter
-     * @param  string $fixture
      */
     public function testSearch($filter, $fixture)
     {
@@ -182,6 +179,21 @@ class AssetTest extends TestCase
         $response->assertStatus(Response::HTTP_OK);
 
         $this->assertEqualsFixture($fixture, $response->json());
+    }
+
+    /**
+     * @testCase search_assets_report__check_cp12_status
+     */
+    public function testSearchCheckCp12Status()
+    {
+        $response = $this->actingAs($this->customer)->json('get', '/assets', [
+            'customer_id' => 4,
+            'report' => true,
+        ]);
+
+        $response->assertStatus(Response::HTTP_OK);
+
+        $this->assertEqualsFixture('response.json', $response->json());
     }
 
     /**

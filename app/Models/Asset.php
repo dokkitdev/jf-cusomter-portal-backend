@@ -59,20 +59,18 @@ class Asset extends BaseModel
             return null;
         }
 
-        if (!$this->sortable_date) {
+        if (empty($this['next_service_date'])) {
             return self::CP12_STATUS_ON_TIME;
         }
 
-        $date = Carbon::parse($this->sortable_date)->startOfDay();
+        $date = Carbon::parse($this['next_service_date'])->subYear()->startOfDay();
 
-        $diffInDays = now()->startOfDay()->diffInDays($date);
-
-        if (($diffInDays < 338) || ($date->year > now()->year)) {
-            return self::CP12_STATUS_ON_TIME;
-        }
-
-        if ($diffInDays > 366) {
+        if ($date->lte(Carbon::now()->startOfDay())) {
             return self::CP12_STATUS_OVERDUE;
+        }
+
+        if ($date->gt(Carbon::now()->addDays(28)->startOfDay())) {
+            return self::CP12_STATUS_ON_TIME;
         }
 
         return self::CP12_STATUS_DUE;

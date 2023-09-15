@@ -30,12 +30,21 @@ class ScheduleService extends EntityService
     {
         $schedulePages = $this->simproClient->getSchedules($companyId, $simproJobId);
 
+        $jobSchedules = $this->repository->get(['job_id' => $jobId]);
+
         foreach ($schedulePages as $schedulePage) {
             if ($schedulePage) {
                 foreach ($schedulePage as $simproSchedule) {
-                    $this->createOrUpdate($simproSchedule, $jobId);
+                    $schedule = $this->createOrUpdate($simproSchedule, $jobId);
+
+                    $jobSchedules = $jobSchedules->where('id', '!=', $schedule['id']);
                 }
             }
+        }
+
+        if ($jobSchedules->isNotEmpty()) {
+            $ids = $jobSchedules->pluck('id')->toArray();
+            $this->repository->deleteByList($ids);
         }
 
         $this->setRecentScheduleToJob($jobId);

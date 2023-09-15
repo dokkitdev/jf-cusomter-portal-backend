@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use Closure;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\QueryException;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -11,6 +12,42 @@ use RonasIT\Support\Repositories\BaseRepository as Repository;
 
 class BaseRepository extends Repository
 {
+    public function updateOrCreate($where, $data): Model
+    {
+        if ($this->exists($where)) {
+            return $this->update($where, $data);
+        }
+
+        if (!is_array($where)) {
+            $where = [$this->primaryKey => $where];
+        }
+
+        try {
+            return $this->create(array_merge($data, $where));
+        } catch (QueryException $exception) {
+            if (Str::contains(strtolower($exception->getMessage()), 'unique violation')) {
+                return $this->update($where, $data);
+            }
+
+            throw $exception;
+        }
+    }
+
+    public function retryForeignKeyViolation(callable $callback, int $maxAttempts = 10)
+    {
+        for ($i = 0; $i < $maxAttempts; $i++) {
+            try {
+                return DB::transaction($callback);
+            } catch (QueryException $exception) {
+                if (!Str::contains(strtolower($exception->getMessage()), 'foreign key violation')) {
+                    throw $exception;
+                }
+            }
+        }
+
+        throw $exception;
+    }
+
     public function findByPermissions(int $id, int $userId): ?Model
     {
         return $this->getQuery()

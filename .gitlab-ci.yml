@@ -79,6 +79,9 @@ deploy_development:
   environment:
     name: "development"
     url:  https://dev.${DOMAIN}
+  before_script:
+    - cp ${CI_GIT_CREDENTIALS} ~/.git-credentials
+    - cp ${CI_GIT_CONFIG} ~/.gitconfig
   only:
     - development
 

@@ -34,20 +34,15 @@ class JobAttachmentService extends EntityService
         foreach ($simproJobAttachmentsPages as $simproJobAttachmentsPage) {
             if ($simproJobAttachmentsPage) {
                 foreach ($simproJobAttachmentsPage as $simproJobAttachment) {
-                    $simproJobAttachmentId = $simproJobAttachment['ID'];
-                    $data = [
+                    $attachment = $this->updateOrCreate([
                         'job_id' => $jobId,
-                        'simpro_attachment_id' => $simproJobAttachmentId,
+                        'simpro_attachment_id' => $simproJobAttachment['ID'],
+                    ], [
                         'name' => $simproJobAttachment['Filename'],
                         'date_added' => empty($simproJobAttachment['DateAdded']) ? null : $simproJobAttachment['DateAdded'],
-                    ];
-                    $attachment = $jobAttachments->firstWhere('simpro_attachment_id', $simproJobAttachmentId);
-                    if ($attachment) {
-                        $this->repository->update($attachment['id'], $data);
-                        $jobAttachments = $jobAttachments->where('id', '!=', $attachment['id']);
-                    } else {
-                        $this->repository->create($data);
-                    }
+                    ]);
+
+                    $jobAttachments = $jobAttachments->where('id', '!=', $attachment['id']);
                 }
             }
         }

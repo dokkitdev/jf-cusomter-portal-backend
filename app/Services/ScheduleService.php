@@ -106,20 +106,24 @@ class ScheduleService extends EntityService
 
     protected function setRecentScheduleToJob(int $jobId): void
     {
-        $recentSchedule = $this->repository->getRecentSchedule($jobId);
+        $this->jobService->retryForeignKeyViolation(function () use ($jobId) {
+            $recentSchedule = $this->repository->getRecentSchedule($jobId);
 
-        $this->jobService->update($jobId, [
-            'recent_schedule_id' => Arr::get($recentSchedule, 'id')
-        ]);
+            $this->jobService->update($jobId, [
+                'recent_schedule_id' => Arr::get($recentSchedule, 'id')
+            ]);
+        });
     }
 
     protected function setNextScheduleToJob(int $jobId): void
     {
-        $nextSchedule = $this->repository->getNextSchedule($jobId);
+        $this->jobService->retryForeignKeyViolation(function () use ($jobId) {
+            $nextSchedule = $this->repository->getNextSchedule($jobId);
 
-        $this->jobService->update($jobId, [
-            'next_schedule_id' => Arr::get($nextSchedule, 'id')
-        ]);
+            $this->jobService->update($jobId, [
+                'next_schedule_id' => Arr::get($nextSchedule, 'id')
+            ]);
+        });
     }
 
     protected function prepareDate(array $schedule, array $block): string

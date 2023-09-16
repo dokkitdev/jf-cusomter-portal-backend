@@ -7,9 +7,11 @@ use App\Models\Asset;
 use App\Models\Role;
 use App\Models\SimproJob;
 use App\Repositories\AssetRepository;
+use Exception;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 
 /**
@@ -173,6 +175,22 @@ class AssetService extends BaseService
 
         $expiryDateCustomField = $this->findCustomFieldByContainedString(Arr::get($simproAsset, 'CustomFields'), 'Expiry Date');
 
+        $cp12CustomFieldValue = Arr::get($cp12CustomField, 'Value');
+
+        if (empty($cp12CustomFieldValue)) {
+            $lastCp12Date = null;
+        } else {
+            try {
+                $lastCp12Date = Carbon::parse($cp12CustomFieldValue);
+            } catch (Exception $exception) {
+                try {
+                    $lastCp12Date = Carbon::createFromFormat('d/m/Y', $cp12CustomFieldValue);
+                } catch (Exception $exception) {
+                    $lastCp12Date = null;
+                }
+            }
+        }
+
         return $this->repository->updateOrCreate([
             'simpro_asset_id' => $simproAsset['ID'],
         ], [
@@ -188,7 +206,7 @@ class AssetService extends BaseService
             'location' => Arr::get($locationCustomField, 'Value'),
             'make' => Arr::get($makeCustomField, 'Value'),
             'model' => Arr::get($modelCustomField, 'Value'),
-            'last_cp12_date' => Arr::get($cp12CustomField, 'Value'),
+            'last_cp12_date' => $lastCp12Date,
             'custom_asset_type_value' => Arr::get($assetTypeCustomField, 'Value'),
             'expiry_date' => Arr::get($expiryDateCustomField, 'Value'),
         ]);

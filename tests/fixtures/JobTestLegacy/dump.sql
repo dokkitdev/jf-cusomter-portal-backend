@@ -45,17 +45,17 @@ INSERT INTO simpro_log(id, loggable_id, loggable_type, handle_status, handle_res
 (1, 1, 'sites', 'new', null),
 (2, 1, 'jobs', 'new', null);
 
-INSERT INTO jobs(id, simpro_job_id, site_id, customer_id, stage, priority, order_no, description) VALUES
-(1, 1, 1, 1, 'Progress', 'Fire Alarm - Standard 8 Hours', 'CN3268', '<div style="font-size: 10pt;">LOW PRESSURE AT BOILER&nbsp;</div><div style="font-size: 10pt;">as per email and arranged with tenant&nbsp;</div><div style="font-size: 10pt;">PM CALL</div>'),
-(2, 2, 1, 1, 'Progress', 'Fire Alarm - Standard', null, null),
-(3, 3, 1, 1, 'Progress', 'Intruder Alarm - Standard 4 Hours', null, null),
-(4, 4, 1, 2, 'Complete', null, null, null),
-(5, 5, 1, 2, 'Archived', null, null, null),
-(6, 6, 2, 2, 'Archived', null, null, null),
-(7, 7, 3, 3, 'Archived', null, null, null),
-(8, 8, 4, 3, 'Complete', null, null, null),
-(9, 9, 4, 3, 'Progress', null, null, null),
-(10, 10, 4, 3, 'Progress', null, null, null);
+INSERT INTO jobs(id, simpro_job_id, site_id, customer_id, stage, made_safe_date, priority, order_no, description) VALUES
+(1, 1, 1, 1, 'Progress', '2018-10-11 09:59:59', 'Fire Alarm - Standard 8 Hours', 'CN3268', '<div style="font-size: 10pt;">LOW PRESSURE AT BOILER&nbsp;</div><div style="font-size: 10pt;">as per email and arranged with tenant&nbsp;</div><div style="font-size: 10pt;">PM CALL</div>'),
+(2, 2, 1, 1, 'Progress', '2018-10-12 10:00:00', 'Fire Alarm - Standard', null, null),
+(3, 3, 1, 1, 'Progress', '2018-10-13 10:30:00', 'Intruder Alarm - Standard 4 Hours', null, null),
+(4, 4, 1, 2, 'Complete', null, null, null, null),
+(5, 5, 1, 2, 'Archived', '2018-10-15 11:00:00', null, null, null),
+(6, 6, 2, 2, 'Archived', '2018-10-16 11:00:01', null, null, null),
+(7, 7, 3, 3, 'Archived', null, null, null, null),
+(8, 8, 4, 3, 'Complete', null, null, null, null),
+(9, 9, 4, 3, 'Progress', null, null, null, null),
+(10, 10, 4, 3, 'Progress', null, null, null, null);
 
 INSERT INTO schedules(id, job_id, simpro_schedule_id, name, date, start_time, end_time) VALUES
 (1, 1, 1, 'Name', '2016-10-20 11:05:00', '2016-10-20 11:05:00', '2016-10-20 11:05:00');

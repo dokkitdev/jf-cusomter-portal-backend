@@ -183,6 +183,25 @@ class JobTestLegacy extends TestCase
                 ],
                 'result' => 'search_by_is_repair_jobs.json'
             ],
+            [
+                'filter' => [
+                    'made_safe_time_from' => '2018-10-10 10:00:00',
+                ],
+                'result' => 'search_by_made_safe_time_from.json'
+            ],
+            [
+                'filter' => [
+                    'made_safe_time_to' => '2018-10-10 11:00:00',
+                ],
+                'result' => 'search_by_made_safe_time_to.json'
+            ],
+            [
+                'filter' => [
+                    'made_safe_time_from' => '2018-10-10 10:00:00',
+                    'made_safe_time_to' => '2018-10-10 11:00:00',
+                ],
+                'result' => 'search_by_made_safe_time_from_to.json'
+            ],
         ];
     }
 

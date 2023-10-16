@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use Carbon\Carbon;
 use Closure;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\QueryException;
@@ -53,6 +54,32 @@ class BaseRepository extends Repository
         return $this->getQuery()
             ->onlyPermitted($userId)
             ->find($id);
+    }
+
+    public function filterTimeFrom(string $fieldName, string $filterName, bool $strict = false): self
+    {
+        if (Arr::has($this->filter, $filterName)) {
+            $sign = $strict ? '>' : '>=';
+
+            $time = Carbon::createFromFormat('Y-m-d H:i:s', $this->filter[$filterName])->format('H:i');
+
+            $this->query->where(DB::raw("cast({$fieldName} as time)"), $sign, $time);
+        }
+
+        return $this;
+    }
+
+    public function filterTimeTo(string $fieldName, string $filterName, bool $strict = false): self
+    {
+        if (Arr::has($this->filter, $filterName)) {
+            $sign = $strict ? '<' : '<=';
+
+            $time = Carbon::createFromFormat('Y-m-d H:i:s', $this->filter[$filterName])->format('H:i');
+
+            $this->query->where(DB::raw("cast({$fieldName} as time)"), $sign, $time);
+        }
+
+        return $this;
     }
 
     public function filterByIntQuery(string $field, string $filterName = null): self

@@ -38,6 +38,8 @@ class SearchJobRequest extends Request
             'date_created_to' => 'date',
             'made_safe_date_from' => 'date',
             'made_safe_date_to' => 'date',
+            'made_safe_time_from' => 'date_format:Y-m-d H:i:s',
+            'made_safe_time_to' => 'date_format:Y-m-d H:i:s',
             'completion_date_from' => 'date',
             'completion_date_to' => 'date',
             'due_date_from' => 'date',

@@ -48,6 +48,9 @@ class SimproJobService extends EntityService
                 return $this->scheduleService->updateOrCreateBySimpro($webhook);
             case 'job.schedule.deleted':
                 return $this->scheduleService->deleteBySimpro($webhook);
+            case 'job.asset.tested':
+                $this->assetService->processAssetTestedWebhook($webhook);
+                break;
             case 'site.created':
             case 'site.updated':
                 return $this->siteService->createOrUpdateBySimpro($webhook);

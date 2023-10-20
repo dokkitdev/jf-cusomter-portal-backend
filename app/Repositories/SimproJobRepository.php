@@ -29,7 +29,9 @@ class SimproJobRepository extends BaseRepository
         }
 
         if ($eventId === 'job') {
-            $query->where('data->ID', '!=', 'job.created');
+            $query
+                ->where('data->ID', '!=', 'job.asset.tested')
+                ->where('data->ID', '!=', 'job.created');
         }
 
         if ($divider) {

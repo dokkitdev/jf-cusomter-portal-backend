@@ -4,11 +4,21 @@ namespace App\Tests;
 
 use App\Models\SimproJob;
 use App\Tests\Support\SimproWebhookTestTrait;
+use Illuminate\Support\Collection;
 use Symfony\Component\HttpFoundation\Response;
 
 class SimproWebhookTest extends TestCase
 {
     use SimproWebhookTestTrait;
+
+    protected static Collection $originSimproJobsState;
+
+    public function setUp(): void
+    {
+        parent::setUp();
+
+        self::$originSimproJobsState = self::$originSimproJobsState ?? $this->getDataSet('simpro_jobs');
+    }
 
     public function testWebhookSuccess()
     {
@@ -80,6 +90,22 @@ class SimproWebhookTest extends TestCase
         $webhooks = SimproJob::orderBy('id')->get()->toArray();
 
         $this->assertEqualsFixture('create_webhook_success.json', $webhooks);
+    }
+
+    /**
+     * @testCase job_asset_tested_webhook
+     */
+    public function testJobAssetTestedWebhook()
+    {
+        $this->mockRequestVerification(true);
+
+        $requestData = $this->getJsonFixture('request.json');
+
+        $response = $this->json('post', '/simpro-webhook', $requestData);
+
+        $response->assertStatus(Response::HTTP_NO_CONTENT);
+
+        $this->assertChangesEqualsFixture('simpro_jobs', 'simpro_jobs__state.json', self::$originSimproJobsState);
     }
 
     public function testDeleteErrorJobs()

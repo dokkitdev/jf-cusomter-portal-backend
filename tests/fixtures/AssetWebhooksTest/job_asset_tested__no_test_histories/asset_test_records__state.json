@@ -1,0 +1,28 @@
+{
+    "updated": [],
+    "created": [],
+    "deleted": [
+        {
+            "id": 4,
+            "asset_id": 3,
+            "job_id": 1,
+            "name": null,
+            "test_date": null,
+            "notes": null,
+            "result": null,
+            "created_at": "2018-10-10 10:10:10",
+            "updated_at": "2018-10-10 10:10:10"
+        },
+        {
+            "id": 6,
+            "asset_id": 3,
+            "job_id": 1,
+            "name": null,
+            "test_date": null,
+            "notes": null,
+            "result": null,
+            "created_at": "2018-10-10 10:10:10",
+            "updated_at": "2018-10-10 10:10:10"
+        }
+    ]
+}

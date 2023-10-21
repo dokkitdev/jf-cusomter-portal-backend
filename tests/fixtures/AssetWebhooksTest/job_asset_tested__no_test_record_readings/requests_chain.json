@@ -1,0 +1,38 @@
+[
+  {
+    "request": {
+      "type": "get",
+      "url": "https://fake.gassure.simprocloud.com/api/v1.0/companies/0/sites/234/assets/46899/testHistory/",
+      "data": {
+        "pageSize": 250
+      },
+      "headers": {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        "Authorization": "Bearer fake_simpro_token"
+      }
+    },
+    "response": {
+      "status_code": 200,
+      "data": [
+        {
+          "Job": {
+            "ID": 345
+          },
+          "TestRecord": {
+            "Employee": {
+              "Name": "Steven William Walker"
+            },
+            "Date": "2018-10-10",
+            "Notes": "appliance not present",
+            "Result": "Pass"
+          },
+          "TestReadings": []
+        }
+      ],
+      "headers": {
+        "any": "headers"
+      }
+    }
+  }
+]

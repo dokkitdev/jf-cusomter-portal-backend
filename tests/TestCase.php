@@ -199,9 +199,12 @@ abstract class TestCase extends BaseTestCase
             });
     }
 
-    public function assertChangesEqualsFixture(string $table, string $fixture, Collection $originData, bool $exportMode = false)
+    public function assertChangesEqualsFixture(string $table, string $fixture = null, Collection $originData = null, bool $exportMode = false)
     {
         $this->getJsonFields($table);
+
+        $fixture = $fixture ?? "{$table}__state.json";
+        $originData = $originData ?? $this->getOriginState($table);
 
         $changes = $this->getChanges($table, $originData);
 
@@ -225,8 +228,10 @@ abstract class TestCase extends BaseTestCase
         }
     }
 
-    public function assertNoChanges(string $table, Collection $originData)
+    public function assertNoChanges(string $table, Collection $originData = null)
     {
+        $originData = $originData ?? $this->getOriginState($table);
+
         $changes = $this->getChanges($table, $originData);
 
         $this->assertEquals([
@@ -234,5 +239,21 @@ abstract class TestCase extends BaseTestCase
             'created' => [],
             'deleted' => []
         ], $changes);
+    }
+
+    protected function loadTestDump(): void
+    {
+        $databaseTables = $this->getTables();
+        $scheme = config('database.default');
+
+        $this->clearDatabase($scheme, $databaseTables, array_merge($this->postgisTables, $this->truncateExceptTables));
+
+        $dump = $this->getFixture('dump.sql', false);
+
+        if (empty($dump)) {
+            return;
+        }
+
+        DB::unprepared($dump);
     }
 }

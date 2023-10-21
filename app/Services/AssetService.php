@@ -141,6 +141,20 @@ class AssetService extends BaseService
         ]);
     }
 
+    public function processAssetTestedWebhook(SimproJob $webhook): void
+    {
+        $companyId = $this->companyId;
+        $simproAssetId = $webhook['simpro_entity_id'];
+
+        $asset = $this->with('site')->findBy('simpro_asset_id', $simproAssetId);
+
+        if (isset($asset)) {
+            $this->assetTestRecordService->syncByAsset($companyId, $asset['site']['simpro_site_id'], $simproAssetId, $asset['id']);
+
+            $this->updateReportFields($asset);
+        }
+    }
+
     public function createOrUpdateAsset(int $companyId, int $simproAssetId): Model
     {
         $simproAsset = $this->simproClient->getAsset($companyId, $simproAssetId);

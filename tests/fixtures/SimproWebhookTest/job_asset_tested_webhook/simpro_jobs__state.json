@@ -1,0 +1,25 @@
+{
+    "updated": [],
+    "created": [
+        {
+            "id": 5,
+            "data": {
+                "ID": "job.asset.tested",
+                "name": "Job",
+                "build": "gassure.simprocloud.com",
+                "action": "asset.tested",
+                "description": "Asset #46899 on Job # is tested",
+                "date_triggered": "2023-10-20T16:20:29+01:00",
+                "reference": {
+                    "companyID": 0
+                }
+            },
+            "handle_status": "new",
+            "handle_result": null,
+            "created_at": "2018-11-11 11:11:11",
+            "updated_at": "2018-11-11 11:11:11",
+            "simpro_entity_id": 46899
+        }
+    ],
+    "deleted": []
+}

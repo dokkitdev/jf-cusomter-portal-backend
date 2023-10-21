@@ -1,0 +1,93 @@
+[
+  {
+    "request": {
+      "type": "get",
+      "url": "https://fake.gassure.simprocloud.com/api/v1.0/companies/0/sites/234/assets/46899/testHistory/",
+      "data": {
+        "pageSize": 250
+      },
+      "headers": {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        "Authorization": "Bearer fake_simpro_token"
+      }
+    },
+    "response": {
+      "status_code": 200,
+      "data": [
+        {
+          "Job": {
+            "ID": 345
+          },
+          "TestRecord": {
+            "Employee": {
+              "Name": "Steven William Walker"
+            },
+            "Date": "2018-10-10",
+            "Notes": "appliance not present",
+            "Result": "Pass"
+          },
+          "TestReadings": [
+            {
+              "Name": "~Appliance Make/Model",
+              "Value": "potterton Promax Combi 28HE"
+            }
+          ]
+        },
+        {
+          "Job": {
+            "ID": 456
+          },
+          "TestRecord": {
+            "Employee": {
+              "Name": "Steven William Walker"
+            },
+            "Date": "2017-10-10",
+            "Notes": "appliance not present",
+            "Result": "Pass"
+          },
+          "TestReadings": [
+            {
+              "Name": "~Appliance Make/Model",
+              "Value": "potterton Promax Combi 28HE"
+            },
+            {
+              "Name": "~Flue System",
+              "Value": "Pass"
+            }
+          ]
+        },
+        {
+          "Job": {
+            "ID": 567
+          },
+          "TestRecord": {
+            "Employee": {
+              "Name": "Steven William Walker"
+            },
+            "Date": "2016-10-10",
+            "Notes": "appliance not present",
+            "Result": "Pass"
+          },
+          "TestReadings": [
+            {
+              "Name": "~Appliance Make/Model",
+              "Value": "potterton Promax Combi 28HE"
+            },
+            {
+              "Name": "~Flue System",
+              "Value": "Pass"
+            },
+            {
+              "Name": "~Is flue integrity O2 reading 20.6% or more",
+              "Value": "Yes"
+            }
+          ]
+        }
+      ],
+      "headers": {
+        "any": "headers"
+      }
+    }
+  }
+]

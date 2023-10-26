@@ -35,6 +35,10 @@ class HandleSimproJobs extends AbstractTimeoutCommand
                         'handle_status' => SimproJob::HANDLE_STATUS_COMPLETED,
                     ]);
                 } catch (Exception $e) {
+                    if (app()->environment() === 'testing') {
+                        throw $e;
+                    }
+
                     report($e);
                     $this->simproJobService->update($job->id, [
                         'handle_status' => SimproJob::HANDLE_STATUS_ERROR,

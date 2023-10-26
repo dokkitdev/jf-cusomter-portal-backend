@@ -15,12 +15,8 @@
             "last_cp12_date": "2018-09-09",
             "asset_type": 2,
             "custom_asset_type_value": "Combi",
-            "asset_test_record_id": 8,
-            "job_id": 1,
-            "customer_id": 1,
             "expiry_date": "2018-08-08",
-            "sortable_date": "2018-08-07",
-            "test_record_date": "2018-10-10"
+            "sortable_date": "2018-08-07"
         }
     ],
     "created": [],

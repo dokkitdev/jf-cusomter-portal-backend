@@ -2,6 +2,169 @@
   {
     "request": {
       "type": "get",
+      "url": "https://fake.gassure.simprocloud.com/api/v1.0/companies/0/customerAssets/46899",
+      "data": {},
+      "headers": {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        "Authorization": "Bearer fake_simpro_token"
+      }
+    },
+    "response": {
+      "status_code": 200,
+      "data": {
+        "ID": 46899,
+        "Site": {
+          "ID": 234
+        },
+        "AssetType": {
+          "ID": 2,
+          "Name": "Alarms"
+        },
+        "CustomerContract": {
+          "Name": "Customer Name"
+        },
+        "LastTest": {
+          "Result": "Pass",
+          "Date": "2018-08-07"
+        },
+        "Archived": false,
+        "CustomFields": [
+          {
+            "CustomField": {
+              "ID": 9991,
+              "Name": "NOT_USED_NAME"
+            },
+            "Value": "ANY_VALUE"
+          },
+          {
+            "CustomField": {
+              "ID": 9992,
+              "Name": "Location"
+            },
+            "Value": "Inside kitchen unit"
+          },
+          {
+            "CustomField": {
+              "ID": 15,
+              "Name": "ANY_NAME"
+            },
+            "Value": "Combi"
+          },
+          {
+            "CustomField": {
+              "ID": 9993,
+              "Name": "NOT_USED_NAME"
+            },
+            "Value": "ANY_VALUE"
+          },
+          {
+            "CustomField": {
+              "ID": 59,
+              "Name": "ANY_NAME"
+            },
+            "Value": "2018-09-09"
+          },
+          {
+            "CustomField": {
+              "ID": 9994,
+              "Name": "Make"
+            },
+            "Value": "Worcester"
+          },
+          {
+            "CustomField": {
+              "ID": 9995,
+              "Name": "Model"
+            },
+            "Value": "Greenstar 32Cdi"
+          },
+          {
+            "CustomField": {
+              "ID": 9996,
+              "Name": "ANY_STRING_Expiry Date_ANY_STRING"
+            },
+            "Value": "2018-08-08"
+          },
+          {
+            "CustomField": {
+              "ID": 9997,
+              "Name": "NOT_USED_NAME"
+            },
+            "Value": "ANY_VALUE"
+          }
+        ]
+      },
+      "headers": {
+        "any": "headers"
+      }
+    }
+  },
+  {
+    "request": {
+      "type": "get",
+      "url": "https://fake.gassure.simprocloud.com/api/v1.0/companies/0/sites/234/assets/46899/serviceLevels/",
+      "data": {
+        "pageSize": 250
+      },
+      "headers": {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        "Authorization": "Bearer fake_simpro_token"
+      }
+    },
+    "response": {
+      "status_code": 200,
+      "data": [
+        {
+          "ServiceLevel": {
+            "Name": "NOT_LATEST_SERVICE_DATE"
+          },
+          "ServiceDate": "2024-10-24"
+        },
+        {
+          "ServiceLevel": {
+            "Name": "Annual"
+          },
+          "ServiceDate": "2024-10-26"
+        },
+        {
+          "ServiceLevel": {
+            "Name": "NOT_LATEST_SERVICE_DATE"
+          },
+          "ServiceDate": "2024-10-25"
+        }
+      ],
+      "headers": {
+        "any": "headers"
+      }
+    }
+  },
+  {
+    "request": {
+      "type": "get",
+      "url": "https://fake.gassure.simprocloud.com/api/v1.0/companies/0/sites/234/assets/46899/attachments/files/",
+      "data": {
+        "page": 1,
+        "pageSize": 250
+      },
+      "headers": {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        "Authorization": "Bearer fake_simpro_token"
+      }
+    },
+    "response": {
+      "status_code": 200,
+      "data": [],
+      "headers": {
+        "any": "headers"
+      }
+    }
+  },
+  {
+    "request": {
+      "type": "get",
       "url": "https://fake.gassure.simprocloud.com/api/v1.0/companies/0/sites/234/assets/46899/testHistory/",
       "data": {
         "pageSize": 250

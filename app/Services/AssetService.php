@@ -146,13 +146,7 @@ class AssetService extends BaseService
         $companyId = $this->companyId;
         $simproAssetId = $webhook['simpro_entity_id'];
 
-        $asset = $this->with('site')->findBy('simpro_asset_id', $simproAssetId);
-
-        if (isset($asset)) {
-            $this->assetTestRecordService->syncByAsset($companyId, $asset['site']['simpro_site_id'], $simproAssetId, $asset['id']);
-
-            $this->updateReportFields($asset);
-        }
+        $this->createOrUpdateAsset($companyId, $simproAssetId);
     }
 
     public function createOrUpdateAsset(int $companyId, int $simproAssetId): Model

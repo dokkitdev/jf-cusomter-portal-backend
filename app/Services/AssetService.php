@@ -8,6 +8,7 @@ use App\Models\Role;
 use App\Models\SimproJob;
 use App\Repositories\AssetRepository;
 use Exception;
+use Generator;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
@@ -70,49 +71,10 @@ class AssetService extends BaseService
 
     public function search(array $filters): LengthAwarePaginator
     {
-        $authUser = $this->getAuthUser();
-
-        if ($authUser && ($authUser['role_id'] === Role::CUSTOMER)) {
-            $filters['asset_has_user'] = $authUser['id'];
-        }
-
-        if (Arr::get($filters, 'report')) {
-            $filters['with'][] = 'job';
-        }
+        $filters = $this->prepareSearchFilters($filters);
 
         $assets = $this->repository
-            ->with(Arr::get($filters, 'with', []))
             ->searchQuery($filters)
-            ->filterByList('job.stage', 'job_stage')
-            ->filterBy('asset_type')
-            ->filterByList('custom_asset_type_value', 'custom_asset_type_value')
-            ->filterByIntQuery('simpro_asset_id')
-            ->filterBy('job_id')
-            ->filterBy('site.customer_id')
-            ->filterBy('customer_id', 'job_customer_id')
-            ->filterBy('site_id')
-            ->filterBy('archived')
-            ->filterByList('name', 'names')
-            ->filterByList('service_level_name', 'service_level_names')
-            ->filterByQuery(['name'])
-            ->filterByQueryWithValue('location', 'location_query')
-            ->filterByQueryWithValue('customer_name', 'customer_name_query')
-            ->filterByQueryWithValue('make', 'make_query')
-            ->filterByQueryWithValue('model', 'model_query')
-            ->filterBy('last_test_date')
-            ->filterFrom('last_test_date', false, 'last_test_date_from')
-            ->filterTo('last_test_date', false, 'last_test_date_to')
-            ->filterBy('next_service_date')
-            ->filterFrom('next_service_date', false, 'next_service_date_from')
-            ->filterTo('next_service_date', false, 'next_service_date_to')
-            ->filterByReport()
-            ->filterByLastTestResult()
-            ->filterByOnlyPermitted()
-            ->filterBySiteName()
-            ->filterBySiteUprn()
-            ->filterByCP12Status()
-            ->filterByJobDueDate()
-            ->filterByJobLoggedCompletionDate()
             ->getSearchResults();
 
         if (Arr::get($filters, 'report')) {
@@ -122,6 +84,25 @@ class AssetService extends BaseService
         }
 
         return $assets;
+    }
+
+    public function iterateByFilters(array $filters): Generator
+    {
+        $filters = $this->prepareSearchFilters($filters);
+
+        $assets = $this->repository
+            ->searchQuery($filters)
+            ->iterateSearchResults();
+
+        if (Arr::get($filters, 'report')) {
+            foreach ($assets as $asset) {
+                $asset->append('cp12_status');
+
+                yield $asset;
+            }
+        } else {
+            yield from $assets->getIterator();
+        }
     }
 
     public function updateOrCreateBySimpro(SimproJob $webhook): Model
@@ -168,6 +149,21 @@ class AssetService extends BaseService
         $asset = $this->updateReportFields($asset);
 
         return $asset;
+    }
+
+    protected function prepareSearchFilters(array $filters): array
+    {
+        $authUser = $this->getAuthUser();
+
+        if ($authUser && ($authUser['role_id'] === Role::CUSTOMER)) {
+            $filters['asset_has_user'] = $authUser['id'];
+        }
+
+        if (Arr::get($filters, 'report')) {
+            $filters['with'][] = 'job';
+        }
+
+        return $filters;
     }
 
     protected function createOrUpdate(int $companyId, array $simproAsset, int $siteId, int $simproSiteId): Model

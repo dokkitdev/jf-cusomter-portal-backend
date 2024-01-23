@@ -12,8 +12,10 @@ use App\Http\Requests\Assets\SearchAssetRequest;
 use App\Http\Requests\Assets\DownloadAssetAttachmentRequest;
 use App\Services\AssetAttachmentService;
 use App\Services\AssetService;
+use App\Support\CsvExport\CsvExporter;
 use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class AssetController extends Controller
 {
@@ -40,14 +42,20 @@ class AssetController extends Controller
         return response()->json($result);
     }
 
-    public function export(SearchAssetRequest $request, AssetService $service)
+    public function export(SearchAssetRequest $request, AssetService $service): BinaryFileResponse
     {
-        return Excel::download(new AssetsExport($service, $request->onlyValidated()), 'assets.csv');
+        return response()->download(
+            (new CsvExporter())->export(new AssetsExport($service, $request->onlyValidated())),
+            'assets.csv',
+        );
     }
 
-    public function exportReport(SearchAssetRequest $request, AssetService $service)
+    public function exportReport(SearchAssetRequest $request, AssetService $service): BinaryFileResponse
     {
-        return Excel::download(new AssetsReportExport($service, $request->onlyValidated()), 'assets_report.csv');
+        return response()->download(
+            (new CsvExporter())->export(new AssetsReportExport($service, $request->onlyValidated())),
+            'assets_report.csv',
+        );
     }
 
     public function getServiceLevels(GetAssetServiceLevelsRequest $request, AssetService $service)

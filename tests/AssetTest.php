@@ -213,30 +213,32 @@ class AssetTest extends TestCase
 
     public function testExport()
     {
-        Excel::fake();
-
         $response = $this->actingAs($this->customer)->json('get', '/assets/export', [
             'all' => 1,
-            'with' => ['site'],
+            'with' => ['site', 'site.customer'],
         ]);
 
         $response->assertStatus(Response::HTTP_OK);
 
-        Excel::assertDownloaded('assets.csv');
+        $response->assertHeader('Content-Disposition', 'attachment; filename=assets.csv');
+        $response->assertHeader('Content-Type', 'text/plain');
+
+        $this->assertEqualsTextFixture('export__general__file.csv', $response->getFile()->getContent());
     }
 
     public function testExportAsAdmin()
     {
-        Excel::fake();
-
         $response = $this->actingAs($this->admin)->json('get', '/assets/export', [
             'all' => 1,
-            'with' => ['site.customer'],
+            'with' => ['site', 'site.customer'],
         ]);
 
         $response->assertStatus(Response::HTTP_OK);
 
-        Excel::assertDownloaded('assets.csv');
+        $response->assertHeader('Content-Disposition', 'attachment; filename=assets.csv');
+        $response->assertHeader('Content-Type', 'text/plain');
+
+        $this->assertEqualsTextFixture('export__as_admin__file.csv', $response->getFile()->getContent());
     }
 
     public function testExportNoAuth()
@@ -269,14 +271,13 @@ class AssetTest extends TestCase
         $response->assertStatus(Response::HTTP_OK);
 
         $response->assertHeader('Content-Disposition', 'attachment; filename=assets_report.csv');
+        $response->assertHeader('Content-Type', 'text/plain');
 
-        $this->assertEquals($this->getFixture('report_export__file.csv'), $response->getFile()->getContent());
+        $this->assertEqualsTextFixture('report_export__general__file.csv', $response->getFile()->getContent());
     }
 
     public function testReportExportAsAdmin()
     {
-        Excel::fake();
-
         $response = $this->actingAs($this->admin)->json('get', '/assets/report/export', [
             'all' => 1,
             'order_by' => 'last_cp12_date',
@@ -294,7 +295,10 @@ class AssetTest extends TestCase
 
         $response->assertStatus(Response::HTTP_OK);
 
-        Excel::assertDownloaded('assets_report.csv');
+        $response->assertHeader('Content-Disposition', 'attachment; filename=assets_report.csv');
+        $response->assertHeader('Content-Type', 'text/plain');
+
+        $this->assertEqualsTextFixture('report_export__as_admin__file.csv', $response->getFile()->getContent());
     }
 
     public function testReportExportNoAuth()

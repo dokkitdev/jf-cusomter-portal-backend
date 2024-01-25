@@ -62,6 +62,15 @@ abstract class TestCase extends BaseTestCase
         $this->assertEquals($this->getJsonFixture($fixture), $data);
     }
 
+    public function assertEqualsTextFixture(string $fixture, string $data, bool $exportMode = false): void
+    {
+        if ($exportMode || $this->forceExportMode) {
+            $this->exportContent($data, $fixture);
+        }
+
+        $this->assertEquals($this->getFixture($fixture), $data);
+    }
+
     public function getFixturePath(string $fixtureName): string
     {
         $class = get_class($this);

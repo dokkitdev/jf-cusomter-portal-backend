@@ -3,14 +3,15 @@
 namespace App\Exports;
 
 use App\Services\AssetService;
+use App\Support\StreamedCsvExport\StreamedCsvExportInterface;
+use Generator;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Carbon;
-use Maatwebsite\Excel\Concerns\FromCollection;
-use Maatwebsite\Excel\Concerns\WithHeadings;
-use Maatwebsite\Excel\Concerns\WithMapping;
 
-class AssetsExport extends BaseExport implements FromCollection, WithHeadings, WithMapping
+class AssetsExport implements StreamedCsvExportInterface
 {
+    protected const CHUNK_SIZE = 20000;
+
     protected AssetService $service;
     protected array $filters;
 
@@ -18,11 +19,6 @@ class AssetsExport extends BaseExport implements FromCollection, WithHeadings, W
     {
         $this->service = $service;
         $this->filters = $filters;
-    }
-
-    public function collection()
-    {
-        return $this->service->search($this->filters);
     }
 
     public function headings(): array
@@ -44,22 +40,26 @@ class AssetsExport extends BaseExport implements FromCollection, WithHeadings, W
         ];
     }
 
-    public function map($row): array
+    public function generator(): Generator
     {
-        return [
-            $row['simpro_asset_id'],
-            Arr::get($row, 'site.customer.name'),
-            (string) Arr::get($row, 'site.uprn'),
-            Arr::get($row, 'site.name'),
-            $row['name'],
-            $row['location'],
-            $row['make'],
-            $row['model'],
-            $row['last_test_result'],
-            $row['last_test_date'] ? Carbon::parse($row['last_test_date'])->format('M d Y') : null,
-            $row['service_level_name'],
-            $row['next_service_date'] ? Carbon::parse($row['next_service_date'])->format('M d Y') : null,
-            $row['expiry_date'] ? Carbon::parse($row['expiry_date'])->format('M d Y') : null,
-        ];
+        $assets = $this->service->iterateByFilters($this->filters, self::CHUNK_SIZE);
+
+        foreach ($assets as $asset) {
+            yield [
+                $asset['simpro_asset_id'],
+                Arr::get($asset, 'site.customer.name'),
+                (string) Arr::get($asset, 'site.uprn'),
+                Arr::get($asset, 'site.name'),
+                $asset['name'],
+                $asset['location'],
+                $asset['make'],
+                $asset['model'],
+                $asset['last_test_result'],
+                $asset['last_test_date'] ? Carbon::parse($asset['last_test_date'])->format('M d Y') : null,
+                $asset['service_level_name'],
+                $asset['next_service_date'] ? Carbon::parse($asset['next_service_date'])->format('M d Y') : null,
+                $asset['expiry_date'] ? Carbon::parse($asset['expiry_date'])->format('M d Y') : null,
+            ];
+        }
     }
 }

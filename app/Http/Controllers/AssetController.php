@@ -12,8 +12,10 @@ use App\Http\Requests\Assets\SearchAssetRequest;
 use App\Http\Requests\Assets\DownloadAssetAttachmentRequest;
 use App\Services\AssetAttachmentService;
 use App\Services\AssetService;
+use App\Support\StreamedCsvExport\StreamedCsvExporter;
 use Illuminate\Support\Facades\Storage;
-use Maatwebsite\Excel\Facades\Excel;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class AssetController extends Controller
 {
@@ -40,14 +42,32 @@ class AssetController extends Controller
         return response()->json($result);
     }
 
-    public function export(SearchAssetRequest $request, AssetService $service)
+    public function export(SearchAssetRequest $request, AssetService $service): StreamedResponse
     {
-        return Excel::download(new AssetsExport($service, $request->onlyValidated()), 'assets.csv');
+        return response()->stream(
+            function () use ($request, $service) {
+                (new StreamedCsvExporter())->export(new AssetsExport($service, $request->onlyValidated()));
+            },
+            Response::HTTP_OK,
+            [
+                'Content-Disposition' => 'attachment; filename=assets.csv',
+                'Content-Type' => 'text/csv',
+            ],
+        );
     }
 
-    public function exportReport(SearchAssetRequest $request, AssetService $service)
+    public function exportReport(SearchAssetRequest $request, AssetService $service): StreamedResponse
     {
-        return Excel::download(new AssetsReportExport($service, $request->onlyValidated()), 'assets_report.csv');
+        return response()->stream(
+            function () use ($request, $service) {
+                (new StreamedCsvExporter())->export(new AssetsReportExport($service, $request->onlyValidated()));
+            },
+            Response::HTTP_OK,
+            [
+                'Content-Disposition' => 'attachment; filename=assets_report.csv',
+                'Content-Type' => 'text/csv',
+            ],
+        );
     }
 
     public function getServiceLevels(GetAssetServiceLevelsRequest $request, AssetService $service)

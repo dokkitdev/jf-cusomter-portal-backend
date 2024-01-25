@@ -12,7 +12,6 @@ use App\Models\Site;
 use App\Models\User;
 use App\Tests\Support\SimproTestTrait;
 use Illuminate\Support\Facades\Storage;
-use Maatwebsite\Excel\Facades\Excel;
 use Symfony\Component\HttpFoundation\Response;
 
 class AssetTest extends TestCase
@@ -221,9 +220,9 @@ class AssetTest extends TestCase
         $response->assertStatus(Response::HTTP_OK);
 
         $response->assertHeader('Content-Disposition', 'attachment; filename=assets.csv');
-        $response->assertHeader('Content-Type', 'text/plain');
+        $response->assertHeader('Content-Type', 'text/csv; charset=UTF-8');
 
-        $this->assertEqualsTextFixture('export__general__file.csv', $response->getFile()->getContent());
+        $this->assertEqualsTextFixture('export__general__file.csv', $response->streamedContent());
     }
 
     public function testExportAsAdmin()
@@ -236,9 +235,9 @@ class AssetTest extends TestCase
         $response->assertStatus(Response::HTTP_OK);
 
         $response->assertHeader('Content-Disposition', 'attachment; filename=assets.csv');
-        $response->assertHeader('Content-Type', 'text/plain');
+        $response->assertHeader('Content-Type', 'text/csv; charset=UTF-8');
 
-        $this->assertEqualsTextFixture('export__as_admin__file.csv', $response->getFile()->getContent());
+        $this->assertEqualsTextFixture('export__as_admin__file.csv', $response->streamedContent());
     }
 
     public function testExportNoAuth()
@@ -271,9 +270,9 @@ class AssetTest extends TestCase
         $response->assertStatus(Response::HTTP_OK);
 
         $response->assertHeader('Content-Disposition', 'attachment; filename=assets_report.csv');
-        $response->assertHeader('Content-Type', 'text/plain');
+        $response->assertHeader('Content-Type', 'text/csv; charset=UTF-8');
 
-        $this->assertEqualsTextFixture('report_export__general__file.csv', $response->getFile()->getContent());
+        $this->assertEqualsTextFixture('report_export__general__file.csv', $response->streamedContent());
     }
 
     public function testReportExportAsAdmin()
@@ -296,9 +295,9 @@ class AssetTest extends TestCase
         $response->assertStatus(Response::HTTP_OK);
 
         $response->assertHeader('Content-Disposition', 'attachment; filename=assets_report.csv');
-        $response->assertHeader('Content-Type', 'text/plain');
+        $response->assertHeader('Content-Type', 'text/csv; charset=UTF-8');
 
-        $this->assertEqualsTextFixture('report_export__as_admin__file.csv', $response->getFile()->getContent());
+        $this->assertEqualsTextFixture('report_export__as_admin__file.csv', $response->streamedContent());
     }
 
     public function testReportExportNoAuth()

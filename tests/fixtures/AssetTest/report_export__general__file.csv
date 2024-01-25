@@ -1,7 +1,7 @@
-"Site UPRN","Asset ID","Order#","Customer","Site Name","Site Address","Site Contact","Completion Date","Last Test Date","Next Due (After Completion)","Next Scheduled Date","Status","Job Number","No Access 1","No Access 2","No Access 3","No Access 4","No Access 5"
-"uprn 1","5","","Simpro Customer","Name 1","Charter Place","Name","","","","","","1","","","","",""
-"","6","","Simpro Customer","Name 2","","Name","","","","2018-11-19","","2","","","","",""
-"uprn 1","11","","Simpro Customer","Name 1","Charter Place","Name","","2021-01-10","","","","1","2016-10-20","","","",""
-"uprn 1","4","","Simpro Customer","Name 1","Charter Place","Name","","2021-01-08","","2018-11-19","","2","","","","",""
-"uprn 1","2","","Simpro Customer","Name 1","Charter Place","Name","","2016-10-20","2016-10-20","2018-11-19","","2","2016-10-20","","","",""
-"uprn 1","1","","Simpro Customer","Name 1","Charter Place","Name","","2016-10-20","2016-10-20","","","1","2016-10-20","","","",""
+"Site UPRN","Asset ID",Order#,Customer,"Site Name","Site Address","Site Contact","Completion Date","Last Test Date","Next Due (After Completion)","Next Scheduled Date",Status,"Job Number","No Access 1","No Access 2","No Access 3","No Access 4","No Access 5"
+"uprn 1",1,,"Simpro Customer","Name 1","Charter Place",Name,,2016-10-20,2016-10-20,,,1,2016-10-20,,,,
+"uprn 1",2,,"Simpro Customer","Name 1","Charter Place",Name,,2016-10-20,2016-10-20,2018-11-19,,2,2016-10-20,,,,
+"uprn 1",4,,"Simpro Customer","Name 1","Charter Place",Name,,2021-01-08,,2018-11-19,,2,,,,,
+"uprn 1",5,,"Simpro Customer","Name 1","Charter Place",Name,,,,,,1,,,,,
+,6,,"Simpro Customer","Name 2",,Name,,,,2018-11-19,,2,,,,,
+"uprn 1",11,,"Simpro Customer","Name 1","Charter Place",Name,,2021-01-10,,,,1,2016-10-20,,,,

@@ -47,10 +47,9 @@ class AssetRepository extends BaseRepository
                     return $query
                         ->where(function (Builder $query) {
                             return $query
-                                ->whereNull('sortable_date');
+                                ->whereNull('next_service_date');
                         })
-                        ->orWhereRaw('ABS((sortable_date - CURRENT_DATE)) < 338')
-                        ->orWhereRaw('EXTRACT(YEAR FROM sortable_date) > EXTRACT(YEAR FROM CURRENT_DATE)');
+                        ->orWhereRaw("next_service_date > DATE (CURRENT_DATE + INTERVAL '1 year 28 days')");
                 });
             }
 
@@ -59,11 +58,10 @@ class AssetRepository extends BaseRepository
                     return $query
                         ->where(function (Builder $query) {
                             return $query
-                                ->whereNotNull('sortable_date');
+                                ->whereNotNull('next_service_date');
                         })
-                        ->whereRaw('ABS((sortable_date - CURRENT_DATE)) > 337')
-                        ->whereRaw('ABS((sortable_date - CURRENT_DATE)) < 367')
-                        ->whereRaw('EXTRACT(YEAR FROM sortable_date) < EXTRACT(YEAR FROM CURRENT_DATE)');
+                        ->whereRaw("next_service_date > DATE (CURRENT_DATE + INTERVAL '1 year')")
+                        ->WhereRaw("next_service_date <= DATE (CURRENT_DATE + INTERVAL '1 year 28 days')");
                 });
             }
 
@@ -72,10 +70,9 @@ class AssetRepository extends BaseRepository
                     return $query
                         ->where(function (Builder $query) {
                             return $query
-                                ->whereNotNull('sortable_date');
+                                ->whereNotNull('next_service_date');
                         })
-                        ->whereRaw('ABS((sortable_date - CURRENT_DATE)) > 366')
-                        ->whereRaw('EXTRACT(YEAR FROM sortable_date) < EXTRACT(YEAR FROM CURRENT_DATE)');
+                        ->whereRaw("next_service_date <= DATE (CURRENT_DATE + INTERVAL '1 year')");
                 });
             }
         }

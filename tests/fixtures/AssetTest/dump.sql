@@ -68,7 +68,7 @@ INSERT INTO assets(id, simpro_asset_id, site_id, name, sortable_date, last_test_
 (1, 1, 1, 'Name 1', '2016-10-20', '2016-10-20', '2016-10-20', 'Test result...', 'Service level...', false, 4, '2021-01-06', 1, 1, '2016-10-20'),
 (2, 2, 1, 'Name 2', '2016-10-20', '2016-10-20', '2016-10-20', 'Test result...', 'Service level...', false, 4, '2021-01-07', 2, 1, '2016-10-20'),
 (3, 3, 1, 'Name 3', '2021-01-10', null, null, 'Test result...', 'Service level...', true, 4, '2021-01-10', 1, 1, '2016-10-20'),
-(4, 4, 1, 'Name 4', '2021-01-08', null, null, null, null, false, 4, '2021-01-08', 2, 1, null),
+(4, 4, 1, 'Name 4', '2021-01-08', null, '2021-01-08', null, null, false, 4, '2021-01-08', 2, 1, null),
 (5, 5, 1, 'Name 5', null, null, null, null, null, false, 4, null, 1, 1, null),
 (6, 6, 2, 'Name 6', null, null, null, null, null, false, 4, null, 2, 1, null),
 (7, 7, 3, 'Name 7', null, null, null, null, null, false, 3, null, 1, 1, null),

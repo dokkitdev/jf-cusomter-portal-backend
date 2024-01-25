@@ -2,7 +2,7 @@ AssetID,Customer,"Site UPRN",Site,"Asset Name",Location,Make,Model,"Last Test Re
 1,"Simpro Customer","uprn 1","Name 1","Name 1",,,,"Test result...","Oct 20 2016","Service level...","Oct 20 2016",
 2,"Simpro Customer","uprn 1","Name 1","Name 2",,,,"Test result...","Oct 20 2016","Service level...","Oct 20 2016",
 3,"Simpro Customer","uprn 1","Name 1","Name 3",,,,"Test result...",,"Service level...",,
-4,"Simpro Customer","uprn 1","Name 1","Name 4",,,,,,,,
+4,"Simpro Customer","uprn 1","Name 1","Name 4",,,,,,,"Jan 08 2021",
 5,"Simpro Customer","uprn 1","Name 1","Name 5",,,,,,,,
 6,"Simpro Customer",,"Name 2","Name 6",,,,,,,,
 7,"Simpro Customer",,"Name 3","Name 7",,,,,,,,

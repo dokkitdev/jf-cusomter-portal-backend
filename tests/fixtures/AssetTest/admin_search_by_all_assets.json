@@ -107,7 +107,7 @@
             "make": null,
             "model": null,
             "last_test_date": null,
-            "next_service_date": null,
+            "next_service_date": "2021-01-08",
             "last_test_result": null,
             "service_level_name": null,
             "archived": false,

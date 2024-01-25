@@ -63,13 +63,13 @@ class Asset extends BaseModel
             return self::CP12_STATUS_ON_TIME;
         }
 
-        $date = Carbon::parse($this['next_service_date'])->subYear()->startOfDay();
+        $nextServiceDate = Carbon::parse($this['next_service_date'])->startOfDay();
 
-        if ($date->lte(Carbon::now()->startOfDay())) {
+        if ($nextServiceDate->lte(Carbon::now()->addYear()->startOfDay())) {
             return self::CP12_STATUS_OVERDUE;
         }
 
-        if ($date->gt(Carbon::now()->addDays(28)->startOfDay())) {
+        if ($nextServiceDate->gt(Carbon::now()->addYear()->addDays(28)->startOfDay())) {
             return self::CP12_STATUS_ON_TIME;
         }
 

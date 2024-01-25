@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\LazyCollection;
 use Illuminate\Support\Str;
 use RonasIT\Support\Repositories\BaseRepository as Repository;
 
@@ -107,6 +108,13 @@ class BaseRepository extends Repository
         }
 
         return $this;
+    }
+
+    public function iterateSearchResults(?int $chunkSize = null): LazyCollection
+    {
+        $this->query->reorder();
+
+        return $this->query->lazyById($chunkSize);
     }
 
     protected function addIntQueryWhere(&$query, string $field, $value): void

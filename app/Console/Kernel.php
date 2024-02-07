@@ -28,8 +28,13 @@ class Kernel extends ConsoleKernel
         $schedule->command('simpro:handle-jobs job.asset.tested 5 3')->environments(['production'])->everyMinute()->withoutOverlapping()->runInBackground();
         $schedule->command('simpro:handle-jobs job.asset.tested 5 4')->environments(['production'])->everyMinute()->withoutOverlapping()->runInBackground();
 
+        $schedule->command('simpro:handle-jobs asset 5 0')->environments(['production'])->everyMinute()->withoutOverlapping()->runInBackground();
+        $schedule->command('simpro:handle-jobs asset 5 1')->environments(['production'])->everyMinute()->withoutOverlapping()->runInBackground();
+        $schedule->command('simpro:handle-jobs asset 5 2')->environments(['production'])->everyMinute()->withoutOverlapping()->runInBackground();
+        $schedule->command('simpro:handle-jobs asset 5 3')->environments(['production'])->everyMinute()->withoutOverlapping()->runInBackground();
+        $schedule->command('simpro:handle-jobs asset 5 4')->environments(['production'])->everyMinute()->withoutOverlapping()->runInBackground();
+
         $schedule->command('simpro:handle-jobs site')->environments(['production'])->everyMinute()->withoutOverlapping()->runInBackground();
-        $schedule->command('simpro:handle-jobs asset')->environments(['production'])->everyMinute()->withoutOverlapping()->runInBackground();
         $schedule->command('simpro:handle-jobs company')->environments(['production'])->everyMinute()->withoutOverlapping()->runInBackground();
         $schedule->command('simpro:handle-jobs individual')->environments(['production'])->everyMinute()->withoutOverlapping()->runInBackground();
 

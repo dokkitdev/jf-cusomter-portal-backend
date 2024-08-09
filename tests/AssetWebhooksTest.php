@@ -53,4 +53,30 @@ class AssetWebhooksTest extends TestCase
         $this->assertChangesEqualsFixture('asset_test_record_readings');
         $this->assertChangesEqualsFixture('assets');
     }
+
+    public function getTestJobAssetTestedCheckLastTestDateValueData(): array
+    {
+        return [
+            ['test_case' => 'job_asset_tested__check_last_test_date_value__last_test_completed'],
+            ['test_case' => 'job_asset_tested__check_last_test_date_value__no_last_test__cp12_date_exists'],
+            ['test_case' => 'job_asset_tested__check_last_test_date_value__no_last_test_and_cp12__exists_completed_test_record'],
+            ['test_case' => 'job_asset_tested__check_last_test_date_value__no_any_test_date'],
+        ];
+    }
+
+    /**
+     * @dataProvider getTestJobAssetTestedCheckLastTestDateValueData
+     * @providedTestCase
+     */
+    public function testJobAssetTestedCheckLastTestDateValue(): void
+    {
+        $this->mockHttpRequestService($this->getJsonFixture('requests_chain.json'));
+
+        $this->artisan('simpro:handle-jobs job.asset.tested 5 4')->assertExitCode(0);
+
+        $this->assertChangesEqualsFixture('simpro_jobs');
+        $this->assertChangesEqualsFixture('asset_test_records');
+        $this->assertChangesEqualsFixture('asset_test_record_readings');
+        $this->assertChangesEqualsFixture('assets');
+    }
 }

@@ -1,0 +1,62 @@
+{
+    "updated": [],
+    "created": [
+        {
+            "id": 8,
+            "asset_id": 3,
+            "job_id": 1,
+            "name": "Steven William Walker",
+            "test_date": "2018-10-10",
+            "notes": "appliance not present",
+            "result": "Pass",
+            "created_at": "2018-11-11 11:11:11",
+            "updated_at": "2018-11-11 11:11:11"
+        },
+        {
+            "id": 9,
+            "asset_id": 3,
+            "job_id": 2,
+            "name": "Steven William Walker",
+            "test_date": "2017-10-10",
+            "notes": "appliance not present",
+            "result": "Pass",
+            "created_at": "2018-11-11 11:11:11",
+            "updated_at": "2018-11-11 11:11:11"
+        },
+        {
+            "id": 10,
+            "asset_id": 3,
+            "job_id": 3,
+            "name": "Steven William Walker",
+            "test_date": "2016-10-10",
+            "notes": "appliance not present",
+            "result": "Pass",
+            "created_at": "2018-11-11 11:11:11",
+            "updated_at": "2018-11-11 11:11:11"
+        }
+    ],
+    "deleted": [
+        {
+            "id": 4,
+            "asset_id": 3,
+            "job_id": 1,
+            "name": null,
+            "test_date": null,
+            "notes": null,
+            "result": null,
+            "created_at": "2018-10-10 10:10:10",
+            "updated_at": "2018-10-10 10:10:10"
+        },
+        {
+            "id": 6,
+            "asset_id": 3,
+            "job_id": 1,
+            "name": null,
+            "test_date": null,
+            "notes": null,
+            "result": null,
+            "created_at": "2018-10-10 10:10:10",
+            "updated_at": "2018-10-10 10:10:10"
+        }
+    ]
+}

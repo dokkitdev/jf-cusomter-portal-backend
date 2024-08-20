@@ -26,7 +26,7 @@
         },
         "LastTest": {
           "Result": "Pass",
-          "Date": null
+          "Date": "2018-08-07"
         },
         "Archived": false,
         "CustomFields": [
@@ -57,13 +57,6 @@
               "Name": "NOT_USED_NAME"
             },
             "Value": "ANY_VALUE"
-          },
-          {
-            "CustomField": {
-              "ID": 59,
-              "Name": "ANY_NAME"
-            },
-            "Value": null
           },
           {
             "CustomField": {
@@ -186,64 +179,14 @@
             "Employee": {
               "Name": "Steven William Walker"
             },
-            "Date": "2018-10-10",
+            "Date": null,
             "Notes": "appliance not present",
-            "Result": "Pass"
+            "Result": "No Test"
           },
           "TestReadings": [
             {
               "Name": "~Appliance Make/Model",
               "Value": "potterton Promax Combi 28HE"
-            }
-          ]
-        },
-        {
-          "Job": {
-            "ID": 456
-          },
-          "TestRecord": {
-            "Employee": {
-              "Name": "Steven William Walker"
-            },
-            "Date": "2017-10-10",
-            "Notes": "appliance not present",
-            "Result": "Pass"
-          },
-          "TestReadings": [
-            {
-              "Name": "~Appliance Make/Model",
-              "Value": "potterton Promax Combi 28HE"
-            },
-            {
-              "Name": "~Flue System",
-              "Value": "Pass"
-            }
-          ]
-        },
-        {
-          "Job": {
-            "ID": 567
-          },
-          "TestRecord": {
-            "Employee": {
-              "Name": "Steven William Walker"
-            },
-            "Date": "2016-10-10",
-            "Notes": "appliance not present",
-            "Result": "Pass"
-          },
-          "TestReadings": [
-            {
-              "Name": "~Appliance Make/Model",
-              "Value": "potterton Promax Combi 28HE"
-            },
-            {
-              "Name": "~Flue System",
-              "Value": "Pass"
-            },
-            {
-              "Name": "~Is flue integrity O2 reading 20.6% or more",
-              "Value": "Yes"
             }
           ]
         }

@@ -7,6 +7,7 @@
             "location": "Inside kitchen unit",
             "make": "Worcester",
             "model": "Greenstar 32Cdi",
+            "last_test_date": "2018-08-07",
             "next_service_date": "2024-10-26",
             "last_test_result": "Pass",
             "service_level_name": "Annual",
@@ -17,8 +18,7 @@
             "job_id": 1,
             "customer_id": 1,
             "expiry_date": "2018-08-08",
-            "sortable_date": "2018-10-10",
-            "test_record_date": "2018-10-10"
+            "sortable_date": "2018-08-07"
         }
     ],
     "created": [],

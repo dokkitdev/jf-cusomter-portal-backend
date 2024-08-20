@@ -58,8 +58,9 @@ class AssetWebhooksTest extends TestCase
     {
         return [
             ['test_case' => 'job_asset_tested__check_last_test_date_value__last_test_completed'],
+            ['test_case' => 'job_asset_tested__check_last_test_date_value__test_history_from_simpro_not_properly_ordered'],
             ['test_case' => 'job_asset_tested__check_last_test_date_value__no_last_test__cp12_date_exists'],
-            ['test_case' => 'job_asset_tested__check_last_test_date_value__no_last_test_and_cp12__exists_completed_test_record'],
+            ['test_case' => 'job_asset_tested__check_last_test_date_value__no_last_test_and_cp12__exists_date_in_asset'],
             ['test_case' => 'job_asset_tested__check_last_test_date_value__no_any_test_date'],
         ];
     }

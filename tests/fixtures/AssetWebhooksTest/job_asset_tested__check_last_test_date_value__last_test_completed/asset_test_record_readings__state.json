@@ -1,0 +1,87 @@
+{
+    "updated": [],
+    "created": [
+        {
+            "id": 11,
+            "asset_test_record_id": 8,
+            "name": "~Appliance Make\/Model",
+            "value": "potterton Promax Combi 28HE",
+            "created_at": "2018-11-11 11:11:11",
+            "updated_at": "2018-11-11 11:11:11"
+        },
+        {
+            "id": 12,
+            "asset_test_record_id": 9,
+            "name": "~Appliance Make\/Model",
+            "value": "potterton Promax Combi 28HE",
+            "created_at": "2018-11-11 11:11:11",
+            "updated_at": "2018-11-11 11:11:11"
+        },
+        {
+            "id": 13,
+            "asset_test_record_id": 9,
+            "name": "~Flue System",
+            "value": "Pass",
+            "created_at": "2018-11-11 11:11:11",
+            "updated_at": "2018-11-11 11:11:11"
+        },
+        {
+            "id": 14,
+            "asset_test_record_id": 10,
+            "name": "~Appliance Make\/Model",
+            "value": "potterton Promax Combi 28HE",
+            "created_at": "2018-11-11 11:11:11",
+            "updated_at": "2018-11-11 11:11:11"
+        },
+        {
+            "id": 15,
+            "asset_test_record_id": 10,
+            "name": "~Flue System",
+            "value": "Pass",
+            "created_at": "2018-11-11 11:11:11",
+            "updated_at": "2018-11-11 11:11:11"
+        },
+        {
+            "id": 16,
+            "asset_test_record_id": 10,
+            "name": "~Is flue integrity O2 reading 20.6% or more",
+            "value": "Yes",
+            "created_at": "2018-11-11 11:11:11",
+            "updated_at": "2018-11-11 11:11:11"
+        }
+    ],
+    "deleted": [
+        {
+            "id": 5,
+            "asset_test_record_id": 4,
+            "name": "Test Record Reading 5",
+            "value": null,
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 6,
+            "asset_test_record_id": 4,
+            "name": "Test Record Reading 6",
+            "value": null,
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 8,
+            "asset_test_record_id": 6,
+            "name": "Test Record Reading 8",
+            "value": null,
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 9,
+            "asset_test_record_id": 6,
+            "name": "Test Record Reading 9",
+            "value": null,
+            "created_at": null,
+            "updated_at": null
+        }
+    ]
+}

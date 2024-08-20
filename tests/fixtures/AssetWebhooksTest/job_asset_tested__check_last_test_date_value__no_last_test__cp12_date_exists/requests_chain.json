@@ -26,7 +26,7 @@
         },
         "LastTest": {
           "Result": "Pass",
-          "Date": null
+          "Date": "2018-08-07"
         },
         "Archived": false,
         "CustomFields": [
@@ -186,9 +186,9 @@
             "Employee": {
               "Name": "Steven William Walker"
             },
-            "Date": "2018-10-10",
+            "Date": null,
             "Notes": "appliance not present",
-            "Result": "Pass"
+            "Result": "No Test"
           },
           "TestReadings": [
             {

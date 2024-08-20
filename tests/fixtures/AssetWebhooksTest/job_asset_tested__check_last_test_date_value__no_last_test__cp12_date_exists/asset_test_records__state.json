@@ -6,9 +6,9 @@
             "asset_id": 3,
             "job_id": 1,
             "name": "Steven William Walker",
-            "test_date": "2018-10-10",
+            "test_date": null,
             "notes": "appliance not present",
-            "result": "Pass",
+            "result": "No Test",
             "created_at": "2018-11-11 11:11:11",
             "updated_at": "2018-11-11 11:11:11"
         },

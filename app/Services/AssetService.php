@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\ApiClients\SimproApiClient;
 use App\Models\Asset;
+use App\Models\AssetTestRecord;
 use App\Models\Role;
 use App\Models\SimproJob;
 use App\Repositories\AssetRepository;
@@ -252,10 +253,22 @@ class AssetService extends BaseService
         }
 
         return $this->repository->retryForeignKeyViolation(function () use ($asset, $data) {
-            $testRecordDate = $this->assetTestRecordService->getAssetTestRecordDateForReport($asset['id']);
+            $testRecords = $this->assetTestRecordService->getAssetTestRecordsForReport($asset['id']);
 
-            $data['test_record_date'] = $testRecordDate;
-            $data['sortable_date'] = $asset['last_test_date'] ?? $asset['last_cp12_date'] ?? $testRecordDate ?? null;
+            $lastTestRecord = $testRecords
+                ->sort(function ($testRecordA, $testRecordB) {
+                    if (empty($testRecordA['test_date']) || empty($testRecordB['test_date'])) {
+                        return $testRecordA['id'] <=> $testRecordB['id'];
+                    }
+
+                    return $testRecordB['test_date'] <=> $testRecordA['test_date'];
+                })
+                ->first();
+
+            $lastTestDateFromHistory = Arr::get($lastTestRecord, 'test_date');
+
+            $data['test_record_date'] = $lastTestDateFromHistory;
+            $data['sortable_date'] = max($lastTestDateFromHistory, $asset['last_cp12_date']) ?? $asset['last_test_date'];
 
             return $this->repository->update($asset['id'], $data);
         });

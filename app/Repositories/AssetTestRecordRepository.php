@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\AssetTestRecord;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 
@@ -26,15 +27,13 @@ class AssetTestRecordRepository extends BaseRepository
             ->first();
     }
 
-    public function getAssetTestRecordDateForReport(int $assetId): ?string
+    public function getAssetTestRecordsForReport(int $assetId): Collection
     {
-        $assetTestRecord = $this->getQuery()
+        return $this->getQuery()
             ->where('asset_id', $assetId)
             ->whereNotNull('job_id')
             ->whereIn('result', [AssetTestRecord::RESULT_PASS, AssetTestRecord::RESULT_FAIL])
             ->orderBy('id')
-            ->first();
-
-        return Arr::get($assetTestRecord, 'test_date');
+            ->get();
     }
 }

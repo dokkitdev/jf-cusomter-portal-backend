@@ -11,17 +11,17 @@
         },
         {
             "id": 12,
-            "asset_test_record_id": 9,
-            "name": "~Appliance Make\/Model",
-            "value": "potterton Promax Combi 28HE",
+            "asset_test_record_id": 8,
+            "name": "~Flue System",
+            "value": "Pass",
             "created_at": "2018-11-11 11:11:11",
             "updated_at": "2018-11-11 11:11:11"
         },
         {
             "id": 13,
             "asset_test_record_id": 9,
-            "name": "~Flue System",
-            "value": "Pass",
+            "name": "~Appliance Make\/Model",
+            "value": "potterton Promax Combi 28HE",
             "created_at": "2018-11-11 11:11:11",
             "updated_at": "2018-11-11 11:11:11"
         },

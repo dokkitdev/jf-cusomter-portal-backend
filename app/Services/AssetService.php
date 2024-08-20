@@ -255,7 +255,7 @@ class AssetService extends BaseService
             $testRecordDate = $this->assetTestRecordService->getAssetTestRecordDateForReport($asset['id']);
 
             $data['test_record_date'] = $testRecordDate;
-            $data['sortable_date'] = $asset['last_test_date'] ?? $testRecordDate ?? $asset['last_cp12_date'] ?? null;
+            $data['sortable_date'] = $asset['last_test_date'] ?? $asset['last_cp12_date'] ?? $testRecordDate ?? null;
 
             return $this->repository->update($asset['id'], $data);
         });

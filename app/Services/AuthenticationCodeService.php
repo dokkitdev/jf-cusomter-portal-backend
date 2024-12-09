@@ -46,6 +46,19 @@ class AuthenticationCodeService extends BaseService
         dispatch(new SendMailJob($mail));
     }
 
+    public function check(int $userId, string $code): bool
+    {
+        $isSuccess = $this->repository->check($userId, $code, Carbon::now());
+
+        if ($isSuccess) {
+            $this->delete([
+                'user_id' => $userId,
+            ]);
+        }
+
+        return $isSuccess;
+    }
+
     protected function generateRandomCode(): string
     {
         return (string) rand(100000, 999999);

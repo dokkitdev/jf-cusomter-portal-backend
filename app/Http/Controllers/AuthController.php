@@ -8,6 +8,7 @@ use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Auth\LogoutRequest;
 use App\Http\Requests\Auth\RefreshTokenRequest;
 use App\Http\Requests\Auth\RestorePasswordRequest;
+use App\Services\AuthenticationCodeService;
 use App\Services\UserService;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
@@ -17,7 +18,7 @@ use Tymon\JWTAuth\JWTAuth;
 
 class AuthController extends Controller
 {
-    public function login(LoginRequest $request, UserService $service, JWTAuth $auth)
+    public function login(LoginRequest $request, UserService $service, AuthenticationCodeService $authenticationCodeService, JWTAuth $auth)
     {
         $credentials = $request->only('email', 'password');
         $remember = $request->input('remember', false);
@@ -30,7 +31,7 @@ class AuthController extends Controller
             $token = $auth->fromUser($user);
         }
 
-        if ($token === false) {
+        if (($token === false) || !$authenticationCodeService->check($user['id'], $request->input('2fa_code'))) {
             return response()->json([
                 'message' => 'Authorization failed'
             ], Response::HTTP_UNAUTHORIZED);

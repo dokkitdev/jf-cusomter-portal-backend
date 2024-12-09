@@ -12,6 +12,7 @@ class LoginRequest extends Request
             'email' => 'required',
             'password' => 'required',
             'remember' => 'boolean',
+            '2fa_code' => 'required|string',
         ];
     }
 }

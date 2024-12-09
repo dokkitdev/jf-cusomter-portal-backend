@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AssetController;
+use App\Http\Controllers\AuthenticationCodeController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\JobAttachmentController;
@@ -93,6 +94,7 @@ Route::group(['middleware' => 'guest'], function () {
     Route::post('/auth/forgot-password', ['uses' => AuthController::class . '@forgotPassword']);
     Route::post('/auth/restore-password', ['uses' => AuthController::class . '@restorePassword']);
     Route::post('/auth/token/check', ['uses' => AuthController::class . '@checkRestoreToken']);
+    Route::post('/auth/2fa-codes', ['uses' => AuthenticationCodeController::class . '@send']);
 
     Route::get('/status', ['uses' => StatusController::class . '@status']);
 

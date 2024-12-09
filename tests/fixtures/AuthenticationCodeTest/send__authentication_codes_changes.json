@@ -1,0 +1,23 @@
+{
+    "updated": [],
+    "created": [
+        {
+            "id": 4,
+            "user_id": 2,
+            "code": "123456",
+            "expires_at": "2018-11-11 11:21:11",
+            "created_at": "2018-11-11 11:11:11",
+            "updated_at": "2018-11-11 11:11:11"
+        }
+    ],
+    "deleted": [
+        {
+            "id": 3,
+            "user_id": 2,
+            "code": "222222",
+            "expires_at": "2018-10-10 10:10:10",
+            "created_at": null,
+            "updated_at": null
+        }
+    ]
+}

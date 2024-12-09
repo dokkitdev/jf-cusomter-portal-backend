@@ -21,4 +21,6 @@ return [
     'repair_job_custom_field_ids' => [8, 9],
     'job_cost_center_id' => 8,
     'job_due_date_interval_hours' => 24,
+
+    '2fa_code_ttl_minutes' => (int) env('2FA_CODE_TTL_MINUTES', 10),
 ];

@@ -12,6 +12,10 @@ class AuthTest extends TestCase
 {
     use AuthTestTrait;
 
+    protected array $requiredOriginStates = [
+        'authentication_codes',
+    ];
+
     protected $admin;
     protected $users;
 
@@ -26,24 +30,63 @@ class AuthTest extends TestCase
     public function testLogin()
     {
         $response = $this->json('post', '/login', [
-            'email' => $this->users[1]['email'],
-            'password' => $this->users[1]['password']
+            'email' => 'fidel.kutch@example.com',
+            'password' => '123456',
+            '2fa_code' => '654321',
         ]);
 
         $response->assertStatus(Response::HTTP_OK);
 
         $this->assertArrayHasKey('token', $response->json());
         $response->assertCookie('token');
+
+        $this->assertChangesEqualsFixture('authentication_codes', 'login__authentication_codes_changes.json');
     }
 
-    public function testLoginWrongCredentials()
+    public function getTestLoginWrongCredentialsData(): array
     {
-        $response = $this->json('post', '/login', [
-            'email' => 'wrong email',
-            'password' => 'wrong password'
-        ]);
+        return [
+            [
+                'credentials' => [
+                    'email' => 'wrong email',
+                    'password' => '123456',
+                    '2fa_code' => '654321',
+                ],
+            ],
+            [
+                'credentials' => [
+                    'email' => 'fidel.kutch@example.com',
+                    'password' => 'wrong password',
+                    '2fa_code' => '654321',
+                ],
+            ],
+            [
+                'credentials' => [
+                    'email' => 'fidel.kutch@example.com',
+                    'password' => '123456',
+                    '2fa_code' => 'wrong code',
+                ],
+            ],
+            [
+                'credentials' => [
+                    'email' => 'user6@example.com', //user with expired authentication code
+                    'password' => '123456',
+                    '2fa_code' => '654321',
+                ],
+            ],
+        ];
+    }
+
+    /**
+     * @dataProvider getTestLoginWrongCredentialsData
+     */
+    public function testLoginWrongCredentials(array $credentials): void
+    {
+        $response = $this->json('post', '/login', $credentials);
 
         $response->assertStatus(Response::HTTP_UNAUTHORIZED);
+
+        $this->assertNoChanges('authentication_codes');
     }
 
     public function testLoginWithRemember()
@@ -51,12 +94,15 @@ class AuthTest extends TestCase
         $response = $this->json('post', '/login', [
             'email' => $this->users[1]['email'],
             'password' => $this->users[1]['password'],
-            'remember' => true
+            'remember' => true,
+            '2fa_code' => '654321',
         ]);
 
         $response->assertStatus(Response::HTTP_OK);
         $response->assertCookie('token');
         $response->assertCookieNotExpired('token');
+
+        $this->assertChangesEqualsFixture('authentication_codes', 'login__with_remember__authentication_codes_changes.json');
     }
 
     public function testLoginWithoutRemember()
@@ -64,25 +110,31 @@ class AuthTest extends TestCase
         $response = $this->json('post', '/login', [
             'email' => $this->users[1]['email'],
             'password' => $this->users[1]['password'],
-            'remember' => false
+            'remember' => false,
+            '2fa_code' => '654321',
         ]);
 
         $response->assertStatus(Response::HTTP_OK);
         $response->assertCookie('token');
         $this->assertEquals(0, $response->getCookie('token')->getExpiresTime());
+
+        $this->assertChangesEqualsFixture('authentication_codes', 'login__without_remember__authentication_codes_changes.json');
     }
 
     public function testLoginAsRegisteredUser()
     {
         $response = $this->json('post', '/login', [
             'email' => $this->users[0]['email'],
-            'password' => $this->users[0]['password']
+            'password' => $this->users[0]['password'],
+            '2fa_code' => '654321',
         ]);
 
         $response->assertStatus(Response::HTTP_OK);
 
         $this->assertArrayHasKey('token', $response->json());
         $response->assertCookie('token');
+
+        $this->assertChangesEqualsFixture('authentication_codes', 'login__as_registered_user__authentication_codes_changes.json');
     }
 
     public function testRefreshToken()

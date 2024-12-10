@@ -8,7 +8,14 @@ INSERT INTO users(id, name, email, password, remember_token, set_password_hash, 
   (2, 'Alien West', 'alien.west@example.com', 'old_password', null, 'restore_token', 2, '2016-10-20 11:05:00', '2016-10-20 11:05:00', '2018-11-11 10:11:10'),
   (3, 'Alien East', 'alien.ease@example.com', 'old_password', null, 'good_token2', 2, '2016-10-20 11:05:00', '2016-10-20 11:05:00', '2018-11-11 10:35:00'),
   (4, 'Alien North', 'alien.north@example.com', 'old_password', null, 'bad_token1', 2, '2016-10-20 11:05:00', '2016-10-20 11:05:00', '2018-11-11 8:06:00'),
-  (5, 'Alien South', 'alien.south@example.com', 'old_password', null, 'bad_token2', 2, '2016-10-20 11:05:00', '2016-10-20 11:05:00', '2018-11-11 9:04:00');
+  (5, 'Alien South', 'alien.south@example.com', 'old_password', null, 'bad_token2', 2, '2016-10-20 11:05:00', '2016-10-20 11:05:00', '2018-11-11 9:04:00'),
+  (6, 'user6', 'user6@example.com', '$2y$10$X4receiTrF24bXrEbAiChOZ8TMNPqoXuhuThgynvBdWIHZeu5HzsS', null, null, 2, '2016-10-20 11:05:00', '2016-10-20 11:05:00', null);
+
+INSERT INTO authentication_codes(id, user_id, code, expires_at, created_at, updated_at) VALUES
+(1, 2, '222222', '2018-10-10 10:10:10', '2018-10-10 10:10:10', '2018-10-10 10:10:10'),
+(2, 1, '654321', '2018-11-11 11:11:12', '2018-10-10 10:10:10', '2018-10-10 10:10:10'),
+(3, 6, '654321', '2018-11-11 11:11:11', '2018-10-10 10:10:10', '2018-10-10 10:10:10'),
+(4, 3, '333333', '2018-10-10 10:10:10', '2018-10-10 10:10:10', '2018-10-10 10:10:10');
 
 
 

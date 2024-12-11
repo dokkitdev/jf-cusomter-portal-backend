@@ -30,7 +30,7 @@
                 <tr>
                     <td class="header" style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; padding: 25px 0; text-align: center;">
                         <a href="" style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; color: #bbbfc3; font-size: 19px; font-weight: bold; text-decoration: none; text-shadow: 0 1px 0 white;">
-                            <img src="{{asset('img/jf-logo-v1-150.png')}}" alt="James Frew Portal">
+                            <img src="{{asset('img/jf-logo-v2-150.png')}}" alt="James Frew Portal">
                         </a>
                     </td>
                 </tr>

@@ -1,5 +1,5 @@
-INSERT INTO customers(id, simpro_customer_id, name, type, created_at, updated_at) VALUES
-(1, 123, 'Customer 123', 'companies', '2018-10-10 10:10:10', '2018-10-10 10:10:10');
+INSERT INTO customers(id, simpro_customer_id, name, type, email, created_at, updated_at) VALUES
+(1, 123, 'Customer 123', 'companies', 'company1@example.com', '2018-10-10 10:10:10', '2018-10-10 10:10:10');
 
 INSERT INTO sites(id, simpro_site_id, name, created_at, updated_at) VALUES
 (1, 234, 'Site 455', '2018-10-10 10:10:10', '2018-10-10 10:10:10');

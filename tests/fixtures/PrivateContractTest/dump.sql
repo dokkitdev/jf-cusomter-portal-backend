@@ -11,13 +11,13 @@ INSERT INTO users(id, name, email, password, role_id, created_at, updated_at) VA
 INSERT INTO simpro_jobs(id, data, handle_status, handle_result) VALUES
 (1, '{"ID": "job.created", "build": "pfsgroup.simprosuite.com", "description": "Job #test has been crashed.", "name": "Job", "action": "created", "reference": {"companyID": 0, "jobID": 2406}, "date_triggered": "2019-12-18T11:52:29+00:00"}', 'error', '{}');
 
-INSERT INTO customers(id, simpro_customer_id, name, type, created_at, updated_at) VALUES
-(1, 101, 'Simpro Customer1', 'companies', '2016-10-20 11:05:00', '2016-10-20 11:05:00'),
-(2, 102, 'Simpro Customer2', 'companies', '2016-10-20 11:05:00', '2016-10-20 11:05:00'),
-(3, 103, 'Simpro Customer3', 'companies', '2016-10-20 11:05:00', '2016-10-20 11:05:00'),
-(4, 104, 'Simpro Customer4', 'individuals', '2016-10-20 11:05:00', '2016-10-20 11:05:00'),
-(5, 105, 'Simpro Customer5', 'individuals', '2018-10-20 11:05:00', '2016-10-20 11:05:00'),
-(6, 106, 'Simpro Customer6', 'companies', '2016-10-20 11:05:00', '2016-10-20 11:05:00');
+INSERT INTO customers(id, simpro_customer_id, name, type, email, created_at, updated_at) VALUES
+(1, 101, 'Simpro Customer1', 'companies', 'company1@example.com', '2016-10-20 11:05:00', '2016-10-20 11:05:00'),
+(2, 102, 'Simpro Customer2', 'companies', 'company2@example.com', '2016-10-20 11:05:00', '2016-10-20 11:05:00'),
+(3, 103, 'Simpro Customer3', 'companies', 'company3@example.com', '2016-10-20 11:05:00', '2016-10-20 11:05:00'),
+(4, 104, 'Simpro Customer4', 'individuals', 'indivi1@example.com', '2016-10-20 11:05:00', '2016-10-20 11:05:00'),
+(5, 105, 'Simpro Customer5', 'individuals', 'indivi2@example.com', '2018-10-20 11:05:00', '2016-10-20 11:05:00'),
+(6, 106, 'Simpro Customer6', 'companies', 'company4@example.com', '2016-10-20 11:05:00', '2016-10-20 11:05:00');
 
 INSERT INTO customer_user(id, customer_id, user_id) VALUES
 (1, 1, 3),

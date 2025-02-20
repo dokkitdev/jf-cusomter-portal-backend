@@ -4,10 +4,10 @@ INSERT INTO users(id, name, email, password, role_id) VALUES
 (6, 'No Permission Site 7', 'user6@example.com', '', 3),
 (7, 'Not Customer', 'user7@example.com', '', 2);
 
-INSERT INTO customers (id, simpro_customer_id, name, type) VALUES
-(5, 55, 'not used', 'companies'),
-(6, 66, 'Customer6 User5', 'companies'),
-(7, 66, 'Customer7 User6', 'companies');
+INSERT INTO customers (id, simpro_customer_id, name, type, email) VALUES
+(5, 55, 'not used', 'companies', 'company1@example.com'),
+(6, 66, 'Customer6 User5', 'companies', 'company2@example.com'),
+(7, 66, 'Customer7 User6', 'companies', 'company3@example.com');
 
 INSERT INTO sites (id, simpro_site_id, name, customer_id) VALUES
 (6, 66, 'not used', null),

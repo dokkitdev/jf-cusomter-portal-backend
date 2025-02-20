@@ -2,6 +2,7 @@
 
 namespace App\ApiClients;
 
+use App\Models\Customer;
 use Generator;
 use App\Services\HttpRequestService;
 
@@ -332,7 +333,11 @@ class SimproApiClient
     {
         $url = "companies/{$companyId}/customers/{$type}/";
 
-        return $this->getAsGenerator($url);
+        $additionalFilters = $type === Customer::TYPE_INDIVIDUALS
+            ? ['columns' => 'ID,GivenName,FamilyName,Email,Address,Title']
+            : ['columns' => 'ID,CompanyName,Email,Address'];
+
+        return $this->getAsGenerator($url, $additionalFilters);
     }
 
     public function getRecurringInvoices(int $companyId, array $additionalFilters = []): Generator

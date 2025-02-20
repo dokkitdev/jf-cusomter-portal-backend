@@ -19,7 +19,13 @@
                 "name": "Simpro Customer",
                 "type": "companies",
                 "created_at": "2016-10-20T10:05:00.000000Z",
-                "updated_at": "2016-10-20T10:05:00.000000Z"
+                "updated_at": "2016-10-20T10:05:00.000000Z",
+                "email": "company1@example.com",
+                "title": null,
+                "address": null,
+                "city": null,
+                "state": null,
+                "postal_code": null
             },
             {
                 "id": 2,
@@ -27,7 +33,13 @@
                 "name": "Simpro Customer",
                 "type": "companies",
                 "created_at": "2016-10-20T10:05:00.000000Z",
-                "updated_at": "2016-10-20T10:05:00.000000Z"
+                "updated_at": "2016-10-20T10:05:00.000000Z",
+                "email": "company2@example.com",
+                "title": null,
+                "address": null,
+                "city": null,
+                "state": null,
+                "postal_code": null
             }
         ]
     },
@@ -51,7 +63,13 @@
                 "name": "Simpro Customer",
                 "type": "companies",
                 "created_at": "2016-10-20T10:05:00.000000Z",
-                "updated_at": "2016-10-20T10:05:00.000000Z"
+                "updated_at": "2016-10-20T10:05:00.000000Z",
+                "email": "company2@example.com",
+                "title": null,
+                "address": null,
+                "city": null,
+                "state": null,
+                "postal_code": null
             }
         ]
     },
@@ -75,7 +93,13 @@
                 "name": "Simpro Customer",
                 "type": "companies",
                 "created_at": "2016-10-20T10:05:00.000000Z",
-                "updated_at": "2016-10-20T10:05:00.000000Z"
+                "updated_at": "2016-10-20T10:05:00.000000Z",
+                "email": "company3@example.com",
+                "title": null,
+                "address": null,
+                "city": null,
+                "state": null,
+                "postal_code": null
             }
         ]
     },
@@ -99,7 +123,13 @@
                 "name": "Simpro Customer",
                 "type": "companies",
                 "created_at": "2016-10-20T10:05:00.000000Z",
-                "updated_at": "2016-10-20T10:05:00.000000Z"
+                "updated_at": "2016-10-20T10:05:00.000000Z",
+                "email": "company1@example.com",
+                "title": null,
+                "address": null,
+                "city": null,
+                "state": null,
+                "postal_code": null
             },
             {
                 "id": 3,
@@ -107,7 +137,13 @@
                 "name": "Simpro Customer",
                 "type": "companies",
                 "created_at": "2016-10-20T10:05:00.000000Z",
-                "updated_at": "2016-10-20T10:05:00.000000Z"
+                "updated_at": "2016-10-20T10:05:00.000000Z",
+                "email": "company3@example.com",
+                "title": null,
+                "address": null,
+                "city": null,
+                "state": null,
+                "postal_code": null
             }
         ]
     },
@@ -146,7 +182,13 @@
                 "name": "Simpro Customer",
                 "type": "companies",
                 "created_at": "2016-10-20T10:05:00.000000Z",
-                "updated_at": "2016-10-20T10:05:00.000000Z"
+                "updated_at": "2016-10-20T10:05:00.000000Z",
+                "email": "company1@example.com",
+                "title": null,
+                "address": null,
+                "city": null,
+                "state": null,
+                "postal_code": null
             }
         ]
     }

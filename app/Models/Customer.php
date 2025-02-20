@@ -10,7 +10,13 @@ class Customer extends BaseModel
     protected $fillable = [
         'simpro_customer_id',
         'name',
-        'type'
+        'type',
+        'email',
+        'title',
+        'address',
+        'city',
+        'state',
+        'postal_code',
     ];
 
     protected $hidden = ['pivot'];

@@ -1,0 +1,48 @@
+{
+  "status": 200,
+  "headers": {
+    "Strict-Transport-Security": [
+      "max-age=15768000; includeSubdomains"
+    ],
+    "Access-Control-Allow-Origin": [
+      "*"
+    ],
+    "Content-Type": [
+      "application\/json;charset=utf-8"
+    ],
+    "Access-Control-Allow-Headers": [
+      "*"
+    ],
+    "Resource-Base-URI": [
+      "\/api\/v1.0\/companies\/0\/customers\/companies\/"
+    ],
+    "Result-Total": [
+      "1639"
+    ],
+    "Result-Pages": [
+      "55"
+    ],
+    "Result-Count": [
+      "30"
+    ],
+    "Link": [
+      "<https:\/\/pfsgroup.simprosuite.com\/api\/v1.0\/companies\/0\/customers\/companies\/?page=2>; rel=\"next\", <https:\/\/pfsgroup.simprosuite.com\/api\/v1.0\/companies\/0\/customers\/companies\/?page=55>; rel=\"last\", <https:\/\/pfsgroup.simprosuite.com\/api\/v1.0\/companies\/0\/customers\/companies\/?page=1>; rel=\"first\""
+    ],
+    "X-Response-Time": [
+      "303.611ms"
+    ],
+    "Connection": [
+      "close"
+    ],
+    "Transfer-Encoding": [
+      "chunked"
+    ],
+    "Date": [
+      "Tue, 02 Feb 2021 14:51:34 GMT"
+    ],
+    "Server": [
+      "lighttpd"
+    ]
+  },
+  "content": "[\n  {\n    \"ID\": 101,\n    \"CustomFields\": [],\n    \"Customer\": {\n      \"ID\": 101,\n      \"CompanyName\": \"MACDONALD, SUSAN\",\n      \"GivenName\": \"SUSAN\",\n      \"FamilyName\": \"MACDONALD\"\n    },\n    \"Site\": {\n      \"ID\": 2,\n      \"Name\": \"7 Cramond Way\"\n    },\n    \"NextRecurringDate\": \"2025-03-01\",\n    \"Type\": \"Service\"\n  },\n  {\n    \"ID\": 102,\n    \"CustomFields\": [\n      {\n        \"CustomField\": {\n          \"ID\": 12345,\n          \"Name\": \"string\",\n          \"Type\": \"List\",\n          \"ListItems\": [],\n          \"IsMandatory\": true\n        },\n        \"Value\": \"string\"\n      },\n      {\n        \"CustomField\": {\n          \"ID\": 4,\n          \"Name\": \"string\",\n          \"Type\": \"List\",\n          \"ListItems\": [],\n          \"IsMandatory\": true\n        },\n        \"Value\": \"Annual payment\"\n      },\n      {\n        \"CustomField\": {\n          \"ID\": 3,\n          \"Name\": \"string\",\n          \"Type\": \"List\",\n          \"ListItems\": [],\n          \"IsMandatory\": true\n        },\n        \"Value\": \"12 months\"\n      },\n      {\n        \"CustomField\": {\n          \"ID\": 6,\n          \"Name\": \"string\",\n          \"Type\": \"List\",\n          \"ListItems\": [],\n          \"IsMandatory\": true\n        },\n        \"Value\": \"WILL4G\"\n      },\n      {\n        \"CustomField\": {\n          \"ID\": 5,\n          \"Name\": \"string\",\n          \"Type\": \"List\",\n          \"ListItems\": [],\n          \"IsMandatory\": true\n        },\n        \"Value\": \"1st of\"\n      },\n      {\n        \"CustomField\": {\n          \"ID\": 7,\n          \"Name\": \"string\",\n          \"Type\": \"List\",\n          \"ListItems\": [],\n          \"IsMandatory\": true\n        },\n        \"Value\": \"Taylor\"\n      },\n      {\n        \"CustomField\": {\n          \"ID\": 8,\n          \"Name\": \"string\",\n          \"Type\": \"List\",\n          \"ListItems\": [],\n          \"IsMandatory\": true\n        },\n        \"Value\": \"March\"\n      }\n    ],\n    \"Customer\": {\n      \"ID\": 102,\n      \"CompanyName\": \"Paterson, James \",\n      \"GivenName\": \"James \",\n      \"FamilyName\": \"Paterson\"\n    },\n    \"Site\": {\n      \"ID\": 3,\n      \"Name\": \"7 Mansefield Road \"\n    },\n    \"NextRecurringDate\": \"2025-02-01\",\n    \"Type\": \"Service\"\n  },\n  {\n    \"ID\": 103,\n    \"CustomFields\": [],\n    \"Customer\": {\n      \"ID\": 103,\n      \"CompanyName\": \"Kennedy, Matty\",\n      \"GivenName\": \"Matty\",\n      \"FamilyName\": \"Kennedy\"\n    },\n    \"Site\": {\n      \"ID\": 4,\n      \"Name\": \"17 0/1 Cranworth Street\"\n    },\n    \"NextRecurringDate\": \"2025-02-01\",\n    \"Type\": \"Service\"\n  },\n  {\n    \"ID\": 104,\n    \"CustomFields\": [\n      {\n        \"CustomField\": {\n          \"ID\": 4,\n          \"Name\": \"string\",\n          \"Type\": \"List\",\n          \"ListItems\": [],\n          \"IsMandatory\": true\n        },\n        \"Value\": \"Direct Debit\"\n      }\n    ],\n    \"Customer\": {\n      \"ID\": 104,\n      \"CompanyName\": \"McMaster, Gordon\",\n      \"GivenName\": \"Gordon\",\n      \"FamilyName\": \"McMaster\"\n    },\n    \"Site\": {\n      \"ID\": 5,\n      \"Name\": \"2 Hazeldene Park\"\n    },\n    \"NextRecurringDate\": \"2025-02-01\",\n    \"Type\": \"Service\"\n  },\n  {\n    \"ID\": 67037,\n    \"CustomFields\": [],\n    \"Customer\": {\n      \"ID\": 105,\n      \"CompanyName\": \"Lynch, Julie\",\n      \"GivenName\": \"Julie\",\n      \"FamilyName\": \"Lynch\"\n    },\n    \"Site\": {\n      \"ID\": 6,\n      \"Name\": \"18 Whitlees Court\"\n    },\n    \"NextRecurringDate\": \"2025-03-19\",\n    \"Type\": \"Service\"\n  },\n  {\n    \"ID\": 67036,\n    \"CustomFields\": [],\n    \"Customer\": {\n      \"ID\": 106,\n      \"CompanyName\": \"McLeary, Duncan \",\n      \"GivenName\": \"Duncan \",\n      \"FamilyName\": \"McLeary\"\n    },\n    \"Site\": {\n      \"ID\": 1,\n      \"Name\": \"2 Vallance Wynd \"\n    },\n    \"NextRecurringDate\": \"2025-02-01\",\n    \"Type\": \"Service\"\n  }\n]"
+}

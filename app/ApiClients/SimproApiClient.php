@@ -335,6 +335,13 @@ class SimproApiClient
         return $this->getAsGenerator($url);
     }
 
+    public function getRecurringInvoices(int $companyId, array $additionalFilters = []): Generator
+    {
+        $url = "companies/{$companyId}/recurringInvoices/";
+
+        return $this->getAsGenerator($url, $additionalFilters);
+    }
+
     public function getJobAttachments(int $companyId, int $jobId): Generator
     {
         $url = "companies/{$companyId}/jobs/{$jobId}/attachments/files/";

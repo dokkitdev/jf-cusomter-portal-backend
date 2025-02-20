@@ -1147,6 +1147,33 @@ trait SimproTestTrait
         ];
     }
 
+    protected function mockSyncRecurringInvoicesCommand()
+    {
+        $this->mockHttpRequestService([
+            $this->getRecurringInvoices('sync_recurring_invoices_response_success.json'),
+            $this->getRecurringInvoices('sync_recurring_invoices_empty_response_success.json'),
+        ]);
+    }
+
+    protected function getRecurringInvoices($fixture): array
+    {
+        return [
+            'type' => 'get',
+            'arguments' => [
+                $this->equalTo("https://pfsgroup.simprosuite.com/api/v1.0/companies/0/recurringInvoices/"),
+                $this->equalTo(null),
+                $this->equalTo([
+                    'Accept' => 'application/json',
+                    'Content-Type' => 'application/json',
+                    'Authorization' => 'Bearer token',
+                ])
+            ],
+            'response' => [
+                'fixture' => $fixture
+            ]
+        ];
+    }
+
     protected function mockGetProjectTags()
     {
         $this->mockHttpRequestService([

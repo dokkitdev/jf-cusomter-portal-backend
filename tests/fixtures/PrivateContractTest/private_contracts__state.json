@@ -1,0 +1,64 @@
+{
+    "updated": [],
+    "created": [
+        {
+            "id": 5,
+            "simpro_recurring_invoice_id": 102,
+            "next_recurring_date": "2025-02-01 00:00:00",
+            "direct_date": "1st of",
+            "direct_month": "March",
+            "customer_id": 2,
+            "site_id": 3,
+            "recurring_type": "Service",
+            "company_name": "Paterson, James ",
+            "period": "12 months",
+            "payer_reference": "WILL4G",
+            "payer_account_name": "Taylor",
+            "payment_type": "Annual payment",
+            "is_company": true,
+            "is_processed": false,
+            "created_at": "2018-11-11 11:11:11",
+            "updated_at": "2018-11-11 11:11:11"
+        },
+        {
+            "id": 6,
+            "simpro_recurring_invoice_id": 104,
+            "next_recurring_date": "2025-02-01 00:00:00",
+            "direct_date": null,
+            "direct_month": null,
+            "customer_id": 4,
+            "site_id": 5,
+            "recurring_type": "Service",
+            "company_name": "McMaster, Gordon",
+            "period": null,
+            "payer_reference": null,
+            "payer_account_name": null,
+            "payment_type": "Direct Debit",
+            "is_company": false,
+            "is_processed": false,
+            "created_at": "2018-11-11 11:11:11",
+            "updated_at": "2018-11-11 11:11:11"
+        }
+    ],
+    "deleted": [
+        {
+            "id": 2,
+            "simpro_recurring_invoice_id": 102,
+            "next_recurring_date": "2018-10-21 07:00:00",
+            "direct_date": "15th of",
+            "direct_month": "March",
+            "customer_id": 2,
+            "site_id": 2,
+            "recurring_type": "Project",
+            "company_name": null,
+            "period": null,
+            "payer_reference": null,
+            "payer_account_name": null,
+            "payment_type": "Annual payment",
+            "is_company": true,
+            "is_processed": false,
+            "created_at": null,
+            "updated_at": null
+        }
+    ]
+}

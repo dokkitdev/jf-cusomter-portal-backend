@@ -111,23 +111,24 @@ class CustomerService extends BaseService
     {
         $customer = $this->repository->first(['simpro_customer_id' => $simproCustomerId]);
 
-        if (!$customer) {
-            try {
-                $type = Customer::TYPE_COMPANIES;
-                $customer = $this->simproClient->getCustomer($companyId, $type, $simproCustomerId);
-            } catch (Exception $e) {
-                $type = Customer::TYPE_INDIVIDUALS;
-                $customer = $this->simproClient->getCustomer($companyId, $type, $simproCustomerId);
-            }
+        return $customer ?? $this->createBySimpro($companyId, $simproCustomerId);
+    }
 
-            $customer = $this->repository->create([
-                'simpro_customer_id' => $simproCustomerId,
-                'type' => $type,
-                'name' => $this->getName($customer, $type)
-            ]);
+    protected function createBySimpro(int $companyId, int $simproCustomerId): Model
+    {
+        try {
+            $type = Customer::TYPE_COMPANIES;
+            $customer = $this->simproClient->getCustomer($companyId, $type, $simproCustomerId);
+        } catch (Exception $e) {
+            $type = Customer::TYPE_INDIVIDUALS;
+            $customer = $this->simproClient->getCustomer($companyId, $type, $simproCustomerId);
         }
 
-        return $customer;
+        return $this->repository->create([
+            'simpro_customer_id' => $simproCustomerId,
+            'type' => $type,
+            'name' => $this->getName($customer, $type),
+        ]);
     }
 
     public function createOrUpdateBySimpro(SimproJob $webhook, string $type): void
@@ -139,9 +140,9 @@ class CustomerService extends BaseService
 
         $this->repository->updateOrCreate([
             'simpro_customer_id' => $customerId,
-            'type' => $type
+            'type' => $type,
         ], [
-            'name' => $this->getName($customer, $type)
+            'name' => $this->getName($customer, $type),
         ]);
     }
 

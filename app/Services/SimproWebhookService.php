@@ -64,7 +64,7 @@ class SimproWebhookService extends EntityService
 
         return $this->simproJobService->create([
             'data' => $data,
-            'simpro_entity_id' => $simproEntityId
+            'simpro_entity_id' => $simproEntityId,
         ]);
     }
 }

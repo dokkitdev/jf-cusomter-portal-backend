@@ -107,7 +107,7 @@ class SiteContactService extends BaseService
                     'work_phone' => $contact['WorkPhone'],
                     'cell_phone' => $contact['CellPhone'],
                     'position' => $contact['Position'],
-                    'is_primary' => ($contact['PrimaryContact'] === true)
+                    'is_primary' => ($contact['PrimaryContact'] === true),
                 ];
                 $siteContact = $siteContacts->firstWhere('simpro_contact_id', $contact['ID']);
                 if ($siteContact) {

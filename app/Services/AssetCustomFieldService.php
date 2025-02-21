@@ -32,7 +32,7 @@ class AssetCustomFieldService extends BaseService
                     'asset_id' => $assetId,
                     'simpro_custom_field_id' => Arr::get($simproAssetCustomField, 'CustomField.ID'),
                     'name' => Arr::get($simproAssetCustomField, 'CustomField.Name'),
-                    'value' => Arr::get($simproAssetCustomField, 'Value')
+                    'value' => Arr::get($simproAssetCustomField, 'Value'),
                 ]);
             } catch (QueryException $exception) {
                 if (!Str::contains(strtolower($exception->getMessage()), 'unique violation')) {

@@ -88,7 +88,7 @@ class ScheduleService extends EntityService
 
         $result = $this->repository->delete([
             'job_id' => $job['id'],
-            'simpro_schedule_id' => $scheduleId
+            'simpro_schedule_id' => $scheduleId,
         ]);
 
         $this->setRecentScheduleToJob($job['id']);
@@ -104,12 +104,12 @@ class ScheduleService extends EntityService
 
         return $this->repository->updateOrCreate([
             'job_id' => $jobId,
-            'simpro_schedule_id' => $schedule['ID']
+            'simpro_schedule_id' => $schedule['ID'],
         ], [
             'name' => Arr::get($schedule, 'Staff.Name'),
             'date' => $this->prepareDate($schedule, $block),
             'start_time' => Arr::get($block, 'ISO8601StartTime'),
-            'end_time' => Arr::get($block, 'ISO8601EndTime')
+            'end_time' => Arr::get($block, 'ISO8601EndTime'),
         ]);
     }
 
@@ -119,7 +119,7 @@ class ScheduleService extends EntityService
             $recentSchedule = $this->repository->getRecentSchedule($jobId);
 
             $this->jobService->update($jobId, [
-                'recent_schedule_id' => Arr::get($recentSchedule, 'id')
+                'recent_schedule_id' => Arr::get($recentSchedule, 'id'),
             ]);
         });
     }
@@ -130,7 +130,7 @@ class ScheduleService extends EntityService
             $nextSchedule = $this->repository->getNextSchedule($jobId);
 
             $this->jobService->update($jobId, [
-                'next_schedule_id' => Arr::get($nextSchedule, 'id')
+                'next_schedule_id' => Arr::get($nextSchedule, 'id'),
             ]);
         });
     }

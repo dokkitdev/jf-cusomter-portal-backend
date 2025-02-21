@@ -47,7 +47,7 @@ class AssetTestRecordService extends BaseService
                     'name' => Arr::get($testHistory, 'TestRecord.Employee.Name'),
                     'test_date' => Arr::get($testHistory, 'TestRecord.Date'),
                     'notes' => Arr::get($testHistory, 'TestRecord.Notes'),
-                    'result' => Arr::get($testHistory, 'TestRecord.Result')
+                    'result' => Arr::get($testHistory, 'TestRecord.Result'),
                 ]);
 
                 foreach ($testHistory['TestReadings'] as $testReading) {

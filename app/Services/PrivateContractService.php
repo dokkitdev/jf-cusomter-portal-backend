@@ -16,10 +16,10 @@ use App\Repositories\PrivateContractRepository;
  */
 class PrivateContractService extends EntityService
 {
-    private SimproApiClient $simproClient;
-    private CustomerService $customerService;
-    private SiteService $siteService;
-    private int $companyId;
+    protected SimproApiClient $simproClient;
+    protected CustomerService $customerService;
+    protected SiteService $siteService;
+    protected int $companyId;
 
     public function __construct()
     {
@@ -40,7 +40,7 @@ class PrivateContractService extends EntityService
                 $customer = $this->customerService->firstOrCreateBySimpro($this->companyId, Arr::get($invoice, 'Customer.ID'));
                 $site = $this->siteService->firstOrCreateBySimpro($this->companyId, Arr::get($invoice, 'Site.ID'));
 
-                $data = [
+                $data = array_merge([
                     'simpro_recurring_invoice_id' => $invoice['ID'],
                     'customer_id' => $customer->id,
                     'site_id' => $site->id,
@@ -48,19 +48,16 @@ class PrivateContractService extends EntityService
                     'company_name' => Arr::get($invoice, 'Customer.CompanyName'),
                     'is_company' => $customer->type === Customer::TYPE_COMPANIES,
                     'next_recurring_date' => $invoice['NextRecurringDate'],
-                ];
+                ], $this->getDataBySimproInvoiceCustomFields($invoice['CustomFields']));
 
-                if (!$this->isNeedSaveContract(
-                    $invoice,
-                    $dataByCustomFields = $this->getDataBySimproInvoiceCustomFields($invoice['CustomFields'])
-                )) {
+                if (!$this->isNeedSaveContract($data)) {
                     continue;
                 }
 
-                $this->deleteNotProcessedFromData($customer->id, $invoice['ID'], Carbon::now()->startOfYear());
+                $this->deleteNotProcessedFromDate($customer->id, $invoice['ID'], Carbon::now()->startOfYear());
 
                 if (!$this->existsForYear($customer->id, $invoice['ID'], Carbon::now()->year)) {
-                    $this->create(array_merge($data, $dataByCustomFields));
+                    $this->create($data);
                 }
             }
         }
@@ -107,10 +104,9 @@ class PrivateContractService extends EntityService
             && in_array($value, PrivateContract::PAYMENT_TYPES, true);
     }
 
-    protected function isNeedSaveContract(array $invoice, array $dataByCustomFields): bool
+    protected function isNeedSaveContract(array $privateContractData): bool
     {
-        return !empty($invoice['CustomFields'])
-            && !empty($invoice['NextRecurringDate'])
-            && !empty($dataByCustomFields['payment_type']);
+        return !empty($privateContractData['next_recurring_date'])
+            && !empty($privateContractData['payment_type']);
     }
 }

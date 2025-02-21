@@ -140,9 +140,9 @@ class CustomerService extends BaseService
 
         $this->repository->updateOrCreate([
             'simpro_customer_id' => $customerId,
-            'type' => $type
+            'type' => $type,
         ], [
-            'name' => $this->getName($customer, $type)
+            'name' => $this->getName($customer, $type),
         ]);
     }
 

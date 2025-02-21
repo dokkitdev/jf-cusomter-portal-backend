@@ -1,5 +1,5 @@
-INSERT INTO customers(id, simpro_customer_id, name, type) VALUES
-(4, 444, 'Simpro Customer 4', 'companies');
+INSERT INTO customers(id, simpro_customer_id, name, type, email) VALUES
+(4, 444, 'Simpro Customer 4', 'companies', 'company4@example.com');
 
 INSERT INTO customer_user(id, customer_id, user_id) VALUES
 (3, 4, 3);

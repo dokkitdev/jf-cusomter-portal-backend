@@ -79,7 +79,7 @@ class SiteService extends BaseService
                 $uprnSiteCustomFieldId = config('defaults.site_uprn_custom_field_id');
 
                 $this->simproClient->patchSiteCustomField($this->companyId, $site['simpro_site_id'], $uprnSiteCustomFieldId, [
-                    'Value' => $data['uprn']
+                    'Value' => $data['uprn'],
                 ]);
             }
 
@@ -132,7 +132,7 @@ class SiteService extends BaseService
             'city' => $simproSite['Address']['City'],
             'country' => $simproSite['Address']['Country'],
             'county' => $simproSite['Address']['State'],
-            'uprn' => Arr::get($uprnCustomField, 'Value')
+            'uprn' => Arr::get($uprnCustomField, 'Value'),
         ]);
 
         $this->siteContactService->syncBySite($companyId, $simproSiteId, $site['id']);

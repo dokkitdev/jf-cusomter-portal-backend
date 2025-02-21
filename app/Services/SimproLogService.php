@@ -59,7 +59,7 @@ class SimproLogService extends EntityService
                 foreach ($page as $item) {
                     $this->repository->updateOrCreate([
                         'loggable_id' => $item['ID'],
-                        'loggable_type' => $loggableType
+                        'loggable_type' => $loggableType,
                     ], []);
                 }
             }
@@ -75,7 +75,7 @@ class SimproLogService extends EntityService
             'per_page' => 1000,
             'order_by' => 'id',
             'divider' => $divider,
-            'mod' => $mod
+            'mod' => $mod,
         ]);
 
         if ($simproLogs->isNotEmpty()) {
@@ -101,7 +101,7 @@ class SimproLogService extends EntityService
                         'handle_status' => SimproLog::HANDLE_STATUS_ERROR,
                         'handle_result' => [
                             'code' => $e->getCode(),
-                            'message' => $e->getMessage()
+                            'message' => $e->getMessage(),
                         ]
                     ]);
                 }
@@ -115,7 +115,7 @@ class SimproLogService extends EntityService
             'data' => [
                 'reference' => [
                     'companyID' => 0,
-                    'siteID' => $simproLog['loggable_id']
+                    'siteID' => $simproLog['loggable_id'],
                 ]
             ]
         ]);
@@ -139,7 +139,7 @@ class SimproLogService extends EntityService
         $madeSafeJobLog = $this->simproClient->getMadeSafeJobLog(0, $simproLog['loggable_id']);
 
         $this->jobService->update(['simpro_job_id' => $simproLog['loggable_id']], [
-            'made_safe_date' => Arr::get(Arr::last($madeSafeJobLog), 'DateLogged')
+            'made_safe_date' => Arr::get(Arr::last($madeSafeJobLog), 'DateLogged'),
         ]);
     }
 
@@ -150,7 +150,7 @@ class SimproLogService extends EntityService
                 'reference' => [
                     'companyID' => 0,
                 ],
-                'description' => "{$simproLog['loggable_id']}"
+                'description' => "{$simproLog['loggable_id']}",
             ]
         ]);
 
@@ -180,7 +180,7 @@ class SimproLogService extends EntityService
                 foreach ($assetsPage as $simproAsset) {
                     $this->repository->updateOrCreate([
                         'loggable_id' => $simproAsset['ID'],
-                        'loggable_type' => $loggableType
+                        'loggable_type' => $loggableType,
                     ], []);
                 }
             }
@@ -188,7 +188,7 @@ class SimproLogService extends EntityService
 
         $this->assetLogHistoryService->create([
             'assets_pulled_at' => $startDate,
-            'assets_count' => $assetsCount
+            'assets_count' => $assetsCount,
         ]);
     }
 }

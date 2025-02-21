@@ -59,7 +59,12 @@ class CustomerService extends BaseService
                 return [
                     'simpro_customer_id' => $company['ID'],
                     'name' => $this->getName($company, Customer::TYPE_COMPANIES),
-                    'type' => Customer::TYPE_COMPANIES
+                    'type' => Customer::TYPE_COMPANIES,
+                    'email' => Arr::get($company, 'Email'),
+                    'address' => Arr::get($company, 'Address.Address'),
+                    'city' => Arr::get($company, 'Address.City'),
+                    'state' => Arr::get($company, 'Address.State'),
+                    'postal_code' => Arr::get($company, 'Address.PostalCode'),
                 ];
             }, $companyPage);
 
@@ -72,7 +77,13 @@ class CustomerService extends BaseService
                 return [
                     'simpro_customer_id' => $individual['ID'],
                     'name' => $this->getName($individual, Customer::TYPE_INDIVIDUALS),
-                    'type' => Customer::TYPE_INDIVIDUALS
+                    'type' => Customer::TYPE_INDIVIDUALS,
+                    'email' => Arr::get($individual, 'Email'),
+                    'title' => Arr::get($individual, 'Title'),
+                    'address' => Arr::get($individual, 'Address.Address'),
+                    'city' => Arr::get($individual, 'Address.City'),
+                    'state' => Arr::get($individual, 'Address.State'),
+                    'postal_code' => Arr::get($individual, 'Address.PostalCode'),
                 ];
             }, $individualPage);
 
@@ -89,10 +100,8 @@ class CustomerService extends BaseService
             });
 
             if ($customer) {
-                if ($customer['name'] !== $customerFromSimpro['name']) {
-                    $this->repository->update($customer['id'], [
-                        'name' => $customerFromSimpro['name']
-                    ]);
+                if (!empty($diffs = array_diff_assoc($customerFromSimpro, $customer->toArray()))) {
+                    $this->repository->update($customer['id'], $diffs);
                 }
 
                 $customers = $customers->where('id', '!=', $customer['id']);
@@ -128,6 +137,12 @@ class CustomerService extends BaseService
             'simpro_customer_id' => $simproCustomerId,
             'type' => $type,
             'name' => $this->getName($customer, $type),
+            'email' => Arr::get($customer, 'Email'),
+            'title' => Arr::get($customer, 'Title'),
+            'address' => Arr::get($customer, 'Address.Address'),
+            'city' => Arr::get($customer, 'Address.City'),
+            'state' => Arr::get($customer, 'Address.State'),
+            'postal_code' => Arr::get($customer, 'Address.PostalCode'),
         ]);
     }
 
@@ -143,6 +158,12 @@ class CustomerService extends BaseService
             'type' => $type,
         ], [
             'name' => $this->getName($customer, $type),
+            'email' => Arr::get($customer, 'Email'),
+            'title' => Arr::get($customer, 'Title'),
+            'address' => Arr::get($customer, 'Address.Address'),
+            'city' => Arr::get($customer, 'Address.City'),
+            'state' => Arr::get($customer, 'Address.State'),
+            'postal_code' => Arr::get($customer, 'Address.PostalCode'),
         ]);
     }
 
@@ -152,7 +173,7 @@ class CustomerService extends BaseService
 
         $this->repository->delete([
             'simpro_customer_id' => $customerId,
-            'type' => $type
+            'type' => $type,
         ]);
     }
 

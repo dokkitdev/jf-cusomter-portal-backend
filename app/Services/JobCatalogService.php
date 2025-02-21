@@ -53,7 +53,7 @@ class JobCatalogService extends EntityService
             'simpro_original_catalog_id' => Arr::get($simproCatalog, 'Catalog.ID'),
             'name' => Arr::get($simproCatalog, 'Catalog.Name'),
             'part_no' => Arr::get($simproCatalog, 'Catalog.PartNo'),
-            'qty' => Arr::get($simproCatalog, 'Total.Qty')
+            'qty' => Arr::get($simproCatalog, 'Total.Qty'),
         ];
         $catalog = $catalogs->first(function($item) use ($sectionId, $costCenterId, $catalogId) {
             return ($item['simpro_section_id'] === $sectionId) && ($item['simpro_cost_center_id'] === $costCenterId) && ($item['simpro_catalog_id'] === $catalogId);

@@ -5,7 +5,13 @@
         "name": "Simpro Customer",
         "type": "companies",
         "created_at": "2016-10-20T10:05:00.000000Z",
-        "updated_at": "2016-10-20T10:05:00.000000Z"
+        "updated_at": "2016-10-20T10:05:00.000000Z",
+        "email": "company1@example.com",
+        "title": null,
+        "address": null,
+        "city": null,
+        "state": null,
+        "postal_code": null
     },
     {
         "id": 2,
@@ -13,7 +19,13 @@
         "name": "Simpro Customer",
         "type": "companies",
         "created_at": "2016-10-20T10:05:00.000000Z",
-        "updated_at": "2016-10-20T10:05:00.000000Z"
+        "updated_at": "2016-10-20T10:05:00.000000Z",
+        "email": "company2@example.com",
+        "title": null,
+        "address": null,
+        "city": null,
+        "state": null,
+        "postal_code": null
     },
     {
         "id": 3,
@@ -21,7 +33,13 @@
         "name": "Simpro Customer",
         "type": "companies",
         "created_at": "2016-10-20T10:05:00.000000Z",
-        "updated_at": "2016-10-20T10:05:00.000000Z"
+        "updated_at": "2016-10-20T10:05:00.000000Z",
+        "email": "company3@example.com",
+        "title": null,
+        "address": null,
+        "city": null,
+        "state": null,
+        "postal_code": null
     },
     {
         "id": 4,
@@ -29,6 +47,12 @@
         "name": "1st Asset Management",
         "type": "companies",
         "created_at": "2018-11-11T11:11:11.000000Z",
-        "updated_at": "2018-11-11T11:11:11.000000Z"
+        "updated_at": "2018-11-11T11:11:11.000000Z",
+        "email": "sam.manningsmith@1stasset.co.uk; Punam.Sheth@1stasset.co.uk; info@1stasset.co.uk",
+        "title": null,
+        "address": "7-9 Tryon Street London",
+        "city": "",
+        "state": "",
+        "postal_code": "SW3 3LG"
     }
 ]

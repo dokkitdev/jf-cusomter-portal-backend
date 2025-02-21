@@ -8,10 +8,10 @@ INSERT INTO users(id, name, email, password, role_id, created_at, updated_at) VA
   (2, 'Another User', 'user@example.com', '$2y$10$ywtTizICfzWDTU2Cp3s.8.HIvJpGUsvi66Y.x6ByBib8O.D2fxbSK', 2, '2016-10-20 11:05:00', '2016-10-20 11:05:00'),
   (3, 'Customer', 'customer@example.com', '$2y$10$ywtTizICfzWDTU2Cp3s.8.HIvJpGUsvi66Y.x6ByBib8O.D2fxbSK', 3, '2016-10-20 11:05:00', '2016-10-20 11:05:00');
 
-INSERT INTO customers(id, simpro_customer_id, name, type, created_at, updated_at) VALUES
-  (1, 1, 'Simpro Customer', 'companies', '2016-10-20 11:05:00', '2016-10-20 11:05:00'),
-  (2, 2, 'Simpro Customer', 'companies', '2016-10-20 11:05:00', '2016-10-20 11:05:00'),
-  (3, 3, 'Simpro Customer', 'companies', '2016-10-20 11:05:00', '2016-10-20 11:05:00');
+INSERT INTO customers(id, simpro_customer_id, name, type, email, created_at, updated_at) VALUES
+  (1, 1, 'Simpro Customer', 'companies', 'company1@example.com', '2016-10-20 11:05:00', '2016-10-20 11:05:00'),
+  (2, 2, 'Simpro Customer', 'companies', 'company2@example.com', '2016-10-20 11:05:00', '2016-10-20 11:05:00'),
+  (3, 3, 'Simpro Customer', 'companies', 'company3@example.com', '2016-10-20 11:05:00', '2016-10-20 11:05:00');
 
 INSERT INTO customer_user(id, customer_id, user_id) VALUES
   (1, 1, 3),

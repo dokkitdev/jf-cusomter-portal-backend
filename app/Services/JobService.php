@@ -129,10 +129,10 @@ class JobService extends BaseService
                     'CostCenters' => [
                         [
                             'CostCenter' => config('defaults.job_cost_center_id'),
-                        ]
-                    ]
-                ]
-            ]
+                        ],
+                    ],
+                ],
+            ],
         ];
 
         if (Arr::has($data, 'description')) {
@@ -146,7 +146,7 @@ class JobService extends BaseService
                 $this->simproClient->postJobAttachment($this->companyId, $job['ID'], [
                     'Filename' => $file['filename'],
                     'Base64Data' => base64_encode($file['content']),
-                    'Public' => true
+                    'Public' => true,
                 ]);
             }
         }

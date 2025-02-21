@@ -127,7 +127,7 @@ class CustomerService extends BaseService
         return $this->repository->create([
             'simpro_customer_id' => $simproCustomerId,
             'type' => $type,
-            'name' => $this->getName($customer, $type)
+            'name' => $this->getName($customer, $type),
         ]);
     }
 

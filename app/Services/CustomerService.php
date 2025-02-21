@@ -64,8 +64,7 @@ class CustomerService extends BaseService
                     'address' => Arr::get($company, 'Address.Address'),
                     'city' => Arr::get($company, 'Address.City'),
                     'state' => Arr::get($company, 'Address.State'),
-                    'postal_code' => Arr::get($company, 'Address.PostalCode')
-
+                    'postal_code' => Arr::get($company, 'Address.PostalCode'),
                 ];
             }, $companyPage);
 
@@ -84,7 +83,7 @@ class CustomerService extends BaseService
                     'address' => Arr::get($individual, 'Address.Address'),
                     'city' => Arr::get($individual, 'Address.City'),
                     'state' => Arr::get($individual, 'Address.State'),
-                    'postal_code' => Arr::get($individual, 'Address.PostalCode')
+                    'postal_code' => Arr::get($individual, 'Address.PostalCode'),
                 ];
             }, $individualPage);
 
@@ -143,7 +142,7 @@ class CustomerService extends BaseService
             'address' => Arr::get($customer, 'Address.Address'),
             'city' => Arr::get($customer, 'Address.City'),
             'state' => Arr::get($customer, 'Address.State'),
-            'postal_code' => Arr::get($customer, 'Address.PostalCode')
+            'postal_code' => Arr::get($customer, 'Address.PostalCode'),
         ]);
     }
 
@@ -156,7 +155,7 @@ class CustomerService extends BaseService
 
         $this->repository->updateOrCreate([
             'simpro_customer_id' => $customerId,
-            'type' => $type
+            'type' => $type,
         ], [
             'name' => $this->getName($customer, $type),
             'email' => Arr::get($customer, 'Email'),
@@ -164,7 +163,7 @@ class CustomerService extends BaseService
             'address' => Arr::get($customer, 'Address.Address'),
             'city' => Arr::get($customer, 'Address.City'),
             'state' => Arr::get($customer, 'Address.State'),
-            'postal_code' => Arr::get($customer, 'Address.PostalCode')
+            'postal_code' => Arr::get($customer, 'Address.PostalCode'),
         ]);
     }
 
@@ -174,7 +173,7 @@ class CustomerService extends BaseService
 
         $this->repository->delete([
             'simpro_customer_id' => $customerId,
-            'type' => $type
+            'type' => $type,
         ]);
     }
 

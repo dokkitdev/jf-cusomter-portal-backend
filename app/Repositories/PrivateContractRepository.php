@@ -16,12 +16,12 @@ class PrivateContractRepository extends BaseRepository
         $this->setModel(PrivateContract::class);
     }
 
-    public function deleteNotProcessedFromData(int $customerId, int $simproInvoiceId, Carbon $fromDate): void
+    public function deleteNotProcessedFromDate(int $customerId, int $simproInvoiceId, Carbon $fromDate): void
     {
         $this
             ->getQuery([
                 'customer_id' => $customerId,
-                'simpro_recurring_invoice_id' => $simproInvoiceId
+                'simpro_recurring_invoice_id' => $simproInvoiceId,
             ])
             ->where('next_recurring_date', '>=', $fromDate)
             ->where('is_processed', false)
@@ -33,7 +33,7 @@ class PrivateContractRepository extends BaseRepository
         return $this
             ->getQuery([
                 'customer_id' => $customerId,
-                'simpro_recurring_invoice_id' => $simproInvoiceId
+                'simpro_recurring_invoice_id' => $simproInvoiceId,
             ])
             ->whereYear('next_recurring_date', $year)
             ->exists();

@@ -9,7 +9,7 @@ class CustomersAddFields extends Migration
     public function up(): void
     {
         Schema::table('customers', function (Blueprint $table) {
-            $table->string('email');
+            $table->string('email')->nullable();
             $table->string('title')->nullable();
             $table->string('address')->nullable();
             $table->string('city')->nullable();

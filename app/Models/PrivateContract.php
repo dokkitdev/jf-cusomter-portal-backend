@@ -43,6 +43,11 @@ class PrivateContract extends Model
 
     protected $hidden = ['pivot'];
 
+    protected $casts = [
+        'is_company' => 'boolean',
+        'is_processed' => 'boolean',
+    ];
+
     public function customer()
     {
         return $this->belongsTo(Customer::class);
@@ -52,9 +57,4 @@ class PrivateContract extends Model
     {
         return $this->belongsTo(Site::class);
     }
-
-    protected $casts = [
-        'is_company' => 'boolean',
-        'is_processed' => 'boolean',
-    ];
 }

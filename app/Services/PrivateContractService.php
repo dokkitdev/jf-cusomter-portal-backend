@@ -33,10 +33,7 @@ class PrivateContractService extends EntityService
 
     public function sync(Carbon $fromDate, Carbon $toDate): void
     {
-        $recurringInvoicesPages = $this->simproClient->getRecurringInvoices($this->companyId, [
-            'NextRecurringDate' => "between({$fromDate->format('Y-m-d')},{$toDate->format('Y-m-d')})",
-            'columns' => 'ID,CustomFields,Customer,Site,NextRecurringDate,Type',
-        ]);
+        $recurringInvoicesPages = $this->simproClient->getRecurringInvoices($this->companyId, $fromDate, $toDate);
 
         foreach ($recurringInvoicesPages as $page) {
             foreach ($page as $invoice) {
@@ -55,25 +52,25 @@ class PrivateContractService extends EntityService
 
                 if (!$this->isNeedSaveContract(
                     $invoice,
-                    $dataByCustomFields = $this->getDataByCustomFields($invoice['CustomFields'])
+                    $dataByCustomFields = $this->getDataBySimproInvoiceCustomFields($invoice['CustomFields'])
                 )) {
                     continue;
                 }
 
-                $this->deleteNotProcessed($customer->id, $invoice['ID']);
+                $this->deleteNotProcessedFromData($customer->id, $invoice['ID'], Carbon::now()->startOfYear());
 
-                if (!$this->existsForCurrentYear($customer->id, $invoice['ID'])) {
+                if (!$this->existsForYear($customer->id, $invoice['ID'], Carbon::now()->year)) {
                     $this->create(array_merge($data, $dataByCustomFields));
                 }
             }
         }
     }
 
-    protected function getDataByCustomFields(array $customFields): array
+    protected function getDataBySimproInvoiceCustomFields(array $simproInvoiceCustomFields): array
     {
         $data = [];
 
-        foreach ($customFields as $customField) {
+        foreach ($simproInvoiceCustomFields as $customField) {
             $customFieldId = Arr::get($customField, 'CustomField.ID');
             $customFieldValue = Arr::get($customField, 'Value');
 
@@ -104,13 +101,13 @@ class PrivateContractService extends EntityService
         return $data;
     }
 
-    private function isValidPaymentType(?string $value): bool
+    protected function isValidPaymentType(?string $value): bool
     {
         return !empty($value)
             && in_array($value, PrivateContract::PAYMENT_TYPES, true);
     }
 
-    private function isNeedSaveContract(array $invoice, array $dataByCustomFields): bool
+    protected function isNeedSaveContract(array $invoice, array $dataByCustomFields): bool
     {
         return !empty($invoice['CustomFields'])
             && !empty($invoice['NextRecurringDate'])

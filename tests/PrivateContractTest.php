@@ -2,33 +2,19 @@
 
 namespace App\Tests;
 
-use App\Models\User;
-use App\Tests\Support\SimproTestTrait;
+use App\Tests\Support\MockHttpRequestServiceTrait;
 
 class PrivateContractTest extends TestCase
 {
-    use SimproTestTrait;
-
-    protected $admin;
-    protected $user;
-    protected $customer;
+    use MockHttpRequestServiceTrait;
 
     protected array $requiredOriginStates = [
         'private_contracts',
     ];
 
-    public function setUp(): void
-    {
-        parent::setUp();
-
-        $this->admin = User::find(1);
-        $this->user = User::find(2);
-        $this->customer = User::find(3);
-    }
-
     public function testSyncPrivateContract()
     {
-        $this->mockSyncRecurringInvoicesCommand();
+        $this->mockHttpRequestService($this->getJsonFixture('requests_chain.json'));
 
         $this->artisan('simpro:sync-recurring-invoices');
 

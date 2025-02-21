@@ -5,6 +5,7 @@ namespace App\ApiClients;
 use App\Models\Customer;
 use Generator;
 use App\Services\HttpRequestService;
+use Illuminate\Support\Carbon;
 
 class SimproApiClient
 {
@@ -340,11 +341,14 @@ class SimproApiClient
         return $this->getAsGenerator($url, $additionalFilters);
     }
 
-    public function getRecurringInvoices(int $companyId, array $additionalFilters = []): Generator
+    public function getRecurringInvoices(int $companyId, Carbon $fromDate, Carbon $toDate): Generator
     {
         $url = "companies/{$companyId}/recurringInvoices/";
 
-        return $this->getAsGenerator($url, $additionalFilters);
+        return $this->getAsGenerator($url, [
+            'NextRecurringDate' => "between({$fromDate->format('Y-m-d')},{$toDate->format('Y-m-d')})",
+            'columns' => 'ID,CustomFields,Customer,Site,NextRecurringDate,Type',
+        ]);
     }
 
     public function getJobAttachments(int $companyId, int $jobId): Generator

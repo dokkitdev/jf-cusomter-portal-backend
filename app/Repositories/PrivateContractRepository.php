@@ -16,27 +16,26 @@ class PrivateContractRepository extends BaseRepository
         $this->setModel(PrivateContract::class);
     }
 
-    public function deleteNotProcessed(int $customerId, int $simproInvoiceId): void
+    public function deleteNotProcessedFromData(int $customerId, int $simproInvoiceId, Carbon $fromDate): void
     {
         $this
             ->getQuery([
                 'customer_id' => $customerId,
                 'simpro_recurring_invoice_id' => $simproInvoiceId
             ])
-            ->where('next_recurring_date', '>=', Carbon::now()->startOfYear())
+            ->where('next_recurring_date', '>=', $fromDate)
             ->where('is_processed', false)
             ->delete();
-
     }
 
-    public function existsForCurrentYear(int $customerId, int $simproInvoiceId): bool
+    public function existsForYear(int $customerId, int $simproInvoiceId, int $year): bool
     {
         return $this
             ->getQuery([
                 'customer_id' => $customerId,
                 'simpro_recurring_invoice_id' => $simproInvoiceId
             ])
-            ->whereYear('next_recurring_date', Carbon::now()->year)
+            ->whereYear('next_recurring_date', $year)
             ->exists();
     }
 }

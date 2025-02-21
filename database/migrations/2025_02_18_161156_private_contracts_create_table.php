@@ -51,6 +51,8 @@ class PrivateContractsCreateTable extends Migration
                 ->boolean('is_processed')
                 ->default(false);
             $table->timestamps();
+
+            $table->index(['customer_id', 'simpro_recurring_invoice_id']);
         });
     }
 

@@ -1,0 +1,254 @@
+[
+  {
+    "request": {
+      "type": "get",
+      "url": "https://fake.gassure.simprocloud.com/api/v1.0/companies/0/recurringInvoices/",
+      "data": {
+        "NextRecurringDate": "between(2018-11-11,2018-12-11)",
+        "columns": "ID,CustomFields,Customer,Site,NextRecurringDate,Type",
+        "page": 1,
+        "pageSize": 250
+      },
+      "headers": {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        "Authorization": "Bearer fake_simpro_token"
+      }
+    },
+    "response": {
+      "status_code": 200,
+      "data": [
+        {
+          "ID": 101,
+          "CustomFields": [],
+          "Customer": {
+            "ID": 101,
+            "CompanyName": "MACDONALD, SUSAN",
+            "GivenName": "SUSAN",
+            "FamilyName": "MACDONALD"
+          },
+          "Site": {
+            "ID": 2,
+            "Name": "7 Cramond Way"
+          },
+          "NextRecurringDate": "2025-03-01",
+          "Type": "Service"
+        },
+        {
+          "ID": 102,
+          "CustomFields": [
+            {
+              "CustomField": {
+                "ID": 12345,
+                "Name": "string",
+                "Type": "List",
+                "ListItems": [],
+                "IsMandatory": true
+              },
+              "Value": "string"
+            },
+            {
+              "CustomField": {
+                "ID": 4,
+                "Name": "string",
+                "Type": "List",
+                "ListItems": [],
+                "IsMandatory": true
+              },
+              "Value": "Annual payment"
+            },
+            {
+              "CustomField": {
+                "ID": 3,
+                "Name": "string",
+                "Type": "List",
+                "ListItems": [],
+                "IsMandatory": true
+              },
+              "Value": "12 months"
+            },
+            {
+              "CustomField": {
+                "ID": 6,
+                "Name": "string",
+                "Type": "List",
+                "ListItems": [],
+                "IsMandatory": true
+              },
+              "Value": "WILL4G"
+            },
+            {
+              "CustomField": {
+                "ID": 5,
+                "Name": "string",
+                "Type": "List",
+                "ListItems": [],
+                "IsMandatory": true
+              },
+              "Value": "1st of"
+            },
+            {
+              "CustomField": {
+                "ID": 7,
+                "Name": "string",
+                "Type": "List",
+                "ListItems": [],
+                "IsMandatory": true
+              },
+              "Value": "Taylor"
+            },
+            {
+              "CustomField": {
+                "ID": 8,
+                "Name": "string",
+                "Type": "List",
+                "ListItems": [],
+                "IsMandatory": true
+              },
+              "Value": "March"
+            }
+          ],
+          "Customer": {
+            "ID": 102,
+            "CompanyName": "Paterson, James ",
+            "GivenName": "James ",
+            "FamilyName": "Paterson"
+          },
+          "Site": {
+            "ID": 3,
+            "Name": "7 Mansefield Road "
+          },
+          "NextRecurringDate": "2025-02-01",
+          "Type": "Service"
+        },
+        {
+          "ID": 103,
+          "CustomFields": [],
+          "Customer": {
+            "ID": 103,
+            "CompanyName": "Kennedy, Matty",
+            "GivenName": "Matty",
+            "FamilyName": "Kennedy"
+          },
+          "Site": {
+            "ID": 4,
+            "Name": "17 0/1 Cranworth Street"
+          },
+          "NextRecurringDate": "2025-02-01",
+          "Type": "Service"
+        },
+        {
+          "ID": 104,
+          "CustomFields": [
+            {
+              "CustomField": {
+                "ID": 4,
+                "Name": "string",
+                "Type": "List",
+                "ListItems": [],
+                "IsMandatory": true
+              },
+              "Value": "Direct Debit"
+            }
+          ],
+          "Customer": {
+            "ID": 104,
+            "CompanyName": "McMaster, Gordon",
+            "GivenName": "Gordon",
+            "FamilyName": "McMaster"
+          },
+          "Site": {
+            "ID": 5,
+            "Name": "2 Hazeldene Park"
+          },
+          "NextRecurringDate": "2025-02-01",
+          "Type": "Service"
+        }
+      ],
+      "headers": {
+        "any": "headers"
+      }
+    }
+  },
+  {
+    "request": {
+      "type": "get",
+      "url": "https://fake.gassure.simprocloud.com/api/v1.0/companies/0/recurringInvoices/",
+      "data": {
+        "NextRecurringDate": "between(2018-11-11,2018-12-11)",
+        "columns": "ID,CustomFields,Customer,Site,NextRecurringDate,Type",
+        "page": 2,
+        "pageSize": 250
+      },
+      "headers": {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        "Authorization": "Bearer fake_simpro_token"
+      }
+    },
+    "response": {
+      "status_code": 200,
+      "data": [
+        {
+          "ID": 67037,
+          "CustomFields": [],
+          "Customer": {
+            "ID": 105,
+            "CompanyName": "Lynch, Julie",
+            "GivenName": "Julie",
+            "FamilyName": "Lynch"
+          },
+          "Site": {
+            "ID": 6,
+            "Name": "18 Whitlees Court"
+          },
+          "NextRecurringDate": "2025-03-19",
+          "Type": "Service"
+        },
+        {
+          "ID": 67036,
+          "CustomFields": [],
+          "Customer": {
+            "ID": 106,
+            "CompanyName": "McLeary, Duncan ",
+            "GivenName": "Duncan ",
+            "FamilyName": "McLeary"
+          },
+          "Site": {
+            "ID": 1,
+            "Name": "2 Vallance Wynd "
+          },
+          "NextRecurringDate": "2025-02-01",
+          "Type": "Service"
+        }
+      ],
+      "headers": {
+        "any": "headers"
+      }
+    }
+  },
+  {
+    "request": {
+      "type": "get",
+      "url": "https://fake.gassure.simprocloud.com/api/v1.0/companies/0/recurringInvoices/",
+      "data": {
+        "NextRecurringDate": "between(2018-11-11,2018-12-11)",
+        "columns": "ID,CustomFields,Customer,Site,NextRecurringDate,Type",
+        "page": 3,
+        "pageSize": 250
+      },
+      "headers": {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        "Authorization": "Bearer fake_simpro_token"
+      }
+    },
+    "response": {
+      "status_code": 200,
+      "data": [],
+      "headers": {
+        "any": "headers"
+      }
+    }
+  }
+]

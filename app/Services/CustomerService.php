@@ -114,7 +114,7 @@ class CustomerService extends BaseService
         return $customer ?? $this->createBySimpro($companyId, $simproCustomerId);
     }
 
-    public function createBySimpro(int $companyId, int $simproCustomerId): Model
+    protected function createBySimpro(int $companyId, int $simproCustomerId): Model
     {
         try {
             $type = Customer::TYPE_COMPANIES;

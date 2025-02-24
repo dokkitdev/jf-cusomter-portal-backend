@@ -1,0 +1,30 @@
+{
+    "updated": [],
+    "created": [
+        {
+            "id": 1,
+            "private_contract_id": 5,
+            "simpro_section_id": 669,
+            "ex_tax": "14.99",
+            "tax": "3.00",
+            "inc_tax": "17.99",
+            "section_name": "",
+            "name": "Service",
+            "created_at": "2018-11-11 11:11:11",
+            "updated_at": "2018-11-11 11:11:11"
+        },
+        {
+            "id": 2,
+            "private_contract_id": 6,
+            "simpro_section_id": 664,
+            "ex_tax": "14.00",
+            "tax": "3.00",
+            "inc_tax": "17.00",
+            "section_name": "",
+            "name": "Service",
+            "created_at": "2018-11-11 11:11:11",
+            "updated_at": "2018-11-11 11:11:11"
+        }
+    ],
+    "deleted": []
+}

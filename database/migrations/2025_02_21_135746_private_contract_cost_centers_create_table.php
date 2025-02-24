@@ -13,7 +13,11 @@ class PrivateContractCostCentersCreateTable extends Migration
     {
         Schema::create('private_contract_cost_centers', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('private_contract_id');
+            $table
+                ->foreignId('private_contract_id')
+                ->nullable()
+                ->constrained('private_contracts')
+                ->nullOnDelete();
             $table->integer('simpro_section_id');
             $table->decimal('ex_tax',)->nullable();
             $table->decimal('tax')->nullable();
@@ -21,6 +25,8 @@ class PrivateContractCostCentersCreateTable extends Migration
             $table->string('section_name')->nullable();
             $table->string('name');
             $table->timestamps();
+
+            $table->index(['private_contract_id', 'simpro_section_id']);
         });
     }
 

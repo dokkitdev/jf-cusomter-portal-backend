@@ -173,10 +173,9 @@
   {
     "request": {
       "type": "get",
-      "url": "https://fake.gassure.simprocloud.com/api/v1.0/companies/0/recurringInvoices/102/sections/",
+      "url": "https://fake.gassure.simprocloud.com/api/v1.0/companies/0/recurringInvoices/102",
       "data": {
-        "page": 1,
-        "pageSize": 250
+        "display": "all"
       },
       "headers": {
         "Accept": "application/json",
@@ -186,176 +185,91 @@
     },
     "response": {
       "status_code": 200,
-      "data": [
-        {
-          "ID": 669,
-          "Name": "",
-          "Description": "",
-          "DisplayOrder": 1
-        }
-      ],
-      "headers": {
-        "any": "headers"
-      }
-    }
-  },
-  {
-    "request": {
-      "type": "get",
-      "url": "https://fake.gassure.simprocloud.com/api/v1.0/companies/0/recurringInvoices/102/sections/669/costCenters/",
       "data": {
-        "page": 1,
-        "pageSize": 250
-      },
-      "headers": {
-        "Accept": "application/json",
-        "Content-Type": "application/json",
-        "Authorization": "Bearer fake_simpro_token"
-      }
-    },
-    "response": {
-      "status_code": 200,
-      "data": [
-        {
-          "ID": 937,
-          "CostCenter": {
-            "ID": 2,
-            "Name": "Service"
-          },
-          "RecurringID": 67029,
-          "Name": "Service",
-          "DisplayOrder": 1,
-          "Total": {
-            "ExTax": 14.99,
-            "Tax": 3,
-            "IncTax": 17.99,
-            "TaxCode": {
-              "ID": 3,
-              "Code": "VAT",
-              "Type": "Single",
-              "Rate": 20
-            }
+        "ID": 102,
+        "CustomFields": [
+          {
+            "CustomField": {
+              "ID": 12345,
+              "Name": "string",
+              "Type": "List",
+              "ListItems": [],
+              "IsMandatory": true
+            },
+            "Value": "string"
           }
-        }
-      ],
-      "headers": {
-        "any": "headers"
-      }
-    }
-  },
-  {
-    "request": {
-      "type": "get",
-      "url": "https://fake.gassure.simprocloud.com/api/v1.0/companies/0/recurringInvoices/102/sections/669/costCenters/",
-      "data": {
-        "page": 2,
-        "pageSize": 250
-      },
-      "headers": {
-        "Accept": "application/json",
-        "Content-Type": "application/json",
-        "Authorization": "Bearer fake_simpro_token"
-      }
-    },
-    "response": {
-      "status_code": 200,
-      "data": [],
-      "headers": {
-        "any": "headers"
-      }
-    }
-  },
-  {
-    "request": {
-      "type": "get",
-      "url": "https://fake.gassure.simprocloud.com/api/v1.0/companies/0/recurringInvoices/102/sections/",
-      "data": {
-        "page": 2,
-        "pageSize": 250
-      },
-      "headers": {
-        "Accept": "application/json",
-        "Content-Type": "application/json",
-        "Authorization": "Bearer fake_simpro_token"
-      }
-    },
-    "response": {
-      "status_code": 200,
-      "data": [],
-      "headers": {
-        "any": "headers"
-      }
-    }
-  },
-
-  {
-    "request": {
-      "type": "get",
-      "url": "https://fake.gassure.simprocloud.com/api/v1.0/companies/0/recurringInvoices/104/sections/",
-      "data": {
-        "page": 1,
-        "pageSize": 250
-      },
-      "headers": {
-        "Accept": "application/json",
-        "Content-Type": "application/json",
-        "Authorization": "Bearer fake_simpro_token"
-      }
-    },
-    "response": {
-      "status_code": 200,
-      "data": [
-        {
-          "ID": 664,
-          "Name": "",
-          "Description": "",
-          "DisplayOrder": 1
-        }
-      ],
-      "headers": {
-        "any": "headers"
-      }
-    }
-  },
-  {
-    "request": {
-      "type": "get",
-      "url": "https://fake.gassure.simprocloud.com/api/v1.0/companies/0/recurringInvoices/104/sections/664/costCenters/",
-      "data": {
-        "page": 1,
-        "pageSize": 250
-      },
-      "headers": {
-        "Accept": "application/json",
-        "Content-Type": "application/json",
-        "Authorization": "Bearer fake_simpro_token"
-      }
-    },
-    "response": {
-      "status_code": 200,
-      "data": [
-        {
-          "ID": 938,
-          "CostCenter": {
-            "ID": 2,
-            "Name": "Service"
-          },
-          "RecurringID": 205,
-          "Name": "Service",
-          "DisplayOrder": 1,
-          "Total": {
-            "ExTax": 14.00,
-            "Tax": 3,
-            "IncTax": 17.00,
-            "TaxCode": {
-              "ID": 3,
-              "Code": "VAT",
-              "Type": "Single",
-              "Rate": 20
-            }
+        ],
+        "Customer": {
+          "ID": 102,
+          "CompanyName": "Paterson, James ",
+          "GivenName": "James ",
+          "FamilyName": "Paterson"
+        },
+        "Site": {
+          "ID": 3,
+          "Name": "7 Mansefield Road "
+        },
+        "Sections": [
+          {
+            "ID": 669,
+            "Name": "",
+            "DisplayOrder": 1,
+            "CostCenters": [
+              {
+                "ID": 6699,
+                "Name": "Service",
+                "CostCenter": {
+                  "ID": 2,
+                  "Name": "Service"
+                },
+                "DisplayOrder": 1,
+                "Total": {
+                  "ExTax": 14.99,
+                  "Tax": 3,
+                  "IncTax": 17.99,
+                  "TaxCode": {
+                    "ID": 3,
+                    "Code": "VAT",
+                    "Type": "Single",
+                    "Rate": 20
+                  }
+                },
+                "Items": {
+                  "Labors": [
+                    {
+                      "ID": 23707,
+                      "LaborType": {
+                        "ID": 1,
+                        "Name": "Labour"
+                      },
+                      "Discount": 0,
+                      "SellPrice": {
+                        "ExTax": 75,
+                        "IncTax": 90,
+                        "ExDiscountExTax": 75,
+                        "ExDiscountIncTax": 90
+                      },
+                      "Total": {
+                        "Qty": 0,
+                        "Amount": {
+                          "ExTax": 0,
+                          "IncTax": 0
+                        }
+                      }
+                    }
+                  ],
+                  "Catalogs": [],
+                  "Prebuilds": [],
+                  "ServiceFees": [],
+                  "OneOffs": []
+                }
+              }
+            ]
           }
-        }
-      ],
+        ],
+        "NextRecurringDate": "2025-02-01",
+        "Type": "Service"
+      },
       "headers": {
         "any": "headers"
       }
@@ -364,10 +278,9 @@
   {
     "request": {
       "type": "get",
-      "url": "https://fake.gassure.simprocloud.com/api/v1.0/companies/0/recurringInvoices/104/sections/664/costCenters/",
+      "url": "https://fake.gassure.simprocloud.com/api/v1.0/companies/0/recurringInvoices/104",
       "data": {
-        "page": 2,
-        "pageSize": 250
+        "display": "all"
       },
       "headers": {
         "Accept": "application/json",
@@ -377,29 +290,91 @@
     },
     "response": {
       "status_code": 200,
-      "data": [],
-      "headers": {
-        "any": "headers"
-      }
-    }
-  },
-  {
-    "request": {
-      "type": "get",
-      "url": "https://fake.gassure.simprocloud.com/api/v1.0/companies/0/recurringInvoices/104/sections/",
       "data": {
-        "page": 2,
-        "pageSize": 250
+        "ID": 102,
+        "CustomFields": [
+          {
+            "CustomField": {
+              "ID": 12345,
+              "Name": "string",
+              "Type": "List",
+              "ListItems": [],
+              "IsMandatory": true
+            },
+            "Value": "string"
+          }
+        ],
+        "Customer": {
+          "ID": 102,
+          "CompanyName": "Paterson, James ",
+          "GivenName": "James ",
+          "FamilyName": "Paterson"
+        },
+        "Site": {
+          "ID": 3,
+          "Name": "7 Mansefield Road "
+        },
+        "Sections": [
+          {
+            "ID": 664,
+            "Name": "",
+            "DisplayOrder": 1,
+            "CostCenters": [
+              {
+                "ID": 6644,
+                "Name": "Service",
+                "CostCenter": {
+                  "ID": 2,
+                  "Name": "Service"
+                },
+                "DisplayOrder": 1,
+                "Total": {
+                  "ExTax": 14.00,
+                  "Tax": 3,
+                  "IncTax": 17.00,
+                  "TaxCode": {
+                    "ID": 3,
+                    "Code": "VAT",
+                    "Type": "Single",
+                    "Rate": 20
+                  }
+                },
+                "Items": {
+                  "Labors": [
+                    {
+                      "ID": 23707,
+                      "LaborType": {
+                        "ID": 1,
+                        "Name": "Labour"
+                      },
+                      "Discount": 0,
+                      "SellPrice": {
+                        "ExTax": 75,
+                        "IncTax": 90,
+                        "ExDiscountExTax": 75,
+                        "ExDiscountIncTax": 90
+                      },
+                      "Total": {
+                        "Qty": 0,
+                        "Amount": {
+                          "ExTax": 0,
+                          "IncTax": 0
+                        }
+                      }
+                    }
+                  ],
+                  "Catalogs": [],
+                  "Prebuilds": [],
+                  "ServiceFees": [],
+                  "OneOffs": []
+                }
+              }
+            ]
+          }
+        ],
+        "NextRecurringDate": "2025-02-01",
+        "Type": "Service"
       },
-      "headers": {
-        "Accept": "application/json",
-        "Content-Type": "application/json",
-        "Authorization": "Bearer fake_simpro_token"
-      }
-    },
-    "response": {
-      "status_code": 200,
-      "data": [],
       "headers": {
         "any": "headers"
       }

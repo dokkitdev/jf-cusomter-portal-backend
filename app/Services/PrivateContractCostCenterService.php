@@ -25,40 +25,31 @@ class PrivateContractCostCenterService extends EntityService
         $this->companyId = config('services.simpro.company_id');
     }
 
-    public function syncByPrivateContract(PrivateContract $privateContract): void
+    public function createByPrivateContract(PrivateContract $privateContract): void
     {
-        $sectionsPage = $this->simproClient->getRecurringInvoiceSections($this->companyId, $privateContract->simpro_recurring_invoice_id);
+        $invoice = $this->simproClient->getRecurringInvoice($this->companyId, $privateContract->simpro_recurring_invoice_id);
 
-        foreach ($sectionsPage as $page) {
-            foreach ($page as $section) {
-                $this->processSection(
-                    $section,
-                    $privateContract,
-                );
-            }
+        foreach ($invoice['Sections'] as $section) {
+            $this->processSection(
+                $section,
+                $privateContract,
+            );
         }
     }
 
-    public function processSection(array $section, PrivateContract $privateContract): void
+    protected function processSection(array $section, PrivateContract $privateContract): void
     {
-        $costCentersPage = $this->simproClient->getRecurringInvoiceCostCenters(
-            $this->companyId,
-            $section['ID'],
-            $privateContract->simpro_recurring_invoice_id,
-        );
-
-        foreach ($costCentersPage as $page) {
-            foreach ($page as $costCenter) {
-                $this->processCostCenter($section, $costCenter, $privateContract);
-            }
+        foreach ($section['CostCenters'] as $costCenter) {
+            $this->processCostCenter($section, $costCenter, $privateContract);
         }
     }
 
-    public function processCostCenter(array $sectionData, array $costCenterData, PrivateContract $privateContract): void
+    protected function processCostCenter(array $sectionData, array $costCenterData, PrivateContract $privateContract): void
     {
         $this->create([
             'name' => Arr::get($costCenterData, 'CostCenter.Name'),
             'private_contract_id' => $privateContract->id,
+            'simpro_cost_center_id' => $costCenterData['ID'],
             'ex_tax' => Arr::get($costCenterData, 'Total.ExTax'),
             'tax' => Arr::get($costCenterData, 'Total.Tax'),
             'inc_tax' => Arr::get($costCenterData, 'Total.IncTax'),

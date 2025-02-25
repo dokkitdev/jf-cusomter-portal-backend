@@ -19,7 +19,8 @@ class PrivateContractCostCentersCreateTable extends Migration
                 ->constrained('private_contracts')
                 ->nullOnDelete();
             $table->integer('simpro_section_id');
-            $table->decimal('ex_tax',)->nullable();
+            $table->integer('simpro_cost_center_id');
+            $table->decimal('ex_tax')->nullable();
             $table->decimal('tax')->nullable();
             $table->decimal('inc_tax')->nullable();
             $table->string('section_name')->nullable();

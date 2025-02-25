@@ -61,7 +61,7 @@ class PrivateContractService extends EntityService
                 if (!$this->existsForYear($customer->id, $invoice['ID'], Carbon::now()->year)) {
                     $privateContract = $this->create($data);
 
-                    $this->privateContractCostCenterService->syncByPrivateContract($privateContract);
+                    $this->privateContractCostCenterService->createByPrivateContract($privateContract);
                 }
             }
         }

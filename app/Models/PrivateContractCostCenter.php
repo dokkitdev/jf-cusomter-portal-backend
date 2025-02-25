@@ -12,6 +12,7 @@ class PrivateContractCostCenter extends Model
     protected $fillable = [
         'private_contract_id',
         'simpro_section_id',
+        'simpro_cost_center_id',
         'ex_tax',
         'tax',
         'inc_tax',

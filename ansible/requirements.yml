@@ -1,12 +1,13 @@
 - name: geerlingguy.redis
 - name: geerlingguy.php
 - name: geerlingguy.php-versions
+  version:4.0.5
 - name: geerlingguy.composer
 - name: geerlingguy.pip
 - name: geerlingguy.supervisor
 - name: geerlingguy.nginx
 
-- name: 'laravel-deploy' 
+- name: 'laravel-deploy'
   src: 'https://projects.ronasit.com/ansible/laravel.git'
   scm: 'git'
   version: 'ubuntu-20'

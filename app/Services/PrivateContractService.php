@@ -18,6 +18,7 @@ class PrivateContractService extends EntityService
 {
     protected SimproApiClient $simproClient;
     protected CustomerService $customerService;
+    protected PrivateContractCostCenterService $privateContractCostCenterService;
     protected SiteService $siteService;
     protected int $companyId;
 
@@ -27,6 +28,7 @@ class PrivateContractService extends EntityService
 
         $this->simproClient = app(SimproApiClient::class);
         $this->customerService = app(CustomerService::class);
+        $this->privateContractCostCenterService = app(PrivateContractCostCenterService::class);
         $this->siteService = app(SiteService::class);
         $this->companyId = config('services.simpro.company_id');
     }
@@ -57,7 +59,9 @@ class PrivateContractService extends EntityService
                 $this->deleteNotProcessedFromDate($customer->id, $invoice['ID'], Carbon::now()->startOfYear());
 
                 if (!$this->existsForYear($customer->id, $invoice['ID'], Carbon::now()->year)) {
-                    $this->create($data);
+                    $privateContract = $this->create($data);
+
+                    $this->privateContractCostCenterService->createByPrivateContract($privateContract);
                 }
             }
         }

@@ -57,4 +57,9 @@ class PrivateContract extends Model
     {
         return $this->belongsTo(Site::class);
     }
+
+    public function cost_centers()
+    {
+        return $this->hasMany(PrivateContractCostCenter::class, 'private_contract_id', 'id');
+    }
 }

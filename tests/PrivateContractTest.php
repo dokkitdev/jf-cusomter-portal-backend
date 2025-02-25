@@ -10,6 +10,7 @@ class PrivateContractTest extends TestCase
 
     protected array $requiredOriginStates = [
         'private_contracts',
+        'private_contract_cost_centers'
     ];
 
     public function testSyncPrivateContract()
@@ -19,5 +20,6 @@ class PrivateContractTest extends TestCase
         $this->artisan('simpro:sync-recurring-invoices');
 
         $this->assertChangesEqualsFixture('private_contracts');
+        $this->assertChangesEqualsFixture('private_contract_cost_centers');
     }
 }

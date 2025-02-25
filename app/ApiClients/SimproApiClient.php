@@ -351,6 +351,15 @@ class SimproApiClient
         ]);
     }
 
+    public function getRecurringInvoice(int $companyId, int $recurringInvoiceId): ?array
+    {
+        $url = $this->getUrl("companies/{$companyId}/recurringInvoices/{$recurringInvoiceId}");
+
+        return $this->makeRequest('get', $url, [
+            'display' => 'all',
+        ]);
+    }
+
     public function getJobAttachments(int $companyId, int $jobId): Generator
     {
         $url = "companies/{$companyId}/jobs/{$jobId}/attachments/files/";

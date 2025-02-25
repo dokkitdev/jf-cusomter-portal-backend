@@ -1,7 +1,7 @@
 - name: geerlingguy.redis
 - name: geerlingguy.php
 - name: geerlingguy.php-versions
-  version:4.0.5
+  version: '4.0.5'
 - name: geerlingguy.composer
 - name: geerlingguy.pip
 - name: geerlingguy.supervisor

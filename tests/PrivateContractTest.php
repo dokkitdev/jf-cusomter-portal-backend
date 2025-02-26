@@ -10,7 +10,8 @@ class PrivateContractTest extends TestCase
 
     protected array $requiredOriginStates = [
         'private_contracts',
-        'private_contract_cost_centers'
+        'private_contract_cost_centers',
+        'private_contract_cost_center_items',
     ];
 
     public function testSyncPrivateContract()
@@ -21,5 +22,6 @@ class PrivateContractTest extends TestCase
 
         $this->assertChangesEqualsFixture('private_contracts');
         $this->assertChangesEqualsFixture('private_contract_cost_centers');
+        $this->assertChangesEqualsFixture('private_contract_cost_center_items');
     }
 }

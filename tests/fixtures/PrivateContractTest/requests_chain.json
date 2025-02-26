@@ -173,7 +173,50 @@
   {
     "request": {
       "type": "get",
-      "url": "https://fake.gassure.simprocloud.com/api/v1.0/companies/0/recurringInvoices/102",
+      "url": "https://fake.gassure.simprocloud.com/api/v1.0/companies/0/recurringInvoiceCostCenters/",
+      "data": {
+        "RecurringInvoice": 102,
+        "page": 1,
+        "pageSize": 250
+      },
+      "headers": {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        "Authorization": "Bearer fake_simpro_token"
+      }
+    },
+    "response": {
+      "status_code": 200,
+      "data": [
+        {
+          "ID": 6699,
+          "CostCenter": {
+            "ID": 2,
+            "Name": "Service"
+          },
+          "Name": "Service",
+          "RecurringInvoice": {
+            "ID": 102,
+            "Type": "Service",
+            "Name": "MONTHLY DD"
+          },
+          "Section": {
+            "ID": 669,
+            "Name": ""
+          },
+          "DateModified": "2025-02-19 16:39:09.811594+00",
+          "_href": "/api/v1.0/companies/0/recurringInvoices/102/sections/66953/costCenters/6699"
+        }
+      ],
+      "headers": {
+        "any": "headers"
+      }
+    }
+  },
+  {
+    "request": {
+      "type": "get",
+      "url": "https://fake.gassure.simprocloud.com/api/v1.0/companies/0/recurringInvoices/102/sections/669/costCenters/6699",
       "data": {
         "display": "all"
       },
@@ -186,89 +229,231 @@
     "response": {
       "status_code": 200,
       "data": {
-        "ID": 102,
-        "CustomFields": [
-          {
-            "CustomField": {
-              "ID": 12345,
-              "Name": "string",
-              "Type": "List",
-              "ListItems": [],
-              "IsMandatory": true
-            },
-            "Value": "string"
-          }
-        ],
-        "Customer": {
-          "ID": 102,
-          "CompanyName": "Paterson, James ",
-          "GivenName": "James ",
-          "FamilyName": "Paterson"
+        "ID": 6699,
+        "CostCenter": {
+          "ID": 2,
+          "Name": "Service"
         },
+        "RecurringID": 67045,
+        "Name": "Service",
+        "Header": "Service (#67045-66953)",
         "Site": {
-          "ID": 3,
-          "Name": "7 Mansefield Road "
+          "ID": 96095,
+          "Name": "12 Longrow Gardens"
         },
-        "Sections": [
-          {
-            "ID": 669,
-            "Name": "",
-            "DisplayOrder": 1,
-            "CostCenters": [
-              {
-                "ID": 6699,
-                "Name": "Service",
-                "CostCenter": {
-                  "ID": 2,
-                  "Name": "Service"
-                },
-                "DisplayOrder": 1,
-                "Total": {
-                  "ExTax": 14.99,
-                  "Tax": 3,
-                  "IncTax": 17.99,
-                  "TaxCode": {
-                    "ID": 3,
-                    "Code": "VAT",
-                    "Type": "Single",
-                    "Rate": 20
-                  }
-                },
-                "Items": {
-                  "Labors": [
-                    {
-                      "ID": 23707,
-                      "LaborType": {
-                        "ID": 1,
-                        "Name": "Labour"
-                      },
-                      "Discount": 0,
-                      "SellPrice": {
-                        "ExTax": 75,
-                        "IncTax": 90,
-                        "ExDiscountExTax": 75,
-                        "ExDiscountIncTax": 90
-                      },
-                      "Total": {
-                        "Qty": 0,
-                        "Amount": {
-                          "ExTax": 0,
-                          "IncTax": 0
-                        }
-                      }
-                    }
-                  ],
-                  "Catalogs": [],
-                  "Prebuilds": [],
-                  "ServiceFees": [],
-                  "OneOffs": []
+        "Description": "<div style=\"font-size: 10pt;\">MONTHLY DD</div>",
+        "Notes": "",
+        "OrderNo": "",
+        "DisplayOrder": 1,
+        "ItemsLocked": true,
+        "RevisedLocked": false,
+        "RevizedLocked": false,
+        "Total": {
+          "ExTax": 14.99,
+          "Tax": 3.00,
+          "IncTax": 17.99,
+          "TaxCode": {
+            "ID": 3,
+            "Code": "VAT",
+            "Type": "Single",
+            "Rate": 20
+          }
+        },
+        "Totals": {
+          "MaterialsCost": {
+            "Estimate": 0,
+            "Revised": 0,
+            "Revized": 0
+          },
+          "ResourcesCost": {
+            "Total": {
+              "Estimate": 0,
+              "Revised": 0,
+              "Revized": 0
+            },
+            "Labor": {
+              "Estimate": 0,
+              "Revised": 0,
+              "Revized": 0
+            },
+            "LaborHours": {
+              "Estimate": 0,
+              "Revised": 0,
+              "Revized": 0
+            },
+            "PlantAndEquipment": {
+              "Estimate": 0,
+              "Revized": 0
+            },
+            "PlantAndEquipmentHours": {
+              "Estimate": 0,
+              "Revized": 0
+            },
+            "Overhead": {
+              "Estimate": 0,
+              "Revised": 0,
+              "Revized": 0
+            }
+          },
+          "MaterialsMarkup": {
+            "Estimate": 0,
+            "Revised": 0,
+            "Revized": 0
+          },
+          "ResourcesMarkup": {
+            "Total": {
+              "Estimate": 0,
+              "Revised": 0,
+              "Revized": 0
+            },
+            "Labor": {
+              "Estimate": 0,
+              "Revised": 0,
+              "Revized": 0
+            },
+            "PlantAndEquipment": {
+              "Estimate": 0,
+              "Revized": 0
+            }
+          },
+          "Adjusted": {
+            "Estimate": 18.74,
+            "Revised": 18.74,
+            "Revized": 18.74
+          },
+          "Discount": 2,
+          "GrossProfitLoss": {
+            "Estimate": 18.74,
+            "Revised": 0,
+            "Revized": 0
+          },
+          "GrossMargin": {
+            "Estimate": 100,
+            "Revised": 0,
+            "Revized": 0
+          },
+          "NettProfitLoss": {
+            "Estimate": 18.74,
+            "Revised": 0,
+            "Revized": 0
+          },
+          "NettMargin": {
+            "Estimate": 100,
+            "Revised": 0,
+            "Revized": 0
+          }
+        },
+        "Items": {
+          "Labors":  [
+            {
+              "ID": 62911,
+              "LaborType": {
+                "ID": 1,
+                "Name": "Labour 1"
+              },
+              "Discount": 0,
+              "SellPrice": {
+                "ExTax": 75,
+                "IncTax": 90,
+                "ExDiscountExTax": 75,
+                "ExDiscountIncTax": 90
+              },
+              "Total": {
+                "Qty": 0,
+                "Amount": {
+                  "ExTax": 0,
+                  "IncTax": 0
                 }
               }
-            ]
-          }
-        ],
-        "NextRecurringDate": "2025-02-01",
-        "Type": "Service"
+            }
+          ],
+          "Catalogs": [
+            {
+              "ID": 122,
+              "Catalog": {
+                "ID": 0,
+                "PartNo": "string",
+                "Name": "Catalog name 1"
+              },
+              "Totals": {
+                "PriceEx": 1.57,
+                "PriceInc": 1.57,
+                "EstimatedTime": 1.57
+              },
+              "Discount": 0,
+              "SellPrice": {
+                "ExTax": 1.57,
+                "IncTax": 1.57,
+                "ExDiscountExTax": 1.57,
+                "ExDiscountIncTax": 1.57
+              },
+              "Total": {
+                "Qty": 0,
+                "Amount": {
+                  "ExTax": 1.57,
+                  "IncTax": 1.57
+                }
+              }
+            }
+          ],
+          "Prebuilds": [
+            {
+              "ID": 123,
+              "Prebuild": {
+                "ID": 0,
+                "PartNo": "string",
+                "Name": "Prebuild name 1"
+              },
+              "Discount": 0,
+              "SellPrice": {
+                "ExTax": 1.57,
+                "IncTax": 1.57,
+                "ExDiscountExTax": 1.57,
+                "ExDiscountIncTax": 1.57
+              },
+              "Total": {
+                "Qty": 0,
+                "Amount": {
+                  "ExTax": 1.50,
+                  "IncTax": 1.50
+                }
+              }
+            }
+          ],
+          "ServiceFees": [],
+          "OneOffs": [
+            {
+              "ID": 331,
+              "Type": "Material",
+              "Vendor": {
+                "ID": 0,
+                "Name": "string"
+              },
+              "Description": "OneOffs name 1",
+              "SalesTaxCode": {
+                "ID": 12345,
+                "Code": "GST",
+                "Type": "Single",
+                "Rate": 10
+              },
+              "Discount": 0,
+              "SellPrice": {
+                "ExTax": 1.57,
+                "IncTax": 1.57,
+                "ExDiscountExTax": 1.57,
+                "ExDiscountIncTax": 1.57
+              },
+              "Total": {
+                "Qty": 0,
+                "Amount": {
+                  "ExTax": 1.30,
+                  "IncTax": 1.30
+                }
+              }
+            }
+          ]
+        },
+        "DateModified": "2025-02-19T16:39:09+00:00"
       },
       "headers": {
         "any": "headers"
@@ -278,7 +463,73 @@
   {
     "request": {
       "type": "get",
-      "url": "https://fake.gassure.simprocloud.com/api/v1.0/companies/0/recurringInvoices/104",
+      "url": "https://fake.gassure.simprocloud.com/api/v1.0/companies/0/recurringInvoiceCostCenters/",
+      "data": {
+        "RecurringInvoice": 102,
+        "page": 2,
+        "pageSize": 250
+      },
+      "headers": {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        "Authorization": "Bearer fake_simpro_token"
+      }
+    },
+    "response": {
+      "status_code": 200,
+      "data": [],
+      "headers": {
+        "any": "headers"
+      }
+    }
+  },
+  {
+    "request": {
+      "type": "get",
+      "url": "https://fake.gassure.simprocloud.com/api/v1.0/companies/0/recurringInvoiceCostCenters/",
+      "data": {
+        "RecurringInvoice": 104,
+        "page": 1,
+        "pageSize": 250
+      },
+      "headers": {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        "Authorization": "Bearer fake_simpro_token"
+      }
+    },
+    "response": {
+      "status_code": 200,
+      "data": [
+        {
+          "ID": 6644,
+          "CostCenter": {
+            "ID": 2,
+            "Name": "Service"
+          },
+          "Name": "Service",
+          "RecurringInvoice": {
+            "ID": 104,
+            "Type": "Service",
+            "Name": "MONTHLY DD"
+          },
+          "Section": {
+            "ID": 664,
+            "Name": ""
+          },
+          "DateModified": "2025-02-19 16:39:09.811594+00",
+          "_href": "/api/v1.0/companies/0/recurringInvoices/102/sections/66953/costCenters/66953"
+        }
+      ],
+      "headers": {
+        "any": "headers"
+      }
+    }
+  },
+  {
+    "request": {
+      "type": "get",
+      "url": "https://fake.gassure.simprocloud.com/api/v1.0/companies/0/recurringInvoices/104/sections/664/costCenters/6644",
       "data": {
         "display": "all"
       },
@@ -291,90 +542,179 @@
     "response": {
       "status_code": 200,
       "data": {
-        "ID": 102,
-        "CustomFields": [
-          {
-            "CustomField": {
-              "ID": 12345,
-              "Name": "string",
-              "Type": "List",
-              "ListItems": [],
-              "IsMandatory": true
-            },
-            "Value": "string"
-          }
-        ],
-        "Customer": {
-          "ID": 102,
-          "CompanyName": "Paterson, James ",
-          "GivenName": "James ",
-          "FamilyName": "Paterson"
+        "ID": 6644,
+        "CostCenter": {
+          "ID": 2,
+          "Name": "Service"
         },
+        "RecurringID": 104,
+        "Name": "Service",
+        "Header": "Service (#67045-66953)",
         "Site": {
-          "ID": 3,
-          "Name": "7 Mansefield Road "
+          "ID": 96095,
+          "Name": "12 Longrow Gardens"
         },
-        "Sections": [
-          {
-            "ID": 664,
-            "Name": "",
-            "DisplayOrder": 1,
-            "CostCenters": [
-              {
-                "ID": 6644,
-                "Name": "Service",
-                "CostCenter": {
-                  "ID": 2,
-                  "Name": "Service"
-                },
-                "DisplayOrder": 1,
-                "Total": {
-                  "ExTax": 14.00,
-                  "Tax": 3,
-                  "IncTax": 17.00,
-                  "TaxCode": {
-                    "ID": 3,
-                    "Code": "VAT",
-                    "Type": "Single",
-                    "Rate": 20
-                  }
-                },
-                "Items": {
-                  "Labors": [
-                    {
-                      "ID": 23707,
-                      "LaborType": {
-                        "ID": 1,
-                        "Name": "Labour"
-                      },
-                      "Discount": 0,
-                      "SellPrice": {
-                        "ExTax": 75,
-                        "IncTax": 90,
-                        "ExDiscountExTax": 75,
-                        "ExDiscountIncTax": 90
-                      },
-                      "Total": {
-                        "Qty": 0,
-                        "Amount": {
-                          "ExTax": 0,
-                          "IncTax": 0
-                        }
-                      }
-                    }
-                  ],
-                  "Catalogs": [],
-                  "Prebuilds": [],
-                  "ServiceFees": [],
-                  "OneOffs": []
-                }
-              }
-            ]
+        "Description": "<div style=\"font-size: 10pt;\">MONTHLY DD</div>",
+        "Notes": "",
+        "OrderNo": "",
+        "DisplayOrder": 1,
+        "ItemsLocked": true,
+        "RevisedLocked": false,
+        "RevizedLocked": false,
+        "Total": {
+          "ExTax": 14.00,
+          "Tax": 3.00,
+          "IncTax": 17.00,
+          "TaxCode": {
+            "ID": 3,
+            "Code": "VAT",
+            "Type": "Single",
+            "Rate": 20
           }
-        ],
-        "NextRecurringDate": "2025-02-01",
-        "Type": "Service"
+        },
+        "Totals": {
+          "MaterialsCost": {
+            "Estimate": 0,
+            "Revised": 0,
+            "Revized": 0
+          },
+          "ResourcesCost": {
+            "Total": {
+              "Estimate": 0,
+              "Revised": 0,
+              "Revized": 0
+            },
+            "Labor": {
+              "Estimate": 0,
+              "Revised": 0,
+              "Revized": 0
+            },
+            "LaborHours": {
+              "Estimate": 0,
+              "Revised": 0,
+              "Revized": 0
+            },
+            "PlantAndEquipment": {
+              "Estimate": 0,
+              "Revized": 0
+            },
+            "PlantAndEquipmentHours": {
+              "Estimate": 0,
+              "Revized": 0
+            },
+            "Overhead": {
+              "Estimate": 0,
+              "Revised": 0,
+              "Revized": 0
+            }
+          },
+          "MaterialsMarkup": {
+            "Estimate": 0,
+            "Revised": 0,
+            "Revized": 0
+          },
+          "ResourcesMarkup": {
+            "Total": {
+              "Estimate": 0,
+              "Revised": 0,
+              "Revized": 0
+            },
+            "Labor": {
+              "Estimate": 0,
+              "Revised": 0,
+              "Revized": 0
+            },
+            "PlantAndEquipment": {
+              "Estimate": 0,
+              "Revized": 0
+            }
+          },
+          "Adjusted": {
+            "Estimate": 18.74,
+            "Revised": 18.74,
+            "Revized": 18.74
+          },
+          "Discount": 0,
+          "GrossProfitLoss": {
+            "Estimate": 18.74,
+            "Revised": 0,
+            "Revized": 0
+          },
+          "GrossMargin": {
+            "Estimate": 100,
+            "Revised": 0,
+            "Revized": 0
+          },
+          "NettProfitLoss": {
+            "Estimate": 18.74,
+            "Revised": 0,
+            "Revized": 0
+          },
+          "NettMargin": {
+            "Estimate": 100,
+            "Revised": 0,
+            "Revized": 0
+          }
+        },
+        "Items": {
+          "Labors": [],
+          "Catalogs": [
+            {
+            "ID": 124,
+            "Catalog": {
+              "ID": 0,
+              "PartNo": "string",
+              "Name": "Catalog name 4"
+            },
+            "Totals": {
+              "PriceEx": 1.50,
+              "PriceInc": 1.50,
+              "EstimatedTime": 1.50
+            },
+            "Discount": 0,
+            "SellPrice": {
+              "ExTax": 1.57,
+              "IncTax": 1.57,
+              "ExDiscountExTax": 1.57,
+              "ExDiscountIncTax": 1.57
+            },
+            "Total": {
+              "Qty": 1,
+              "Amount": {
+                "ExTax": 1.50,
+                "IncTax": 1.50
+              }
+            }
+          }],
+          "Prebuilds": [],
+          "ServiceFees": [],
+          "OneOffs": []
+        },
+        "DateModified": "2025-02-19T16:39:09+00:00"
       },
+      "headers": {
+        "any": "headers"
+      }
+    }
+  },
+  {
+    "request": {
+      "type": "get",
+      "url": "https://fake.gassure.simprocloud.com/api/v1.0/companies/0/recurringInvoiceCostCenters/",
+      "data": {
+        "RecurringInvoice": 104,
+        "page": 2,
+        "pageSize": 250
+      },
+      "headers": {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        "Authorization": "Bearer fake_simpro_token"
+      }
+    },
+    "response": {
+      "status_code": 200,
+      "data": [],
       "headers": {
         "any": "headers"
       }

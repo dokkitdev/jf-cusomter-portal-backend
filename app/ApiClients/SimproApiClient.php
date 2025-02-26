@@ -351,12 +351,25 @@ class SimproApiClient
         ]);
     }
 
-    public function getRecurringInvoice(int $companyId, int $recurringInvoiceId): ?array
+    public function getRecurringInvoiceCostCenters(int $companyId, int $recurringInvoiceId): Generator
     {
-        $url = $this->getUrl("companies/{$companyId}/recurringInvoices/{$recurringInvoiceId}");
+        $url = "companies/{$companyId}/recurringInvoiceCostCenters/";
+
+        return $this->getAsGenerator($url, [
+            'RecurringInvoice' => $recurringInvoiceId,
+        ]);
+    }
+
+    public function getRecurringInvoiceCostCenter(
+        int $companyId,
+        int $recurringInvoiceId,
+        int $sectionId,
+        int $costCenterId
+    ): array {
+        $url = $this->getUrl("companies/{$companyId}/recurringInvoices/{$recurringInvoiceId}/sections/{$sectionId}/costCenters/{$costCenterId}");
 
         return $this->makeRequest('get', $url, [
-            'display' => 'all',
+            'display' => 'all'
         ]);
     }
 

@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\PrivateContractCostCenterItem;
+
 return [
     'items_per_page' => 10,
     'permitted_media_types' => ['jpg', 'jpeg', 'bmp', 'png', 'pdf', 'doc', 'docx'],
@@ -23,4 +25,23 @@ return [
     'job_due_date_interval_hours' => 24,
 
     '2fa_code_ttl_minutes' => (int) env('2FA_CODE_TTL_MINUTES', 10),
+
+    'private_contract_cost_center_item' => [
+        PrivateContractCostCenterItem::TYPE_PREBUILDS => [
+            'order' => 1,
+            'key_name' => 'Prebuild.Name',
+        ],
+        PrivateContractCostCenterItem::TYPE_CATALOGS => [
+            'order' => 2,
+            'key_name' => 'Catalog.Name',
+        ],
+        PrivateContractCostCenterItem::TYPE_ONEOFF => [
+            'order' => 3,
+            'key_name' => 'Description',
+        ],
+        PrivateContractCostCenterItem::TYPE_DISCOUNT => [
+            'order' => 4,
+            'inc_tax_coef' => 0.2,
+        ],
+    ],
 ];

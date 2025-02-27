@@ -23,7 +23,7 @@ class PrivateContractCostCenterItemService extends EntityService
         array $simproCostCenterData
     ): void {
         foreach ($simproCostCenterData['Items'] as $itemType => $items) {
-            if (empty($itemData) && in_array($itemType, PrivateContractCostCenterItem::TYPES_FROM_SIMPRO)) {
+            if (in_array($itemType, PrivateContractCostCenterItem::TYPES_FROM_SIMPRO)) {
                 $this->createItems($costCenterId, $items, $itemType);
             }
         }

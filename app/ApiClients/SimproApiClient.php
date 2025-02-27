@@ -369,7 +369,7 @@ class SimproApiClient
         $url = $this->getUrl("companies/{$companyId}/recurringInvoices/{$recurringInvoiceId}/sections/{$sectionId}/costCenters/{$costCenterId}");
 
         return $this->makeRequest('get', $url, [
-            'display' => 'all'
+            'display' => 'all',
         ]);
     }
 

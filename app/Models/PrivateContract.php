@@ -12,9 +12,17 @@ class PrivateContract extends Model
     const PAYMENT_TYPE_ANNUAL_PAYMENT = 'Annual payment';
     const PAYMENT_TYPE_DIRECT_DEBIT = 'Direct Debit';
 
+    const TEMPLATE_TYPE_ANNUAL_PAYMENT = 'annual_payment';
+    const TEMPLATE_TYPE_DIRECT_DEBIT = 'direct_debit';
+
     const PAYMENT_TYPES = [
         self::PAYMENT_TYPE_ANNUAL_PAYMENT,
-        self::PAYMENT_TYPE_DIRECT_DEBIT
+        self::PAYMENT_TYPE_DIRECT_DEBIT,
+    ];
+
+    const TEMPLATE_TYPES = [
+        self::TEMPLATE_TYPE_ANNUAL_PAYMENT,
+        self::TEMPLATE_TYPE_DIRECT_DEBIT,
     ];
 
     const CF_PAYMENT_TYPE_ID = 4;

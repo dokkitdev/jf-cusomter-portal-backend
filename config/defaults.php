@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\PrivateContract;
 use App\Models\PrivateContractCostCenterItem;
 
 return [
@@ -42,6 +43,16 @@ return [
         PrivateContractCostCenterItem::TYPE_DISCOUNT => [
             'order' => 4,
             'inc_tax_coef' => 0.2,
+        ],
+    ],
+
+    'private_contract' => [
+        'templates' => [
+            'names' => [
+                PrivateContract::TEMPLATE_TYPE_ANNUAL_PAYMENT => 'annual-contracts.docx',
+                PrivateContract::TEMPLATE_TYPE_DIRECT_DEBIT => 'direct-debit-contracts.docx',
+           ],
+            'permitted_template_types' => ['docx'],
         ],
     ],
 ];

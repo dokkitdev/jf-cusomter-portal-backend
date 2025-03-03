@@ -5,10 +5,13 @@ namespace App\Services;
 use App\ApiClients\SimproApiClient;
 use App\Models\Customer;
 use App\Models\PrivateContract;
+use Illuminate\Filesystem\FilesystemAdapter;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Storage;
 use RonasIT\Support\Services\EntityService;
 use App\Repositories\PrivateContractRepository;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 /**
  * @mixin PrivateContractRepository
@@ -21,6 +24,7 @@ class PrivateContractService extends EntityService
     protected PrivateContractCostCenterService $privateContractCostCenterService;
     protected SiteService $siteService;
     protected int $companyId;
+    protected FilesystemAdapter $templatesStorage;
 
     public function __construct()
     {
@@ -31,6 +35,7 @@ class PrivateContractService extends EntityService
         $this->privateContractCostCenterService = app(PrivateContractCostCenterService::class);
         $this->siteService = app(SiteService::class);
         $this->companyId = config('services.simpro.company_id');
+        $this->templatesStorage = Storage::disk('templates');
     }
 
     public function sync(Carbon $fromDate, Carbon $toDate): void
@@ -65,6 +70,21 @@ class PrivateContractService extends EntityService
                 }
             }
         }
+    }
+
+    public function downloadTemplate(string $type): StreamedResponse
+    {
+        $filename = config("defaults.private_contract.templates.names.{$type}");
+
+        return $this->templatesStorage->download($filename);
+    }
+
+    public function uploadTemplate(string $type, string $content): void
+    {
+        $this->templatesStorage->put(
+            config("defaults.private_contract.templates.names.{$type}"),
+            $content,
+        );
     }
 
     protected function getDataBySimproInvoiceCustomFields(array $simproInvoiceCustomFields): array

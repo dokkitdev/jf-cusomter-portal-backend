@@ -4,24 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PrivateContracts\DownloadPrivateContractTemplateRequest;
 use App\Http\Requests\PrivateContracts\UploadPrivateContractTemplateRequest;
-use Illuminate\Support\Facades\Storage;
+use App\Services\PrivateContractService;
 use Symfony\Component\HttpFoundation\Response;
 
 class PrivateContractController extends Controller
 {
-    public function download(DownloadPrivateContractTemplateRequest $request, string $type): Response
+    public function download(DownloadPrivateContractTemplateRequest $request, PrivateContractService $service, string $type): Response
     {
-         $filename = config("defaults.private_contract.templates.names.{$type}");
-
-         return Storage::disk('templates')->response($filename);
+         return $service->downloadTemplate($type);
     }
 
-    public function upload(UploadPrivateContractTemplateRequest $request, string $type): Response
+    public function upload(UploadPrivateContractTemplateRequest $request, PrivateContractService $service, string $type): Response
     {
-        Storage::disk('templates')->put(
-            config("defaults.private_contract.templates.names.{$type}"),
-            $request->file('template')->getContent(),
-        );
+        $service->uploadTemplate($type, $request->file('template')->getContent());
 
         return response('', Response::HTTP_NO_CONTENT);
     }

@@ -51,46 +51,77 @@ class PrivateContractTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider  getTemplateTypes
-     *
-     * @param string $type
-     */
-    public function testAnnualPaymentTemplateDownload(string $type)
+    public function testAnnualPaymentTemplateDownload()
     {
+        $content = 'test_content';
+
         Storage::fake('templates');
 
-        Storage::disk('templates')->put(config("defaults.private_contract.templates.names.{$type}"), 'test_content');
+        Storage::disk('templates')->put('annual-contracts.docx', $content);
 
-        $response = $this->actingAs($this->admin)->json('get', "/private-contracts/templates/{$type}/download");
+        $response = $this->actingAs($this->admin)->json('get', '/private-contracts/templates/annual_payment/download');
 
         $response->assertStatus(Response::HTTP_OK);
 
-        Storage::delete(config("defaults.private_contract.template_names.{$type}"));
+        $this->assertEquals($content, $response->streamedContent());
     }
 
-    /**
-     * @dataProvider  getTemplateTypes
-     *
-     * @param string $type
-     */
-    public function testAnnualPaymentTemplateUpload(string $type)
+    public function testDirectDebitTemplateDownload()
+    {
+        $content = 'test_content';
+
+        Storage::fake('templates');
+
+        Storage::disk('templates')->put('direct-debit-contracts.docx', $content);
+
+        $response = $this->actingAs($this->admin)->json('get', '/private-contracts/templates/direct_debit/download');
+
+        $response->assertStatus(Response::HTTP_OK);
+
+        $this->assertEquals($content, $response->streamedContent());
+    }
+
+    public function testAnnualPaymentTemplateUpload()
+    {
+        $content = 'test_content';
+
+        Storage::fake('templates');
+
+        $response = $this->actingAs($this->admin)->json('put', "/private-contracts/templates/annual_payment/upload", [
+            'template' => UploadedFile::fake()->create(
+                'annual-contracts.docx',
+                $content,
+                'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+
+            ),
+        ]);
+
+        $response->assertStatus(Response::HTTP_NO_CONTENT);
+
+        $uploadedFileContent = Storage::disk('templates')->get('annual-contracts.docx');
+
+        $this->assertEquals($content, $uploadedFileContent);
+    }
+
+    public function testDirectDebitTemplateUpload()
     {
         Storage::fake('templates');
 
-        $filename = config("defaults.private_contract.templates.names.{$type}");
+        $content = 'test_content';
 
-        $response = $this->actingAs($this->admin)->json('put', "/private-contracts/templates/{$type}/upload", [
+        $response = $this->actingAs($this->admin)->json('put', "/private-contracts/templates/direct_debit/upload", [
             'template' => UploadedFile::fake()->create(
-                $filename,
-                500,
+                'direct-debit-contracts.docx',
+                $content,
                 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
             ),
         ]);
 
         $response->assertStatus(Response::HTTP_NO_CONTENT);
 
-        Storage::delete(config("defaults.private_contract.template.names.{$type}"));
+        $uploadedFileContent = Storage::disk('templates')->get('direct-debit-contracts.docx');
+
+        $this->assertEquals($content, $uploadedFileContent);
     }
 
     public function testDownloadNotExists()

@@ -6,6 +6,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\JobAttachmentController;
 use App\Http\Controllers\JobController;
+use App\Http\Controllers\PrivateContractController;
 use App\Http\Controllers\SimproWebhookController;
 use App\Http\Controllers\SiteContactController;
 use App\Http\Controllers\SiteController;
@@ -85,6 +86,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/assets', ['uses' => AssetController::class . '@search']);
 
     Route::get('/asset-attachments/{id}/download', ['uses' => AssetController::class . '@download']);
+
+    Route::get('/private-contracts/templates/{type}/download', ['uses' => PrivateContractController::class . '@download']);
+    Route::put('/private-contracts/templates/{type}/upload', ['uses' => PrivateContractController::class . '@upload']);
 });
 
 Route::group(['middleware' => 'guest'], function () {

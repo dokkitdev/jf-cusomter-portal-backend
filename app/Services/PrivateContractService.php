@@ -3,12 +3,17 @@
 namespace App\Services;
 
 use App\ApiClients\SimproApiClient;
+use App\Generators\PdfGenerator;
+use App\Generators\PrivateContractDocxGenerator;
 use App\Models\Customer;
 use App\Models\PrivateContract;
+use Illuminate\Filesystem\FilesystemAdapter;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Carbon;
+use Illuminate\Support\Carbon;;
+use Illuminate\Support\Facades\Storage;
 use RonasIT\Support\Services\EntityService;
 use App\Repositories\PrivateContractRepository;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 /**
  * @mixin PrivateContractRepository
@@ -21,6 +26,7 @@ class PrivateContractService extends EntityService
     protected PrivateContractCostCenterService $privateContractCostCenterService;
     protected SiteService $siteService;
     protected int $companyId;
+    protected FilesystemAdapter $docsStorage;
 
     public function __construct()
     {
@@ -31,6 +37,12 @@ class PrivateContractService extends EntityService
         $this->privateContractCostCenterService = app(PrivateContractCostCenterService::class);
         $this->siteService = app(SiteService::class);
         $this->companyId = config('services.simpro.company_id');
+        $this->docsStorage = Storage::disk('private_contracts_docs');
+    }
+
+    public function downloadDocFile(string $filename): StreamedResponse
+    {
+        return $this->docsStorage->download($filename);
     }
 
     public function sync(Carbon $fromDate, Carbon $toDate): void
@@ -65,6 +77,24 @@ class PrivateContractService extends EntityService
                 }
             }
         }
+    }
+
+    public function generateLetters(array $privateContractIds): void
+    {
+        $docxGenerator = new PrivateContractDocxGenerator();
+        $pdfGenerator = new PdfGenerator();
+
+        $this->repository
+            ->getByList($privateContractIds)
+            ->each(function ($contract) use ($docxGenerator, $pdfGenerator) {
+                $filenameDocx = $docxGenerator->generate($contract);
+                $filenamePdf = $pdfGenerator->docxToPdf($filenameDocx);
+
+                $this->repository->update($contract->id, [
+                    'docx' => $filenameDocx,
+                    'pdf' => $filenamePdf,
+                ]);
+            });
     }
 
     protected function getDataBySimproInvoiceCustomFields(array $simproInvoiceCustomFields): array

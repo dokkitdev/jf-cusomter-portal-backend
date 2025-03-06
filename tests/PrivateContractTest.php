@@ -134,4 +134,78 @@ class PrivateContractTest extends TestCase
 
         $response->assertStatus(Response::HTTP_UNAUTHORIZED);
     }
+
+    public function testGenerateLettersForAnnualAndDirectDebitContractsProjectType()
+    {
+        $storageTemplates = Storage::fake('templates');
+        $storageDocs = Storage::fake('private_contracts_docs');
+
+        $storageTemplates->put(config("defaults.private_contract.templates.names.annual_payment"), $this->getFixture('annual-contracts.docx'));
+        $storageTemplates->put(config("defaults.private_contract.templates.names.direct_debit"), $this->getFixture('direct-debit-contracts.docx'));
+
+        $response = $this->actingAs($this->admin)->json('post', "/private-contracts/generate-letters", [
+            'private_contract_ids' => [2, 3],
+        ]);
+
+        $response->assertStatus(Response::HTTP_NO_CONTENT);
+
+        $actualAnnualContent = $this->getPhpWordFileText($storageDocs->path('2.Annual.2018-11-11.102.docx'));
+        $actualDirectContent = $this->getPhpWordFileText($storageDocs->path('1.Direct.2018-11-11.103.docx'));
+
+        $expectedAnnualContent = $this->getPhpWordFileText($this->getFixturePath('/docs/2.Annual.2018-11-11.102.docx'));
+        $expectedDirectContent = $this->getPhpWordFileText($this->getFixturePath('/docs/1.Direct.2018-11-11.103.docx'));
+
+        $this->assertEquals($expectedAnnualContent, $actualAnnualContent);
+        $this->assertEquals($expectedDirectContent, $actualDirectContent);
+
+        $this->assertTrue($storageDocs->exists('2.Annual.2018-11-11.102.pdf'));
+        $this->assertTrue($storageDocs->exists('1.Direct.2018-11-11.103.pdf'));
+    }
+
+    public function testGenerateLettersForAnnualAndDirectDebitContractsServiceType()
+    {
+        $storageTemplates = Storage::fake('templates');
+        $storageDocs = Storage::fake('private_contracts_docs');
+
+        $storageTemplates->put(config("defaults.private_contract.templates.names.annual_payment"), $this->getFixture('annual-contracts.docx'));
+        $storageTemplates->put(config("defaults.private_contract.templates.names.direct_debit"), $this->getFixture('direct-debit-contracts.docx'));
+
+        $response = $this->actingAs($this->admin)->json('post', "/private-contracts/generate-letters", [
+            'private_contract_ids' => [4, 5],
+        ]);
+
+        $response->assertStatus(Response::HTTP_NO_CONTENT);
+
+        $actualAnnualContent = $this->getPhpWordFileText($storageDocs->path('2.Annual.2018-11-11.104.docx'));
+        $actualDirectContent = $this->getPhpWordFileText($storageDocs->path('2.Direct.2018-11-11.105.docx'));
+
+        $expectedAnnualContent = $this->getPhpWordFileText($this->getFixturePath('/docs/2.Annual.2018-11-11.104.docx'));
+        $expectedDirectContent = $this->getPhpWordFileText($this->getFixturePath('/docs/2.Direct.2018-11-11.105.docx'));
+
+        $this->assertEquals($expectedAnnualContent, $actualAnnualContent);
+        $this->assertEquals($expectedDirectContent, $actualDirectContent);
+
+        $this->assertTrue($storageDocs->exists('2.Annual.2018-11-11.104.pdf'));
+        $this->assertTrue($storageDocs->exists('2.Direct.2018-11-11.105.docx'));
+    }
+
+    public function testGenerateLettersNotExists()
+    {
+        $response = $this->actingAs($this->admin)->json('post', "/private-contracts/generate-letters", [
+            'private_contract_ids' => [0],
+        ]);
+
+        $response->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY);
+
+        $response->assertJsonPath('message', 'The given data was invalid.');
+    }
+
+    public function testGenerateLettersNotAuth()
+    {
+        $response = $this->json('post', "/private-contracts/generate-letters", [
+            'private_contract_ids' => [2],
+        ]);
+
+        $response->assertStatus(Response::HTTP_UNAUTHORIZED);
+    }
 }

@@ -7,6 +7,7 @@ use App\Generators\PdfGenerator;
 use App\Generators\PrivateContractDocxGenerator;
 use App\Models\Customer;
 use App\Models\PrivateContract;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Filesystem\FilesystemAdapter;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Carbon;
@@ -112,6 +113,13 @@ class PrivateContractService extends EntityService
             config("defaults.private_contract.templates.names.{$type}"),
             $content,
         );
+    }
+
+    public function search(array $filters): LengthAwarePaginator
+    {
+        return $this->repository
+            ->searchQuery($filters)
+            ->getSearchResults();
     }
 
     protected function getDataBySimproInvoiceCustomFields(array $simproInvoiceCustomFields): array

@@ -1,0 +1,84 @@
+{
+    "current_page": 1,
+    "data": [
+        {
+            "id": 1,
+            "simpro_recurring_invoice_id": 101,
+            "next_recurring_date": "2017-10-20 07:00:00",
+            "direct_date": null,
+            "direct_month": null,
+            "customer_id": 1,
+            "site_id": 1,
+            "recurring_type": "Service",
+            "company_name": "Quinn, Kim",
+            "period": "12 months",
+            "payer_reference": "28769X51765 (DUF003)",
+            "payer_account_name": "Payne",
+            "payment_type": "Annual payment",
+            "is_company": true,
+            "is_processed": false,
+            "created_at": null,
+            "updated_at": null,
+            "docx": null,
+            "pdf": null
+        },
+        {
+            "id": 2,
+            "simpro_recurring_invoice_id": 102,
+            "next_recurring_date": "2018-10-21 07:00:00",
+            "direct_date": "15th of",
+            "direct_month": "March",
+            "customer_id": 2,
+            "site_id": 2,
+            "recurring_type": "Project",
+            "company_name": null,
+            "period": "12 months",
+            "payer_reference": null,
+            "payer_account_name": "Mda2",
+            "payment_type": "Annual payment",
+            "is_company": true,
+            "is_processed": false,
+            "created_at": null,
+            "updated_at": null,
+            "docx": "2.Annual.2018-11-11.102.docx",
+            "pdf": "2.Annual.2018-11-11.102.pdf"
+        }
+    ],
+    "first_page_url": "http:\/\/localhost\/private-contracts?page=1",
+    "from": 1,
+    "last_page": 3,
+    "last_page_url": "http:\/\/localhost\/private-contracts?page=3",
+    "links": [
+        {
+            "url": null,
+            "label": "&laquo; Previous",
+            "active": false
+        },
+        {
+            "url": "http:\/\/localhost\/private-contracts?page=1",
+            "label": "1",
+            "active": true
+        },
+        {
+            "url": "http:\/\/localhost\/private-contracts?page=2",
+            "label": "2",
+            "active": false
+        },
+        {
+            "url": "http:\/\/localhost\/private-contracts?page=3",
+            "label": "3",
+            "active": false
+        },
+        {
+            "url": "http:\/\/localhost\/private-contracts?page=2",
+            "label": "Next &raquo;",
+            "active": false
+        }
+    ],
+    "next_page_url": "http:\/\/localhost\/private-contracts?page=2",
+    "path": "http:\/\/localhost\/private-contracts",
+    "per_page": 2,
+    "prev_page_url": null,
+    "to": 2,
+    "total": 5
+}

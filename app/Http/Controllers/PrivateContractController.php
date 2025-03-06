@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\PrivateContracts\DownloadPrivateContractDocsRequest;
 use App\Http\Requests\PrivateContracts\DownloadPrivateContractTemplateRequest;
 use App\Http\Requests\PrivateContracts\GeneratePrivateContractLettersRequest;
+use App\Http\Requests\PrivateContracts\SearchPrivateContractRequest;
 use App\Http\Requests\PrivateContracts\UploadPrivateContractTemplateRequest;
 use App\Services\PrivateContractService;
 use Symfony\Component\HttpFoundation\Response;
@@ -33,5 +34,12 @@ class PrivateContractController extends Controller
     public function downloadDoc(DownloadPrivateContractDocsRequest $request, PrivateContractService $service): Response
     {
         return $service->downloadDocFile($request->input('filename'));
+    }
+
+    public function search(SearchPrivateContractRequest $request, PrivateContractService $service): Response
+    {
+        $result = $service->search($request->onlyValidated());
+
+        return response()->json($result);
     }
 }

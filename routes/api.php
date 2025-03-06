@@ -87,10 +87,13 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/asset-attachments/{id}/download', ['uses' => AssetController::class . '@download']);
 
+    Route::get('/private-contracts', ['uses' => PrivateContractController::class . '@search']);
+
     Route::get('/private-contracts/templates/{type}/download', ['uses' => PrivateContractController::class . '@download']);
     Route::put('/private-contracts/templates/{type}/upload', ['uses' => PrivateContractController::class . '@upload']);
 
     Route::post('/private-contracts/generate-letters', ['uses' => PrivateContractController::class . '@generateLetters']);
+    Route::get('/private-contracts/download-doc', ['uses' => PrivateContractController::class . '@downloadDoc']);
 });
 
 Route::group(['middleware' => 'guest'], function () {

@@ -9,7 +9,7 @@ use App\Models\Customer;
 use App\Models\PrivateContract;
 use Illuminate\Filesystem\FilesystemAdapter;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Carbon;;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Storage;
 use RonasIT\Support\Services\EntityService;
 use App\Repositories\PrivateContractRepository;
@@ -27,6 +27,7 @@ class PrivateContractService extends EntityService
     protected SiteService $siteService;
     protected int $companyId;
     protected FilesystemAdapter $docsStorage;
+    protected FilesystemAdapter $templatesStorage;
 
     public function __construct()
     {
@@ -38,6 +39,7 @@ class PrivateContractService extends EntityService
         $this->siteService = app(SiteService::class);
         $this->companyId = config('services.simpro.company_id');
         $this->docsStorage = Storage::disk('private_contracts_docs');
+        $this->templatesStorage = Storage::disk('templates');
     }
 
     public function downloadDocFile(string $filename): StreamedResponse
@@ -95,6 +97,21 @@ class PrivateContractService extends EntityService
                     'pdf' => $filenamePdf,
                 ]);
             });
+    }
+
+    public function downloadTemplate(string $type): StreamedResponse
+    {
+        $filename = config("defaults.private_contract.templates.names.{$type}");
+
+        return $this->templatesStorage->download($filename);
+    }
+
+    public function uploadTemplate(string $type, string $content): void
+    {
+        $this->templatesStorage->put(
+            config("defaults.private_contract.templates.names.{$type}"),
+            $content,
+        );
     }
 
     protected function getDataBySimproInvoiceCustomFields(array $simproInvoiceCustomFields): array

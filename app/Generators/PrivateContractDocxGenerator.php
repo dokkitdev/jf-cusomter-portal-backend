@@ -95,7 +95,7 @@ class PrivateContractDocxGenerator
             'Address2' => trim(implode(', ', $explodedAddress)),
             'City' => self::getFormattedString($customer->city),
             'County' => self::getFormattedString($customer->state),
-            'Postcode' => self::getFormattedString($customer->postal_code)
+            'Postcode' => self::getFormattedString($customer->postal_code),
         ]);
 
         return $this;

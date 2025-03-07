@@ -55,6 +55,8 @@ class Kernel extends ConsoleKernel
 
         $schedule->command("simpro:save-simpro-log {$assets}")->environments(['production'])->hourly()->skip($this->skipCriterias())->withoutOverlapping()->runInBackground();
 
+        $schedule->command('simpro:sync-recurring-invoices')->environments(['production'])->dailyAt('3:00')->withoutOverlapping()->runInBackground();
+
 
 
         $schedule->command('clear:set-password-hash')->hourly()->withoutOverlapping()->runInBackground();

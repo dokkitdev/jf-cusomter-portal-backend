@@ -88,11 +88,13 @@ class PrivateContractDocxGenerator
 
         $address = self::getFormattedString($customer->address);
         $explodedAddress = explode(',', $address);
+        $address = array_shift($explodedAddress) ?? '';
+        $address2 = trim(implode(', ', $explodedAddress));
 
         $template->setValues([
             'ContactName' => self::getFormattedString($customer->name),
-            'Address' => array_shift($explodedAddress) ?? '',
-            'Address2' => trim(implode(', ', $explodedAddress)),
+            'Address' => $address,
+            'Address2' => $address2,
             'City' => self::getFormattedString($customer->city),
             'County' => self::getFormattedString($customer->state),
             'Postcode' => self::getFormattedString($customer->postal_code),
@@ -177,10 +179,12 @@ class PrivateContractDocxGenerator
 
         $address = self::getFormattedString($site->address);
         $exploded = explode(',', $address);
+        $siteAddress = array_shift($exploded);
+        $siteAddress2 = trim(implode(', ', $exploded));
 
         $variables = [
-            'SiteAddress' => array_shift($exploded),
-            'SiteAddress2' => trim(implode(', ', $exploded)),
+            'SiteAddress' => $siteAddress,
+            'SiteAddress2' => $siteAddress2,
             'SiteCity' => self::getFormattedString($site->city),
             'SiteCounty' => self::getFormattedString($site->country),
             'SitePostcode' => self::getFormattedString($site->postal_code),

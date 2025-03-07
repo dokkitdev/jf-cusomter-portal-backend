@@ -8,6 +8,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
+use PhpOffice\PhpWord\IOFactory;
 use ReflectionMethod;
 use RonasIT\Support\Tests\TestCase as BaseTestCase;
 use RonasIT\Support\AutoDoc\Tests\AutoDocTestCaseTrait;
@@ -78,6 +79,30 @@ abstract class TestCase extends BaseTestCase
         $className = Arr::last($explodedClass);
 
         return base_path("tests/fixtures/{$className}/{$this->testCaseName}/{$fixtureName}");
+    }
+
+    public function getPhpWordFileText(string $path): string
+    {
+        $phpWord = IOFactory::load($path);
+
+        $content = '';
+
+        foreach($phpWord->getSections() as $section) {
+            foreach($section->getElements() as $element) {
+                if (method_exists($element, 'getElements')) {
+                    foreach($element->getElements() as $childElement) {
+                        if (method_exists($childElement, 'getText')) {
+                            $content .= $childElement->getText() . ' ';
+                        }
+                        else if (method_exists($childElement, 'getContent')) {
+                            $content .= $childElement->getContent() . ' ';
+                        }
+                    }
+                }
+            }
+        }
+
+        return $content;
     }
 
     protected function setTestCase()

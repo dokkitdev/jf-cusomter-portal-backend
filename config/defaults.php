@@ -47,6 +47,8 @@ return [
     ],
 
     'private_contract' => [
+        'period' => '12 months',
+        'direct_date' => '1st of',
         'templates' => [
             'names' => [
                 PrivateContract::TEMPLATE_TYPE_ANNUAL_PAYMENT => 'annual-contracts.docx',

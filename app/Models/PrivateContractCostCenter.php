@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use RonasIT\Support\Traits\ModelTrait;
 use Illuminate\Database\Eloquent\Model;
 
@@ -22,8 +24,15 @@ class PrivateContractCostCenter extends Model
 
     protected $hidden = ['pivot'];
 
-    public function private_contract()
+    public function private_contract(): BelongsTo
     {
         return $this->belongsTo(PrivateContract::class);
+    }
+
+    public function items(): HasMany
+    {
+        return $this
+            ->hasMany(PrivateContractCostCenterItem::class)
+            ->orderBy('order');
     }
 }

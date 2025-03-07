@@ -15,6 +15,9 @@ class PrivateContract extends Model
     const TEMPLATE_TYPE_ANNUAL_PAYMENT = 'annual_payment';
     const TEMPLATE_TYPE_DIRECT_DEBIT = 'direct_debit';
 
+    const RECURRING_TYPE_PROJECT = 'Project';
+    const RECURRING_TYPE_SERVICE = 'Service';
+
     const PAYMENT_TYPES = [
         self::PAYMENT_TYPE_ANNUAL_PAYMENT,
         self::PAYMENT_TYPE_DIRECT_DEBIT,
@@ -47,6 +50,8 @@ class PrivateContract extends Model
         'is_company',
         'is_processed',
         'next_recurring_date',
+        'docx',
+        'pdf',
     ];
 
     protected $hidden = ['pivot'];
@@ -55,6 +60,11 @@ class PrivateContract extends Model
         'is_company' => 'boolean',
         'is_processed' => 'boolean',
     ];
+
+    public function getPeriodAttribute(): string
+    {
+        return $this->attributes['period'] ?? config('defaults.private_contract.period');
+    }
 
     public function customer()
     {

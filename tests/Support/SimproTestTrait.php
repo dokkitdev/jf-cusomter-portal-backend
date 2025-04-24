@@ -2,19 +2,13 @@
 
 namespace App\Tests\Support;
 
-use App\Models\SimproJob;
 use GuzzleHttp\Psr7\Response as GuzzleResponse;
 use Illuminate\Support\Arr;
 use App\Services\HttpRequestService;
 
 trait SimproTestTrait
 {
-    protected function createSimproJob($fixture)
-    {
-        $webhookData = $this->getJsonFixture($fixture);
-        $webhookData['data'] = json_decode($webhookData['data'], true);
-        SimproJob::create($webhookData);
-    }
+    use CreateSimproJobTrait;
 
     protected function mockApproveQuote()
     {
@@ -101,150 +95,11 @@ trait SimproTestTrait
         ]);
     }
 
-    protected function mockHandleAssetLog()
-    {
-        $this->mockHttpRequestService([
-            $this->getAsset(),
-            $this->getSite(),
-            $this->getSiteContacts(),
-            $this->getAssetServiceLevels(),
-            $this->getAssetAttachments('get_asset_attachments_response_success.json'),
-            $this->getAssetAttachments('get_asset_attachments_empty_response_success.json'),
-            $this->getAssetTestHistories(),
-            $this->getJob(),
-            $this->getCustomer(),
-            $this->getSite(),
-            $this->getSiteContacts(),
-            $this->getJobLog(),
-            $this->getJobLog(),
-            $this->getCompletedJobLog(),
-            $this->getJobLog(),
-            $this->getSchedules('get_schedules_response_success.json'),
-            $this->getSchedules('get_schedules_empty_response_success.json'),
-            $this->getJobAttachments('get_job_attachments_response_success.json'),
-            $this->getJobAttachments('get_job_attachments_empty_response_success.json'),
-            $this->getJob(),
-            $this->getSite(),
-            $this->getSiteContacts(),
-            $this->getJobLog(),
-            $this->getJobLog(),
-            $this->getCompletedJobLog(),
-            $this->getJobLog(),
-            $this->getSchedules('get_schedules_response_success.json'),
-            $this->getSchedules('get_schedules_empty_response_success.json'),
-            $this->getJobAttachments('get_job_attachments_response_success.json'),
-            $this->getJobAttachments('get_job_attachments_empty_response_success.json'),
-            $this->getJob(),
-            $this->getSite(),
-            $this->getSiteContacts(),
-            $this->getJobLog(),
-            $this->getJobLog(),
-            $this->getCompletedJobLog(),
-            $this->getJobLog(),
-            $this->getSchedules('get_schedules_response_success.json'),
-            $this->getSchedules('get_schedules_empty_response_success.json'),
-            $this->getJobAttachments('get_job_attachments_response_success.json'),
-            $this->getJobAttachments('get_job_attachments_empty_response_success.json'),
-        ]);
-    }
-
-    protected function mockCreateOrUpdateAsset()
-    {
-        $this->mockHttpRequestService([
-            $this->getAsset(),
-            $this->getSite(),
-            $this->getSiteContacts(),
-            $this->getCustomer(),
-            $this->getAssetServiceLevels(),
-            $this->getAssetAttachments('get_asset_attachments_response_success.json'),
-            $this->getAssetAttachments('get_asset_attachments_empty_response_success.json'),
-            $this->getAssetTestHistories(),
-            $this->getJob(),
-            $this->getJobLog(),
-            $this->getJobLog(),
-            $this->getJobLog(),
-            $this->getJobLog(),
-            $this->getSchedules('get_schedules_response_success.json'),
-            $this->getSchedules('get_schedules_empty_response_success.json'),
-            $this->getJobAttachments('get_job_attachments_response_success.json'),
-            $this->getJobAttachments('get_job_attachments_empty_response_success.json'),
-            $this->getJob(),
-            $this->getJobLog(),
-            $this->getJobLog(),
-            $this->getJobLog(),
-            $this->getJobLog(),
-            $this->getSchedules('get_schedules_response_success.json'),
-            $this->getSchedules('get_schedules_empty_response_success.json'),
-            $this->getJobAttachments('get_job_attachments_response_success.json'),
-            $this->getJobAttachments('get_job_attachments_empty_response_success.json'),
-        ]);
-    }
-
     protected function mockDownloadAssetAttachment()
     {
         $this->mockHttpRequestService([
             $this->getAssetAttachmentFile(),
         ]);
-    }
-
-    protected function mockGetAssetServiceLevels()
-    {
-        $this->mockHttpRequestService([
-            $this->getAssetsServiceLevels('get_assets_service_levels_response_success.json'),
-            $this->getAssetsServiceLevels('get_assets_service_levels_empty_response_success.json'),
-        ]);
-    }
-
-    protected function mockGetAssetTypes()
-    {
-        $this->mockHttpRequestService([
-            $this->getAssetsTypes('get_asset_types_response_success.json'),
-        ]);
-    }
-
-    protected function mockGetAssetNames()
-    {
-        $this->mockHttpRequestService([
-            $this->getAssetsNames('get_asset_names_response_success.json'),
-        ]);
-    }
-
-    protected function getAsset()
-    {
-        return [
-            'type' => 'get',
-            'arguments' => [
-                $this->equalTo('https://pfsgroup.simprosuite.com/api/v1.0/companies/0/customerAssets/10000'),
-                $this->equalTo(null),
-                $this->equalTo([
-                    'Accept' => 'application/json',
-                    'Content-Type' => 'application/json',
-                    'Authorization' => 'Bearer token',
-                ])
-            ],
-            'response' => [
-                'fixture' => 'get_asset_response_success.json'
-            ]
-        ];
-    }
-
-    protected function getAssetServiceLevels()
-    {
-        return [
-            'type' => 'get',
-            'arguments' => [
-                $this->equalTo('https://pfsgroup.simprosuite.com/api/v1.0/companies/0/sites/2752/assets/10000/serviceLevels/'),
-                $this->equalTo(null),
-                $this->equalTo([
-                    'Accept' => 'application/json',
-                    'Content-Type' => 'application/json',
-                    'Authorization' => 'Bearer token',
-                ])
-            ],
-            'response' => [
-                'fixture' => 'get_asset_service_levels_response_success.json'
-            ]
-        ];
     }
 
     protected function mockCreateOrUpdateInvoice()
@@ -374,44 +229,6 @@ trait SimproTestTrait
             ],
             'response' => [
                 'fixture' => 'get_quote_note_attachments_response_success.json'
-            ]
-        ];
-    }
-
-    protected function getAssetAttachments($fixture)
-    {
-        return [
-            'type' => 'get',
-            'arguments' => [
-                $this->equalTo('https://pfsgroup.simprosuite.com/api/v1.0/companies/0/sites/2765/assets/10000/attachments/files/'),
-                $this->equalTo(null),
-                $this->equalTo([
-                    'Accept' => 'application/json',
-                    'Content-Type' => 'application/json',
-                    'Authorization' => 'Bearer token',
-                ])
-            ],
-            'response' => [
-                'fixture' => $fixture
-            ]
-        ];
-    }
-
-    protected function getAssetTestHistories()
-    {
-        return [
-            'type' => 'get',
-            'arguments' => [
-                $this->equalTo('https://pfsgroup.simprosuite.com/api/v1.0/companies/0/sites/2765/assets/10000/testHistory/'),
-                $this->equalTo(null),
-                $this->equalTo([
-                    'Accept' => 'application/json',
-                    'Content-Type' => 'application/json',
-                    'Authorization' => 'Bearer token',
-                ])
-            ],
-            'response' => [
-                'fixture' => 'get_asset_test_histories_response_success.json'
             ]
         ];
     }
@@ -565,33 +382,6 @@ trait SimproTestTrait
         ]);
     }
 
-    protected function mockGetJobs()
-    {
-        $this->mockHttpRequestService([
-            $this->getJobs('get_jobs_response_success.json'),
-            $this->getJobs('get_jobs_empty_response_success.json'),
-        ]);
-    }
-
-    protected function getJobs($fixture)
-    {
-        return [
-            'type' => 'get',
-            'arguments' => [
-                $this->equalTo('https://pfsgroup.simprosuite.com/api/v1.0/companies/0/jobs/'),
-                $this->equalTo(null),
-                $this->equalTo([
-                    'Accept' => 'application/json',
-                    'Content-Type' => 'application/json',
-                    'Authorization' => 'Bearer token',
-                ])
-            ],
-            'response' => [
-                'fixture' => $fixture
-            ]
-        ];
-    }
-
     protected function mockUpdateJobsCommand()
     {
         $this->mockHttpRequestService([
@@ -637,13 +427,6 @@ trait SimproTestTrait
             $this->getJobAttachments('get_job_attachments_response_success.json'),
             $this->getJobAttachments('get_job_attachments_empty_response_success.json'),
             $this->getJobWorkOrders(),
-        ]);
-    }
-
-    protected function mockUpdateJobMadeSafe()
-    {
-        $this->mockHttpRequestService([
-            $this->getJobLog(),
         ]);
     }
 
@@ -707,63 +490,6 @@ trait SimproTestTrait
             ],
             'response' => [
                 'fixture' => 'get_asset_attachment_file_response_success.json'
-            ]
-        ];
-    }
-
-    protected function getAssetsServiceLevels($fixture)
-    {
-        return [
-            'type' => 'get',
-            'arguments' => [
-                $this->equalTo('https://pfsgroup.simprosuite.com/api/v1.0/companies/0/setup/assets/serviceLevels/'),
-                $this->equalTo(null),
-                $this->equalTo([
-                    'Accept' => 'application/json',
-                    'Content-Type' => 'application/json',
-                    'Authorization' => 'Bearer token',
-                ])
-            ],
-            'response' => [
-                'fixture' => $fixture
-            ]
-        ];
-    }
-
-    protected function getAssetsTypes($fixture)
-    {
-        return [
-            'type' => 'get',
-            'arguments' => [
-                $this->equalTo('https://pfsgroup.simprosuite.com/api/v1.0/companies/0/setup/assets/assetTypes/'),
-                $this->equalTo(null),
-                $this->equalTo([
-                    'Accept' => 'application/json',
-                    'Content-Type' => 'application/json',
-                    'Authorization' => 'Bearer token',
-                ])
-            ],
-            'response' => [
-                'fixture' => $fixture
-            ]
-        ];
-    }
-
-    protected function getAssetsNames($fixture)
-    {
-        return [
-            'type' => 'get',
-            'arguments' => [
-                $this->equalTo('https://pfsgroup.simprosuite.com/api/v1.0/companies/0/setup/assets/assetTypes/'),
-                $this->equalTo(null),
-                $this->equalTo([
-                    'Accept' => 'application/json',
-                    'Content-Type' => 'application/json',
-                    'Authorization' => 'Bearer token',
-                ])
-            ],
-            'response' => [
-                'fixture' => $fixture
             ]
         ];
     }
@@ -1010,14 +736,6 @@ trait SimproTestTrait
         ]);
     }
 
-    protected function mockGetSites()
-    {
-        $this->mockHttpRequestService([
-            $this->getSites('get_sites_response_success.json'),
-            $this->getSites('get_sites_empty_response_success.json'),
-        ]);
-    }
-
     protected function mockGetQuotes()
     {
         $this->mockHttpRequestService([
@@ -1053,39 +771,12 @@ trait SimproTestTrait
         ]);
     }
 
-    protected function mockGetAssets()
-    {
-        $this->mockHttpRequestService([
-            $this->getAssets('get_assets_response_success.json'),
-            $this->getAssets('get_assets_empty_response_success.json'),
-        ]);
-    }
-
     protected function getInvoices($fixture)
     {
         return [
             'type' => 'get',
             'arguments' => [
                 $this->equalTo('https://pfsgroup.simprosuite.com/api/v1.0/companies/0/customerInvoices/'),
-                $this->equalTo(null),
-                $this->equalTo([
-                    'Accept' => 'application/json',
-                    'Content-Type' => 'application/json',
-                    'Authorization' => 'Bearer token',
-                ])
-            ],
-            'response' => [
-                'fixture' => $fixture
-            ]
-        ];
-    }
-
-    protected function getAssets($fixture)
-    {
-        return [
-            'type' => 'get',
-            'arguments' => [
-                $this->equalTo('https://pfsgroup.simprosuite.com/api/v1.0/companies/0/customerAssets/'),
                 $this->equalTo(null),
                 $this->equalTo([
                     'Accept' => 'application/json',

@@ -3,21 +3,18 @@
 namespace App\Tests;
 
 use App\Models\Asset;
-use App\Models\Customer;
 use App\Models\Job;
-use App\Models\JobAttachment;
-use App\Models\JobCatalog;
-use App\Models\JobWorkOrder;
-use App\Models\Schedule;
 use App\Models\Site;
 use App\Models\SiteContact;
 use App\Models\SimproLog;
 use App\Models\User;
-use App\Tests\Support\SimproTestTrait;
+use App\Tests\Support\CreateSimproJobTrait;
+use App\Tests\Support\MockHttpRequestServiceTrait;
 
 class SimproLogTest extends TestCase
 {
-    use SimproTestTrait;
+    use CreateSimproJobTrait;
+    use MockHttpRequestServiceTrait;
 
     protected $admin;
     protected $user;
@@ -34,7 +31,7 @@ class SimproLogTest extends TestCase
 
     public function testGetSitesToLogCommand()
     {
-        $this->mockGetSites();
+        $this->mockHttpRequestService($this->getJsonFixture('simpro_log_sites_requests_chain.json'));
 
         $this->artisan('simpro:save-simpro-log sites')->assertExitCode(0);
 
@@ -44,7 +41,7 @@ class SimproLogTest extends TestCase
 
     public function testHandleSitesLogCommand()
     {
-        $this->mockCreateOrUpdateSite();
+        $this->mockHttpRequestService($this->getJsonFixture('simpro_log_sites_create_or_update_event_requests_chain.json'));
 
         $this->artisan('simpro:handle-log sites')->assertExitCode(0);
 
@@ -60,7 +57,7 @@ class SimproLogTest extends TestCase
 
     public function testGetJobsToLogCommand()
     {
-        $this->mockGetJobs();
+        $this->mockHttpRequestService($this->getJsonFixture('simpro_log_jobs_requests_chain.json'));
 
         $this->artisan('simpro:save-simpro-log jobs')->assertExitCode(0);
 
@@ -70,7 +67,7 @@ class SimproLogTest extends TestCase
 
     public function testHandleJobLogCommand()
     {
-        $this->mockUpdateJobMadeSafe();
+        $this->mockHttpRequestService($this->getJsonFixture('simpro_log_jobs_create_or_update_event_requests_chain.json'));
 
         $this->artisan('simpro:handle-log jobs')->assertExitCode(0);
 
@@ -114,7 +111,7 @@ class SimproLogTest extends TestCase
 
     public function testGetAssetsToLogCommand()
     {
-        $this->mockGetAssets();
+        $this->mockHttpRequestService($this->getJsonFixture('simpro_log_assets_requests_chain.json'));
 
         $this->artisan('simpro:save-simpro-log assets')->assertExitCode(0);
 
@@ -129,7 +126,7 @@ class SimproLogTest extends TestCase
 
     public function testHandleAssetsLogCommand()
     {
-        $this->mockHandleAssetLog();
+        $this->mockHttpRequestService($this->getJsonFixture('simpro_log_assets_create_or_update_event_requests_chain.json'));
 
         $this->artisan('simpro:handle-log assets')->assertExitCode(0);
 

@@ -1,0 +1,3524 @@
+[
+    {
+        "request": {
+            "type": "get",
+            "url": "https://fake.gassure.simprocloud.com/api/v1.0/companies/0/customerAssets/10000",
+            "data": [],
+            "headers": {
+                "Accept": "application\/json",
+                "Content-Type": "application\/json",
+                "Authorization": "Bearer fake_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": {
+                "ID": 10000,
+                "AssetType": {
+                    "ID": 1,
+                    "Name": "Fire Alarm - Panel"
+                },
+                "DisplayOrder": 83,
+                "CustomerContract": {
+                    "ID": 1710,
+                    "Name": "United Facilities Management Ltd - 36-38 Cornhill - Fire Alarm",
+                    "StartDate": "2020-08-17",
+                    "EndDate": "2030-01-01",
+                    "Expired": false
+                },
+                "StartDate": "2020-08-16",
+                "LastTest": {
+                    "Result": "No Test",
+                    "Date": null,
+                    "ServiceLevel": {
+                        "ID": 4,
+                        "Name": "Quarterly"
+                    }
+                },
+                "Archived": false,
+                "CustomFields": [
+                    {
+                        "CustomField": {
+                            "ID": 1,
+                            "Name": "Location",
+                            "Type": "Text",
+                            "ListItems": null
+                        },
+                        "Value": "Ground floor reception"
+                    },
+                    {
+                        "CustomField": {
+                            "ID": 2,
+                            "Name": "Panel\/Node Number",
+                            "Type": "Text",
+                            "ListItems": null
+                        },
+                        "Value": "1"
+                    },
+                    {
+                        "CustomField": {
+                            "ID": 3,
+                            "Name": "Log book location",
+                            "Type": "Text",
+                            "ListItems": null
+                        },
+                        "Value": "Reception"
+                    },
+                    {
+                        "CustomField": {
+                            "ID": 4,
+                            "Name": "Installation Date",
+                            "Type": "Date",
+                            "ListItems": null
+                        },
+                        "Value": "2013-11-25"
+                    },
+                    {
+                        "CustomField": {
+                            "ID": 5,
+                            "Name": "Manufacturer",
+                            "Type": "Text",
+                            "ListItems": null
+                        },
+                        "Value": "Ampac"
+                    },
+                    {
+                        "CustomField": {
+                            "ID": 6,
+                            "Name": "Panel Model",
+                            "Type": "Text",
+                            "ListItems": null
+                        },
+                        "Value": "Ampac Fire Finder Plus"
+                    },
+                    {
+                        "CustomField": {
+                            "ID": 7,
+                            "Name": "Year of Manufacture",
+                            "Type": "Text",
+                            "ListItems": null
+                        },
+                        "Value": "2013"
+                    },
+                    {
+                        "CustomField": {
+                            "ID": 8,
+                            "Name": "Panel Code",
+                            "Type": "Text",
+                            "ListItems": null
+                        },
+                        "Value": "3333"
+                    },
+                    {
+                        "CustomField": {
+                            "ID": 9,
+                            "Name": "Software Version",
+                            "Type": "Text",
+                            "ListItems": null
+                        },
+                        "Value": "2.00.00"
+                    },
+                    {
+                        "CustomField": {
+                            "ID": 10,
+                            "Name": "ARC?",
+                            "Type": "List",
+                            "ListItems": [
+                                "EMCS",
+                                "ADT",
+                                "AIM",
+                                "CSS",
+                                "Custodian",
+                                "Landlord",
+                                "Southern Monitoring",
+                                "Yeoman"
+                            ]
+                        },
+                        "Value": "EMCS"
+                    },
+                    {
+                        "CustomField": {
+                            "ID": 11,
+                            "Name": "ARC Contact Number",
+                            "Type": "Text",
+                            "ListItems": null
+                        },
+                        "Value": "08448099980"
+                    },
+                    {
+                        "CustomField": {
+                            "ID": 12,
+                            "Name": "Dialler Type",
+                            "Type": "List",
+                            "ListItems": [
+                                "Digicom",
+                                "Dualcom",
+                                "Redcare",
+                                "Webway"
+                            ]
+                        },
+                        "Value": "Redcare"
+                    },
+                    {
+                        "CustomField": {
+                            "ID": 13,
+                            "Name": "Monitoring Chip No.",
+                            "Type": "Text",
+                            "ListItems": null
+                        },
+                        "Value": "Not known"
+                    },
+                    {
+                        "CustomField": {
+                            "ID": 14,
+                            "Name": "Monitoring Company",
+                            "Type": "Text",
+                            "ListItems": null
+                        },
+                        "Value": "Not known"
+                    },
+                    {
+                        "CustomField": {
+                            "ID": 260,
+                            "Name": "Monitoring Password",
+                            "Type": "Text",
+                            "ListItems": null
+                        },
+                        "Value": "11831333"
+                    },
+                    {
+                        "CustomField": {
+                            "ID": 261,
+                            "Name": "Protocol",
+                            "Type": "Text",
+                            "ListItems": null
+                        },
+                        "Value": "Xp95"
+                    },
+                    {
+                        "CustomField": {
+                            "ID": 269,
+                            "Name": "Networked?",
+                            "Type": "List",
+                            "ListItems": [
+                                "N\/A",
+                                "Unknown",
+                                "Yes",
+                                "No"
+                            ]
+                        },
+                        "Value": "No"
+                    },
+                    {
+                        "CustomField": {
+                            "ID": 270,
+                            "Name": "System Category Type",
+                            "Type": "List",
+                            "ListItems": [
+                                "L",
+                                "M",
+                                "P"
+                            ]
+                        },
+                        "Value": "L"
+                    },
+                    {
+                        "CustomField": {
+                            "ID": 271,
+                            "Name": "System Category ",
+                            "Type": "List",
+                            "ListItems": [
+                                "L1",
+                                "L2",
+                                "L3",
+                                "L4",
+                                "L4M",
+                                "L5",
+                                "M",
+                                "P1",
+                                "P2",
+                                "UNC"
+                            ]
+                        },
+                        "Value": "UNC"
+                    },
+                    {
+                        "CustomField": {
+                            "ID": 366,
+                            "Name": "Date of Weekly Test",
+                            "Type": "List",
+                            "ListItems": [
+                                "Monday",
+                                "Tuesday",
+                                "Wednesday",
+                                "Thursday",
+                                "Friday",
+                                "Saturday",
+                                "Sunday"
+                            ]
+                        },
+                        "Value": "Thursday"
+                    },
+                    {
+                        "CustomField": {
+                            "ID": 367,
+                            "Name": "Time of Weekly Test",
+                            "Type": "Text",
+                            "ListItems": null
+                        },
+                        "Value": "10am"
+                    },
+                    {
+                        "CustomField": {
+                            "ID": 468,
+                            "Name": "Areas covered",
+                            "Type": "Text",
+                            "ListItems": null
+                        },
+                        "Value": "Throughout"
+                    },
+                    {
+                        "CustomField": {
+                            "ID": 15,
+                            "Name": "Last download taken date",
+                            "Type": "Date",
+                            "ListItems": null
+                        },
+                        "Value": null
+                    }
+                ],
+                "ParentID": null,
+                "DateModified": "2021-03-26T14:05:43+00:00",
+                "Site": {
+                    "ID": 2752,
+                    "Name": "36-38 Cornhill"
+                }
+            },
+            "headers": {
+                "any": "headers"
+            }
+        }
+    },
+    {
+        "request": {
+            "type": "get",
+            "url": "https://fake.gassure.simprocloud.com/api/v1.0/companies/0/sites/2752",
+            "data": [],
+            "headers": {
+                "Accept": "application\/json",
+                "Content-Type": "application\/json",
+                "Authorization": "Bearer fake_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": {
+                "ID": 2752,
+                "Name": "36-38 Cornhill",
+                "Address": {
+                    "Address": "36-38 Cornhill",
+                    "City": "London",
+                    "State": "",
+                    "PostalCode": "EC3V 3NG",
+                    "Country": ""
+                },
+                "BillingAddress": {
+                    "Address": "",
+                    "City": "",
+                    "State": "",
+                    "PostalCode": ""
+                },
+                "BillingContact": "",
+                "PrimaryContact": {
+                    "Contact": [],
+                    "Title": "",
+                    "GivenName": "",
+                    "FamilyName": "",
+                    "Email": "",
+                    "WorkPhone": "",
+                    "CellPhone": "",
+                    "Fax": "",
+                    "Position": "",
+                    "PreferredNotificationMethod": ""
+                },
+                "PublicNotes": "<table style=\"border: 1px solid #000000; width: 82.31%; height: auto;\"><tbody><tr nobr=\"true\" style=\"height: 17px;\"><td style=\"border: 1px solid #000000; width: 15.33%; height: 17px;\"><strong>ACCESS\/BOOKING<\/strong><\/td><td style=\"border: 1px solid #000000; width: 66.03%; height: 17px;\">&nbsp;<\/td><\/tr><tr nobr=\"true\" style=\"height: 17px;\"><td style=\"border: 1px solid #000000; width: 15.33%; height: 17px;\"><strong>ACCESS INFO<\/strong><\/td><td style=\"border: 1px solid #000000; width: 66.03%; height: 17px;\">&nbsp;Access between 0800-1200 on allocated day only. To be prebooked with UFM&nbsp;<\/td><\/tr><tr nobr=\"true\" style=\"height: 17px;\"><td style=\"border: 1px solid #000000; width: 15.33%; height: 17px;\"><strong>&nbsp;<\/strong><\/td><td style=\"border: 1px solid #000000; width: 66.03%; height: 17px;\">&nbsp;<\/td><\/tr><tr nobr=\"true\" style=\"height: 17px;\"><td style=\"border: 1px solid #000000; width: 15.33%; height: 17px;\"><strong>&nbsp;<\/strong><\/td><td style=\"border: 1px solid #000000; width: 66.03%; height: 17px;\">&nbsp;<\/td><\/tr><tr nobr=\"true\" style=\"height: 17px;\"><td style=\"border: 1px solid #000000; width: 15.33%; height: 17px;\"><strong>PARKING<\/strong><\/td><td style=\"border: 1px solid #000000; width: 66.03%; height: 17px;\">&nbsp;No parking on site<\/td><\/tr><tr nobr=\"true\" style=\"height: 17px;\"><td style=\"border: 1px solid #000000; width: 15.33%; height: 17px;\"><strong>&nbsp;<\/strong><\/td><td style=\"border: 1px solid #000000; width: 66.03%; height: 17px;\">&nbsp;<\/td><\/tr><tr nobr=\"true\" style=\"height: 17px;\"><td style=\"border: 1px solid #000000; width: 15.33%; height: 17px;\"><strong>&nbsp;<\/strong><\/td><td style=\"border: 1px solid #000000; width: 66.03%; height: 17px;\">&nbsp;<\/td><\/tr><tr nobr=\"true\" style=\"height: 17px;\"><td style=\"border: 1px solid #000000; width: 15.33%; height: 17px;\"><strong>SITE CONTACT<\/strong><\/td><td style=\"border: 1px solid #000000; width: 66.03%; height: 17px;\"><span style=\"display: inline !important; float: none; background-color: #ffffff; color: #000000; cursor: text; font-family: 'Noto Sans',sans-serif; font-size: 13.33px; font-style: normal; font-variant: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: left; text-decoration: none; text-indent: 0px; text-transform: none; -webkit-text-stroke-width: 0px; white-space: normal; word-spacing: 0px;\"> UFM Engineer - Barry Johnson: 0782 563 0357<\/span><\/td><\/tr><tr nobr=\"true\" style=\"height: 17px;\"><td style=\"border: 1px solid #000000; width: 15.33%; height: 17px;\"><strong>&nbsp;<\/strong><\/td><td style=\"border: 1px solid #000000; width: 66.03%; height: 17px;\">&nbsp;<\/td><\/tr><tr nobr=\"true\" style=\"height: 17px;\"><td style=\"border: 1px solid #000000; width: 15.33%; height: 17px;\"><strong>&nbsp;<\/strong><\/td><td style=\"border: 1px solid #000000; width: 66.03%; height: 17px;\">&nbsp;<\/td><\/tr><tr nobr=\"true\" style=\"height: 17px;\"><td style=\"border: 1px solid #000000; width: 15.33%; height: 17px;\"><strong>SITE SPEND<\/strong><\/td><td style=\"border: 1px solid #000000; width: 66.03%; height: 17px;\">&nbsp;|Refer to office before changing any parts&nbsp;<\/td><\/tr><tr nobr=\"true\" style=\"height: 17px;\"><td style=\"border: 1px solid #000000; width: 15.33%; height: 17px;\"><strong>&nbsp;<\/strong><\/td><td style=\"border: 1px solid #000000; width: 66.03%; height: 17px;\">&nbsp;<\/td><\/tr><tr nobr=\"true\" style=\"height: 17px;\"><td style=\"border: 1px solid #000000; width: 15.33%; height: 17px;\"><strong>&nbsp;<\/strong><\/td><td style=\"border: 1px solid #000000; width: 66.03%; height: 17px;\">&nbsp;<\/td><\/tr><tr nobr=\"true\" style=\"height: 10px;\"><td style=\"border: 1px solid #000000; width: 15.33%; height: 10px;\"><strong>OTHER<\/strong><\/td><td style=\"border: 1px solid #000000; width: 66.03%; height: 10px;\"><div style=\"font-size: 10pt;\">&nbsp;<strong>&nbsp;- BOOK IN FOR A WEDNESDAY BETWEEN 08:00 AND 12:00<\/strong><br \/><strong>&nbsp;- TO BE SERVICED WITH 99 CHARTERHOUSE<\/strong><br \/>&nbsp;-<\/div><div style=\"font-size: 10pt;\">&nbsp;<\/div><div style=\"font-size: 10pt;\">Site is monitored. &nbsp;<\/div><div style=\"font-size: 10pt;\">Chip number 22009454 Pass number 11831333<\/div><div style=\"font-size: 10pt;\">Dialler is monitored for fault. When the dialler goes into fault the fault LED will illuminate and the display will show that Input 1&nbsp; (EXT FAULT) is in fault<\/div><div style=\"font-size: 10pt;\">&nbsp;<\/div><div style=\"font-size: 10pt;\"><strong><span style=\"text-align: left; color: #000000; text-transform: none; text-indent: 0px; letter-spacing: normal; font-family: 'Noto Sans',sans-serif; font-size: 13.33px; font-style: normal; font-variant: normal; text-decoration: none; word-spacing: 0px; display: inline !important; white-space: normal; cursor: text; orphans: 2; float: none; -webkit-text-stroke-width: 0px; background-color: #ffffff;\">NEXT SERVICE -&nbsp;<\/span><\/strong><span style=\"color: #000000; font-family: &amp;quot; noto sans&amp;quot;,sans-serif; font-size: 11pt; font-style: normal; font-variant: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: left; text-decoration: none; text-indent: 0px; text-transform: none; -webkit-text-stroke-width: 0px; white-space: normal; word-spacing: 0px;\"><strong>correct remaining battery crimps<\/strong> <\/span><\/div><\/td><\/tr><tr nobr=\"true\" style=\"height: 17px;\"><td style=\"border: 1px solid #000000; width: 15.33%; height: 17px;\"><strong>&nbsp;<\/strong><\/td><td style=\"border: 1px solid #000000; width: 66.03%; height: 17px;\">&nbsp;<\/td><\/tr><tr nobr=\"true\" style=\"height: 17px;\"><td style=\"border: 1px solid #000000; width: 15.33%; height: 17px;\"><strong>&nbsp;<\/strong><\/td><td style=\"border: 1px solid #000000; width: 66.03%; height: 17px;\">&nbsp;<\/td><\/tr><tr nobr=\"true\" style=\"height: 17px;\"><td style=\"border: 1px solid #000000; width: 15.33%; height: 17px;\"><strong>SERVICING<\/strong><\/td><td style=\"border: 1px solid #000000; width: 66.03%; height: 17px;\">&nbsp;<\/td><\/tr><tr nobr=\"true\" style=\"height: 17px;\"><td style=\"border: 1px solid #000000; width: 15.33%; height: 17px;\"><strong>AREAS COVERED<\/strong><\/td><td style=\"border: 1px solid #000000; width: 66.03%; height: 17px;\">&nbsp;See below&nbsp;<\/td><\/tr><tr nobr=\"true\" style=\"height: 17px;\"><td style=\"border: 1px solid #000000; width: 15.33%; height: 17px;\"><strong>&nbsp;<\/strong><\/td><td style=\"border: 1px solid #000000; width: 66.03%; height: 17px;\">&nbsp;<\/td><\/tr><tr nobr=\"true\" style=\"height: 17px;\"><td style=\"border: 1px solid #000000; width: 15.33%; height: 17px;\"><strong>&nbsp;<\/strong><\/td><td style=\"border: 1px solid #000000; width: 66.03%; height: 17px;\">&nbsp;<\/td><\/tr><tr nobr=\"true\" style=\"height: 17px;\"><td style=\"border: 1px solid #000000; width: 15.33%; height: 17px;\"><strong>FA SCHEDULE<\/strong><\/td><td style=\"border: 1px solid #000000; width: 66.03%; height: 17px;\">VISIT 1 - basement and roof plant room.<\/td><\/tr><tr nobr=\"true\" style=\"height: 17px;\"><td style=\"border: 1px solid #000000; width: 15.33%; height: 17px;\">&nbsp;<\/td><td style=\"border: 1px solid #000000; width: 66.03%; height: 17px;\">VISIT 2 -2nd \/ 3rd and Rear Stairwell<\/td><\/tr><tr nobr=\"true\" style=\"height: 17px;\"><td style=\"border: 1px solid #000000; width: 15.33%; height: 17px;\">&nbsp;<\/td><td style=\"border: 1px solid #000000; width: 66.03%; height: 17px;\">VISIT 3 - 4th \/ 5th 6th and floors<\/td><\/tr><tr nobr=\"true\" style=\"height: 17px;\"><td style=\"border: 1px solid #000000; width: 15.33%; height: 17px;\">&nbsp;<\/td><td style=\"border: 1px solid #000000; width: 66.03%; height: 17px;\">VISIT 4 -LGF \/ GF and 1st<\/td><\/tr><tr nobr=\"true\" style=\"height: 17px;\"><td style=\"border: 1px solid #000000; width: 15.33%; height: 17px;\"><\/td><td style=\"border: 1px solid #000000; width: 66.03%; height: 17px;\">&nbsp;<\/td><\/tr><tr nobr=\"true\" style=\"height: 17px;\"><td style=\"border: 1px solid #000000; width: 15.33%; height: 17px;\"><\/td><td style=\"border: 1px solid #000000; width: 66.03%; height: 17px;\">&nbsp;<\/td><\/tr><tr nobr=\"true\" style=\"height: 17px;\"><td style=\"border: 1px solid #000000; width: 15.33%; height: 17px;\"><\/td><td style=\"border: 1px solid #000000; width: 66.03%; height: 17px;\">&nbsp;<\/td><\/tr><tr nobr=\"true\" style=\"height: 17px;\"><td style=\"border: 1px solid #000000; width: 15.33%; height: 17px;\"><\/td><td style=\"border: 1px solid #000000; width: 66.03%; height: 17px;\">&nbsp;<\/td><\/tr><tr nobr=\"true\" style=\"height: 17px;\"><td style=\"border: 1px solid #000000; width: 15.33%; height: 17px;\"><\/td><td style=\"border: 1px solid #000000; width: 66.03%; height: 17px;\">&nbsp;<\/td><\/tr><tr nobr=\"true\" style=\"height: 17px;\"><td style=\"border: 1px solid #000000; width: 15.33%; height: 17px;\"><\/td><td style=\"border: 1px solid #000000; width: 66.03%; height: 17px;\">&nbsp;<\/td><\/tr><tr nobr=\"true\" style=\"height: 17px;\"><td style=\"border: 1px solid #000000; width: 15.33%; height: 17px;\"><\/td><td style=\"border: 1px solid #000000; width: 66.03%; height: 17px;\">&nbsp;<\/td><\/tr><tr nobr=\"true\" style=\"height: 17px;\"><td style=\"border: 1px solid #000000; width: 15.33%; height: 17px;\"><\/td><td style=\"border: 1px solid #000000; width: 66.03%; height: 17px;\">&nbsp;<\/td><\/tr><tr nobr=\"true\" style=\"height: 17px;\"><td style=\"border: 1px solid #000000; width: 15.33%; height: 17px;\">&nbsp;<\/td><td style=\"border: 1px solid #000000; width: 66.03%; height: 17px;\">&nbsp;<\/td><\/tr><tr nobr=\"true\" style=\"height: 17px;\"><td style=\"border: 1px solid #000000; width: 15.33%; height: 17px;\">OTHER<\/td><td style=\"border: 1px solid #000000; width: 66.03%; height: 17px;\">&nbsp;<\/td><\/tr><tr nobr=\"true\" style=\"height: 17px;\"><td style=\"border: 1px solid #000000; width: 15.33%; height: 17px;\">&nbsp;<\/td><td style=\"border: 1px solid #000000; width: 66.03%; height: 17px;\">&nbsp;<\/td><\/tr><tr nobr=\"true\" style=\"height: 17px;\"><td style=\"border: 1px solid #000000; width: 15.33%; height: 17px;\">&nbsp;<\/td><td style=\"border: 1px solid #000000; width: 66.03%; height: 17px;\">&nbsp;<\/td><\/tr><\/tbody><\/table>",
+                "PrivateNotes": "<table style=\"border: 1px solid #000000; width: 267px; height: auto;\"><tbody><tr nobr=\"true\" style=\"height: 17px;\"><td style=\"border: 1px solid #000000; width: 111px; height: 17px;\">SYSTEM<\/td><td style=\"border: 1px solid #000000; width: 32px; height: 17px;\"><strong>DUE<\/strong><\/td><td style=\"border: 1px solid #000000; width: 74px; height: 17px;\"><strong>OOH\/NWH<\/strong><\/td><td style=\"border: 1px solid #000000; width: 10px; height: 17px;\"><strong>NOTES<\/strong><\/td><\/tr><tr nobr=\"true\" style=\"height: 17px;\"><td style=\"border: 1px solid #000000; width: 111px; height: 17px;\">Fire Alarm\/Detection&nbsp;<\/td><td style=\"border: 1px solid #000000; width: 32px; height: 17px;\"><div style=\"font-size: 10pt;\">&nbsp;Feb 2021<\/div><div style=\"font-size: 10pt;\">&nbsp;<\/div><div style=\"font-size: 10pt;\">May 2021<\/div><div style=\"font-size: 10pt;\">&nbsp;<\/div><div style=\"font-size: 10pt;\">Aug 2021<\/div><div style=\"font-size: 10pt;\">Nov 2021&nbsp;<\/div><\/td><td style=\"border: 1px solid #000000; width: 74px; height: 17px;\">&nbsp;NWH - 0800-1200&nbsp;<\/td><td style=\"border: 1px solid #000000; width: 10px; height: 17px;\">&nbsp;Recommendations made, quote to be submitted<\/td><\/tr><tr nobr=\"true\" style=\"height: 17px;\"><td style=\"border: 1px solid #000000; width: 111px; height: 17px;\"><\/td><td style=\"border: 1px solid #000000; width: 32px; height: 17px;\">&nbsp;<\/td><td style=\"border: 1px solid #000000; width: 74px; height: 17px;\">&nbsp;<\/td><td style=\"border: 1px solid #000000; width: 10px; height: 17px;\">&nbsp;<\/td><\/tr><tr nobr=\"true\" style=\"height: 17px;\"><td style=\"border: 1px solid #000000; width: 111px; height: 17px;\"><\/td><td style=\"border: 1px solid #000000; width: 32px; height: 17px;\">&nbsp;<\/td><td style=\"border: 1px solid #000000; width: 74px; height: 17px;\">&nbsp;<\/td><td style=\"border: 1px solid #000000; width: 10px; height: 17px;\">&nbsp;<\/td><\/tr><tr nobr=\"true\" style=\"height: 17px;\"><td style=\"border: 1px solid #000000; width: 111px; height: 17px;\"><\/td><td style=\"border: 1px solid #000000; width: 32px; height: 17px;\">&nbsp;<\/td><td style=\"border: 1px solid #000000; width: 74px; height: 17px;\">&nbsp;<\/td><td style=\"border: 1px solid #000000; width: 10px; height: 17px;\">&nbsp;<\/td><\/tr><tr nobr=\"true\" style=\"height: 17px;\"><td style=\"border: 1px solid #000000; width: 111px; height: 17px;\"><\/td><td style=\"border: 1px solid #000000; width: 32px; height: 17px;\">&nbsp;<\/td><td style=\"border: 1px solid #000000; width: 74px; height: 17px;\">&nbsp;<\/td><td style=\"border: 1px solid #000000; width: 10px; height: 17px;\">&nbsp;<\/td><\/tr><\/tbody><\/table><div style=\"font-size: 10pt;\">&nbsp;<\/div><table style=\"border: 1px solid #000000; width: 375px; height: auto;\"><tbody><tr nobr=\"true\" style=\"height: 17px;\"><td style=\"border: 1px solid #000000; width: 180px; height: 17px;\"><strong>PPM BOOKING INFO<\/strong><\/td><td style=\"border: 1px solid #000000; width: 195px; height: 17px;\"><div style=\"font-size: 10pt;\">&nbsp;Please ensure booking times are adhered to at all times. This site is monitored by David Viglione at United.&nbsp;<\/div><div style=\"font-size: 10pt;\">&nbsp;<\/div><div style=\"font-size: 10pt;\">Please ensure this is service with 99 Charterhouse&nbsp;<\/div><\/td><\/tr><tr nobr=\"true\" style=\"height: 17px;\"><td style=\"border: 1px solid #000000; width: 180px; height: 17px;\"><strong>&nbsp;<\/strong><\/td><td style=\"border: 1px solid #000000; width: 195px; height: 17px;\">&nbsp;<\/td><\/tr><tr nobr=\"true\" style=\"height: 17px;\"><td style=\"border: 1px solid #000000; width: 180px; height: 17px;\"><strong>&nbsp;<\/strong><\/td><td style=\"border: 1px solid #000000; width: 195px; height: 17px;\">&nbsp;<\/td><\/tr><tr nobr=\"true\" style=\"height: 17px;\"><td style=\"border: 1px solid #000000; width: 180px; height: 17px;\"><strong>&nbsp;<\/strong><\/td><td style=\"border: 1px solid #000000; width: 195px; height: 17px;\">&nbsp;<\/td><\/tr><tr nobr=\"true\" style=\"height: 34px;\"><td style=\"border: 1px solid #000000; width: 180px; height: 34px;\"><strong>SPECIFIC REQUIREMENTS<\/strong><\/td><td style=\"border: 1px solid #000000; width: 195px; height: 34px;\">&nbsp;NEXT SERVICE -&nbsp;<span style=\"font-size: 11.0pt;\">correct remaining battery crimps <\/span><\/td><\/tr><tr nobr=\"true\" style=\"height: 17px;\"><td style=\"border: 1px solid #000000; width: 180px; height: 17px;\"><strong>&nbsp;<\/strong><\/td><td style=\"border: 1px solid #000000; width: 195px; height: 17px;\">&nbsp;<\/td><\/tr><tr nobr=\"true\" style=\"height: 17px;\"><td style=\"border: 1px solid #000000; width: 180px; height: 17px;\"><strong>&nbsp;<\/strong><\/td><td style=\"border: 1px solid #000000; width: 195px; height: 17px;\">&nbsp;<\/td><\/tr><tr nobr=\"true\" style=\"height: 17px;\"><td style=\"border: 1px solid #000000; width: 180px; height: 17px;\"><strong>OTHER<\/strong><\/td><td style=\"border: 1px solid #000000; width: 195px; height: 17px;\">&nbsp;<\/td><\/tr><tr nobr=\"true\" style=\"height: 17px;\"><td style=\"border: 1px solid #000000; width: 180px; height: 17px;\">&nbsp;<\/td><td style=\"border: 1px solid #000000; width: 195px; height: 17px;\">&nbsp;<\/td><\/tr><tr nobr=\"true\" style=\"height: 17px;\"><td style=\"border: 1px solid #000000; width: 180px; height: 17px;\">&nbsp;<\/td><td style=\"border: 1px solid #000000; width: 195px; height: 17px;\">&nbsp;<\/td><\/tr><tr nobr=\"true\" style=\"height: 17px;\"><td style=\"border: 1px solid #000000; width: 180px; height: 17px;\">&nbsp;<\/td><td style=\"border: 1px solid #000000; width: 195px; height: 17px;\">&nbsp;<\/td><\/tr><tr nobr=\"true\" style=\"height: 17px;\"><td style=\"border: 1px solid #000000; width: 180px; height: 17px;\">&nbsp;<\/td><td style=\"border: 1px solid #000000; width: 195px; height: 17px;\">&nbsp;<\/td><\/tr><\/tbody><\/table>",
+                "Zone": {
+                    "ID": 1,
+                    "Name": "Zone 01 (A1)"
+                },
+                "PreferredTechs": [],
+                "PreferredTechnicians": [],
+                "DateModified": "2021-03-08T09:22:02+00:00",
+                "Customers": [
+                    {
+                        "ID": 1474,
+                        "CompanyName": "United Facilities Management Ltd",
+                        "GivenName": "",
+                        "FamilyName": ""
+                    }
+                ],
+                "Archived": false,
+                "STCZone": null,
+                "VEECZone": null,
+                "CustomFields": [
+                    {
+                        "CustomField": {
+                            "ID": 17,
+                            "Name": "AM Contract No.",
+                            "Type": "Text",
+                            "IsMandatory": false,
+                            "ListItems": []
+                        },
+                        "Value": "A3166"
+                    },
+                    {
+                        "CustomField": {
+                            "ID": 32,
+                            "Name": "Site ID",
+                            "Type": "Text",
+                            "IsMandatory": true,
+                            "ListItems": []
+                        },
+                        "Value": "2752"
+                    },
+                    {
+                        "CustomField": {
+                            "ID": 25,
+                            "Name": "Site Opening Hours?",
+                            "Type": "Text",
+                            "IsMandatory": false,
+                            "ListItems": []
+                        },
+                        "Value": null
+                    },
+                    {
+                        "CustomField": {
+                            "ID": 77,
+                            "Name": "C&E Matrix Notes",
+                            "Type": "Text",
+                            "IsMandatory": false,
+                            "ListItems": []
+                        },
+                        "Value": null
+                    },
+                    {
+                        "CustomField": {
+                            "ID": 91,
+                            "Name": "Property Type",
+                            "Type": "List",
+                            "IsMandatory": false,
+                            "ListItems": [
+                                "Commercial Offices",
+                                "Residential - Domestic",
+                                "Residential - Flats",
+                                "Leisure",
+                                "Retail",
+                                "Industrial"
+                            ]
+                        },
+                        "Value": null
+                    },
+                    {
+                        "CustomField": {
+                            "ID": 5,
+                            "Name": "RAMS Required?",
+                            "Type": "List",
+                            "IsMandatory": false,
+                            "ListItems": [
+                                "Unknown",
+                                "N\/A",
+                                "Generic",
+                                "Site Specific"
+                            ]
+                        },
+                        "Value": null
+                    },
+                    {
+                        "CustomField": {
+                            "ID": 76,
+                            "Name": "Site Spend Notes",
+                            "Type": "Text",
+                            "IsMandatory": false,
+                            "ListItems": []
+                        },
+                        "Value": null
+                    },
+                    {
+                        "CustomField": {
+                            "ID": 16,
+                            "Name": "Site Spend",
+                            "Type": "Text",
+                            "IsMandatory": false,
+                            "ListItems": []
+                        },
+                        "Value": null
+                    },
+                    {
+                        "CustomField": {
+                            "ID": 22,
+                            "Name": "Customer Site Ref.",
+                            "Type": "Text",
+                            "IsMandatory": false,
+                            "ListItems": []
+                        },
+                        "Value": null
+                    }
+                ]
+            },
+            "headers": {
+                "any": "headers"
+            }
+        }
+    },
+    {
+        "request": {
+            "type": "get",
+            "url": "https://fake.gassure.simprocloud.com/api/v1.0/companies/0/sites/2752/contacts/",
+            "data": {
+                "pageSize": 250,
+                "columns": "ID,Title,GivenName,FamilyName,Email,WorkPhone,CellPhone,Position,PrimaryContact"
+            },
+            "headers": {
+                "Accept": "application\/json",
+                "Content-Type": "application\/json",
+                "Authorization": "Bearer fake_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": [],
+            "headers": {
+                "any": "headers"
+            }
+        }
+    },
+    {
+        "request": {
+            "type": "get",
+            "url": "https://fake.gassure.simprocloud.com/api/v1.0/companies/0/customers/companies/1474",
+            "data": [],
+            "headers": {
+                "Accept": "application\/json",
+                "Content-Type": "application\/json",
+                "Authorization": "Bearer fake_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": {
+                "ID": 1474,
+                "CompanyName": "United Facilities Management Ltd",
+                "PreferredTechs": [],
+                "Phone": "01708 860001",
+                "DoNotCall": false,
+                "AltPhone": "SEND STATEMENTS TO GILL",
+                "Address": {
+                    "Address": "Suite 4 The Sanctuary\r\nSteeple View Farm Dunton Road",
+                    "City": "Steeple View",
+                    "State": "LAINDON",
+                    "PostalCode": "SS15 4DB",
+                    "Country": "United Kingdom"
+                },
+                "BillingAddress": {
+                    "Address": "Suite 4 The Sanctuary\r\nSteeple View Farm Dunton Road",
+                    "City": "Steeple View",
+                    "State": "LAINDON",
+                    "PostalCode": "SS15 4DB",
+                    "Country": "United Kingdom"
+                },
+                "CustomerType": "Customer",
+                "Tags": [],
+                "Rates": {
+                    "PartTaxCode": [],
+                    "LabourTaxCode": [],
+                    "DiscountFee": 0,
+                    "ServiceFee": [],
+                    "Material": {
+                        "PricingTier": {
+                            "ID": 1,
+                            "Name": "Standard",
+                            "DefaultMarkup": 55
+                        },
+                        "Markup": 0
+                    }
+                },
+                "Profile": {
+                    "Notes": "",
+                    "CustomerProfile": [],
+                    "CustomerGroup": [],
+                    "AccountManager": [],
+                    "Currency": {
+                        "ID": "GBP",
+                        "Name": "British Pound Sterling",
+                        "Visible": true
+                    },
+                    "ServiceJobCostCenter": []
+                },
+                "Banking": {
+                    "AccountName": "",
+                    "RoutingNo": "",
+                    "AccountNo": "",
+                    "PaymentMethod": [],
+                    "PaymentTerms": {
+                        "Days": 60,
+                        "Type": "Month"
+                    },
+                    "CreditLimit": -1,
+                    "OnStop": false,
+                    "VendorOrderNoRequired": false
+                },
+                "Archived": false,
+                "Sites": [
+                    {
+                        "ID": 3367,
+                        "Name": "1 Bengal Court "
+                    },
+                    {
+                        "ID": 2787,
+                        "Name": "10-16 Dufours Place"
+                    },
+                    {
+                        "ID": 3567,
+                        "Name": "110 Fetter Lane"
+                    },
+                    {
+                        "ID": 3566,
+                        "Name": "111 Old Broad St"
+                    },
+                    {
+                        "ID": 3568,
+                        "Name": "15 Fetter Lane"
+                    },
+                    {
+                        "ID": 3314,
+                        "Name": "212 Norsey Road"
+                    },
+                    {
+                        "ID": 2749,
+                        "Name": "25 Camperdown Street"
+                    },
+                    {
+                        "ID": 3654,
+                        "Name": "26-40 Kensington High Street "
+                    },
+                    {
+                        "ID": 2808,
+                        "Name": "27 Mortimer Street"
+                    },
+                    {
+                        "ID": 2802,
+                        "Name": "3 Tilney Street"
+                    },
+                    {
+                        "ID": 2752,
+                        "Name": "36-38 Cornhill"
+                    },
+                    {
+                        "ID": 2786,
+                        "Name": "4th Floor"
+                    },
+                    {
+                        "ID": 2779,
+                        "Name": "50 Jermyn Street"
+                    },
+                    {
+                        "ID": 2790,
+                        "Name": "51 Cavendish Square"
+                    },
+                    {
+                        "ID": 2781,
+                        "Name": "54-56 Jermyn Street"
+                    },
+                    {
+                        "ID": 2824,
+                        "Name": "71 Kingsway"
+                    },
+                    {
+                        "ID": 3065,
+                        "Name": "79-81 Wigmore Street "
+                    },
+                    {
+                        "ID": 2813,
+                        "Name": "95 Wigmore Street"
+                    },
+                    {
+                        "ID": 2748,
+                        "Name": "99 Charterhouse Street"
+                    },
+                    {
+                        "ID": 3821,
+                        "Name": "Advanced Drainage Solutions"
+                    },
+                    {
+                        "ID": 4032,
+                        "Name": "Atlantic Court"
+                    },
+                    {
+                        "ID": 2763,
+                        "Name": "Bilfinger UK Limited, Unit 675"
+                    },
+                    {
+                        "ID": 2773,
+                        "Name": "BMC, Building E2"
+                    },
+                    {
+                        "ID": 2812,
+                        "Name": "Bridgepoint"
+                    },
+                    {
+                        "ID": 2811,
+                        "Name": "Bridgepoint 5Th, 6Th & 7Th Floors"
+                    },
+                    {
+                        "ID": 2758,
+                        "Name": "British Ecological Society"
+                    },
+                    {
+                        "ID": 2762,
+                        "Name": "Building 1000"
+                    },
+                    {
+                        "ID": 2772,
+                        "Name": "Building 1010, Eskdale Road"
+                    },
+                    {
+                        "ID": 2768,
+                        "Name": "Building 1020, Eskdale Road"
+                    },
+                    {
+                        "ID": 2761,
+                        "Name": "Building 110 Wharfedale Road"
+                    },
+                    {
+                        "ID": 2769,
+                        "Name": "Building 115"
+                    },
+                    {
+                        "ID": 3353,
+                        "Name": "Building 1180"
+                    },
+                    {
+                        "ID": 2770,
+                        "Name": "Building 125"
+                    },
+                    {
+                        "ID": 2771,
+                        "Name": "Building 135"
+                    },
+                    {
+                        "ID": 2759,
+                        "Name": "Building 140"
+                    },
+                    {
+                        "ID": 2760,
+                        "Name": "Building 145"
+                    },
+                    {
+                        "ID": 3250,
+                        "Name": "Building 150"
+                    },
+                    {
+                        "ID": 3403,
+                        "Name": "Building 210"
+                    },
+                    {
+                        "ID": 2767,
+                        "Name": "Building 220"
+                    },
+                    {
+                        "ID": 2765,
+                        "Name": "Building 260"
+                    },
+                    {
+                        "ID": 3537,
+                        "Name": "Building 300"
+                    },
+                    {
+                        "ID": 3080,
+                        "Name": "Building 415"
+                    },
+                    {
+                        "ID": 3404,
+                        "Name": "Building 450"
+                    },
+                    {
+                        "ID": 2783,
+                        "Name": "Carrington House"
+                    },
+                    {
+                        "ID": 2776,
+                        "Name": "CEME"
+                    },
+                    {
+                        "ID": 2777,
+                        "Name": "Chadwell Primary School"
+                    },
+                    {
+                        "ID": 2778,
+                        "Name": "Clink"
+                    },
+                    {
+                        "ID": 2798,
+                        "Name": "Dudley House"
+                    },
+                    {
+                        "ID": 2799,
+                        "Name": "Egyptian House"
+                    },
+                    {
+                        "ID": 2826,
+                        "Name": "Elm Yard"
+                    },
+                    {
+                        "ID": 2814,
+                        "Name": "Empire House"
+                    },
+                    {
+                        "ID": 2803,
+                        "Name": "Evercore"
+                    },
+                    {
+                        "ID": 2804,
+                        "Name": "Evercore"
+                    },
+                    {
+                        "ID": 2797,
+                        "Name": "Foxglove House"
+                    },
+                    {
+                        "ID": 2801,
+                        "Name": "French Railways House"
+                    },
+                    {
+                        "ID": 3719,
+                        "Name": "Gateley"
+                    },
+                    {
+                        "ID": 2754,
+                        "Name": "Gateley LLP"
+                    },
+                    {
+                        "ID": 2764,
+                        "Name": "Gather & Gather - Building 1000"
+                    },
+                    {
+                        "ID": 2791,
+                        "Name": "GPE Head Office"
+                    },
+                    {
+                        "ID": 2755,
+                        "Name": "Hatton Special School"
+                    },
+                    {
+                        "ID": 2753,
+                        "Name": "Johnson Matthey"
+                    },
+                    {
+                        "ID": 2782,
+                        "Name": "Kingsland House"
+                    },
+                    {
+                        "ID": 2800,
+                        "Name": "Luisa Spagnoli"
+                    },
+                    {
+                        "ID": 2775,
+                        "Name": "Main Reception, Building E2 (Landlords Area)"
+                    },
+                    {
+                        "ID": 2766,
+                        "Name": "Manhatton Associates"
+                    },
+                    {
+                        "ID": 2756,
+                        "Name": "Marlbourgh House"
+                    },
+                    {
+                        "ID": 2757,
+                        "Name": "Marlbourgh House 2ND Floor Communications Room"
+                    },
+                    {
+                        "ID": 2809,
+                        "Name": "MJ Mapp"
+                    },
+                    {
+                        "ID": 2780,
+                        "Name": "New & Lingwood"
+                    },
+                    {
+                        "ID": 3564,
+                        "Name": "New Brook Building"
+                    },
+                    {
+                        "ID": 2822,
+                        "Name": "Newlook"
+                    },
+                    {
+                        "ID": 2751,
+                        "Name": "Oakdale Infants School"
+                    },
+                    {
+                        "ID": 2750,
+                        "Name": "Oakdale Junior School"
+                    },
+                    {
+                        "ID": 2810,
+                        "Name": "Paris Miki London"
+                    },
+                    {
+                        "ID": 2825,
+                        "Name": "Pegasus House"
+                    },
+                    {
+                        "ID": 2806,
+                        "Name": "Percy House"
+                    },
+                    {
+                        "ID": 2805,
+                        "Name": "Pollen House"
+                    },
+                    {
+                        "ID": 2659,
+                        "Name": "Stephen Bouchard - United MD"
+                    },
+                    {
+                        "ID": 2807,
+                        "Name": "The Farm"
+                    },
+                    {
+                        "ID": 1902,
+                        "Name": "The Post Building"
+                    },
+                    {
+                        "ID": 2774,
+                        "Name": "Timico (BMC), Building E2"
+                    },
+                    {
+                        "ID": 2795,
+                        "Name": "Ultra Electronics"
+                    },
+                    {
+                        "ID": 4026,
+                        "Name": "Uncle"
+                    },
+                    {
+                        "ID": 3018,
+                        "Name": "Unit 680"
+                    },
+                    {
+                        "ID": 4035,
+                        "Name": "Wellington House"
+                    },
+                    {
+                        "ID": 2823,
+                        "Name": "West Loft Apartments"
+                    },
+                    {
+                        "ID": 4027,
+                        "Name": "William"
+                    }
+                ],
+                "Contracts": [
+                    {
+                        "ID": 1746,
+                        "Name": "United Facilities Management Ltd - Building 1000 - AOV",
+                        "StartDate": "2020-08-10",
+                        "EndDate": "2023-08-09",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1747,
+                        "Name": "United Facilities Management Ltd - Building 1000 - EVCS",
+                        "StartDate": "2020-08-10",
+                        "EndDate": "2023-08-09",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1748,
+                        "Name": "United Facilities Management Ltd - Building 1000 - Fire Alarm",
+                        "StartDate": "2020-08-10",
+                        "EndDate": "2023-08-09",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 3773,
+                        "Name": "United Facilities Management Ltd - Building 1010 - ASD",
+                        "StartDate": "2020-08-10",
+                        "EndDate": "2023-08-09",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1751,
+                        "Name": "United Facilities Management Ltd - Building 1010, Eskdale Road - AOV",
+                        "StartDate": "2020-08-10",
+                        "EndDate": "2023-08-09",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1752,
+                        "Name": "United Facilities Management Ltd - Building 1010, Eskdale Road - EVCS",
+                        "StartDate": "2020-08-10",
+                        "EndDate": "2023-08-09",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1753,
+                        "Name": "United Facilities Management Ltd - Building 1010, Eskdale Road - Fire Alarm",
+                        "StartDate": "2020-08-10",
+                        "EndDate": "2023-08-09",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1754,
+                        "Name": "United Facilities Management Ltd - Building 1020, Eskdale Road - AOV",
+                        "StartDate": "2020-08-10",
+                        "EndDate": "2023-08-09",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1757,
+                        "Name": "United Facilities Management Ltd - Building 1020, Eskdale Road - EVCS",
+                        "StartDate": "2020-08-10",
+                        "EndDate": "2023-08-09",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1758,
+                        "Name": "United Facilities Management Ltd - Building 1020, Eskdale Road - Fire Alarm",
+                        "StartDate": "2020-08-10",
+                        "EndDate": "2023-08-09",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1814,
+                        "Name": "United Facilities Management Ltd - Building 110 - Access Control",
+                        "StartDate": "2020-08-10",
+                        "EndDate": "2023-08-09",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1815,
+                        "Name": "United Facilities Management Ltd - Building 110 - Fire Alarm",
+                        "StartDate": "2020-08-10",
+                        "EndDate": "2023-08-09",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1759,
+                        "Name": "United Facilities Management Ltd - Building 115 - Fire Alarm",
+                        "StartDate": "2020-08-10",
+                        "EndDate": "2023-08-09",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1760,
+                        "Name": "United Facilities Management Ltd - Building 125 - Fire Alarm",
+                        "StartDate": "2020-08-10",
+                        "EndDate": "2023-08-09",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1761,
+                        "Name": "United Facilities Management Ltd - Building 135 - Fire Alarm",
+                        "StartDate": "2020-08-10",
+                        "EndDate": "2023-08-09",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1763,
+                        "Name": "United Facilities Management Ltd - Building 220 - Access Control",
+                        "StartDate": "2020-08-10",
+                        "EndDate": "2023-08-09",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1764,
+                        "Name": "United Facilities Management Ltd - Building 220 - EVCS",
+                        "StartDate": "2020-08-10",
+                        "EndDate": "2023-08-09",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1765,
+                        "Name": "United Facilities Management Ltd - Building 220 - Fire Alarm (Panels 1-4)",
+                        "StartDate": "2020-08-10",
+                        "EndDate": "2023-08-09",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 3771,
+                        "Name": "United Facilities Management Ltd - Building E2 - Fire Alarm",
+                        "StartDate": "2020-08-10",
+                        "EndDate": "2023-08-09",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 3772,
+                        "Name": "United Facilities Management Ltd - Building E2 - Leak Detection",
+                        "StartDate": "2020-08-10",
+                        "EndDate": "2023-08-09",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1780,
+                        "Name": "United Facilities Management Ltd - Gather & Gather - Building 1000 - Fire Alarm",
+                        "StartDate": "2020-08-10",
+                        "EndDate": "2023-08-09",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 3798,
+                        "Name": "AWAITOH - United Facilities Management Ltd - Building 1010, Eskdale Road - Dry Riser Inspection",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 3799,
+                        "Name": "AWAITOH - United Facilities Management Ltd - Building 1010, Eskdale Road - Dry Riser Pressure Test",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1817,
+                        "Name": "ON HOLD - United Facilities Management Ltd - West Loft Apartments - AOV",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": true
+                    },
+                    {
+                        "ID": 1702,
+                        "Name": "TERMINATED - United Facilities Management Ltd - 12 Portman Street - Fire Alarm",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": true
+                    },
+                    {
+                        "ID": 1712,
+                        "Name": "TERMINATED - United Facilities Management Ltd - 52-54 Broadwick Street - Fire Alarm",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": true
+                    },
+                    {
+                        "ID": 1790,
+                        "Name": "TERMINATED - United Facilities Management Ltd - Liberty House - Fire Alarm (Panels 1-4)",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": true
+                    },
+                    {
+                        "ID": 1703,
+                        "Name": "United Facilities Management Ltd - 25 Camperdown Street - Access Control",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1705,
+                        "Name": "United Facilities Management Ltd - 25 Camperdown Street - AOV",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1706,
+                        "Name": "United Facilities Management Ltd - 25 Camperdown Street - Fire Alarm",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1707,
+                        "Name": "United Facilities Management Ltd - 27 Mortimer Street - Fire Alarm",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1708,
+                        "Name": "United Facilities Management Ltd - 3 Tilney Street - AOV",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1709,
+                        "Name": "United Facilities Management Ltd - 3 Tilney Street - Fire Alarm",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1710,
+                        "Name": "United Facilities Management Ltd - 36-38 Cornhill - Fire Alarm",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1711,
+                        "Name": "United Facilities Management Ltd - 50 Jermyn Street - Fire Alarm",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1713,
+                        "Name": "United Facilities Management Ltd - 54-56 Jermyn Street - Disabled W.C. Alarm",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1720,
+                        "Name": "United Facilities Management Ltd - 54-56 Jermyn Street - Fire Alarm",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1721,
+                        "Name": "United Facilities Management Ltd - 71 Kingsway - Fire Alarm",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1722,
+                        "Name": "United Facilities Management Ltd - 95 Wigmore Street - Action Air Vent System",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1723,
+                        "Name": "United Facilities Management Ltd - 95 Wigmore Street - AOV",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1724,
+                        "Name": "United Facilities Management Ltd - 95 Wigmore Street - Colt Smoke Vent Testing",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1725,
+                        "Name": "United Facilities Management Ltd - 95 Wigmore Street - EVCS",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1726,
+                        "Name": "United Facilities Management Ltd - 95 Wigmore Street - Fire Alarm (Panels 1-5)",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1727,
+                        "Name": "United Facilities Management Ltd - 95 Wigmore Street - Leak Detection",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1694,
+                        "Name": "United Facilities Management Ltd - 99 Charterhouse Street - AOV",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1695,
+                        "Name": "United Facilities Management Ltd - 99 Charterhouse Street - Fire Alarm",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1732,
+                        "Name": "United Facilities Management Ltd - Bilfinger UK Limited, Unit 675 - Access Control",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1733,
+                        "Name": "United Facilities Management Ltd - Bilfinger UK Limited, Unit 675 - Fire Alarm",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1734,
+                        "Name": "United Facilities Management Ltd - Bilfinger UK Limited, Unit 675 - Intruder Alarm",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1728,
+                        "Name": "United Facilities Management Ltd - BMC, Building E2 - ASD",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1729,
+                        "Name": "United Facilities Management Ltd - BMC, Building E2 - EVCS",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1731,
+                        "Name": "United Facilities Management Ltd - BMC, Building E2 - Fire Alarm (Panels 1-2)",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1735,
+                        "Name": "United Facilities Management Ltd - Bridgepoint - ASD",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1736,
+                        "Name": "United Facilities Management Ltd - Bridgepoint 5Th, 6Th & 7Th Floors - Electrical Suppression",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1740,
+                        "Name": "United Facilities Management Ltd - Bridgepoint 5Th, 6Th & 7Th Floors - Gas\/Mechanical Suppression",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1737,
+                        "Name": "United Facilities Management Ltd - Bridgepoint 5Th, 6Th & 7Th Floors - Leak Detection",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1741,
+                        "Name": "United Facilities Management Ltd - Bridgepoint 5Th, 6Th & 7Th Floors - Room Integrity Test",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1742,
+                        "Name": "United Facilities Management Ltd - British Ecological Society - Access Control",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1743,
+                        "Name": "United Facilities Management Ltd - British Ecological Society - Disabled W.C. Alarm",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1744,
+                        "Name": "United Facilities Management Ltd - British Ecological Society - Fire Alarm",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1745,
+                        "Name": "United Facilities Management Ltd - British Ecological Society - Intruder Alarm",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1762,
+                        "Name": "United Facilities Management Ltd - Building 140 - Fire Alarm",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1770,
+                        "Name": "United Facilities Management Ltd - Carrington House - Fire Alarm",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1769,
+                        "Name": "United Facilities Management Ltd - CEME - Fire Alarm",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1771,
+                        "Name": "United Facilities Management Ltd - Chadwell Primary School - Fire Alarm",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1772,
+                        "Name": "United Facilities Management Ltd - Clink - Fire Alarm",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1773,
+                        "Name": "United Facilities Management Ltd - Dudley House - Fire Alarm",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1774,
+                        "Name": "United Facilities Management Ltd - Egyptian House - Fire Alarm",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1775,
+                        "Name": "United Facilities Management Ltd - Empire House - Fire Alarm",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1776,
+                        "Name": "United Facilities Management Ltd - Foxglove House - Fire Alarm",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1777,
+                        "Name": "United Facilities Management Ltd - French Railways House - Fire Alarm",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1779,
+                        "Name": "United Facilities Management Ltd - Gateley LLP - Fire Alarm",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1778,
+                        "Name": "United Facilities Management Ltd - GPE Head Office - Leak Detection (Panels 1-2)",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1783,
+                        "Name": "United Facilities Management Ltd - Hatton Special School - Intruder Alarm (Panels 1-2)",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1784,
+                        "Name": "United Facilities Management Ltd - Johnson Matthey - Electrical Suppression",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1786,
+                        "Name": "United Facilities Management Ltd - Johnson Matthey - Gas\/Mechanical Suppression",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1787,
+                        "Name": "United Facilities Management Ltd - Johnson Matthey - Room Integrity Test",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1789,
+                        "Name": "United Facilities Management Ltd - Kingsland House - Fire Alarm",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1791,
+                        "Name": "United Facilities Management Ltd - Luisa Spagnoli - Fire Alarm",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1794,
+                        "Name": "United Facilities Management Ltd - Manhatton Associates - Fire Alarm",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1795,
+                        "Name": "United Facilities Management Ltd - Manhatton Associates - Leak Detection",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1796,
+                        "Name": "United Facilities Management Ltd - Marlbourgh House - Electrical Suppression",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1797,
+                        "Name": "United Facilities Management Ltd - Marlbourgh House - Gas\/Mechanical Suppression",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1798,
+                        "Name": "United Facilities Management Ltd - Marlbourgh House - Room Integrity Test",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1800,
+                        "Name": "United Facilities Management Ltd - Marlbourgh House 2ND Floor Communications Room - ASD",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1801,
+                        "Name": "United Facilities Management Ltd - Marlbourgh House 2ND Floor Communications Room - Fire Alarm",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1792,
+                        "Name": "United Facilities Management Ltd - MJ Mapp - AOV (Panels 1-2)",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1802,
+                        "Name": "United Facilities Management Ltd - Oakdale Infants School - Fire Alarm (Panels 1-2)",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1804,
+                        "Name": "United Facilities Management Ltd - Oakdale Junior School - Disabled W.C. Alarm",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1805,
+                        "Name": "United Facilities Management Ltd - Oakdale Junior School - Fire Alarm",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1819,
+                        "Name": "United Facilities Management Ltd - Pegasus House - AOV",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1820,
+                        "Name": "United Facilities Management Ltd - Pegasus House - Fire Alarm",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1807,
+                        "Name": "United Facilities Management Ltd - Percy House - Fire Alarm",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1808,
+                        "Name": "United Facilities Management Ltd - Pollen House - Disabled W.C. Alarm",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1810,
+                        "Name": "United Facilities Management Ltd - Pollen House - Fire Alarm (Panel 1)",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1811,
+                        "Name": "United Facilities Management Ltd - Pollen House - Fire Alarm (Panel 2)",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 3759,
+                        "Name": "United Facilities Management Ltd - Stephen Bouchard - United MD - CCTV",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 3760,
+                        "Name": "United Facilities Management Ltd - Stephen Bouchard - United MD - Intruder Alarm",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1812,
+                        "Name": "United Facilities Management Ltd - The Farm - Fire Alarm",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 3770,
+                        "Name": "United Facilities Management Ltd - Timico (E2) - Fire Alarm",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1816,
+                        "Name": "United Facilities Management Ltd - Ultra Electronics - Leak Detection",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1818,
+                        "Name": "United Facilities Management Ltd - West Loft Apartments - Fire Alarm",
+                        "StartDate": "2020-08-17",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 4073,
+                        "Name": "United Facilities Management Ltd - Head Office, 16th Floor - Remote Monitoring",
+                        "StartDate": "2020-10-21",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 4072,
+                        "Name": "United Facilities Management Ltd - Head Office, 17th Floor - Remote Monitoring",
+                        "StartDate": "2020-10-21",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 4149,
+                        "Name": "TERMINATED - United Facilities Management Ltd - 10-16 Dufours Place & 52-54 Broadwick Street - Remote Monitoring ",
+                        "StartDate": "2020-10-22",
+                        "EndDate": "2020-12-03",
+                        "Expired": true
+                    },
+                    {
+                        "ID": 4154,
+                        "Name": "United Facilities Management Ltd -  Building 220 - Remote Monitoring ",
+                        "StartDate": "2020-10-22",
+                        "EndDate": "2021-08-11",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 4153,
+                        "Name": "United Facilities Management Ltd - BMC, Building E2 - Remote Monitoring ",
+                        "StartDate": "2020-10-22",
+                        "EndDate": "2021-08-11",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 4156,
+                        "Name": "United Facilities Management Ltd - Building 1180 - Remote Monitoring ",
+                        "StartDate": "2020-10-22",
+                        "EndDate": "2021-08-11",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 4148,
+                        "Name": "United Facilities Management Ltd - Hatton Special School - Remote Monitoring ",
+                        "StartDate": "2020-10-22",
+                        "EndDate": "2022-04-22",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 4151,
+                        "Name": "United Facilities Management Ltd - Hatton Special School - Remote Monitoring ",
+                        "StartDate": "2020-10-22",
+                        "EndDate": "2022-04-22",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 4152,
+                        "Name": "United Facilities Management Ltd - Evercore - Remote Monitoring ",
+                        "StartDate": "2020-10-22",
+                        "EndDate": "2022-05-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 4150,
+                        "Name": "United Facilities Management Ltd - 25 Camperdown Street - Remote Monitoring ",
+                        "StartDate": "2020-10-22",
+                        "EndDate": "2022-06-11",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 5173,
+                        "Name": "United Facilities Management Ltd - Building 1020, Eskdale Road - ASD",
+                        "StartDate": "2020-12-01",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 4970,
+                        "Name": "United Facilities Management Ltd - Building 210 Winnersh Triangle - Disabled Refuge",
+                        "StartDate": "2020-12-01",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 4971,
+                        "Name": "United Facilities Management Ltd - Building 210 Winnersh Triangle - Disabled WC Alarm",
+                        "StartDate": "2020-12-01",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 4969,
+                        "Name": "United Facilities Management Ltd - Building 210 Winnersh Triangle - Fire Alarm",
+                        "StartDate": "2020-12-01",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 5325,
+                        "Name": "United Facilities Management Ltd - Building 145 - Access Control ",
+                        "StartDate": "2021-02-01",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 5324,
+                        "Name": "United Facilities Management Ltd - Building 145 - Fire Alarm",
+                        "StartDate": "2021-02-01",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 5323,
+                        "Name": "United Facilities Management Ltd - Building 150 - Access Control ",
+                        "StartDate": "2021-02-01",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 5322,
+                        "Name": "United Facilities Management Ltd - Building 150 - Fire Alarm",
+                        "StartDate": "2021-02-01",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 5321,
+                        "Name": "United Facilities Management Ltd - Building 260 - Fire Alarm ",
+                        "StartDate": "2021-02-01",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 5320,
+                        "Name": "United Facilities Management Ltd - Building 415 - Fire Alarm",
+                        "StartDate": "2021-02-01",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 5491,
+                        "Name": "United Facilities Management Ltd - Gately LLP - Fire Dampers",
+                        "StartDate": "2021-03-05",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 6033,
+                        "Name": "United Facilities Management Ltd - 10-16 Dufours Place - Disabled Refuge EVCS",
+                        "StartDate": "2021-04-01",
+                        "EndDate": "2022-03-31",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 1699,
+                        "Name": "United Facilities Management Ltd - 10-16 Dufours Place - Fire Alarm (Panels 1-2)",
+                        "StartDate": "2021-04-01",
+                        "EndDate": "2022-03-31",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 5894,
+                        "Name": "United Facilities Management Ltd - 1 Bengal Court - Fire Alarm",
+                        "StartDate": "2021-04-01",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 5895,
+                        "Name": "United Facilities Management Ltd - 1 Bengal Court - Intruder Alarm",
+                        "StartDate": "2021-04-01",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    },
+                    {
+                        "ID": 6227,
+                        "Name": "United Facilities Management Ltd - 26-40 Kensington High Street - Fire Alarm",
+                        "StartDate": "2021-04-27",
+                        "EndDate": "2030-01-01",
+                        "Expired": false
+                    }
+                ],
+                "CustomFields": [
+                    {
+                        "CustomField": {
+                            "ID": 90,
+                            "Name": "Account Status",
+                            "Type": "List",
+                            "IsMandatory": true,
+                            "ListItems": [
+                                "None",
+                                "Credit Account",
+                                "Pro-Forma Account",
+                                "Non-Contracted"
+                            ]
+                        },
+                        "Value": "Credit Account"
+                    },
+                    {
+                        "CustomField": {
+                            "ID": 89,
+                            "Name": "DRC Rates Applies?",
+                            "Type": "Text",
+                            "IsMandatory": false,
+                            "ListItems": []
+                        },
+                        "Value": null
+                    },
+                    {
+                        "CustomField": {
+                            "ID": 31,
+                            "Name": "Customer Awareness of Subcontractor Notes",
+                            "Type": "Text",
+                            "IsMandatory": false,
+                            "ListItems": []
+                        },
+                        "Value": null
+                    },
+                    {
+                        "CustomField": {
+                            "ID": 6,
+                            "Name": "Customer is aware we use subcontractors?",
+                            "Type": "List",
+                            "IsMandatory": false,
+                            "ListItems": [
+                                "N\/A",
+                                "Yes",
+                                "No"
+                            ]
+                        },
+                        "Value": null
+                    }
+                ],
+                "Email": "ppm@unitedfm.com",
+                "DateModified": "2021-04-27T13:05:34+01:00",
+                "DateCreated": "2020-06-25T15:25:58+01:00",
+                "EIN": "",
+                "Website": "Gill - Tues & Thu only",
+                "Fax": "01708 860003",
+                "CompanyNumber": ""
+            },
+            "headers": {
+                "any": "headers"
+            }
+        }
+    },
+    {
+        "request": {
+            "type": "get",
+            "url": "https://fake.gassure.simprocloud.com/api/v1.0/companies/0/sites/2752/assets/10000/serviceLevels/",
+            "data": {
+                "pageSize": 250
+            },
+            "headers": {
+                "Accept": "application\/json",
+                "Content-Type": "application\/json",
+                "Authorization": "Bearer fake_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": [
+                {
+                    "ServiceLevel": {
+                        "ID": 4,
+                        "Name": "Quarterly"
+                    },
+                    "ServiceDate": "2021-07-01"
+                },
+                {
+                    "ServiceLevel": {
+                        "ID": 4,
+                        "Name": "Quarterly"
+                    },
+                    "ServiceDate": "2021-08-01"
+                }
+            ],
+            "headers": {
+                "any": "headers"
+            }
+        }
+    },
+    {
+        "request": {
+            "type": "get",
+            "url": "https://fake.gassure.simprocloud.com/api/v1.0/companies/0/sites/2752/assets/10000/attachments/files/",
+            "data": {
+                "page": 1,
+                "pageSize": 250
+            },
+            "headers": {
+                "Accept": "application\/json",
+                "Content-Type": "application\/json",
+                "Authorization": "Bearer fake_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": [
+                {
+                    "ID": "1n9nS2sI3NaTnu0kSDa_XpqOGMMm_VuQ_awG0Mn4E0g",
+                    "Filename": "52342-KS - Bell Lancaster Ltd Ta AMM Fire Safety - St. Albans Magistrates' Court - Maintenance Quotation.pdf"
+                },
+                {
+                    "ID": "1n9nS2sI3NaTnu0kSDa_XpqOGMMm_VuQ_gdf3erg",
+                    "Filename": "Quote_No_51993_04-02-2021_1049.pdf"
+                },
+                {
+                    "ID": "1n9nS2sI3NaTnu0kSDa_XpqOGMMm_VuQ_qwdqw345gm",
+                    "Filename": "PFS Group Quote No 52648.pdf"
+                }
+            ],
+            "headers": {
+                "any": "headers"
+            }
+        }
+    },
+    {
+        "request": {
+            "type": "get",
+            "url": "https://fake.gassure.simprocloud.com/api/v1.0/companies/0/sites/2752/assets/10000/attachments/files/",
+            "data": {
+                "page": 2,
+                "pageSize": 250
+            },
+            "headers": {
+                "Accept": "application\/json",
+                "Content-Type": "application\/json",
+                "Authorization": "Bearer fake_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": [],
+            "headers": {
+                "any": "headers"
+            }
+        }
+    },
+    {
+        "request": {
+            "type": "get",
+            "url": "https://fake.gassure.simprocloud.com/api/v1.0/companies/0/sites/2752/assets/10000/testHistory/",
+            "data": {
+                "pageSize": 250
+            },
+            "headers": {
+                "Accept": "application\/json",
+                "Content-Type": "application\/json",
+                "Authorization": "Bearer fake_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": [
+                {
+                    "Job": {
+                        "ID": 212068,
+                        "DateIssued": "2021-04-16",
+                        "DueDate": "2021-05-01",
+                        "CostCenter": 12156
+                    },
+                    "Quote": [],
+                    "ServiceLevel": {
+                        "ID": 4,
+                        "Name": "Quarterly"
+                    },
+                    "TestRecord": {
+                        "Employee": [],
+                        "Date": null,
+                        "Notes": null,
+                        "Result": "No Test"
+                    },
+                    "FailurePoints": [],
+                    "TestReadings": []
+                },
+                {
+                    "Job": {
+                        "ID": 206674,
+                        "DateIssued": "2021-01-15",
+                        "DueDate": "2021-02-01",
+                        "CostCenter": 6759
+                    },
+                    "Quote": [],
+                    "ServiceLevel": {
+                        "ID": 4,
+                        "Name": "Quarterly"
+                    },
+                    "TestRecord": {
+                        "Employee": {
+                            "ID": 23,
+                            "Name": "Craig Norton"
+                        },
+                        "Date": "2021-02-25",
+                        "Notes": null,
+                        "Result": "Pass"
+                    },
+                    "FailurePoints": [],
+                    "TestReadings": [
+                        {
+                            "Name": "Is the panel still supported by the manufacturer?",
+                            "Value": "Yes"
+                        },
+                        {
+                            "Name": "Correctly sized fuses fitted (including supply)?",
+                            "Value": "Yes"
+                        },
+                        {
+                            "Name": "Spur & supply cable conform?",
+                            "Value": "Yes"
+                        },
+                        {
+                            "Name": "Earth cable present?",
+                            "Value": "Yes"
+                        },
+                        {
+                            "Name": "Quiescent current (Amps) (IQ)",
+                            "Value": "0.312"
+                        },
+                        {
+                            "Name": "Alarm current (Amps) (IA)",
+                            "Value": "1.278"
+                        },
+                        {
+                            "Name": "Standby period (Hours)",
+                            "Value": "24"
+                        },
+                        {
+                            "Name": "Alarm time (Hours)",
+                            "Value": "0.5"
+                        },
+                        {
+                            "Name": "Load Test Result",
+                            "Value": "9.66ah"
+                        },
+                        {
+                            "Name": "Battery pass load test?",
+                            "Value": "Yes"
+                        },
+                        {
+                            "Name": "Battery required",
+                            "Value": "12ah"
+                        },
+                        {
+                            "Name": "Line voltage (Volts DC)",
+                            "Value": "28.87"
+                        },
+                        {
+                            "Name": "On charge voltage (Volts DC)",
+                            "Value": "27.07"
+                        },
+                        {
+                            "Name": "Battery dated and under 4 years old?",
+                            "Value": "Yes"
+                        },
+                        {
+                            "Name": "Batteries installed",
+                            "Value": "2 x 12v 17ah"
+                        },
+                        {
+                            "Name": "Battery date",
+                            "Value": "2019-01-10"
+                        }
+                    ]
+                },
+                {
+                    "Job": {
+                        "ID": 202276,
+                        "DateIssued": "2020-10-13",
+                        "DueDate": "2020-11-01",
+                        "CostCenter": 2332
+                    },
+                    "Quote": [],
+                    "ServiceLevel": {
+                        "ID": 4,
+                        "Name": "Quarterly"
+                    },
+                    "TestRecord": {
+                        "Employee": {
+                            "ID": 58,
+                            "Name": "Simon Ranson"
+                        },
+                        "Date": "2021-01-14",
+                        "Notes": null,
+                        "Result": "Pass"
+                    },
+                    "FailurePoints": [],
+                    "TestReadings": [
+                        {
+                            "Name": "Is the panel still supported by the manufacturer?",
+                            "Value": "Yes"
+                        },
+                        {
+                            "Name": "Correctly sized fuses fitted (including supply)?",
+                            "Value": "Yes"
+                        },
+                        {
+                            "Name": "Spur & supply cable conform?",
+                            "Value": "Yes"
+                        },
+                        {
+                            "Name": "Earth cable present?",
+                            "Value": "Yes"
+                        },
+                        {
+                            "Name": "Quiescent current (Amps) (IQ)",
+                            "Value": "nt"
+                        },
+                        {
+                            "Name": "Alarm current (Amps) (IA)",
+                            "Value": "nt"
+                        },
+                        {
+                            "Name": "Standby period (Hours)",
+                            "Value": "24"
+                        },
+                        {
+                            "Name": "Alarm time (Hours)",
+                            "Value": "0.5"
+                        },
+                        {
+                            "Name": "Load Test Result",
+                            "Value": "not tested"
+                        },
+                        {
+                            "Name": "Battery required",
+                            "Value": "17ah"
+                        },
+                        {
+                            "Name": "Line voltage (Volts DC)",
+                            "Value": "28.80"
+                        },
+                        {
+                            "Name": "On charge voltage (Volts DC)",
+                            "Value": "27.18"
+                        },
+                        {
+                            "Name": "Battery dated and under 4 years old?",
+                            "Value": "Yes"
+                        },
+                        {
+                            "Name": "Battery date",
+                            "Value": "2019-01-10"
+                        }
+                    ]
+                }
+            ],
+            "headers": {
+                "any": "headers"
+            }
+        }
+    },
+    {
+        "request": {
+            "type": "get",
+            "url": "https://fake.gassure.simprocloud.com/api/v1.0/companies/0/jobs/212068",
+            "data": {
+                "display": "all"
+            },
+            "headers": {
+                "Accept": "application\/json",
+                "Content-Type": "application\/json",
+                "Authorization": "Bearer fake_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": {
+                "ID": 202276,
+                "Type": "Service",
+                "Customer": {
+                    "ID": 1474,
+                    "CompanyName": "United Facilities Management Ltd",
+                    "GivenName": "",
+                    "FamilyName": ""
+                },
+                "CustomerContact": [],
+                "AdditionalContacts": [],
+                "Site": {
+                    "ID": 2752,
+                    "Name": "36-38 Cornhill"
+                },
+                "SiteContact": [],
+                "OrderNo": "56789",
+                "RequestNo": "",
+                "Name": "",
+                "Description": "<div style=\"font-size: 10pt;\">Asset ID 11326 - Asset Type MAINTENANCE CHARGE - Fire Alarm - Service Level Quarterly&nbsp;<\/div><div style=\"font-size: 10pt;\">Please test lower ground, ground floor and first floor&nbsp;<\/div><div style=\"font-size: 10pt;\">Site contact - Calvin Hill -&nbsp;<span style=\"font-size: 11.0pt;\">07384253433<\/span><\/div><div style=\"font-size: 10pt;\"><span style=\"font-size: 11.0pt;\">ATTENDANCE TIME 0930-1630<\/span><\/div><div style=\"font-size: 10pt;\"><span style=\"font-size: 11.0pt;\"><\/span><\/div><div style=\"font-size: 10pt;\"><span style=\"font-size: 11.0pt;\">Any problems, contact David Viglione on 03333 230 730&nbsp;<\/span><\/div>",
+                "Notes": "<div style=\"font-size: 10pt;\">Please rebook for a Thursday.&nbsp;<\/div>",
+                "DateIssued": "2020-10-13",
+                "DueDate": "2020-11-01",
+                "DueTime": null,
+                "Tags": [],
+                "Salesperson": [],
+                "ProjectManager": [],
+                "Technicians": [],
+                "Technician": [],
+                "Stage": "Archived",
+                "Status": {
+                    "ID": 14,
+                    "Name": "Invoiced : Fully-paid"
+                },
+                "ResponseTime": [],
+                "IsVariation": false,
+                "LinkedVariations": [],
+                "ConvertedFromQuote": [],
+                "Sections": [
+                    {
+                        "ID": 2314,
+                        "Name": "",
+                        "DisplayOrder": 1,
+                        "CostCenters": [
+                            {
+                                "ID": 2332,
+                                "Name": "Maintenance - Fire",
+                                "CostCenter": {
+                                    "ID": 2,
+                                    "Name": "Maintenance - Fire"
+                                },
+                                "DisplayOrder": 1,
+                                "Total": {
+                                    "ExTax": 201,
+                                    "Tax": 40.2,
+                                    "IncTax": 241.2,
+                                    "TaxCode": {
+                                        "ID": 3,
+                                        "Code": "T1",
+                                        "Type": "Single",
+                                        "Rate": 20
+                                    }
+                                },
+                                "Claimed": {
+                                    "ToDate": {
+                                        "Percent": 100,
+                                        "Amount": {
+                                            "ExTax": 201,
+                                            "IncTax": 241.2
+                                        }
+                                    },
+                                    "Remaining": {
+                                        "Percent": 0,
+                                        "Amount": {
+                                            "ExTax": 0,
+                                            "IncTax": 0
+                                        }
+                                    }
+                                },
+                                "Items": {
+                                    "Labors": [],
+                                    "Catalogs": [],
+                                    "Prebuilds": [
+                                        {
+                                            "ID": 1018,
+                                            "Prebuild": {
+                                                "ID": 14,
+                                                "PartNo": "",
+                                                "Name": "Maintenance Charge Per Visit"
+                                            },
+                                            "SellPrice": {
+                                                "ExTax": 201,
+                                                "IncTax": 241.2
+                                            },
+                                            "Total": {
+                                                "Qty": 1,
+                                                "Amount": {
+                                                    "ExTax": 201,
+                                                    "IncTax": 241.2
+                                                }
+                                            },
+                                            "Claimed": null
+                                        }
+                                    ],
+                                    "ServiceFees": [],
+                                    "OneOffs": []
+                                }
+                            }
+                        ]
+                    }
+                ],
+                "DateModified": "2021-04-07T09:26:36+01:00",
+                "AutoAdjustStatus": true,
+                "Total": {
+                    "ExTax": 201,
+                    "Tax": 40.2,
+                    "IncTax": 241.2
+                },
+                "Totals": {
+                    "MaterialsCost": {
+                        "Actual": 0,
+                        "Committed": 0,
+                        "Estimate": 0,
+                        "Revised": 0,
+                        "Revized": 0
+                    },
+                    "ResourcesCost": {
+                        "Total": {
+                            "Actual": 205.04,
+                            "Committed": 0,
+                            "Estimate": 0,
+                            "Revised": 0,
+                            "Revized": 0
+                        },
+                        "Labor": {
+                            "Actual": 134.94,
+                            "Committed": 0,
+                            "Estimate": 0,
+                            "Revised": 0,
+                            "Revized": 0
+                        },
+                        "LaborHours": {
+                            "Actual": 6,
+                            "Committed": 0,
+                            "Estimate": 0,
+                            "Revised": 0,
+                            "Revized": 0
+                        },
+                        "PlantAndEquipment": {
+                            "Actual": 0,
+                            "Committed": 0,
+                            "Estimate": 0,
+                            "Revised": 0,
+                            "Revized": 0
+                        },
+                        "PlantAndEquipmentHours": {
+                            "Actual": 0,
+                            "Estimate": 0,
+                            "Revised": 0,
+                            "Revized": 0
+                        },
+                        "Overhead": {
+                            "Actual": 70.1,
+                            "Committed": 0,
+                            "Estimate": 0,
+                            "Revised": 0,
+                            "Revized": 0
+                        }
+                    },
+                    "MaterialsMarkup": {
+                        "Actual": 0,
+                        "Estimate": 0,
+                        "Revised": 0,
+                        "Revized": 0
+                    },
+                    "ResourcesMarkup": {
+                        "Total": {
+                            "Actual": -4.04,
+                            "Estimate": 201,
+                            "Revised": 0,
+                            "Revized": 0
+                        },
+                        "Labor": {
+                            "Actual": -4.04,
+                            "Estimate": 201,
+                            "Revised": 0,
+                            "Revized": 0
+                        },
+                        "PlantAndEquipment": {
+                            "Actual": 0,
+                            "Estimate": 0,
+                            "Revised": 0,
+                            "Revized": 0
+                        }
+                    },
+                    "Adjusted": {
+                        "Actual": 0,
+                        "Revised": 0,
+                        "Revized": 0
+                    },
+                    "MembershipDiscount": 0,
+                    "Discount": 0,
+                    "STCs": 0,
+                    "VEECs": 0,
+                    "GrossProfitLoss": {
+                        "Actual": 66.06,
+                        "Estimate": 201,
+                        "Revised": 0,
+                        "Revized": 0
+                    },
+                    "GrossMargin": {
+                        "Actual": 32.87,
+                        "Estimate": 100,
+                        "Revised": 0,
+                        "Revized": 0
+                    },
+                    "NettProfitLoss": {
+                        "Actual": -4.04,
+                        "Estimate": 201,
+                        "Revised": 0,
+                        "Revized": 0
+                    },
+                    "NettMargin": {
+                        "Actual": -2.01,
+                        "Estimate": 100,
+                        "Revised": 0,
+                        "Revized": 0
+                    },
+                    "InvoicedValue": 241.2,
+                    "InvoicePercentage": 100
+                },
+                "CustomFields": [
+                    {
+                        "CustomField": {
+                            "ID": 2,
+                            "Name": "System Category Type",
+                            "Type": "List",
+                            "IsMandatory": false,
+                            "ListItems": [
+                                "L",
+                                "M",
+                                "P"
+                            ]
+                        },
+                        "Value": null
+                    },
+                    {
+                        "CustomField": {
+                            "ID": 13,
+                            "Name": "Customers Reference No.",
+                            "Type": "Text",
+                            "IsMandatory": false,
+                            "ListItems": []
+                        },
+                        "Value": null
+                    },
+                    {
+                        "CustomField": {
+                            "ID": 5,
+                            "Name": "Reactive Cause",
+                            "Type": "List",
+                            "IsMandatory": false,
+                            "ListItems": [
+                                "Design Error",
+                                "Engineer Mistake\/Poor Performance",
+                                "Customer Damaged",
+                                "Customer Request",
+                                "Faulty Equipment (Ex Warranty)",
+                                "Faulty Equipment (In Warranty)",
+                                "Ageing System",
+                                "Other (Must clarify in Notes)",
+                                "Genuine (Not Preventable)"
+                            ]
+                        },
+                        "Value": null
+                    },
+                    {
+                        "CustomField": {
+                            "ID": 6,
+                            "Name": "Reactive Cause Notes",
+                            "Type": "Text",
+                            "IsMandatory": false,
+                            "ListItems": []
+                        },
+                        "Value": null
+                    },
+                    {
+                        "CustomField": {
+                            "ID": 4,
+                            "Name": "Job Number the Quote was Generated From",
+                            "Type": "Text",
+                            "IsMandatory": false,
+                            "ListItems": []
+                        },
+                        "Value": null
+                    },
+                    {
+                        "CustomField": {
+                            "ID": 1,
+                            "Name": "Reason for Quote",
+                            "Type": "Text",
+                            "IsMandatory": false,
+                            "ListItems": []
+                        },
+                        "Value": null
+                    },
+                    {
+                        "CustomField": {
+                            "ID": 3,
+                            "Name": "System Category",
+                            "Type": "List",
+                            "IsMandatory": false,
+                            "ListItems": [
+                                "L1",
+                                "L2",
+                                "L3",
+                                "L4",
+                                "L5",
+                                "M",
+                                "P1",
+                                "P2",
+                                "UNC"
+                            ]
+                        },
+                        "Value": null
+                    },
+                    {
+                        "CustomField": {
+                            "ID": 7,
+                            "Name": "Quote Grading",
+                            "Type": "List",
+                            "IsMandatory": false,
+                            "ListItems": [
+                                "N\/A",
+                                "Red",
+                                "Amber",
+                                "Green"
+                            ]
+                        },
+                        "Value": null
+                    }
+                ],
+                "STC": {
+                    "STCsEligible": false,
+                    "VEECsEligible": false,
+                    "STCValue": 0,
+                    "VEECValue": 0
+                },
+                "CompletedDate": "2021-01-14"
+            },
+            "headers": {
+                "any": "headers"
+            }
+        }
+    },
+    {
+        "request": {
+            "type": "get",
+            "url": "https://fake.gassure.simprocloud.com/api/v1.0/companies/0/logs/jobs/",
+            "data": {
+                "JobID": 202276,
+                "Message": "Job status set to Job : Made Safe"
+            },
+            "headers": {
+                "Accept": "application\/json",
+                "Content-Type": "application\/json",
+                "Authorization": "Bearer fake_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": [
+                {
+                    "ID": 1428882,
+                    "Staff": {
+                        "ID": 115,
+                        "Name": "Lauren Henderson",
+                        "Type": "employee",
+                        "TypeId": 115
+                    },
+                    "DateLogged": "2022-01-27T09:20:05+00:00",
+                    "Message": "Job status set to Job : New Service",
+                    "JobID": 144168
+                }
+            ],
+            "headers": {
+                "any": "headers"
+            }
+        }
+    },
+    {
+        "request": {
+            "type": "get",
+            "url": "https://fake.gassure.simprocloud.com/api/v1.0/companies/0/logs/jobs/",
+            "data": {
+                "JobID": 202276,
+                "Message": "Created Job%"
+            },
+            "headers": {
+                "Accept": "application\/json",
+                "Content-Type": "application\/json",
+                "Authorization": "Bearer fake_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": [
+                {
+                    "ID": 1428882,
+                    "Staff": {
+                        "ID": 115,
+                        "Name": "Lauren Henderson",
+                        "Type": "employee",
+                        "TypeId": 115
+                    },
+                    "DateLogged": "2022-01-27T09:20:05+00:00",
+                    "Message": "Job status set to Job : New Service",
+                    "JobID": 144168
+                }
+            ],
+            "headers": {
+                "any": "headers"
+            }
+        }
+    },
+    {
+        "request": {
+            "type": "get",
+            "url": "https://fake.gassure.simprocloud.com/api/v1.0/companies/0/logs/jobs/",
+            "data": {
+                "JobID": 202276,
+                "Message": "%Completed Pending%"
+            },
+            "headers": {
+                "Accept": "application\/json",
+                "Content-Type": "application\/json",
+                "Authorization": "Bearer fake_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": [
+                {
+                    "ID": 1428882,
+                    "Staff": {
+                        "ID": 115,
+                        "Name": "Lauren Henderson",
+                        "Type": "employee",
+                        "TypeId": 115
+                    },
+                    "DateLogged": "2022-01-27T09:20:05+00:00",
+                    "Message": "Job status set to Job : New Service",
+                    "JobID": 144168
+                }
+            ],
+            "headers": {
+                "any": "headers"
+            }
+        }
+    },
+    {
+        "request": {
+            "type": "get",
+            "url": "https://fake.gassure.simprocloud.com/api/v1.0/companies/0/logs/jobs/",
+            "data": {
+                "JobID": 202276,
+                "Message": "in(Job status set to Job : No Access,Job status set to Job: No Gas)"
+            },
+            "headers": {
+                "Accept": "application\/json",
+                "Content-Type": "application\/json",
+                "Authorization": "Bearer fake_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": [
+                {
+                    "ID": 1428882,
+                    "Staff": {
+                        "ID": 115,
+                        "Name": "Lauren Henderson",
+                        "Type": "employee",
+                        "TypeId": 115
+                    },
+                    "DateLogged": "2022-01-27T09:20:05+00:00",
+                    "Message": "Job status set to Job : New Service",
+                    "JobID": 144168
+                }
+            ],
+            "headers": {
+                "any": "headers"
+            }
+        }
+    },
+    {
+        "request": {
+            "type": "get",
+            "url": "https://fake.gassure.simprocloud.com/api/v1.0/companies/0/schedules/",
+            "data": {
+                "Reference": "202276%",
+                "page": 1,
+                "pageSize": 250
+            },
+            "headers": {
+                "Accept": "application\/json",
+                "Content-Type": "application\/json",
+                "Authorization": "Bearer fake_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": [
+                {
+                    "ID": 18734,
+                    "Type": "job",
+                    "Reference": "209000-9092",
+                    "TotalHours": 1.5,
+                    "Staff": {
+                        "ID": 26,
+                        "Name": "Daniel Whitmore",
+                        "Type": "employee",
+                        "TypeId": 26
+                    },
+                    "Date": "2021-02-23",
+                    "Blocks": [
+                        {
+                            "Hrs": 1.5,
+                            "StartTime": "14:00",
+                            "ISO8601StartTime": "2021-02-23T14:00:00+00:00",
+                            "EndTime": "15:30",
+                            "ISO8601EndTime": "2021-02-23T15:30:00+00:00",
+                            "ScheduleRate": {
+                                "ID": 1,
+                                "Name": "Normal Time"
+                            }
+                        },
+                        {
+                            "Hrs": 4.5,
+                            "StartTime": "11:00",
+                            "ISO8601StartTime": "2021-02-23T11:00:00+00:00",
+                            "EndTime": "15:30",
+                            "ISO8601EndTime": "2021-02-23T15:30:00+00:00",
+                            "ScheduleRate": {
+                                "ID": 1,
+                                "Name": "Normal Time"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "headers": {
+                "any": "headers"
+            }
+        }
+    },
+    {
+        "request": {
+            "type": "get",
+            "url": "https://fake.gassure.simprocloud.com/api/v1.0/companies/0/schedules/",
+            "data": {
+                "Reference": "202276%",
+                "page": 2,
+                "pageSize": 250
+            },
+            "headers": {
+                "Accept": "application\/json",
+                "Content-Type": "application\/json",
+                "Authorization": "Bearer fake_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": [],
+            "headers": {
+                "any": "headers"
+            }
+        }
+    },
+    {
+        "request": {
+            "type": "get",
+            "url": "https://fake.gassure.simprocloud.com/api/v1.0/companies/0/jobs/212068/attachments/files/",
+            "data": {
+                "columns": "ID,Filename,Public,DateAdded",
+                "Public": "true",
+                "page": 1,
+                "pageSize": 250
+            },
+            "headers": {
+                "Accept": "application\/json",
+                "Content-Type": "application\/json",
+                "Authorization": "Bearer fake_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": [
+                {
+                    "ID": "8EgYd8urKKzzqcdDTKsKcpW9xWHxtwsKSoCscR3R7g4",
+                    "Filename": "Jobcard_For_Job_No_209000_24-02-2021_0942.pdf",
+                    "Public": true,
+                    "DateAdded": "2021-02-24 09:42:48+00"
+                },
+                {
+                    "ID": "8EgYd8urKKzzqcdDTKsKcpW9xWHxtwsKSoCscR3R000",
+                    "Filename": "Invoice_No_103987_10-03-2021_1411.pdf",
+                    "Public": true,
+                    "DateAdded": "2021-02-23 09:42:48+00"
+                },
+                {
+                    "ID": "8EgYd8urKKzzqcdDTKsKcpW9xWHxtwsKSoCsc999999",
+                    "Filename": "Invoice_No_103987_10-03-2021_1355.pdf",
+                    "Public": true,
+                    "DateAdded": "2021-02-24 09:42:48+00"
+                },
+                {
+                    "ID": "8EgYd8urKKzzqcdDTKsKcpW9xWHxtwsKSoCsc555555",
+                    "Filename": "Invoice_No_104375_10-03-2021_1405.pdf",
+                    "Public": true,
+                    "DateAdded": "2021-02-26 09:42:48+00"
+                }
+            ],
+            "headers": {
+                "any": "headers"
+            }
+        }
+    },
+    {
+        "request": {
+            "type": "get",
+            "url": "https://fake.gassure.simprocloud.com/api/v1.0/companies/0/jobs/212068/attachments/files/",
+            "data": {
+                "columns": "ID,Filename,Public,DateAdded",
+                "Public": "true",
+                "page": 2,
+                "pageSize": 250
+            },
+            "headers": {
+                "Accept": "application\/json",
+                "Content-Type": "application\/json",
+                "Authorization": "Bearer fake_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": [],
+            "headers": {
+                "any": "headers"
+            }
+        }
+    },
+    {
+        "request": {
+            "type": "get",
+            "url": "https://fake.gassure.simprocloud.com/api/v1.0/companies/0/jobs/206674",
+            "data": {
+                "display": "all"
+            },
+            "headers": {
+                "Accept": "application\/json",
+                "Content-Type": "application\/json",
+                "Authorization": "Bearer fake_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": {
+                "ID": 202276,
+                "Type": "Service",
+                "Customer": {
+                    "ID": 1474,
+                    "CompanyName": "United Facilities Management Ltd",
+                    "GivenName": "",
+                    "FamilyName": ""
+                },
+                "CustomerContact": [],
+                "AdditionalContacts": [],
+                "Site": {
+                    "ID": 2752,
+                    "Name": "36-38 Cornhill"
+                },
+                "SiteContact": [],
+                "OrderNo": "56789",
+                "RequestNo": "",
+                "Name": "",
+                "Description": "<div style=\"font-size: 10pt;\">Asset ID 11326 - Asset Type MAINTENANCE CHARGE - Fire Alarm - Service Level Quarterly&nbsp;<\/div><div style=\"font-size: 10pt;\">Please test lower ground, ground floor and first floor&nbsp;<\/div><div style=\"font-size: 10pt;\">Site contact - Calvin Hill -&nbsp;<span style=\"font-size: 11.0pt;\">07384253433<\/span><\/div><div style=\"font-size: 10pt;\"><span style=\"font-size: 11.0pt;\">ATTENDANCE TIME 0930-1630<\/span><\/div><div style=\"font-size: 10pt;\"><span style=\"font-size: 11.0pt;\"><\/span><\/div><div style=\"font-size: 10pt;\"><span style=\"font-size: 11.0pt;\">Any problems, contact David Viglione on 03333 230 730&nbsp;<\/span><\/div>",
+                "Notes": "<div style=\"font-size: 10pt;\">Please rebook for a Thursday.&nbsp;<\/div>",
+                "DateIssued": "2020-10-13",
+                "DueDate": "2020-11-01",
+                "DueTime": null,
+                "Tags": [],
+                "Salesperson": [],
+                "ProjectManager": [],
+                "Technicians": [],
+                "Technician": [],
+                "Stage": "Archived",
+                "Status": {
+                    "ID": 14,
+                    "Name": "Invoiced : Fully-paid"
+                },
+                "ResponseTime": [],
+                "IsVariation": false,
+                "LinkedVariations": [],
+                "ConvertedFromQuote": [],
+                "Sections": [
+                    {
+                        "ID": 2314,
+                        "Name": "",
+                        "DisplayOrder": 1,
+                        "CostCenters": [
+                            {
+                                "ID": 2332,
+                                "Name": "Maintenance - Fire",
+                                "CostCenter": {
+                                    "ID": 2,
+                                    "Name": "Maintenance - Fire"
+                                },
+                                "DisplayOrder": 1,
+                                "Total": {
+                                    "ExTax": 201,
+                                    "Tax": 40.2,
+                                    "IncTax": 241.2,
+                                    "TaxCode": {
+                                        "ID": 3,
+                                        "Code": "T1",
+                                        "Type": "Single",
+                                        "Rate": 20
+                                    }
+                                },
+                                "Claimed": {
+                                    "ToDate": {
+                                        "Percent": 100,
+                                        "Amount": {
+                                            "ExTax": 201,
+                                            "IncTax": 241.2
+                                        }
+                                    },
+                                    "Remaining": {
+                                        "Percent": 0,
+                                        "Amount": {
+                                            "ExTax": 0,
+                                            "IncTax": 0
+                                        }
+                                    }
+                                },
+                                "Items": {
+                                    "Labors": [],
+                                    "Catalogs": [],
+                                    "Prebuilds": [
+                                        {
+                                            "ID": 1018,
+                                            "Prebuild": {
+                                                "ID": 14,
+                                                "PartNo": "",
+                                                "Name": "Maintenance Charge Per Visit"
+                                            },
+                                            "SellPrice": {
+                                                "ExTax": 201,
+                                                "IncTax": 241.2
+                                            },
+                                            "Total": {
+                                                "Qty": 1,
+                                                "Amount": {
+                                                    "ExTax": 201,
+                                                    "IncTax": 241.2
+                                                }
+                                            },
+                                            "Claimed": null
+                                        }
+                                    ],
+                                    "ServiceFees": [],
+                                    "OneOffs": []
+                                }
+                            }
+                        ]
+                    }
+                ],
+                "DateModified": "2021-04-07T09:26:36+01:00",
+                "AutoAdjustStatus": true,
+                "Total": {
+                    "ExTax": 201,
+                    "Tax": 40.2,
+                    "IncTax": 241.2
+                },
+                "Totals": {
+                    "MaterialsCost": {
+                        "Actual": 0,
+                        "Committed": 0,
+                        "Estimate": 0,
+                        "Revised": 0,
+                        "Revized": 0
+                    },
+                    "ResourcesCost": {
+                        "Total": {
+                            "Actual": 205.04,
+                            "Committed": 0,
+                            "Estimate": 0,
+                            "Revised": 0,
+                            "Revized": 0
+                        },
+                        "Labor": {
+                            "Actual": 134.94,
+                            "Committed": 0,
+                            "Estimate": 0,
+                            "Revised": 0,
+                            "Revized": 0
+                        },
+                        "LaborHours": {
+                            "Actual": 6,
+                            "Committed": 0,
+                            "Estimate": 0,
+                            "Revised": 0,
+                            "Revized": 0
+                        },
+                        "PlantAndEquipment": {
+                            "Actual": 0,
+                            "Committed": 0,
+                            "Estimate": 0,
+                            "Revised": 0,
+                            "Revized": 0
+                        },
+                        "PlantAndEquipmentHours": {
+                            "Actual": 0,
+                            "Estimate": 0,
+                            "Revised": 0,
+                            "Revized": 0
+                        },
+                        "Overhead": {
+                            "Actual": 70.1,
+                            "Committed": 0,
+                            "Estimate": 0,
+                            "Revised": 0,
+                            "Revized": 0
+                        }
+                    },
+                    "MaterialsMarkup": {
+                        "Actual": 0,
+                        "Estimate": 0,
+                        "Revised": 0,
+                        "Revized": 0
+                    },
+                    "ResourcesMarkup": {
+                        "Total": {
+                            "Actual": -4.04,
+                            "Estimate": 201,
+                            "Revised": 0,
+                            "Revized": 0
+                        },
+                        "Labor": {
+                            "Actual": -4.04,
+                            "Estimate": 201,
+                            "Revised": 0,
+                            "Revized": 0
+                        },
+                        "PlantAndEquipment": {
+                            "Actual": 0,
+                            "Estimate": 0,
+                            "Revised": 0,
+                            "Revized": 0
+                        }
+                    },
+                    "Adjusted": {
+                        "Actual": 0,
+                        "Revised": 0,
+                        "Revized": 0
+                    },
+                    "MembershipDiscount": 0,
+                    "Discount": 0,
+                    "STCs": 0,
+                    "VEECs": 0,
+                    "GrossProfitLoss": {
+                        "Actual": 66.06,
+                        "Estimate": 201,
+                        "Revised": 0,
+                        "Revized": 0
+                    },
+                    "GrossMargin": {
+                        "Actual": 32.87,
+                        "Estimate": 100,
+                        "Revised": 0,
+                        "Revized": 0
+                    },
+                    "NettProfitLoss": {
+                        "Actual": -4.04,
+                        "Estimate": 201,
+                        "Revised": 0,
+                        "Revized": 0
+                    },
+                    "NettMargin": {
+                        "Actual": -2.01,
+                        "Estimate": 100,
+                        "Revised": 0,
+                        "Revized": 0
+                    },
+                    "InvoicedValue": 241.2,
+                    "InvoicePercentage": 100
+                },
+                "CustomFields": [
+                    {
+                        "CustomField": {
+                            "ID": 2,
+                            "Name": "System Category Type",
+                            "Type": "List",
+                            "IsMandatory": false,
+                            "ListItems": [
+                                "L",
+                                "M",
+                                "P"
+                            ]
+                        },
+                        "Value": null
+                    },
+                    {
+                        "CustomField": {
+                            "ID": 13,
+                            "Name": "Customers Reference No.",
+                            "Type": "Text",
+                            "IsMandatory": false,
+                            "ListItems": []
+                        },
+                        "Value": null
+                    },
+                    {
+                        "CustomField": {
+                            "ID": 5,
+                            "Name": "Reactive Cause",
+                            "Type": "List",
+                            "IsMandatory": false,
+                            "ListItems": [
+                                "Design Error",
+                                "Engineer Mistake\/Poor Performance",
+                                "Customer Damaged",
+                                "Customer Request",
+                                "Faulty Equipment (Ex Warranty)",
+                                "Faulty Equipment (In Warranty)",
+                                "Ageing System",
+                                "Other (Must clarify in Notes)",
+                                "Genuine (Not Preventable)"
+                            ]
+                        },
+                        "Value": null
+                    },
+                    {
+                        "CustomField": {
+                            "ID": 6,
+                            "Name": "Reactive Cause Notes",
+                            "Type": "Text",
+                            "IsMandatory": false,
+                            "ListItems": []
+                        },
+                        "Value": null
+                    },
+                    {
+                        "CustomField": {
+                            "ID": 4,
+                            "Name": "Job Number the Quote was Generated From",
+                            "Type": "Text",
+                            "IsMandatory": false,
+                            "ListItems": []
+                        },
+                        "Value": null
+                    },
+                    {
+                        "CustomField": {
+                            "ID": 1,
+                            "Name": "Reason for Quote",
+                            "Type": "Text",
+                            "IsMandatory": false,
+                            "ListItems": []
+                        },
+                        "Value": null
+                    },
+                    {
+                        "CustomField": {
+                            "ID": 3,
+                            "Name": "System Category",
+                            "Type": "List",
+                            "IsMandatory": false,
+                            "ListItems": [
+                                "L1",
+                                "L2",
+                                "L3",
+                                "L4",
+                                "L5",
+                                "M",
+                                "P1",
+                                "P2",
+                                "UNC"
+                            ]
+                        },
+                        "Value": null
+                    },
+                    {
+                        "CustomField": {
+                            "ID": 7,
+                            "Name": "Quote Grading",
+                            "Type": "List",
+                            "IsMandatory": false,
+                            "ListItems": [
+                                "N\/A",
+                                "Red",
+                                "Amber",
+                                "Green"
+                            ]
+                        },
+                        "Value": null
+                    }
+                ],
+                "STC": {
+                    "STCsEligible": false,
+                    "VEECsEligible": false,
+                    "STCValue": 0,
+                    "VEECValue": 0
+                },
+                "CompletedDate": "2021-01-14"
+            },
+            "headers": {
+                "any": "headers"
+            }
+        }
+    },
+    {
+        "request": {
+            "type": "get",
+            "url": "https://fake.gassure.simprocloud.com/api/v1.0/companies/0/logs/jobs/",
+            "data": {
+                "JobID": 202276,
+                "Message": "Job status set to Job : Made Safe"
+            },
+            "headers": {
+                "Accept": "application\/json",
+                "Content-Type": "application\/json",
+                "Authorization": "Bearer fake_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": [
+                {
+                    "ID": 1428882,
+                    "Staff": {
+                        "ID": 115,
+                        "Name": "Lauren Henderson",
+                        "Type": "employee",
+                        "TypeId": 115
+                    },
+                    "DateLogged": "2022-01-27T09:20:05+00:00",
+                    "Message": "Job status set to Job : New Service",
+                    "JobID": 144168
+                }
+            ],
+            "headers": {
+                "any": "headers"
+            }
+        }
+    },
+    {
+        "request": {
+            "type": "get",
+            "url": "https://fake.gassure.simprocloud.com/api/v1.0/companies/0/logs/jobs/",
+            "data": {
+                "JobID": 202276,
+                "Message": "Created Job%"
+            },
+            "headers": {
+                "Accept": "application\/json",
+                "Content-Type": "application\/json",
+                "Authorization": "Bearer fake_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": [
+                {
+                    "ID": 1428882,
+                    "Staff": {
+                        "ID": 115,
+                        "Name": "Lauren Henderson",
+                        "Type": "employee",
+                        "TypeId": 115
+                    },
+                    "DateLogged": "2022-01-27T09:20:05+00:00",
+                    "Message": "Job status set to Job : New Service",
+                    "JobID": 144168
+                }
+            ],
+            "headers": {
+                "any": "headers"
+            }
+        }
+    },
+    {
+        "request": {
+            "type": "get",
+            "url": "https://fake.gassure.simprocloud.com/api/v1.0/companies/0/logs/jobs/",
+            "data": {
+                "JobID": 202276,
+                "Message": "%Completed Pending%"
+            },
+            "headers": {
+                "Accept": "application\/json",
+                "Content-Type": "application\/json",
+                "Authorization": "Bearer fake_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": [
+                {
+                    "ID": 1428882,
+                    "Staff": {
+                        "ID": 115,
+                        "Name": "Lauren Henderson",
+                        "Type": "employee",
+                        "TypeId": 115
+                    },
+                    "DateLogged": "2022-01-27T09:20:05+00:00",
+                    "Message": "Job status set to Job : New Service",
+                    "JobID": 144168
+                }
+            ],
+            "headers": {
+                "any": "headers"
+            }
+        }
+    },
+    {
+        "request": {
+            "type": "get",
+            "url": "https://fake.gassure.simprocloud.com/api/v1.0/companies/0/logs/jobs/",
+            "data": {
+                "JobID": 202276,
+                "Message": "in(Job status set to Job : No Access,Job status set to Job: No Gas)"
+            },
+            "headers": {
+                "Accept": "application\/json",
+                "Content-Type": "application\/json",
+                "Authorization": "Bearer fake_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": [
+                {
+                    "ID": 1428882,
+                    "Staff": {
+                        "ID": 115,
+                        "Name": "Lauren Henderson",
+                        "Type": "employee",
+                        "TypeId": 115
+                    },
+                    "DateLogged": "2022-01-27T09:20:05+00:00",
+                    "Message": "Job status set to Job : New Service",
+                    "JobID": 144168
+                }
+            ],
+            "headers": {
+                "any": "headers"
+            }
+        }
+    },
+    {
+        "request": {
+            "type": "get",
+            "url": "https://fake.gassure.simprocloud.com/api/v1.0/companies/0/schedules/",
+            "data": {
+                "Reference": "202276%",
+                "page": 1,
+                "pageSize": 250
+            },
+            "headers": {
+                "Accept": "application\/json",
+                "Content-Type": "application\/json",
+                "Authorization": "Bearer fake_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": [
+                {
+                    "ID": 18734,
+                    "Type": "job",
+                    "Reference": "209000-9092",
+                    "TotalHours": 1.5,
+                    "Staff": {
+                        "ID": 26,
+                        "Name": "Daniel Whitmore",
+                        "Type": "employee",
+                        "TypeId": 26
+                    },
+                    "Date": "2021-02-23",
+                    "Blocks": [
+                        {
+                            "Hrs": 1.5,
+                            "StartTime": "14:00",
+                            "ISO8601StartTime": "2021-02-23T14:00:00+00:00",
+                            "EndTime": "15:30",
+                            "ISO8601EndTime": "2021-02-23T15:30:00+00:00",
+                            "ScheduleRate": {
+                                "ID": 1,
+                                "Name": "Normal Time"
+                            }
+                        },
+                        {
+                            "Hrs": 4.5,
+                            "StartTime": "11:00",
+                            "ISO8601StartTime": "2021-02-23T11:00:00+00:00",
+                            "EndTime": "15:30",
+                            "ISO8601EndTime": "2021-02-23T15:30:00+00:00",
+                            "ScheduleRate": {
+                                "ID": 1,
+                                "Name": "Normal Time"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "headers": {
+                "any": "headers"
+            }
+        }
+    },
+    {
+        "request": {
+            "type": "get",
+            "url": "https://fake.gassure.simprocloud.com/api/v1.0/companies/0/schedules/",
+            "data": {
+                "Reference": "202276%",
+                "page": 2,
+                "pageSize": 250
+            },
+            "headers": {
+                "Accept": "application\/json",
+                "Content-Type": "application\/json",
+                "Authorization": "Bearer fake_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": [],
+            "headers": {
+                "any": "headers"
+            }
+        }
+    },
+    {
+        "request": {
+            "type": "get",
+            "url": "https://fake.gassure.simprocloud.com/api/v1.0/companies/0/jobs/206674/attachments/files/",
+            "data": {
+                "columns": "ID,Filename,Public,DateAdded",
+                "Public": "true",
+                "page": 1,
+                "pageSize": 250
+            },
+            "headers": {
+                "Accept": "application\/json",
+                "Content-Type": "application\/json",
+                "Authorization": "Bearer fake_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": [
+                {
+                    "ID": "8EgYd8urKKzzqcdDTKsKcpW9xWHxtwsKSoCscR3R7g4",
+                    "Filename": "Jobcard_For_Job_No_209000_24-02-2021_0942.pdf",
+                    "Public": true,
+                    "DateAdded": "2021-02-24 09:42:48+00"
+                },
+                {
+                    "ID": "8EgYd8urKKzzqcdDTKsKcpW9xWHxtwsKSoCscR3R000",
+                    "Filename": "Invoice_No_103987_10-03-2021_1411.pdf",
+                    "Public": true,
+                    "DateAdded": "2021-02-23 09:42:48+00"
+                },
+                {
+                    "ID": "8EgYd8urKKzzqcdDTKsKcpW9xWHxtwsKSoCsc999999",
+                    "Filename": "Invoice_No_103987_10-03-2021_1355.pdf",
+                    "Public": true,
+                    "DateAdded": "2021-02-24 09:42:48+00"
+                },
+                {
+                    "ID": "8EgYd8urKKzzqcdDTKsKcpW9xWHxtwsKSoCsc555555",
+                    "Filename": "Invoice_No_104375_10-03-2021_1405.pdf",
+                    "Public": true,
+                    "DateAdded": "2021-02-26 09:42:48+00"
+                }
+            ],
+            "headers": {
+                "any": "headers"
+            }
+        }
+    },
+    {
+        "request": {
+            "type": "get",
+            "url": "https://fake.gassure.simprocloud.com/api/v1.0/companies/0/jobs/206674/attachments/files/",
+            "data": {
+                "columns": "ID,Filename,Public,DateAdded",
+                "Public": "true",
+                "page": 2,
+                "pageSize": 250
+            },
+            "headers": {
+                "Accept": "application\/json",
+                "Content-Type": "application\/json",
+                "Authorization": "Bearer fake_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": [],
+            "headers": {
+                "any": "headers"
+            }
+        }
+    }
+]

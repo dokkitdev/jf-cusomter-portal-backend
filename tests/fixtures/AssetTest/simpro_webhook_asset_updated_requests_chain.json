@@ -2562,8 +2562,7 @@
             "type": "get",
             "url": "https://fake.gassure.simprocloud.com/api/v1.0/companies/0/logs/jobs/",
             "data": {
-                "JobID": 202276,
-                "Message": "Job status set to Job : Made Safe"
+                "JobID": 202276
             },
             "headers": {
                 "Accept": "application\/json",
@@ -2575,16 +2574,24 @@
             "status_code": 200,
             "data": [
                 {
-                    "ID": 1428882,
-                    "Staff": {
-                        "ID": 115,
-                        "Name": "Lauren Henderson",
-                        "Type": "employee",
-                        "TypeId": 115
-                    },
+                    "DateLogged": "2022-01-27T09:20:04+00:00",
+                    "Message": "Job status set to Job : Made Safe"
+                },
+                {
                     "DateLogged": "2022-01-27T09:20:05+00:00",
-                    "Message": "Job status set to Job : New Service",
-                    "JobID": 144168
+                    "Message": "Job status set to Job : Made Safe"
+                },
+                {
+                    "DateLogged": "2022-01-27T09:20:03+00:00",
+                    "Message": "Job status set to Job : Made Safe"
+                },
+                {
+                    "DateLogged": "2022-01-27T09:20:06+00:00",
+                    "Message": "Job status set to Any Status"
+                },
+                {
+                    "DateLogged": "2022-01-27T09:20:07+00:00",
+                    "Message": "Unknown message"
                 }
             ],
             "headers": {
@@ -2667,8 +2674,7 @@
             "type": "get",
             "url": "https://fake.gassure.simprocloud.com/api/v1.0/companies/0/logs/jobs/",
             "data": {
-                "JobID": 202276,
-                "Message": "in(Job status set to Job : No Access,Job status set to Job: No Gas)"
+                "JobID": 202276
             },
             "headers": {
                 "Accept": "application\/json",
@@ -2680,16 +2686,29 @@
             "status_code": 200,
             "data": [
                 {
+                    "ID": 9999,
+                    "DateLogged": "2022-01-27T09:20:07+00:00",
+                    "Message": "Job status set to Job : No Access"
+                },
+                {
                     "ID": 1428882,
-                    "Staff": {
-                        "ID": 115,
-                        "Name": "Lauren Henderson",
-                        "Type": "employee",
-                        "TypeId": 115
-                    },
                     "DateLogged": "2022-01-27T09:20:05+00:00",
-                    "Message": "Job status set to Job : New Service",
-                    "JobID": 144168
+                    "Message": "Job status set to Job : No Access"
+                },
+                {
+                    "ID": 9999,
+                    "DateLogged": "2022-01-27T09:20:06+00:00",
+                    "Message": "Job status set to Job : No Access"
+                },
+                {
+                    "ID": 9999,
+                    "DateLogged": "2022-01-27T09:20:04+00:00",
+                    "Message": "Job status set to Any Status"
+                },
+                {
+                    "ID": 9999,
+                    "DateLogged": "2022-01-27T09:20:03+00:00",
+                    "Message": "Unknown message"
                 }
             ],
             "headers": {
@@ -3229,8 +3248,7 @@
             "type": "get",
             "url": "https://fake.gassure.simprocloud.com/api/v1.0/companies/0/logs/jobs/",
             "data": {
-                "JobID": 202276,
-                "Message": "Job status set to Job : Made Safe"
+                "JobID": 202276
             },
             "headers": {
                 "Accept": "application\/json",
@@ -3242,16 +3260,24 @@
             "status_code": 200,
             "data": [
                 {
-                    "ID": 1428882,
-                    "Staff": {
-                        "ID": 115,
-                        "Name": "Lauren Henderson",
-                        "Type": "employee",
-                        "TypeId": 115
-                    },
+                    "DateLogged": "2022-01-27T09:20:04+00:00",
+                    "Message": "Updated Status from \"Any Status\" to \"Job : Made Safe\""
+                },
+                {
                     "DateLogged": "2022-01-27T09:20:05+00:00",
-                    "Message": "Job status set to Job : New Service",
-                    "JobID": 144168
+                    "Message": "Updated Status from \"Any Status\" to \"Job : Made Safe\""
+                },
+                {
+                    "DateLogged": "2022-01-27T09:20:03+00:00",
+                    "Message": "Updated Status from \"Any Status\" to \"Job : Made Safe\""
+                },
+                {
+                    "DateLogged": "2022-01-27T09:20:06+00:00",
+                    "Message": "Updated Status from \"Any Status\" to \"Job : Any Status\""
+                },
+                {
+                    "DateLogged": "2022-01-27T09:20:07+00:00",
+                    "Message": "Unknown message"
                 }
             ],
             "headers": {
@@ -3334,8 +3360,7 @@
             "type": "get",
             "url": "https://fake.gassure.simprocloud.com/api/v1.0/companies/0/logs/jobs/",
             "data": {
-                "JobID": 202276,
-                "Message": "in(Job status set to Job : No Access,Job status set to Job: No Gas)"
+                "JobID": 202276
             },
             "headers": {
                 "Accept": "application\/json",
@@ -3347,16 +3372,29 @@
             "status_code": 200,
             "data": [
                 {
+                    "ID": 9999,
+                    "DateLogged": "2022-01-27T09:20:07+00:00",
+                    "Message": "Updated Status from \"Any Status\" to \"Job: No Gas\""
+                },
+                {
                     "ID": 1428882,
-                    "Staff": {
-                        "ID": 115,
-                        "Name": "Lauren Henderson",
-                        "Type": "employee",
-                        "TypeId": 115
-                    },
                     "DateLogged": "2022-01-27T09:20:05+00:00",
-                    "Message": "Job status set to Job : New Service",
-                    "JobID": 144168
+                    "Message": "Updated Status from \"Any Status\" to \"Job: No Gas\""
+                },
+                {
+                    "ID": 9999,
+                    "DateLogged": "2022-01-27T09:20:06+00:00",
+                    "Message": "Updated Status from \"Any Status\" to \"Job: No Gas\""
+                },
+                {
+                    "ID": 9999,
+                    "DateLogged": "2022-01-27T09:20:04+00:00",
+                    "Message": "Updated Status from \"Any Status\" to \"Any Status\""
+                },
+                {
+                    "ID": 9999,
+                    "DateLogged": "2022-01-27T09:20:03+00:00",
+                    "Message": "Unknown message"
                 }
             ],
             "headers": {

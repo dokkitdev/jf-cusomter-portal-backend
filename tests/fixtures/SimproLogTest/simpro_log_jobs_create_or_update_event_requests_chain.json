@@ -4,8 +4,7 @@
             "type": "get",
             "url": "https://fake.gassure.simprocloud.com/api/v1.0/companies/0/logs/jobs/",
             "data": {
-                "JobID": 1,
-                "Message": "Job status set to Job : Made Safe"
+                "JobID": 1
             },
             "headers": {
                 "Accept": "application\/json",
@@ -17,40 +16,24 @@
             "status_code": 200,
             "data": [
                 {
-                    "ID": 1428882,
-                    "Staff": {
-                        "ID": 115,
-                        "Name": "Lauren Henderson",
-                        "Type": "employee",
-                        "TypeId": 115
-                    },
-                    "DateLogged": "2022-01-27T09:20:05+00:00",
-                    "Message": "Job status set to Job : New Service",
-                    "JobID": 144168
+                    "DateLogged": "2022-01-26T09:20:04+00:00",
+                    "Message": "Job status set to Job : Made Safe"
                 },
                 {
-                    "ID": 1428881,
-                    "Staff": {
-                        "ID": 115,
-                        "Name": "Lauren Henderson",
-                        "Type": "employee",
-                        "TypeId": 115
-                    },
-                    "DateLogged": "2022-01-27T09:20:05+00:00",
-                    "Message": "Job status set to Job : New Service",
-                    "JobID": 144168
-                },
-                {
-                    "ID": 1428880,
-                    "Staff": {
-                        "ID": 115,
-                        "Name": "Lauren Henderson",
-                        "Type": "employee",
-                        "TypeId": 115
-                    },
                     "DateLogged": "2022-01-26T09:20:05+00:00",
-                    "Message": "Job status set to Job : New Service",
-                    "JobID": 144168
+                    "Message": "Job status set to Job : Made Safe"
+                },
+                {
+                    "DateLogged": "2022-01-26T09:20:03+00:00",
+                    "Message": "Job status set to Job : Made Safe"
+                },
+                {
+                    "DateLogged": "2022-01-26T09:20:06+00:00",
+                    "Message": "Job status set to Any Status"
+                },
+                {
+                    "DateLogged": "2022-01-26T09:20:07+00:00",
+                    "Message": "Unknown message"
                 }
             ],
             "headers": {

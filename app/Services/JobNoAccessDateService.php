@@ -28,8 +28,6 @@ class JobNoAccessDateService extends EntityService
     {
         $simproJobNoAccessDates = $this->simproClient->getNoAccessJobLog($companyId, $simproJobId);
 
-        $simproJobNoAccessDates = collect($simproJobNoAccessDates)->sortBy('ID');
-
         $jobNoAccessDates = $this->repository->get(['job_id' => $jobId]);
 
         $previousDate = null;

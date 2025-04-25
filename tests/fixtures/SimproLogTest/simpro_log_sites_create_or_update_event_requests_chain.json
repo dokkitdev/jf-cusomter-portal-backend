@@ -1,0 +1,213 @@
+[
+    {
+        "request": {
+            "type": "get",
+            "url": "https://fake.gassure.simprocloud.com/api/v1.0/companies/0/sites/1",
+            "data": [],
+            "headers": {
+                "Accept": "application\/json",
+                "Content-Type": "application\/json",
+                "Authorization": "Bearer fake_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": {
+                "ID": 1700,
+                "Name": "40\/41 Store Street",
+                "Address": {
+                    "Address": "40\/41 Store Street",
+                    "City": "London",
+                    "State": "",
+                    "PostalCode": "WC1E 7BS",
+                    "Country": ""
+                },
+                "BillingAddress": {
+                    "Address": "",
+                    "City": "",
+                    "State": "",
+                    "PostalCode": ""
+                },
+                "BillingContact": "",
+                "PrimaryContact": {
+                    "Contact": [],
+                    "Title": "",
+                    "GivenName": "",
+                    "FamilyName": "",
+                    "Email": "",
+                    "WorkPhone": "",
+                    "CellPhone": "",
+                    "Fax": "",
+                    "Position": "",
+                    "PreferredNotificationMethod": ""
+                },
+                "PublicNotes": "<div style=\"font-size: 10pt;\">1 hr drain&nbsp;<\/div><div style=\"font-size: 10pt;\">&nbsp;<\/div><div style=\"font-size: 10pt;\">Tier 2 Please wear a mask in all areas&nbsp;<\/div><div style=\"font-size: 10pt;\">&nbsp;<\/div><div style=\"font-size: 10pt;\">Padlock code for electrical cupboard 2885 - fish key<\/div>",
+                "PrivateNotes": "",
+                "Zone": {
+                    "ID": 1,
+                    "Name": "Zone 01 (A1)"
+                },
+                "PreferredTechs": [],
+                "PreferredTechnicians": [],
+                "DateModified": "2021-02-26T12:30:56+00:00",
+                "Customers": [
+                    {
+                        "ID": 208,
+                        "CompanyName": "Bedford Estates Bloomsbury Ltd",
+                        "GivenName": "",
+                        "FamilyName": ""
+                    }
+                ],
+                "Archived": false,
+                "STCZone": null,
+                "VEECZone": null,
+                "CustomFields": [
+                    {
+                        "CustomField": {
+                            "ID": 17,
+                            "Name": "AM Contract No.",
+                            "Type": "Text",
+                            "IsMandatory": false,
+                            "ListItems": []
+                        },
+                        "Value": "BE0033"
+                    },
+                    {
+                        "CustomField": {
+                            "ID": 32,
+                            "Name": "Site ID",
+                            "Type": "Text",
+                            "IsMandatory": true,
+                            "ListItems": []
+                        },
+                        "Value": "1700"
+                    },
+                    {
+                        "CustomField": {
+                            "ID": 25,
+                            "Name": "Site Opening Hours?",
+                            "Type": "Text",
+                            "IsMandatory": false,
+                            "ListItems": []
+                        },
+                        "Value": null
+                    },
+                    {
+                        "CustomField": {
+                            "ID": 77,
+                            "Name": "C&E Matrix Notes",
+                            "Type": "Text",
+                            "IsMandatory": false,
+                            "ListItems": []
+                        },
+                        "Value": null
+                    },
+                    {
+                        "CustomField": {
+                            "ID": 5,
+                            "Name": "RAMS Required?",
+                            "Type": "List",
+                            "IsMandatory": false,
+                            "ListItems": [
+                                "Unknown",
+                                "N\/A",
+                                "Generic",
+                                "Site Specific"
+                            ]
+                        },
+                        "Value": null
+                    },
+                    {
+                        "CustomField": {
+                            "ID": 76,
+                            "Name": "Site Spend Notes",
+                            "Type": "Text",
+                            "IsMandatory": false,
+                            "ListItems": []
+                        },
+                        "Value": null
+                    },
+                    {
+                        "CustomField": {
+                            "ID": 16,
+                            "Name": "Site Spend",
+                            "Type": "Text",
+                            "IsMandatory": false,
+                            "ListItems": []
+                        },
+                        "Value": null
+                    },
+                    {
+                        "CustomField": {
+                            "ID": 22,
+                            "Name": "Customer Site Ref.",
+                            "Type": "Text",
+                            "IsMandatory": false,
+                            "ListItems": []
+                        },
+                        "Value": null
+                    }
+                ]
+            },
+            "headers": {
+                "any": "headers"
+            }
+        }
+    },
+    {
+        "request": {
+            "type": "get",
+            "url": "https://fake.gassure.simprocloud.com/api/v1.0/companies/0/sites/1/contacts/",
+            "data": {
+                "pageSize": 250,
+                "columns": "ID,Title,GivenName,FamilyName,Email,WorkPhone,CellPhone,Position,PrimaryContact"
+            },
+            "headers": {
+                "Accept": "application\/json",
+                "Content-Type": "application\/json",
+                "Authorization": "Bearer fake_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": [
+                {
+                    "ID": 10862,
+                    "Title": "",
+                    "GivenName": "Daniel",
+                    "FamilyName": "Lawrence",
+                    "Email": "Daniel.Lawrence@ngbailey.co.uk",
+                    "WorkPhone": "",
+                    "CellPhone": "",
+                    "Position": "Site Supervisor",
+                    "PrimaryContact": false
+                },
+                {
+                    "ID": 10863,
+                    "Title": "",
+                    "GivenName": "Nezam",
+                    "FamilyName": "Uddin",
+                    "Email": "ContractAdmin@ngbailey.co.uk",
+                    "WorkPhone": "",
+                    "CellPhone": "",
+                    "Position": "Contract Admin",
+                    "PrimaryContact": false
+                },
+                {
+                    "ID": 10861,
+                    "Title": "",
+                    "GivenName": "Peter",
+                    "FamilyName": "Driussi",
+                    "Email": "Peter.Driussi@ngbailey.co.uk",
+                    "WorkPhone": "",
+                    "CellPhone": "",
+                    "Position": "Contracts Manager",
+                    "PrimaryContact": true
+                }
+            ],
+            "headers": {
+                "any": "headers"
+            }
+        }
+    }
+]

@@ -10,13 +10,15 @@ use App\Models\Customer;
 use App\Models\SimproJob;
 use App\Models\Site;
 use App\Models\User;
-use App\Tests\Support\SimproTestTrait;
+use App\Tests\Support\CreateSimproJobTrait;
+use App\Tests\Support\MockHttpRequestServiceTrait;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\Response;
 
 class AssetTest extends TestCase
 {
-    use SimproTestTrait;
+    use CreateSimproJobTrait;
+    use MockHttpRequestServiceTrait;
 
     protected $admin;
     protected $user;
@@ -34,7 +36,7 @@ class AssetTest extends TestCase
     //referenced by: SyncArchivedAssetsTest::testProcessAsset()
     public function testUpdateAssetEvent()
     {
-        $this->mockCreateOrUpdateAsset();
+        $this->mockHttpRequestService($this->getJsonFixture('simpro_webhook_asset_updated_requests_chain.json'));
 
         $this->createSimproJob('simpro_webhook_asset_updated_fixture.json');
 
@@ -337,7 +339,7 @@ class AssetTest extends TestCase
 
     public function testGetAssetServiceLevels()
     {
-        $this->mockGetAssetServiceLevels();
+        $this->mockHttpRequestService($this->getJsonFixture('get_asset_service_levels_requests_chain.json'));
 
         $response = $this->actingAs($this->customer)->json('get', '/assets/service-levels');
 
@@ -355,7 +357,7 @@ class AssetTest extends TestCase
 
     public function testGetAssetTypes()
     {
-        $this->mockGetAssetTypes();
+        $this->mockHttpRequestService($this->getJsonFixture('get_asset_types_requests_chain.json'));
 
         $response = $this->actingAs($this->customer)->json('get', '/assets/types');
 
@@ -373,7 +375,7 @@ class AssetTest extends TestCase
 
     public function testGetAssetNames()
     {
-        $this->mockGetAssetNames();
+        $this->mockHttpRequestService($this->getJsonFixture('get_asset_names_requests_chain.json'));
 
         $response = $this->actingAs($this->customer)->json('get', '/assets/names');
 

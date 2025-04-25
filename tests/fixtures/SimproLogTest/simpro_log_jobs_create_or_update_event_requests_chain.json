@@ -1,0 +1,44 @@
+[
+    {
+        "request": {
+            "type": "get",
+            "url": "https://fake.gassure.simprocloud.com/api/v1.0/companies/0/logs/jobs/",
+            "data": {
+                "JobID": 1
+            },
+            "headers": {
+                "Accept": "application\/json",
+                "Content-Type": "application\/json",
+                "Authorization": "Bearer fake_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": [
+                {
+                    "DateLogged": "2022-01-26T09:20:04+00:00",
+                    "Message": "Job status set to Job : Made Safe"
+                },
+                {
+                    "DateLogged": "2022-01-26T09:20:05+00:00",
+                    "Message": "Job status set to Job : Made Safe"
+                },
+                {
+                    "DateLogged": "2022-01-26T09:20:03+00:00",
+                    "Message": "Job status set to Job : Made Safe"
+                },
+                {
+                    "DateLogged": "2022-01-26T09:20:06+00:00",
+                    "Message": "Job status set to Any Status"
+                },
+                {
+                    "DateLogged": "2022-01-26T09:20:07+00:00",
+                    "Message": "Unknown message"
+                }
+            ],
+            "headers": {
+                "any": "headers"
+            }
+        }
+    }
+]

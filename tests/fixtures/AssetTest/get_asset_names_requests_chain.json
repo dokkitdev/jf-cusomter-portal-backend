@@ -1,0 +1,54 @@
+[
+    {
+        "request": {
+            "type": "get",
+            "url": "https://fake.gassure.simprocloud.com/api/v1.0/companies/0/setup/assetTypes/",
+            "data": [],
+            "headers": {
+                "Accept": "application\/json",
+                "Content-Type": "application\/json",
+                "Authorization": "Bearer fake_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": [
+                {
+                    "ID": 2,
+                    "Name": "Alarms"
+                },
+                {
+                    "ID": 3,
+                    "Name": "Customer Satisfaction Survey"
+                },
+                {
+                    "ID": 4,
+                    "Name": "Gas Appliance"
+                },
+                {
+                    "ID": 9,
+                    "Name": "Gas Safety Inspection"
+                },
+                {
+                    "ID": 6,
+                    "Name": "Installation Tightness Test - After Work"
+                },
+                {
+                    "ID": 5,
+                    "Name": "Installation Tightness Test - Before Work"
+                },
+                {
+                    "ID": 8,
+                    "Name": "Meter Capped"
+                },
+                {
+                    "ID": 7,
+                    "Name": "Pipework"
+                }
+            ],
+            "headers": {
+                "any": "headers"
+            }
+        }
+    }
+]

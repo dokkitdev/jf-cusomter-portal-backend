@@ -1,0 +1,87 @@
+[
+    {
+        "request": {
+            "type": "get",
+            "url": "https://fake.gassure.simprocloud.com/api/v1.0/companies/0/setup/assets/serviceLevels/",
+            "data": {
+                "page": 1,
+                "pageSize": 250
+            },
+            "headers": {
+                "Accept": "application\/json",
+                "Content-Type": "application\/json",
+                "Authorization": "Bearer fake_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": [
+                {
+                    "ID": 9,
+                    "Name": "Annual - 1 Hour Drain"
+                },
+                {
+                    "ID": 10,
+                    "Name": "Annual - 3 Hour Drain"
+                },
+                {
+                    "ID": 2,
+                    "Name": "Annually"
+                },
+                {
+                    "ID": 5,
+                    "Name": "Fortnightly"
+                },
+                {
+                    "ID": 7,
+                    "Name": "Monthly"
+                },
+                {
+                    "ID": 4,
+                    "Name": "Quarterly"
+                },
+                {
+                    "ID": 1,
+                    "Name": "Six Monthly"
+                },
+                {
+                    "ID": 6,
+                    "Name": "Thrice Yearly"
+                },
+                {
+                    "ID": 42,
+                    "Name": "Tri-Weekly"
+                },
+                {
+                    "ID": 3,
+                    "Name": "Weekly"
+                }
+            ],
+            "headers": {
+                "any": "headers"
+            }
+        }
+    },
+    {
+        "request": {
+            "type": "get",
+            "url": "https://fake.gassure.simprocloud.com/api/v1.0/companies/0/setup/assets/serviceLevels/",
+            "data": {
+                "page": 2,
+                "pageSize": 250
+            },
+            "headers": {
+                "Accept": "application\/json",
+                "Content-Type": "application\/json",
+                "Authorization": "Bearer fake_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": [],
+            "headers": {
+                "any": "headers"
+            }
+        }
+    }
+]

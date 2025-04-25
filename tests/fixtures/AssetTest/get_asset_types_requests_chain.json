@@ -1,0 +1,46 @@
+[
+    {
+        "request": {
+            "type": "get",
+            "url": "https://fake.gassure.simprocloud.com/api/v1.0/companies/0/setup/assetTypes/4/customFields/15",
+            "data": {},
+            "headers": {
+                "Accept": "application\/json",
+                "Content-Type": "application\/json",
+                "Authorization": "Bearer fake_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": {
+                "ID": 15,
+                "Name": "Type",
+                "Type": "List",
+                "ListItems": [
+                    "Boiler",
+                    "Hob",
+                    "Cooker",
+                    "Fire",
+                    "Water Heater",
+                    "Space Heater",
+                    "Warm Air",
+                    "Combi",
+                    "BBU",
+                    "HOB",
+                    "compact 29he",
+                    "Electric Heater",
+                    "Electric Thermal Sto",
+                    "Heater",
+                    "OTHER",
+                    "Tumble Dryer"
+                ],
+                "IsMandatory": false,
+                "Order": 0,
+                "Archived": false
+            },
+            "headers": {
+                "any": "headers"
+            }
+        }
+    }
+]

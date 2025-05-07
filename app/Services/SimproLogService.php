@@ -139,7 +139,7 @@ class SimproLogService extends EntityService
         $madeSafeJobLog = $this->simproClient->getMadeSafeJobLog(0, $simproLog['loggable_id']);
 
         $this->jobService->update(['simpro_job_id' => $simproLog['loggable_id']], [
-            'made_safe_date' => Arr::get(Arr::last($madeSafeJobLog), 'DateLogged'),
+            'made_safe_date' => Arr::get(Arr::first($madeSafeJobLog), 'DateLogged'),
         ]);
     }
 

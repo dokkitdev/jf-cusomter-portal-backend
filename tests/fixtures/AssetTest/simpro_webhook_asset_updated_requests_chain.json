@@ -2562,7 +2562,8 @@
             "type": "get",
             "url": "https://fake.gassure.simprocloud.com/api/v1.0/companies/0/logs/jobs/",
             "data": {
-                "JobID": 202276
+                "JobID": 202276,
+                "pageSize": 250
             },
             "headers": {
                 "Accept": "application\/json",
@@ -2605,6 +2606,7 @@
             "url": "https://fake.gassure.simprocloud.com/api/v1.0/companies/0/logs/jobs/",
             "data": {
                 "JobID": 202276,
+                "pageSize": 250,
                 "Message": "Created Job%"
             },
             "headers": {
@@ -2640,6 +2642,7 @@
             "url": "https://fake.gassure.simprocloud.com/api/v1.0/companies/0/logs/jobs/",
             "data": {
                 "JobID": 202276,
+                "pageSize": 250,
                 "Message": "%Completed Pending%"
             },
             "headers": {
@@ -2674,7 +2677,8 @@
             "type": "get",
             "url": "https://fake.gassure.simprocloud.com/api/v1.0/companies/0/logs/jobs/",
             "data": {
-                "JobID": 202276
+                "JobID": 202276,
+                "pageSize": 250
             },
             "headers": {
                 "Accept": "application\/json",
@@ -3248,7 +3252,8 @@
             "type": "get",
             "url": "https://fake.gassure.simprocloud.com/api/v1.0/companies/0/logs/jobs/",
             "data": {
-                "JobID": 202276
+                "JobID": 202276,
+                "pageSize": 250
             },
             "headers": {
                 "Accept": "application\/json",
@@ -3291,6 +3296,7 @@
             "url": "https://fake.gassure.simprocloud.com/api/v1.0/companies/0/logs/jobs/",
             "data": {
                 "JobID": 202276,
+                "pageSize": 250,
                 "Message": "Created Job%"
             },
             "headers": {
@@ -3326,6 +3332,7 @@
             "url": "https://fake.gassure.simprocloud.com/api/v1.0/companies/0/logs/jobs/",
             "data": {
                 "JobID": 202276,
+                "pageSize": 250,
                 "Message": "%Completed Pending%"
             },
             "headers": {
@@ -3360,7 +3367,8 @@
             "type": "get",
             "url": "https://fake.gassure.simprocloud.com/api/v1.0/companies/0/logs/jobs/",
             "data": {
-                "JobID": 202276
+                "JobID": 202276,
+                "pageSize": 250
             },
             "headers": {
                 "Accept": "application\/json",

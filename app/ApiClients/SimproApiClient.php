@@ -460,7 +460,10 @@ class SimproApiClient
     {
         $url = $this->getUrl("companies/{$companyId}/logs/jobs/");
 
-        $data = ['JobID' => $jobId];
+        $data = [
+            'JobID' => $jobId,
+            'pageSize' => self::MAX_PAGE_SIZE,
+        ];
 
         if (isset($message)) {
             $data['Message'] = $message;

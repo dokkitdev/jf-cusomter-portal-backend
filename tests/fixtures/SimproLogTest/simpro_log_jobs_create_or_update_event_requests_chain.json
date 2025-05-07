@@ -4,7 +4,8 @@
             "type": "get",
             "url": "https://fake.gassure.simprocloud.com/api/v1.0/companies/0/logs/jobs/",
             "data": {
-                "JobID": 1
+                "JobID": 1,
+                "pageSize": 250
             },
             "headers": {
                 "Accept": "application\/json",

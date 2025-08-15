@@ -6,6 +6,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\JobAttachmentController;
 use App\Http\Controllers\JobController;
+use App\Http\Controllers\LetterTemplateController;
 use App\Http\Controllers\PrivateContractController;
 use App\Http\Controllers\SimproWebhookController;
 use App\Http\Controllers\SiteContactController;
@@ -15,6 +16,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MediaController;
 use App\Http\Controllers\SettingController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -94,6 +96,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::post('/private-contracts/generate-letters', ['uses' => PrivateContractController::class . '@generateLetters']);
     Route::get('/private-contracts/download-doc', ['uses' => PrivateContractController::class . '@downloadDoc']);
+
+    Route::get('/letter-templates', ['uses' => LetterTemplateController::class . '@getGroupedLetterTemplates']);
 });
 
 Route::group(['middleware' => 'guest'], function () {

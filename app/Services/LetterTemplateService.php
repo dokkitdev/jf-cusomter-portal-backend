@@ -2,6 +2,9 @@
 
 namespace App\Services;
 
+use App\Repositories\LetterTemplateRepository;
+use Symfony\Component\HttpFoundation\File\File;
+
 class LetterTemplateService
 {
     public const GROUP_NAME_PRIVATE = 'private';
@@ -26,6 +29,24 @@ class LetterTemplateService
     public const LETTER_NAME_CHL_ELECTRIC_LETTERS_APPOINTMENT_2 = 'chl_electric_letters__appointment_2';
     public const LETTER_NAME_CHL_ELECTRIC_LETTERS_APPOINTMENT_3 = 'chl_electric_letters__appointment_3';
     public const LETTER_NAME_APPOINTMENT_LETTERS_APPOINTMENT = 'appointment_letters__appointment';
+
+    public const LETTER_NAMES = [
+        self::LETTER_NAME_PRIVATE_ANNUAL_CONTRACTS,
+        self::LETTER_NAME_PRIVATE_DIRECT_DEBIT_CONTRACTS,
+        self::LETTER_NAME_HOUSING_AUTHORITIES_NO_ACCESS_1,
+        self::LETTER_NAME_HOUSING_AUTHORITIES_NO_ACCESS_2,
+        self::LETTER_NAME_HOUSING_AUTHORITIES_NO_ACCESS_3,
+        self::LETTER_NAME_CHL_OTHER_LETTERS_APPOINTMENT_1,
+        self::LETTER_NAME_CHL_OTHER_LETTERS_APPOINTMENT_2,
+        self::LETTER_NAME_CHL_OTHER_LETTERS_APPOINTMENT_3,
+        self::LETTER_NAME_CHL_GAS_LETTERS_APPOINTMENT_1,
+        self::LETTER_NAME_CHL_GAS_LETTERS_APPOINTMENT_2,
+        self::LETTER_NAME_CHL_GAS_LETTERS_APPOINTMENT_3,
+        self::LETTER_NAME_CHL_ELECTRIC_LETTERS_APPOINTMENT_1,
+        self::LETTER_NAME_CHL_ELECTRIC_LETTERS_APPOINTMENT_2,
+        self::LETTER_NAME_CHL_ELECTRIC_LETTERS_APPOINTMENT_3,
+        self::LETTER_NAME_APPOINTMENT_LETTERS_APPOINTMENT,
+    ];
 
     public const GROUPED_LETTER_TEMPLATES = [
         self::GROUP_NAME_PRIVATE => [
@@ -56,4 +77,26 @@ class LetterTemplateService
             self::LETTER_NAME_APPOINTMENT_LETTERS_APPOINTMENT,
         ],
     ];
+
+    protected LetterTemplateRepository $repository;
+
+    public function __construct()
+    {
+        $this->repository = app(LetterTemplateRepository::class);
+    }
+
+    public function exists(string $letterName): bool
+    {
+        return $this->repository->exists($letterName);
+    }
+
+    public function upload(string $letterName, File $file): void
+    {
+        $this->repository->putTemplateContent($letterName, $file);
+    }
+
+    public function getContent(string $letterName): string
+    {
+        return $this->repository->getTemplateContent($letterName);
+    }
 }

@@ -98,6 +98,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/private-contracts/download-doc', ['uses' => PrivateContractController::class . '@downloadDoc']);
 
     Route::get('/letter-templates', ['uses' => LetterTemplateController::class . '@getGroupedLetterTemplates']);
+    Route::post('/letter-templates/{name}/upload', ['uses' => LetterTemplateController::class . '@upload']);
+    Route::post('/letter-templates/{name}/download', ['uses' => LetterTemplateController::class . '@download']);
 });
 
 Route::group(['middleware' => 'guest'], function () {

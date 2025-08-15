@@ -154,14 +154,26 @@ class AssetRepository extends BaseRepository
         return $this;
     }
 
+
     public function searchQuery(array $filter): self
     {
         $this->with(Arr::get($filter, 'with', []));
 
-        return parent::searchQuery($filter)
-            ->filterByList('job.stage', 'job_stage')
-            ->filterBy('asset_type')
-            ->filterByList('custom_asset_type_value', 'custom_asset_type_value')
+        $searchAssetGroup = false;
+        if($filter['asset_type'] == 0){
+            $searchAssetGroup = true;
+            $filter['asset_type'] = [10, 11];
+        }
+
+        $res = parent::searchQuery($filter)
+            ->filterByList('job.stage', 'job_stage');
+        if($searchAssetGroup){
+            $res = $res->filterByList('asset_type', 'asset_type');
+        }else{
+            $res = $res->filterBy('asset_type');
+        }
+
+        return $res->filterByList('custom_asset_type_value', 'custom_asset_type_value')
             ->filterByIntQuery('simpro_asset_id')
             ->filterBy('job_id')
             ->filterBy('site.customer_id')

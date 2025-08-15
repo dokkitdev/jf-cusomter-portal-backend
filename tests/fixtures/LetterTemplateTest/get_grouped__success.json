@@ -1,0 +1,92 @@
+[
+    {
+        "group_label": "Private",
+        "letter_templates": [
+            {
+                "name": "private__annual_contracts",
+                "label": "Annual Contracts"
+            },
+            {
+                "name": "private__direct_debit_contracts",
+                "label": "Direct Debit Contracts"
+            }
+        ]
+    },
+    {
+        "group_label": "Housing Authorities",
+        "letter_templates": [
+            {
+                "name": "housing_authorities__no_access_1",
+                "label": "Letter No Access 1 (Letter)"
+            },
+            {
+                "name": "housing_authorities__no_access_2",
+                "label": "Letter No Access 2 (Letter)"
+            },
+            {
+                "name": "housing_authorities__no_access_3",
+                "label": "Letter No Access 3 (Letter)"
+            }
+        ]
+    },
+    {
+        "group_label": "CHL Other Letters",
+        "letter_templates": [
+            {
+                "name": "chl_other_letters__appointment_1",
+                "label": "Appointment Letter 1 (Other)"
+            },
+            {
+                "name": "chl_other_letters__appointment_2",
+                "label": "Appointment Letter 2 (Other)"
+            },
+            {
+                "name": "chl_other_letters__appointment_3",
+                "label": "Appointment Letter 3 (Other)"
+            }
+        ]
+    },
+    {
+        "group_label": "CHL Gas Letters",
+        "letter_templates": [
+            {
+                "name": "chl_gas_letters__appointment_1",
+                "label": "Appointment Letter 1 (Gas)"
+            },
+            {
+                "name": "chl_gas_letters__appointment_2",
+                "label": "Appointment Letter 2 (Gas)"
+            },
+            {
+                "name": "chl_gas_letters__appointment_3",
+                "label": "Appointment Letter 3 (Gas)"
+            }
+        ]
+    },
+    {
+        "group_label": "CHL Electric Letters",
+        "letter_templates": [
+            {
+                "name": "chl_electric_letters__appointment_1",
+                "label": "Appointment Letter 1 (Electric)"
+            },
+            {
+                "name": "chl_electric_letters__appointment_2",
+                "label": "Appointment Letter 2 (Electric)"
+            },
+            {
+                "name": "chl_electric_letters__appointment_3",
+                "label": "Appointment Letter 3 (Electric)"
+            }
+        ]
+    },
+    {
+        "group_label": "Appointment letter",
+        "letter_templates": [
+            {
+                "name": "appointment_letters__appointment",
+                "label": "Letter"
+            }
+        ]
+    }
+]

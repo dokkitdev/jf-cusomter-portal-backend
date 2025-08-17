@@ -140,14 +140,19 @@ class AssetRepository extends BaseRepository
         return $this;
     }
 
-    public function filterByReport()
+    public function filterByReport($groupAsset = false)
     {
         if (Arr::get($this->filter, 'report')) {
-            $this->query->where(function (Builder $query) {
-                $query
-                    ->where('asset_type', 4)
-                    ->where('archived', false)
+            $this->query->where(function (Builder $query) use ($groupAsset) {
+                $query->where('archived', false)
                     ->whereNotNull('job_id');
+
+                if($groupAsset){
+                    $query->whereIn('asset_type', [10,11]);
+                }else{
+                    $query->where('asset_type', 4);
+                }
+
             });
         }
 
@@ -193,7 +198,7 @@ class AssetRepository extends BaseRepository
             ->filterBy('next_service_date')
             ->filterFrom('next_service_date', false, 'next_service_date_from')
             ->filterTo('next_service_date', false, 'next_service_date_to')
-            ->filterByReport()
+            ->filterByReport($searchAssetGroup)
             ->filterByLastTestResult()
             ->filterByOnlyPermitted()
             ->filterBySiteName()

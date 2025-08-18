@@ -48,6 +48,11 @@ return [
             'root' => storage_path('app'),
         ],
 
+        'letter_templates' => [
+            'driver' => 'local',
+            'root' => storage_path('app/letter_templates'),
+        ],
+
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),

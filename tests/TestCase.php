@@ -2,6 +2,7 @@
 
 namespace App\Tests;
 
+use App\Models\User;
 use Illuminate\Foundation\Application;
 use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Support\Arr;
@@ -289,5 +290,12 @@ abstract class TestCase extends BaseTestCase
         }
 
         DB::unprepared($dump);
+    }
+
+    protected function actingAsById(int $userId): self
+    {
+        $user = User::find($userId);
+
+        return $this->actingAs($user);
     }
 }

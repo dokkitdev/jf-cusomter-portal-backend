@@ -10,6 +10,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use PhpOffice\PhpWord\IOFactory;
+use ReflectionClass;
 use ReflectionMethod;
 use RonasIT\Support\Tests\TestCase as BaseTestCase;
 use RonasIT\Support\AutoDoc\Tests\AutoDocTestCaseTrait;
@@ -75,11 +76,12 @@ abstract class TestCase extends BaseTestCase
 
     public function getFixturePath(string $fixtureName): string
     {
-        $class = get_class($this);
-        $explodedClass = explode('\\', $class);
-        $className = Arr::last($explodedClass);
+        $reflectionClass = new ReflectionClass($this);
 
-        return base_path("tests/fixtures/{$className}/{$this->testCaseName}/{$fixtureName}");
+        $classDir = dirname($reflectionClass->getFileName());
+        $className = $reflectionClass->getShortName();
+
+        return "{$classDir}/fixtures/{$className}/{$this->testCaseName}/{$fixtureName}";
     }
 
     public function getPhpWordFileText(string $path): string

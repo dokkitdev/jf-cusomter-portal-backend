@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Services;
+namespace App\Modules\Notify\Services;
 
-use App\Repositories\LetterTemplateRepository;
+use Illuminate\Contracts\Filesystem\Filesystem;
+use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\File\File;
 
 class LetterTemplateService
@@ -78,25 +79,25 @@ class LetterTemplateService
         ],
     ];
 
-    protected LetterTemplateRepository $repository;
+    protected Filesystem $storage;
 
     public function __construct()
     {
-        $this->repository = app(LetterTemplateRepository::class);
+        $this->storage = Storage::disk('letter_templates');
     }
 
     public function exists(string $letterName): bool
     {
-        return $this->repository->exists($letterName);
+        return $this->storage->exists($letterName);
     }
 
     public function upload(string $letterName, File $file): void
     {
-        $this->repository->putTemplateContent($letterName, $file);
+        $this->storage->putStream($letterName, fopen($file->getPathname(), 'r'));
     }
 
     public function getContent(string $letterName): string
     {
-        return $this->repository->getTemplateContent($letterName);
+        return $this->storage->get($letterName);
     }
 }

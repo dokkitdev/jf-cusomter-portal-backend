@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\LetterTemplates;
+namespace App\Modules\Notify\Http\Requests\LetterTemplates;
 
 use App\Http\Requests\Request;
 use App\Models\Role;
-use App\Services\LetterTemplateService;
+use App\Modules\Notify\Services\LetterTemplateService;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class DownloadLetterTemplateRequest extends Request

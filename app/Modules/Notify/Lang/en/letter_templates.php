@@ -1,6 +1,6 @@
 <?php
 
-use App\Services\LetterTemplateService;
+use App\Modules\Notify\Services\LetterTemplateService;
 
 return [
     'groups' => [

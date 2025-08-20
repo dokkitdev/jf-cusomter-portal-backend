@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Modules\Notify\Http\Controllers;
 
-use App\Http\Requests\LetterTemplates\DownloadLetterTemplateRequest;
-use App\Http\Requests\LetterTemplates\GetGroupedLetterTemplatesRequest;
-use App\Http\Requests\LetterTemplates\UploadLetterTemplateRequest;
-use App\Http\Resources\GroupedLetterTemplatesResource;
-use App\Services\LetterTemplateService;
+use App\Http\Controllers\Controller;
+use App\Modules\Notify\Http\Requests\LetterTemplates\DownloadLetterTemplateRequest;
+use App\Modules\Notify\Http\Requests\LetterTemplates\GetGroupedLetterTemplatesRequest;
+use App\Modules\Notify\Http\Requests\LetterTemplates\UploadLetterTemplateRequest;
+use App\Modules\Notify\Http\Resources\GroupedLetterTemplatesResource;
+use App\Modules\Notify\Services\LetterTemplateService;
 use Symfony\Component\HttpFoundation\Response;
 
 class LetterTemplateController extends Controller

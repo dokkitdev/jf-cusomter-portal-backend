@@ -165,9 +165,11 @@ class AssetRepository extends BaseRepository
         $this->with(Arr::get($filter, 'with', []));
 
         $searchAssetGroup = false;
-        if($filter['asset_type'] == 0){
-            $searchAssetGroup = true;
-            $filter['asset_type'] = [10, 11];
+        if(isset($filter['asset_type'])){
+            if($filter['asset_type'] == 0){
+                $searchAssetGroup = true;
+                $filter['asset_type'] = [10, 11];
+            }
         }
 
         $res = parent::searchQuery($filter)

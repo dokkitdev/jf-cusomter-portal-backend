@@ -1,6 +1,6 @@
 <?php
 
-use App\Services\LetterTemplateService;
+use App\Modules\Notify\Services\LetterTemplateService;
 
 return [
     'groups' => [
@@ -10,6 +10,7 @@ return [
         LetterTemplateService::GROUP_NAME_CHL_GAS_LETTERS => 'CHL Gas Letters',
         LetterTemplateService::GROUP_NAME_CHL_ELECTRIC_LETTERS => 'CHL Electric Letters',
         LetterTemplateService::GROUP_NAME_APPOINTMENT_LETTERS => 'Appointment letter',
+        LetterTemplateService::GROUP_NAME_EICR_REMEDIAL => 'Electric – EICR renewal work',
     ],
     'letter_names' => [
         LetterTemplateService::LETTER_NAME_PRIVATE_ANNUAL_CONTRACTS => 'Annual Contracts',
@@ -26,6 +27,9 @@ return [
         LetterTemplateService::LETTER_NAME_CHL_ELECTRIC_LETTERS_APPOINTMENT_1 => 'Appointment Letter 1 (Electric)',
         LetterTemplateService::LETTER_NAME_CHL_ELECTRIC_LETTERS_APPOINTMENT_2 => 'Appointment Letter 2 (Electric)',
         LetterTemplateService::LETTER_NAME_CHL_ELECTRIC_LETTERS_APPOINTMENT_3 => 'Appointment Letter 3 (Electric)',
+        LetterTemplateService::LETTER_NAME_EICR_REMEDIAL_APPOINTMENT_1 => 'Appointment Letter 1 (EICR REMEDIAL)',
+        LetterTemplateService::LETTER_NAME_EICR_REMEDIAL_APPOINTMENT_2 => 'Appointment Letter 2 (EICR REMEDIAL)',
+        LetterTemplateService::LETTER_NAME_EICR_REMEDIAL_APPOINTMENT_3 => 'Appointment Letter 3 (EICR REMEDIAL)',
         LetterTemplateService::LETTER_NAME_APPOINTMENT_LETTERS_APPOINTMENT => 'Letter',
     ],
 ];

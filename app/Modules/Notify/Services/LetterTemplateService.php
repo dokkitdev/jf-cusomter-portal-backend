@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Services;
+namespace App\Modules\Notify\Services;
 
-use App\Repositories\LetterTemplateRepository;
+use Illuminate\Contracts\Filesystem\Filesystem;
+use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\File\File;
 
 class LetterTemplateService
@@ -12,6 +13,7 @@ class LetterTemplateService
     public const GROUP_NAME_CHL_OTHER_LETTERS = 'chl_other_letters';
     public const GROUP_NAME_CHL_GAS_LETTERS = 'chl_gas_letters';
     public const GROUP_NAME_CHL_ELECTRIC_LETTERS = 'chl_electric_letters';
+    public const GROUP_NAME_EICR_REMEDIAL = 'eicr_remedial';
     public const GROUP_NAME_APPOINTMENT_LETTERS = 'appointment_letters';
 
     public const LETTER_NAME_PRIVATE_ANNUAL_CONTRACTS = 'private__annual_contracts';
@@ -28,6 +30,9 @@ class LetterTemplateService
     public const LETTER_NAME_CHL_ELECTRIC_LETTERS_APPOINTMENT_1 = 'chl_electric_letters__appointment_1';
     public const LETTER_NAME_CHL_ELECTRIC_LETTERS_APPOINTMENT_2 = 'chl_electric_letters__appointment_2';
     public const LETTER_NAME_CHL_ELECTRIC_LETTERS_APPOINTMENT_3 = 'chl_electric_letters__appointment_3';
+    public const LETTER_NAME_EICR_REMEDIAL_APPOINTMENT_1 = 'eicr_remedial__appointment_1';
+    public const LETTER_NAME_EICR_REMEDIAL_APPOINTMENT_2 = 'eicr_remedial__appointment_2';
+    public const LETTER_NAME_EICR_REMEDIAL_APPOINTMENT_3 = 'eicr_remedial__appointment_3';
     public const LETTER_NAME_APPOINTMENT_LETTERS_APPOINTMENT = 'appointment_letters__appointment';
 
     public const LETTER_NAMES = [
@@ -45,6 +50,9 @@ class LetterTemplateService
         self::LETTER_NAME_CHL_ELECTRIC_LETTERS_APPOINTMENT_1,
         self::LETTER_NAME_CHL_ELECTRIC_LETTERS_APPOINTMENT_2,
         self::LETTER_NAME_CHL_ELECTRIC_LETTERS_APPOINTMENT_3,
+        self::LETTER_NAME_EICR_REMEDIAL_APPOINTMENT_1,
+        self::LETTER_NAME_EICR_REMEDIAL_APPOINTMENT_2,
+        self::LETTER_NAME_EICR_REMEDIAL_APPOINTMENT_3,
         self::LETTER_NAME_APPOINTMENT_LETTERS_APPOINTMENT,
     ];
 
@@ -73,30 +81,35 @@ class LetterTemplateService
             self::LETTER_NAME_CHL_ELECTRIC_LETTERS_APPOINTMENT_2,
             self::LETTER_NAME_CHL_ELECTRIC_LETTERS_APPOINTMENT_3,
         ],
+        self::GROUP_NAME_EICR_REMEDIAL => [
+            self::LETTER_NAME_EICR_REMEDIAL_APPOINTMENT_1,
+            self::LETTER_NAME_EICR_REMEDIAL_APPOINTMENT_2,
+            self::LETTER_NAME_EICR_REMEDIAL_APPOINTMENT_3,
+        ],
         self::GROUP_NAME_APPOINTMENT_LETTERS => [
             self::LETTER_NAME_APPOINTMENT_LETTERS_APPOINTMENT,
         ],
     ];
 
-    protected LetterTemplateRepository $repository;
+    protected Filesystem $storage;
 
     public function __construct()
     {
-        $this->repository = app(LetterTemplateRepository::class);
+        $this->storage = Storage::disk('letter_templates');
     }
 
     public function exists(string $letterName): bool
     {
-        return $this->repository->exists($letterName);
+        return $this->storage->exists($letterName);
     }
 
     public function upload(string $letterName, File $file): void
     {
-        $this->repository->putTemplateContent($letterName, $file);
+        $this->storage->putStream($letterName, fopen($file->getPathname(), 'r'));
     }
 
     public function getContent(string $letterName): string
     {
-        return $this->repository->getTemplateContent($letterName);
+        return $this->storage->get($letterName);
     }
 }

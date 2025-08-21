@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\LetterTemplates;
+namespace App\Modules\Notify\Http\Requests\LetterTemplates;
 
 use App\Http\Requests\Request;
 use App\Models\Role;
-use App\Services\LetterTemplateService;
+use App\Modules\Notify\Services\LetterTemplateService;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class UploadLetterTemplateRequest extends Request
@@ -17,7 +17,7 @@ class UploadLetterTemplateRequest extends Request
     public function rules(): array
     {
         return [
-            'file' => 'required|file|mimetypes:application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+            'file' => 'required|file',
         ];
     }
 

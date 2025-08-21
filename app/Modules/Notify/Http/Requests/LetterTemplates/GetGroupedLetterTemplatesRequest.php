@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\LetterTemplates;
+namespace App\Modules\Notify\Http\Requests\LetterTemplates;
 
 use App\Http\Requests\Request;
 use App\Models\Role;

@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Tests;
+namespace App\Tests\Notify;
 
 use App\Tests\Support\AssertStorageTrait;
+use App\Tests\TestCase;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\Response;
@@ -52,7 +53,7 @@ class LetterTemplateTest extends TestCase
             $this->actingAsById($userId);
         }
 
-        $response = $this->json('get', '/letter-templates');
+        $response = $this->json('get', '/notify/letter-templates');
 
         $response->assertStatus($statusCode);
 
@@ -130,7 +131,7 @@ class LetterTemplateTest extends TestCase
             $this->actingAsById($userId);
         }
 
-        $response = $this->json('post', "/letter-templates/{$templateName}/upload", [
+        $response = $this->json('post', "/notify/letter-templates/{$templateName}/upload", [
             'file' => $file,
         ]);
 
@@ -226,7 +227,7 @@ class LetterTemplateTest extends TestCase
             $this->actingAsById($userId);
         }
 
-        $response = $this->json('post', "/letter-templates/{$templateName}/download");
+        $response = $this->json('get', "/notify/letter-templates/{$templateName}/download");
 
         $response->assertStatus($statusCode);
 

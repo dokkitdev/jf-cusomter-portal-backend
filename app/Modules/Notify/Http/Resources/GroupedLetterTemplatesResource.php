@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Modules\Notify\Http\Resources;
+
+use App\Http\Resources\BaseResource;
 
 /**
  * @property array $resource
@@ -14,14 +16,14 @@ class GroupedLetterTemplatesResource extends BaseResource
 
         foreach ($this->resource as $groupName => $letterNames) {
             $group = [
-                'group_label' => __("letter_templates.groups.{$groupName}"),
+                'group_label' => __("notify::letter_templates.groups.{$groupName}"),
                 'letter_templates' => [],
             ];
 
             foreach ($letterNames as $letterName) {
                 $group['letter_templates'][] = [
                     'name' => $letterName,
-                    'label' => __("letter_templates.letter_names.{$letterName}"),
+                    'label' => __("notify::letter_templates.letter_names.{$letterName}"),
                 ];
             }
 

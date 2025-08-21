@@ -19,6 +19,9 @@ use Carbon\Carbon;
  */
 class NotifyReport extends BaseModel
 {
+    public const REPORT_TYPE_WAREHOUSE_PROJECT = 'warehouse_project';
+    public const REPORT_TYPE_WAREHOUSE_SERVICE = 'warehouse_service';
+
     protected $fillable = [
         'report_type',
         'letters_generated',

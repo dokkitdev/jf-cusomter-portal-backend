@@ -31,7 +31,7 @@ class CreateWarehouseReportRequest extends Request
 
     protected function checkNoInProgressReports(): void
     {
-        $existsNotFinished = app(NotifyReportService::class)->existsNotFinished([
+        $existsNotFinished = app(NotifyReportService::class)->existsNotFinishedByReportTypes([
             NotifyReport::REPORT_TYPE_WAREHOUSE_PROJECT,
             NotifyReport::REPORT_TYPE_WAREHOUSE_SERVICE,
         ]);

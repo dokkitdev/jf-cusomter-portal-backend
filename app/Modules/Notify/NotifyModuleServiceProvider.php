@@ -15,6 +15,8 @@ class NotifyModuleServiceProvider extends BaseServiceProvider
         $this->loadTranslationsFrom(__DIR__ . '/Lang', 'notify');
 
         $this->loadRoutesFrom(__DIR__ . '/routes.php');
+
+        $this->loadMigrationsFrom(__DIR__ . '/DB/Migrations');
     }
 
     public function register(): void

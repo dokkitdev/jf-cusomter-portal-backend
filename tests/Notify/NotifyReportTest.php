@@ -98,4 +98,65 @@ class NotifyReportTest extends TestCase
 
         $this->assertEqualsFixture($responseFixture, $response->json());
     }
+
+    /*************************************
+     *       DOWNLOAD LETTERS PDF        *
+     *************************************/
+
+    public function getDataTestDownloadLettersPdf(): array
+    {
+        return [
+            [
+                'userId' => 101,
+                'reportId' => 202,
+                'statusCode' => Response::HTTP_OK,
+                'responseFixture' => 'success__response.pdf',
+            ],
+            [
+                'userId' => 102,
+                'reportId' => 202,
+                'statusCode' => Response::HTTP_FORBIDDEN,
+                'responseFixture' => 'not_admin__response.json',
+            ],
+            [
+                'userId' => 101,
+                'reportId' => 999,
+                'statusCode' => Response::HTTP_NOT_FOUND,
+                'responseFixture' => 'report_not_found__response.pdf',
+            ],
+            [
+                'userId' => 101,
+                'reportId' => 203,
+                'statusCode' => Response::HTTP_NOT_FOUND,
+                'responseFixture' => 'report_not_finished__response.pdf',
+            ],
+            [
+                'userId' => null,
+                'reportId' => 202,
+                'statusCode' => Response::HTTP_UNAUTHORIZED,
+                'responseFixture' => 'no_auth__response.pdf',
+            ],
+        ];
+    }
+
+    /**
+     * @dataProvider getDataTestDownloadLettersPdf
+     * @testCase download_letters_pdf
+     */
+    public function testDownloadLettersPdf(?int $userId, int $reportId, int $statusCode, string $responseFixture): void
+    {
+        if (isset($userId)) {
+            $this->actingAsById($userId);
+        }
+
+        $response = $this->json('get', "/notify/reports/{$reportId}/letters");
+
+        $response->assertStatus($statusCode);
+
+        if ($statusCode === Response::HTTP_OK) {
+            $this->assertEqualsFixture($responseFixture, $response->getContent());
+        } else {
+            $this->assertEqualsFixture($responseFixture, $response->json());
+        }
+    }
 }

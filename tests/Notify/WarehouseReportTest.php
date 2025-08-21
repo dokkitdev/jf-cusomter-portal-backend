@@ -4,6 +4,8 @@ namespace App\Tests\Notify;
 
 use App\Modules\Notify\Jobs\WarehouseReportJob;
 use App\Tests\TestCase;
+use Carbon\Carbon;
+use Illuminate\Contracts\Bus\Dispatcher;
 use Illuminate\Support\Facades\Queue;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -97,6 +99,7 @@ class WarehouseReportTest extends TestCase
                 $this->assertEquals(204, $job->getWarehouseProjectReportId());
                 $this->assertEquals(205, $job->getWarehouseServiceReportId());
                 $this->assertEquals(1, $job->getDaysCount());
+                $this->assertEquals(Carbon::parse('2018-11-11 11:12:11'), $job->delay);
 
                 return true;
             });
@@ -114,5 +117,19 @@ class WarehouseReportTest extends TestCase
                 $this->assertChangesEqualsFixture($table, $fixture);
             }
         }
+    }
+
+    /*************************************
+     *             GENERATE              *
+     *************************************/
+
+    /**
+     * @testCase generate
+     */
+    public function testGenerate(): void
+    {
+        app(Dispatcher::class)->dispatchNow(new WarehouseReportJob(1, 204, 206));
+
+        $this->assertChangesEqualsFixture('notify_reports', 'db_changes__notify_reports.json');
     }
 }

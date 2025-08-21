@@ -81,6 +81,23 @@
         ]
     },
     {
+        "group_label": "Electric – EICR renewal work",
+        "letter_templates": [
+            {
+                "name": "eicr_remedial__appointment_1",
+                "label": "Appointment Letter 1 (EICR REMEDIAL)"
+            },
+            {
+                "name": "eicr_remedial__appointment_2",
+                "label": "Appointment Letter 2 (EICR REMEDIAL)"
+            },
+            {
+                "name": "eicr_remedial__appointment_3",
+                "label": "Appointment Letter 3 (EICR REMEDIAL)"
+            }
+        ]
+    },
+    {
         "group_label": "Appointment letter",
         "letter_templates": [
             {

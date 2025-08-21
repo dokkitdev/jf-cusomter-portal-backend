@@ -14,5 +14,6 @@ Route::group(['middleware' => ['api', 'auth']], function () {
         Route::post('/reports/warehouse', ['uses' => WarehouseReportController::class . '@create']);
 
         Route::get('/reports', ['uses' => NotifyReportController::class . '@search']);
+        Route::get('/reports/{id}/letters', ['uses' => NotifyReportController::class . '@downloadLettersPdf']);
     });
 });

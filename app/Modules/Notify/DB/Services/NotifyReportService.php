@@ -25,4 +25,10 @@ class NotifyReportService extends BaseService
             ->searchQuery($filters)
             ->getSearchResults();
     }
+
+    public function getLettersPdfFilePath(int $id): string
+    {
+        //TODO: implement
+        return storage_path('report_letters_pdf_sample.pdf');
+    }
 }

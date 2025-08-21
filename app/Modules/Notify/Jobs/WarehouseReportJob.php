@@ -3,6 +3,7 @@
 namespace App\Modules\Notify\Jobs;
 
 use App\Jobs\AbstractJob;
+use App\Modules\Notify\Services\WarehouseReportService;
 
 class WarehouseReportJob extends AbstractJob
 {
@@ -21,6 +22,11 @@ class WarehouseReportJob extends AbstractJob
 
     public function handle()
     {
+        app(WarehouseReportService::class)->generateReport(
+            $this->daysCount,
+            $this->warehouseProjectReportId,
+            $this->warehouseServiceReportId,
+        );
     }
     
     public function getDaysCount(): int

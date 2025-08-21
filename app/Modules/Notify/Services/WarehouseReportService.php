@@ -5,6 +5,7 @@ namespace App\Modules\Notify\Services;
 use App\Modules\Notify\DB\Models\NotifyReport;
 use App\Modules\Notify\DB\Services\NotifyReportService;
 use App\Modules\Notify\Jobs\WarehouseReportJob;
+use Illuminate\Support\Carbon;
 
 class WarehouseReportService
 {
@@ -29,6 +30,22 @@ class WarehouseReportService
             'is_finished' => false,
         ]);
 
-        dispatch(new WarehouseReportJob($daysCount, $warehouseProjectReport->id, $warehouseServiceReport->id));
+        $job = new WarehouseReportJob($daysCount, $warehouseProjectReport->id, $warehouseServiceReport->id);
+
+        //TODO: remove after report generation is implemented
+        $job->delay(Carbon::now()->addMinute());
+
+        dispatch($job);
+    }
+
+    public function generateReport(int $daysCount, int $warehouseProjectReportId, int $warehouseServiceReportId): void
+    {
+        $this->notifyReportService->update($warehouseProjectReportId, [
+            'is_finished' => true,
+        ]);
+
+        $this->notifyReportService->update($warehouseServiceReportId, [
+            'is_finished' => true,
+        ]);
     }
 }

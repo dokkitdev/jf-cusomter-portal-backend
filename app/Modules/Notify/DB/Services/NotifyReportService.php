@@ -4,6 +4,7 @@ namespace App\Modules\Notify\DB\Services;
 
 use App\Modules\Notify\DB\Repositories\NotifyReportRepository;
 use App\Services\BaseService;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 /**
  * @property NotifyReportRepository $repository
@@ -16,5 +17,12 @@ class NotifyReportService extends BaseService
         parent::__construct();
 
         $this->setRepository(NotifyReportRepository::class);
+    }
+
+    public function search(array $filters): LengthAwarePaginator
+    {
+        return $this
+            ->searchQuery($filters)
+            ->getSearchResults();
     }
 }

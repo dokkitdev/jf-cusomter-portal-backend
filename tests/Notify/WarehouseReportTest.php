@@ -130,6 +130,18 @@ class WarehouseReportTest extends TestCase
     {
         app(Dispatcher::class)->dispatchNow(new WarehouseReportJob(1, 204, 206));
 
-        $this->assertChangesEqualsFixture('notify_reports', 'db_changes__notify_reports.json');
+        $this->assertChangesEqualsFixture('notify_reports', 'success__db_changes__notify_reports.json');
+    }
+
+    /**
+     * @testCase generate
+     */
+    public function testGenerateFailed(): void
+    {
+        $job = new WarehouseReportJob(1, 204, 206);
+
+        $job->failed();
+
+        $this->assertChangesEqualsFixture('notify_reports', 'job_failed__db_changes__notify_reports.json');
     }
 }

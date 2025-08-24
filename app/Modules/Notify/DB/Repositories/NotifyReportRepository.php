@@ -15,11 +15,19 @@ class NotifyReportRepository extends BaseRepository
         $this->setModel(NotifyReport::class);
     }
 
-    public function existsNotFinished(array $reportTypes): bool
+    public function existsNotFinishedByReportTypes(array $reportTypes): bool
     {
         return $this->getQuery()
             ->whereIn('report_type', $reportTypes)
             ->where('is_finished', false)
+            ->exists();
+    }
+
+    public function existsFinishedById(int $id): bool
+    {
+        return $this->getQuery()
+            ->where('id', $id)
+            ->where('is_finished', true)
             ->exists();
     }
 }

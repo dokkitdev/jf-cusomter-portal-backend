@@ -48,4 +48,10 @@ class WarehouseReportService
             'is_finished' => true,
         ]);
     }
+
+    public function failedReportGeneration(int $warehouseProjectReportId, int $warehouseServiceReportId): void
+    {
+        $this->notifyReportService->delete($warehouseProjectReportId);
+        $this->notifyReportService->delete($warehouseServiceReportId);
+    }
 }

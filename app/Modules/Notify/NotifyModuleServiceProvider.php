@@ -12,7 +12,7 @@ class NotifyModuleServiceProvider extends BaseServiceProvider
 
         config(['filesystems.disks.letter_templates' => config('notify.storage.letter_templates')]);
 
-        $this->loadTranslationsFrom(__DIR__ . '/Lang', 'notify');
+        $this->loadTranslationsFrom(__DIR__ . '/Resources/Lang', 'notify');
 
         $this->loadRoutesFrom(__DIR__ . '/routes.php');
 

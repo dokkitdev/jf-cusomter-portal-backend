@@ -1,0 +1,46 @@
+{
+    "updated": [],
+    "created": [
+        {
+            "id": 1,
+            "parsing_type": "warehouse_report",
+            "parsing_date": "2018-11-12",
+            "total_count": 8,
+            "success_count": 6,
+            "ids": [
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18
+            ],
+            "error_reasons": [
+                {
+                    "job_id": 11,
+                    "reason": "warehouse_report_unknown_job_stage"
+                },
+                {
+                    "job_id": 12,
+                    "reason": "warehouse_report_unknown_job_type"
+                }
+            ],
+            "created_at": "2018-11-11 11:11:11",
+            "updated_at": "2018-11-11 11:11:11"
+        },
+        {
+            "id": 2,
+            "parsing_type": "warehouse_report",
+            "parsing_date": "2018-11-13",
+            "total_count": 0,
+            "success_count": 0,
+            "ids": [],
+            "error_reasons": [],
+            "created_at": "2018-11-11 11:11:11",
+            "updated_at": "2018-11-11 11:11:11"
+        }
+    ],
+    "deleted": []
+}

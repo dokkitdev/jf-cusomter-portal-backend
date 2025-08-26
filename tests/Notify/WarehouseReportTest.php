@@ -6,7 +6,6 @@ use App\Modules\Notify\Jobs\WarehouseReportJob;
 use App\Tests\Support\AssertPdfTrait;
 use App\Tests\Support\MockHttpRequestServiceTrait;
 use App\Tests\TestCase;
-use Carbon\Carbon;
 use Illuminate\Contracts\Bus\Dispatcher;
 use Illuminate\Support\Facades\Queue;
 use Illuminate\Support\Facades\Storage;
@@ -19,6 +18,7 @@ class WarehouseReportTest extends TestCase
 
     protected array $requiredOriginStates = [
         'notify_reports',
+        'parsing_logs',
     ];
 
     public function setUp(): void
@@ -175,6 +175,7 @@ class WarehouseReportTest extends TestCase
                 'serviceReportPdfFixture' => 'success__exists_data__pdf_service.pdf',
                 'dbChanges' => [
                     'notify_reports' => 'success__exists_data__db_changes__notify_reports.json',
+                    'parsing_logs' => 'success__exists_data__db_changes__parsing_logs.json',
                 ],
             ],
             [
@@ -183,6 +184,7 @@ class WarehouseReportTest extends TestCase
                 'serviceReportPdfFixture' => 'success__no_data__pdf_service.pdf',
                 'dbChanges' => [
                     'notify_reports' => 'success__no_data__db_changes__notify_reports.json',
+                    'parsing_logs' => 'success__no_data__db_changes__parsing_logs.json',
                 ],
             ],
         ];
@@ -218,5 +220,6 @@ class WarehouseReportTest extends TestCase
         $job->failed();
 
         $this->assertChangesEqualsFixture('notify_reports', 'job_failed__db_changes__notify_reports.json');
+        $this->assertNoChanges('parsing_logs');
     }
 }

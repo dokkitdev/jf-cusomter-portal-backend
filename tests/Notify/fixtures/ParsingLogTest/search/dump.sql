@@ -1,0 +1,5 @@
+INSERT INTO parsing_logs (id, parsing_type, parsing_date, total_count, success_count, ids, error_reasons, created_at, updated_at) VALUES
+(201, 'warehouse_report', '2018-10-11', 3, 1, '[1, 2, 3]', '[{"job_id": 1, "reason": "warehouse_report_unknown_job_stage"}, {"job_id": 2, "reason": "warehouse_report_unknown_job_type"}]', '2018-10-10 10:10:10', '2018-10-10 11:10:10'),
+(202, 'warehouse_report', '2018-10-12', 3, 1, '[1, 2, 3]', '[{"job_id": 1, "reason": "warehouse_report_unknown_job_stage"}, {"job_id": 2, "reason": "warehouse_report_unknown_job_type"}]', '2018-10-10 10:10:10', '2018-10-10 11:10:10'),
+(203, 'warehouse_report', '2018-10-13', 3, 1, '[1, 2, 3]', '[{"job_id": 1, "reason": "warehouse_report_unknown_job_stage"}, {"job_id": 2, "reason": "warehouse_report_unknown_job_type"}]', '2018-10-10 10:10:10', '2018-10-10 11:10:10'),
+(204, 'warehouse_report', '2018-10-14', 3, 1, '[1, 2, 3]', '[{"job_id": 1, "reason": "warehouse_report_unknown_job_stage"}, {"job_id": 2, "reason": "warehouse_report_unknown_job_type"}]', '2018-10-10 10:10:10', '2018-10-10 11:10:10');

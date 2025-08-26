@@ -4,11 +4,13 @@ namespace App\Modules\Notify\Services;
 
 use App\Modules\Notify\ApiClients\NotifySimproApiClient;
 use App\Modules\Notify\DB\Models\NotifyReport;
+use App\Modules\Notify\DB\Models\ParsingLog;
 use App\Modules\Notify\DB\Services\NotifyReportService;
+use App\Modules\Notify\DB\Services\ParsingLogService;
 use App\Modules\Notify\Jobs\WarehouseReportJob;
 use Carbon\Carbon;
-use Carbon\CarbonInterface;
 use Carbon\CarbonPeriod;
+use DateTimeImmutable;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\View;
@@ -17,11 +19,13 @@ class WarehouseReportService
 {
     protected NotifyReportService $notifyReportService;
     protected NotifySimproApiClient $notifySimproApiClient;
+    protected ParsingLogService $parsingLogService;
 
     public function __construct()
     {
         $this->notifyReportService = app(NotifyReportService::class);
         $this->notifySimproApiClient = app(NotifySimproApiClient::class);
+        $this->parsingLogService = app(ParsingLogService::class);
     }
 
     public function initReportGeneration(int $daysCount): void
@@ -51,7 +55,7 @@ class WarehouseReportService
         $reportData = [];
 
         foreach ($period as $date) {
-            $reportJobs = $this->parseSchedulesByDate($date);
+            $reportJobs = $this->parseSchedulesByDate(DateTimeImmutable::createFromMutable($date->toDateTime()));
 
             $reportData[] = [
                 'date' => $date,
@@ -137,20 +141,34 @@ class WarehouseReportService
      *      ...
      * ]
      */
-    protected function parseSchedulesByDate(CarbonInterface $date): array
+    protected function parseSchedulesByDate(DateTimeImmutable $date): array
     {
+        $totalJobsCount = 0;
+        $successJobsCount = 0;
+        $jobIds = [];
+        $errorReasons = [];
+
         $reportJobs = [];
 
         $schedules = $this->notifySimproApiClient->getSchedulesByDate($date);
 
         foreach ($schedules as $schedule) {
-            $jobId = Arr::first(explode('-', $schedule['Reference']));
+            $jobId = (int) Arr::first(explode('-', $schedule['Reference']));
+
+            $totalJobsCount++;
+            $jobIds[] = $jobId;
 
             $job = $this->notifySimproApiClient->getJob($jobId);
 
-            if (!$this->parseJobErrors($job)) {
+            $jobErrors = $this->parseJobErrors($job);
+
+            if (!empty($jobErrors)) {
+                $errorReasons = array_merge($errorReasons, $jobErrors);
+
                 continue;
             }
+
+            $successJobsCount++;
 
             $reportJobs[$jobId] = [
                 'id' => $jobId,
@@ -188,21 +206,36 @@ class WarehouseReportService
             }
         }
 
+        $this->parsingLogService->create([
+            'parsing_type' => ParsingLog::PARSING_TYPE_WAREHOUSE_REPORT,
+            'parsing_date' => $date,
+            'total_count' => $totalJobsCount,
+            'success_count' => $successJobsCount,
+            'ids' => $jobIds,
+            'error_reasons' => $errorReasons,
+        ]);
+
         return $reportJobs;
     }
 
-    protected function parseJobErrors(array $simproJob): bool
+    protected function parseJobErrors(array $simproJob): array
     {
-        $success = true;
+        $errorReasons = [];
 
         if (!in_array($simproJob['Stage'], [NotifySimproApiClient::JOB_STAGE_PENDING, NotifySimproApiClient::JOB_STAGE_PROGRESS])) {
-            $success = false;
+            $errorReasons[] = [
+                'job_id' => $simproJob['ID'],
+                'reason' => ParsingLog::ERROR_REASON_WAREHOUSE_REPORT_UNKNOWN_JOB_STAGE,
+            ];
         }
 
         if (!in_array($simproJob['Type'], [NotifySimproApiClient::JOB_TYPE_PROJECT, NotifySimproApiClient::JOB_TYPE_SERVICE])) {
-            $success = false;
+            $errorReasons[] = [
+                'job_id' => $simproJob['ID'],
+                'reason' => ParsingLog::ERROR_REASON_WAREHOUSE_REPORT_UNKNOWN_JOB_TYPE,
+            ];
         }
 
-        return $success;
+        return $errorReasons;
     }
 }

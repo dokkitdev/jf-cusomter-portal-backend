@@ -3,12 +3,20 @@
 namespace App\Tests\Notify;
 
 use App\Tests\TestCase;
+use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\Response;
 
 class NotifyReportTest extends TestCase
 {
     protected array $requiredOriginStates = [
     ];
+
+    public function setUp(): void
+    {
+        parent::setUp();
+
+        Storage::fake('pdf_reports');
+    }
 
     /*************************************
      *              SEARCH               *
@@ -122,19 +130,19 @@ class NotifyReportTest extends TestCase
                 'userId' => 101,
                 'reportId' => 999,
                 'statusCode' => Response::HTTP_NOT_FOUND,
-                'responseFixture' => 'report_not_found__response.pdf',
+                'responseFixture' => 'report_not_found__response.json',
             ],
             [
                 'userId' => 101,
                 'reportId' => 203,
                 'statusCode' => Response::HTTP_NOT_FOUND,
-                'responseFixture' => 'report_not_finished__response.pdf',
+                'responseFixture' => 'report_not_finished__response.json',
             ],
             [
                 'userId' => null,
                 'reportId' => 202,
                 'statusCode' => Response::HTTP_UNAUTHORIZED,
-                'responseFixture' => 'no_auth__response.pdf',
+                'responseFixture' => 'no_auth__response.json',
             ],
         ];
     }
@@ -145,6 +153,8 @@ class NotifyReportTest extends TestCase
      */
     public function testDownloadLettersPdf(?int $userId, int $reportId, int $statusCode, string $responseFixture): void
     {
+        Storage::disk('pdf_reports')->put("{$reportId}.pdf", $this->getFixture('success__response.pdf'));
+
         if (isset($userId)) {
             $this->actingAsById($userId);
         }

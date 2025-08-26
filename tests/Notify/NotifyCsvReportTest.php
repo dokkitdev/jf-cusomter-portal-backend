@@ -3,12 +3,20 @@
 namespace App\Tests\Notify;
 
 use App\Tests\TestCase;
+use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\Response;
 
 class NotifyCsvReportTest extends TestCase
 {
     protected array $requiredOriginStates = [
     ];
+
+    public function setUp(): void
+    {
+        parent::setUp();
+
+        Storage::fake('csv_reports');
+    }
 
     /*************************************
      *              SEARCH               *
@@ -97,5 +105,70 @@ class NotifyCsvReportTest extends TestCase
         $response->assertOk();
 
         $this->assertEqualsFixture($responseFixture, $response->json());
+    }
+
+    /*************************************
+     *            DOWNLOAD CSV           *
+     *************************************/
+
+    public function getDataTestDownloadCsv(): array
+    {
+        return [
+            [
+                'userId' => 101,
+                'reportId' => 202,
+                'statusCode' => Response::HTTP_OK,
+                'responseFixture' => 'success__response.csv',
+            ],
+            [
+                'userId' => 102,
+                'reportId' => 202,
+                'statusCode' => Response::HTTP_FORBIDDEN,
+                'responseFixture' => 'not_admin__response.json',
+            ],
+            [
+                'userId' => 101,
+                'reportId' => 999,
+                'statusCode' => Response::HTTP_NOT_FOUND,
+                'responseFixture' => 'report_not_found__response.json',
+            ],
+            [
+                'userId' => 101,
+                'reportId' => 203,
+                'statusCode' => Response::HTTP_NOT_FOUND,
+                'responseFixture' => 'report_not_finished__response.json',
+            ],
+            [
+                'userId' => null,
+                'reportId' => 202,
+                'statusCode' => Response::HTTP_UNAUTHORIZED,
+                'responseFixture' => 'no_auth__response.json',
+            ],
+        ];
+    }
+
+    /**
+     * @dataProvider getDataTestDownloadCsv
+     * @testCase download_csv
+     */
+    public function testDownloadLCsv(?int $userId, int $reportId, int $statusCode, string $responseFixture): void
+    {
+        Storage::disk('csv_reports')->put("{$reportId}.csv", $this->getFixture('success__response.csv'));
+
+        if (isset($userId)) {
+            $this->actingAsById($userId);
+        }
+
+        $response = $this->json('get', "/notify/csv-reports/{$reportId}/download");
+
+        $response->assertStatus($statusCode);
+
+        if ($statusCode === Response::HTTP_OK) {
+            $this->assertEqualsTextFixture($responseFixture, $response->baseResponse->getFile()->getContent());
+            $response->assertHeader('Content-Type', 'text/csv');
+            $response->assertHeader('Content-Disposition', 'attachment; filename="file_02.csv"');
+        } else {
+            $this->assertEqualsFixture($responseFixture, $response->json());
+        }
     }
 }

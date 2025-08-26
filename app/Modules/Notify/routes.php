@@ -1,6 +1,7 @@
 <?php
 
 use App\Modules\Notify\Http\Controllers\LetterTemplateController;
+use App\Modules\Notify\Http\Controllers\NotifyCsvReportController;
 use App\Modules\Notify\Http\Controllers\NotifyReportController;
 use App\Modules\Notify\Http\Controllers\ParsingLogController;
 use App\Modules\Notify\Http\Controllers\WarehouseReportController;
@@ -16,6 +17,9 @@ Route::group(['middleware' => ['api', 'auth']], function () {
 
         Route::get('/reports', ['uses' => NotifyReportController::class . '@search']);
         Route::get('/reports/{id}/letters', ['uses' => NotifyReportController::class . '@downloadLettersPdf']);
+
+        Route::get('/csv-reports', ['uses' => NotifyCsvReportController::class . '@search']);
+        Route::get('/csv-reports/{id}/download', ['uses' => NotifyCsvReportController::class . '@downloadCsvReport']);
 
         Route::get('/parsing-logs', ['uses' => ParsingLogController::class . '@search']);
     });

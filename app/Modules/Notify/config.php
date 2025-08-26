@@ -12,6 +12,10 @@ return [
             'driver' => 'local',
             'root' => storage_path('app/notify/pdf_reports'),
         ],
+        'csv_reports' => [
+            'driver' => 'local',
+            'root' => storage_path('app/notify/csv_reports'),
+        ],
     ],
 
     'simpro' => [

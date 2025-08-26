@@ -28,6 +28,14 @@ class WarehouseReportJob extends AbstractJob
             $this->warehouseServiceReportId,
         );
     }
+
+    public function failed(): void
+    {
+        app(WarehouseReportService::class)->failedReportGeneration(
+            $this->warehouseProjectReportId,
+            $this->warehouseServiceReportId,
+        );
+    }
     
     public function getDaysCount(): int
     {

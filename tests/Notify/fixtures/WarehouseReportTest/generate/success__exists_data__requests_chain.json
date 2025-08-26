@@ -1,0 +1,678 @@
+[
+    {
+        "request": {
+            "type": "get",
+            "url": "https://fake.notify.simpro.url/api/v1.0/companies/0/schedules/",
+            "data": {
+                "Type": "job",
+                "Date": "2018-11-12",
+                "pageSize": 250,
+                "page": 1
+            },
+            "headers": {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": "Bearer fake_notify_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": [
+                {
+                    "Reference": "11-any_data"
+                },
+                {
+                    "Reference": "12-any_data"
+                },
+                {
+                    "Reference": "13-any_data",
+                    "Staff": {"Name": "Engineer Name Job 13"}
+                },
+                {
+                    "Reference": "14-any_data",
+                    "Staff": {"Name": "Engineer Name Job 14"}
+                },
+                {
+                    "Reference": "15-any_data",
+                    "Staff": {"Name": "Engineer Name Job 15"}
+                },
+                {
+                    "Reference": "16-any_data",
+                    "Staff": {"Name": "Engineer Name Job 16"}
+                },
+                {
+                    "Reference": "17-any_data",
+                    "Staff": {"Name": "Engineer Name Job 17"}
+                },
+                {
+                    "Reference": "18-any_data",
+                    "Staff": {"Name": "Engineer Name Job 18"}
+                }
+            ],
+            "headers": {
+                "any": "headers"
+            }
+        }
+    },
+    {
+        "request": {
+            "type": "get",
+            "url": "https://fake.notify.simpro.url/api/v1.0/companies/0/jobs/11",
+            "data": {
+                "display": "all"
+            },
+            "headers": {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": "Bearer fake_notify_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": {
+                "ID": 11,
+                "Stage": "any_not_pending_or_progress",
+                "Type": "Service"
+            },
+            "headers": {
+                "any": "headers"
+            }
+        }
+    },
+    {
+        "request": {
+            "type": "get",
+            "url": "https://fake.notify.simpro.url/api/v1.0/companies/0/jobs/12",
+            "data": {
+                "display": "all"
+            },
+            "headers": {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": "Bearer fake_notify_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": {
+                "ID": 12,
+                "Stage": "Progress",
+                "Type": "any_not_project_or_service"
+            },
+            "headers": {
+                "any": "headers"
+            }
+        }
+    },
+    {
+        "request": {
+            "type": "get",
+            "url": "https://fake.notify.simpro.url/api/v1.0/companies/0/jobs/13",
+            "data": {
+                "display": "all"
+            },
+            "headers": {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": "Bearer fake_notify_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": {
+                "ID": 13,
+                "Stage": "Pending",
+                "Type": "Project",
+                "Site": {"Name": "Site Name Job 13"},
+                "Sections": []
+            },
+            "headers": {
+                "any": "headers"
+            }
+        }
+    },
+    {
+        "request": {
+            "type": "get",
+            "url": "https://fake.notify.simpro.url/api/v1.0/companies/0/jobs/14",
+            "data": {
+                "display": "all"
+            },
+            "headers": {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": "Bearer fake_notify_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": {
+                "ID": 14,
+                "Stage": "Progress",
+                "Type": "Service",
+                "Site": {"Name": "Site Name Job 14"},
+                "Sections": [
+                    {
+                        "ID": 141,
+                        "CostCenters": []
+                    },
+                    {
+                        "ID": 142,
+                        "CostCenters": []
+                    }
+                ]
+            },
+            "headers": {
+                "any": "headers"
+            }
+        }
+    },
+    {
+        "request": {
+            "type": "get",
+            "url": "https://fake.notify.simpro.url/api/v1.0/companies/0/jobs/15",
+            "data": {
+                "display": "all"
+            },
+            "headers": {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": "Bearer fake_notify_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": {
+                "ID": 15,
+                "Stage": "Progress",
+                "Type": "Service",
+                "Site": {"Name": "Site Name Job 1005"},
+                "Sections": [
+                    {
+                        "ID": 151,
+                        "CostCenters": [
+                            {
+                                "ID": 1511,
+                                "Total": {"ExTax": 0}
+                            },
+                            {
+                                "ID": 1512,
+                                "Total": {"ExTax": 0}
+                            }
+                        ]
+                    }
+                ]
+            },
+            "headers": {
+                "any": "headers"
+            }
+        }
+    },
+    {
+        "request": {
+            "type": "get",
+            "url": "https://fake.notify.simpro.url/api/v1.0/companies/0/jobs/16",
+            "data": {
+                "display": "all"
+            },
+            "headers": {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": "Bearer fake_notify_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": {
+                "ID": 16,
+                "Stage": "Progress",
+                "Type": "Project",
+                "Site": {"Name": "Site Name Job 16"},
+                "Sections": [
+                    {
+                        "ID": 161,
+                        "CostCenters": [
+                            {
+                                "ID": 1611,
+                                "Total": {"ExTax": 1}
+                            },
+                            {
+                                "ID": 1612,
+                                "Total": {"ExTax": 1}
+                            }
+                        ]
+                    },
+                    {
+                        "ID": 162,
+                        "CostCenters": [
+                            {
+                                "ID": 1621,
+                                "Total": {"ExTax": 1}
+                            }
+                        ]
+                    }
+                ]
+            },
+            "headers": {
+                "any": "headers"
+            }
+        }
+    },
+    {
+        "request": {
+            "type": "get",
+            "url": "https://fake.notify.simpro.url/api/v1.0/companies/0/jobs/16/sections/161/costCenters/1611/stock/",
+            "data": {
+                "pageSize": 250
+            },
+            "headers": {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": "Bearer fake_notify_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": [
+                {
+                    "ID": 16111,
+                    "Quantity": {
+                        "Required": 1,
+                        "Assigned": 2
+                    }
+                },
+                {
+                    "ID": 16112,
+                    "Quantity": {
+                        "Required": 2,
+                        "Assigned": 2
+                    }
+                },
+                {
+                    "ID": 16113,
+                    "Quantity": {
+                        "Required": 3,
+                        "Assigned": 2
+                    },
+                    "Catalog": {
+                        "ID": 161131,
+                        "Name": "Catalog Name 161131",
+                        "PartNo": "Part No 161131"
+                    }
+                },
+                {
+                    "ID": 16114,
+                    "Quantity": {
+                        "Required": 3,
+                        "Assigned": 0
+                    },
+                    "Catalog": {
+                        "ID": 161141,
+                        "Name": "Catalog Name 161141",
+                        "PartNo": "Part No 161141"
+                    }
+                }
+            ],
+            "headers": {
+                "any": "headers"
+            }
+        }
+    },
+    {
+        "request": {
+            "type": "get",
+            "url": "https://fake.notify.simpro.url/api/v1.0/companies/0/catalogs/161131",
+            "data": {
+            },
+            "headers": {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": "Bearer fake_notify_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": {
+                "StorageLocation": "Storage Location 161131"
+            },
+            "headers": {
+                "any": "headers"
+            }
+        }
+    },
+    {
+        "request": {
+            "type": "get",
+            "url": "https://fake.notify.simpro.url/api/v1.0/companies/0/catalogs/161141",
+            "data": {
+            },
+            "headers": {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": "Bearer fake_notify_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": {
+                "StorageLocation": "Storage Location 161141"
+            },
+            "headers": {
+                "any": "headers"
+            }
+        }
+    },
+    {
+        "request": {
+            "type": "get",
+            "url": "https://fake.notify.simpro.url/api/v1.0/companies/0/jobs/16/sections/161/costCenters/1612/stock/",
+            "data": {
+                "pageSize": 250
+            },
+            "headers": {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": "Bearer fake_notify_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": [
+                {
+                    "ID": 16121,
+                    "Quantity": {
+                        "Required": 4,
+                        "Assigned": 0
+                    },
+                    "Catalog": {
+                        "ID": 161211,
+                        "Name": "Catalog Name 161211",
+                        "PartNo": "Part No 161211"
+                    }
+                }
+            ],
+            "headers": {
+                "any": "headers"
+            }
+        }
+    },
+    {
+        "request": {
+            "type": "get",
+            "url": "https://fake.notify.simpro.url/api/v1.0/companies/0/catalogs/161211",
+            "data": {
+            },
+            "headers": {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": "Bearer fake_notify_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": {
+                "StorageLocation": "Storage Location 161211"
+            },
+            "headers": {
+                "any": "headers"
+            }
+        }
+    },
+    {
+        "request": {
+            "type": "get",
+            "url": "https://fake.notify.simpro.url/api/v1.0/companies/0/jobs/16/sections/162/costCenters/1621/stock/",
+            "data": {
+                "pageSize": 250
+            },
+            "headers": {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": "Bearer fake_notify_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": [
+            ],
+            "headers": {
+                "any": "headers"
+            }
+        }
+    },
+    {
+        "request": {
+            "type": "get",
+            "url": "https://fake.notify.simpro.url/api/v1.0/companies/0/jobs/17",
+            "data": {
+                "display": "all"
+            },
+            "headers": {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": "Bearer fake_notify_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": {
+                "ID": 17,
+                "Stage": "Progress",
+                "Type": "Project",
+                "Site": {"Name": "Site Name Job 17"},
+                "Sections": [
+                    {
+                        "ID": 171,
+                        "CostCenters": [
+                            {
+                                "ID": 1711,
+                                "Total": {"ExTax": 1}
+                            }
+                        ]
+                    }
+                ]
+            },
+            "headers": {
+                "any": "headers"
+            }
+        }
+    },
+    {
+        "request": {
+            "type": "get",
+            "url": "https://fake.notify.simpro.url/api/v1.0/companies/0/jobs/17/sections/171/costCenters/1711/stock/",
+            "data": {
+                "pageSize": 250
+            },
+            "headers": {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": "Bearer fake_notify_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": [
+                {
+                    "ID": 17111,
+                    "Quantity": {
+                        "Required": 1,
+                        "Assigned": 0
+                    },
+                    "Catalog": {
+                        "ID": 171111,
+                        "Name": "Catalog Name 171111",
+                        "PartNo": "Part No 171111"
+                    }
+                }
+            ],
+            "headers": {
+                "any": "headers"
+            }
+        }
+    },
+    {
+        "request": {
+            "type": "get",
+            "url": "https://fake.notify.simpro.url/api/v1.0/companies/0/catalogs/171111",
+            "data": {
+            },
+            "headers": {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": "Bearer fake_notify_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": {
+                "StorageLocation": "Storage Location 171111"
+            },
+            "headers": {
+                "any": "headers"
+            }
+        }
+    },
+    {
+        "request": {
+            "type": "get",
+            "url": "https://fake.notify.simpro.url/api/v1.0/companies/0/jobs/18",
+            "data": {
+                "display": "all"
+            },
+            "headers": {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": "Bearer fake_notify_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": {
+                "ID": 18,
+                "Stage": "Progress",
+                "Type": "Service",
+                "Site": {"Name": "Site Name Job 18"},
+                "Sections": [
+                    {
+                        "ID": 181,
+                        "CostCenters": [
+                            {
+                                "ID": 1811,
+                                "Total": {"ExTax": 1}
+                            }
+                        ]
+                    }
+                ]
+            },
+            "headers": {
+                "any": "headers"
+            }
+        }
+    },
+    {
+        "request": {
+            "type": "get",
+            "url": "https://fake.notify.simpro.url/api/v1.0/companies/0/jobs/18/sections/181/costCenters/1811/stock/",
+            "data": {
+                "pageSize": 250
+            },
+            "headers": {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": "Bearer fake_notify_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": [
+                {
+                    "ID": 18111,
+                    "Quantity": {
+                        "Required": 1,
+                        "Assigned": 0
+                    },
+                    "Catalog": {
+                        "ID": 181111,
+                        "Name": "Catalog Name 181111",
+                        "PartNo": "Part No 181111"
+                    }
+                }
+            ],
+            "headers": {
+                "any": "headers"
+            }
+        }
+    },
+    {
+        "request": {
+            "type": "get",
+            "url": "https://fake.notify.simpro.url/api/v1.0/companies/0/catalogs/181111",
+            "data": {
+            },
+            "headers": {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": "Bearer fake_notify_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": {
+                "StorageLocation": "Storage Location 181111"
+            },
+            "headers": {
+                "any": "headers"
+            }
+        }
+    },
+    {
+        "request": {
+            "type": "get",
+            "url": "https://fake.notify.simpro.url/api/v1.0/companies/0/schedules/",
+            "data": {
+                "Type": "job",
+                "Date": "2018-11-12",
+                "pageSize": 250,
+                "page": 2
+            },
+            "headers": {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": "Bearer fake_notify_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": [
+            ],
+            "headers": {
+                "any": "headers"
+            }
+        }
+    },
+    {
+        "request": {
+            "type": "get",
+            "url": "https://fake.notify.simpro.url/api/v1.0/companies/0/schedules/",
+            "data": {
+                "Type": "job",
+                "Date": "2018-11-13",
+                "pageSize": 250,
+                "page": 1
+            },
+            "headers": {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": "Bearer fake_notify_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": [],
+            "headers": {
+                "any": "headers"
+            }
+        }
+    }
+]

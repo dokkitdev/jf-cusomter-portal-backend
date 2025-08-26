@@ -3,7 +3,8 @@ version: '3'
 services:
 
   nginx:
-      image: ronasit/php-nginx-dev:7.4
+      build:
+        dockerfile: Dockerfile-local
       working_dir: /app
       command: >
         bash -c "chmod +x ./docker/entrypoint.sh && ./docker/entrypoint.sh && cd /opt/docker && supervisord"

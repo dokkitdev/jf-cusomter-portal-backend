@@ -56,11 +56,15 @@ tests:
     APP_URL: http://localhost
     DATA_COLLECTOR_KEY: jfCusomterPortal
     FAIL_EXPORT_JSON: "true"
-  image: ronasit/php-nginx:7.4
+  image: webdevops/php-nginx-dev:7.4
   services:
     - name: ronasit/postgres:12.5
       alias: pgsql_test
   script:
+    - wget -O/etc/apt/trusted.gpg.d/nginx.asc https://nginx.org/keys/nginx_signing.key
+    - printf "deb http://deb.debian.org/debian bullseye main contrib non-free\ndeb http://nginx.org/packages/debian/ bullseye nginx" > /etc/apt/sources.list
+    - apt-get update
+    - apt-get install -y default-jre libreoffice-java-common libreoffice-writer
     - composer install
     - php artisan jwt:secret --env=testing
     - php artisan key:generate --env=testing

@@ -1,0 +1,22 @@
+{
+    "updated": [],
+    "created": [],
+    "deleted": [
+        {
+            "id": 204,
+            "report_type": "warehouse_project",
+            "letters_generated": 0,
+            "is_finished": false,
+            "created_at": "2018-10-10 10:10:10",
+            "updated_at": "2018-10-10 10:10:10"
+        },
+        {
+            "id": 206,
+            "report_type": "warehouse_service",
+            "letters_generated": 0,
+            "is_finished": false,
+            "created_at": "2018-10-10 10:10:10",
+            "updated_at": "2018-10-10 10:10:10"
+        }
+    ]
+}

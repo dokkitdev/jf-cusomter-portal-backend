@@ -38,12 +38,7 @@ class WarehouseReportService
             'is_finished' => false,
         ]);
 
-        $job = new WarehouseReportJob($daysCount, $warehouseProjectReport->id, $warehouseServiceReport->id);
-
-        //TODO: remove after report generation is implemented
-        $job->delay(Carbon::now()->addMinute());
-
-        dispatch($job);
+        dispatch(new WarehouseReportJob($daysCount, $warehouseProjectReport->id, $warehouseServiceReport->id));;
     }
 
     public function generateReport(int $daysCount, int $warehouseProjectReportId, int $warehouseServiceReportId): void

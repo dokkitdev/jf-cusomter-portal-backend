@@ -106,7 +106,6 @@ class WarehouseReportTest extends TestCase
                 $this->assertEquals(204, $job->getWarehouseProjectReportId());
                 $this->assertEquals(205, $job->getWarehouseServiceReportId());
                 $this->assertEquals(1, $job->getDaysCount());
-                $this->assertEquals(Carbon::parse('2018-11-11 11:12:11'), $job->delay);
 
                 return true;
             });

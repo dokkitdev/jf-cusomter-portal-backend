@@ -1,0 +1,51 @@
+[
+    {
+        "request": {
+            "type": "get",
+            "url": "https://fake.notify.simpro.url/api/v1.0/companies/0/schedules/",
+            "data": {
+                "Type": "job",
+                "Date": "2018-11-12",
+                "pageSize": 250,
+                "page": 1
+            },
+            "headers": {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": "Bearer fake_notify_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": [
+            ],
+            "headers": {
+                "any": "headers"
+            }
+        }
+    },
+    {
+        "request": {
+            "type": "get",
+            "url": "https://fake.notify.simpro.url/api/v1.0/companies/0/schedules/",
+            "data": {
+                "Type": "job",
+                "Date": "2018-11-13",
+                "pageSize": 250,
+                "page": 1
+            },
+            "headers": {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": "Bearer fake_notify_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": [],
+            "headers": {
+                "any": "headers"
+            }
+        }
+    }
+]

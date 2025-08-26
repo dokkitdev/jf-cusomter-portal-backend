@@ -5,6 +5,7 @@ namespace App\Modules\Notify\DB\Services;
 use App\Modules\Notify\DB\Repositories\NotifyCsvReportRepository;
 use App\Services\BaseService;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * @property NotifyCsvReportRepository $repository
@@ -24,5 +25,10 @@ class NotifyCsvReportService extends BaseService
         return $this
             ->searchQuery($filters)
             ->getSearchResults();
+    }
+
+    public function getCsvFilePath(int $id): string
+    {
+        return Storage::disk('csv_reports')->path("{$id}.csv");
     }
 }

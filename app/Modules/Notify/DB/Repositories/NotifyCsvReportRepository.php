@@ -14,4 +14,12 @@ class NotifyCsvReportRepository extends BaseRepository
     {
         $this->setModel(NotifyCsvReport::class);
     }
+
+    public function existsFinishedById(int $id): bool
+    {
+        return $this->getQuery()
+            ->where('id', $id)
+            ->where('is_finished', true)
+            ->exists();
+    }
 }

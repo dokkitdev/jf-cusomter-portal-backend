@@ -19,6 +19,7 @@ Route::group(['middleware' => ['api', 'auth']], function () {
         Route::get('/reports/{id}/letters', ['uses' => NotifyReportController::class . '@downloadLettersPdf']);
 
         Route::get('/csv-reports', ['uses' => NotifyCsvReportController::class . '@search']);
+        Route::get('/csv-reports/{id}/download', ['uses' => NotifyCsvReportController::class . '@downloadCsvReport']);
 
         Route::get('/parsing-logs', ['uses' => ParsingLogController::class . '@search']);
     });

@@ -4,7 +4,7 @@ namespace App\Modules\Notify\ApiClients;
 
 use App\Modules\Notify\Exceptions\ApiClientException;
 use App\Services\HttpRequestService;
-use Carbon\CarbonInterface;
+use DateTimeImmutable;
 use Generator;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -25,7 +25,7 @@ class NotifySimproApiClient
         $this->httpRequestService = app(HttpRequestService::class);
     }
 
-    public function getSchedulesByDate(CarbonInterface $date): Generator
+    public function getSchedulesByDate(DateTimeImmutable $date): Generator
     {
         $page = 1;
 

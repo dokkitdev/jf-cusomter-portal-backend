@@ -1,0 +1,69 @@
+{
+    "data": [
+        {
+            "id": 202,
+            "parsing_type": "Warehouse",
+            "parsing_date": "2018-10-12",
+            "total_count": 3,
+            "success_count": 1,
+            "ids": [
+                1,
+                2,
+                3
+            ],
+            "error_reasons": [
+                "Job \"1\". Stage is not Pending or Progress",
+                "Job \"2\". Type is not Project or Service"
+            ],
+            "created_at": "2018-10-10T10:10:10.000000p",
+            "updated_at": "2018-10-10T11:10:10.000000p"
+        }
+    ],
+    "links": {
+        "first": "http:\/\/localhost\/notify\/parsing-logs?page=1",
+        "last": "http:\/\/localhost\/notify\/parsing-logs?page=4",
+        "prev": "http:\/\/localhost\/notify\/parsing-logs?page=1",
+        "next": "http:\/\/localhost\/notify\/parsing-logs?page=3"
+    },
+    "meta": {
+        "current_page": 2,
+        "from": 2,
+        "last_page": 4,
+        "links": [
+            {
+                "url": "http:\/\/localhost\/notify\/parsing-logs?page=1",
+                "label": "&laquo; Previous",
+                "active": false
+            },
+            {
+                "url": "http:\/\/localhost\/notify\/parsing-logs?page=1",
+                "label": "1",
+                "active": false
+            },
+            {
+                "url": "http:\/\/localhost\/notify\/parsing-logs?page=2",
+                "label": "2",
+                "active": true
+            },
+            {
+                "url": "http:\/\/localhost\/notify\/parsing-logs?page=3",
+                "label": "3",
+                "active": false
+            },
+            {
+                "url": "http:\/\/localhost\/notify\/parsing-logs?page=4",
+                "label": "4",
+                "active": false
+            },
+            {
+                "url": "http:\/\/localhost\/notify\/parsing-logs?page=3",
+                "label": "Next &raquo;",
+                "active": false
+            }
+        ],
+        "path": "http:\/\/localhost\/notify\/parsing-logs",
+        "per_page": 1,
+        "to": 2,
+        "total": 4
+    }
+}

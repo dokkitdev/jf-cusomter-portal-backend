@@ -2,6 +2,7 @@
 
 use App\Modules\Notify\Http\Controllers\LetterTemplateController;
 use App\Modules\Notify\Http\Controllers\NotifyReportController;
+use App\Modules\Notify\Http\Controllers\ParsingLogController;
 use App\Modules\Notify\Http\Controllers\WarehouseReportController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,5 +16,7 @@ Route::group(['middleware' => ['api', 'auth']], function () {
 
         Route::get('/reports', ['uses' => NotifyReportController::class . '@search']);
         Route::get('/reports/{id}/letters', ['uses' => NotifyReportController::class . '@downloadLettersPdf']);
+
+        Route::get('/parsing-logs', ['uses' => ParsingLogController::class . '@search']);
     });
 });

@@ -23,4 +23,8 @@ return [
         'base_url' => env('NOTIFY_SIMPRO_API_URL', 'https://fake.notify.simpro.url'),
         'company_id' => (int) env('NOTIFY_SIMPRO_COMPANY_ID', 0)
     ],
+
+    'zero_reports' => [
+        'job_customer_id' => (int) env('NOTIFY_ZERO_REPORTS_JOB_CUSTOMER_ID', 11514),
+    ],
 ];

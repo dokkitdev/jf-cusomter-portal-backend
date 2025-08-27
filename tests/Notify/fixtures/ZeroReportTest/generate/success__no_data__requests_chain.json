@@ -1,0 +1,28 @@
+[
+    {
+        "request": {
+            "type": "get",
+            "url": "https://fake.notify.simpro.url/api/v1.0/companies/0/jobs/",
+            "data": {
+                "DateIssued": "between(2018-10-10,2018-10-11)",
+                "Customer.ID": 11514,
+                "columns": "ID,OrderNo,DateIssued,Stage,Status,Total",
+                "pageSize": 250,
+                "page": 1
+            },
+            "headers": {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": "Bearer fake_notify_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": [
+            ],
+            "headers": {
+                "any": "headers"
+            }
+        }
+    }
+]

@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Foundation\Application;
 use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
@@ -45,6 +46,8 @@ abstract class TestCase extends BaseTestCase
     public function setUp(): void
     {
         parent::setUp();
+
+        Carbon::setTestNow($this->testNow);
 
         $this->setTestCase();
     }

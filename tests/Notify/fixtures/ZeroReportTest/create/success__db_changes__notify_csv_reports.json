@@ -1,0 +1,14 @@
+{
+    "updated": [],
+    "created": [
+        {
+            "id": 1,
+            "report_type": "zero",
+            "file_name": "CHL_ZeroValueJobs_201811121314.csv",
+            "is_finished": false,
+            "created_at": "2018-11-12 13:14:15",
+            "updated_at": "2018-11-12 13:14:15"
+        }
+    ],
+    "deleted": []
+}

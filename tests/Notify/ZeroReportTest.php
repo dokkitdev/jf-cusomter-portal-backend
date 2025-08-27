@@ -3,14 +3,19 @@
 namespace App\Tests\Notify;
 
 use App\Modules\Notify\Jobs\ZeroReportJob;
+use App\Tests\Support\MockHttpRequestServiceTrait;
 use App\Tests\TestCase;
 use Carbon\CarbonImmutable;
+use Illuminate\Bus\Dispatcher;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Queue;
+use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\Response;
 
 class ZeroReportTest extends TestCase
 {
+    use MockHttpRequestServiceTrait;
+
     protected array $requiredOriginStates = [
         'notify_csv_reports',
     ];
@@ -20,6 +25,7 @@ class ZeroReportTest extends TestCase
         parent::setUp();
 
         Queue::fake();
+        Storage::fake('csv_reports');
     }
 
     /*************************************
@@ -98,5 +104,67 @@ class ZeroReportTest extends TestCase
                 $this->assertChangesEqualsFixture($table, $fixture);
             }
         }
+    }
+
+    /*************************************
+     *             GENERATE              *
+     *************************************/
+
+    public function getDataTestGenerate(): array
+    {
+        /**
+         * Jobs:
+         *  11 - skip - Total.ExTax != 0
+         *  12 - check not archived status rendering
+         *  13 - check archived status rendering
+         *  14 - check Simpro API calls pagination
+         */
+        return [
+            [
+                'requestsChainFixture' => 'success__exists_data__requests_chain.json',
+                'reportCsvFixture' => 'success__exists_data__report.csv',
+                'dbChanges' => [
+                    'notify_csv_reports' => 'success__exists_data__db_changes__notify_csv_reports.json',
+                ],
+            ],
+            [
+                'requestsChainFixture' => 'success__no_data__requests_chain.json',
+                'reportCsvFixture' => 'success__no_data__report.csv',
+                'dbChanges' => [
+                    'notify_csv_reports' => 'success__no_data__db_changes__notify_csv_reports.json',
+                ],
+            ],
+        ];
+    }
+
+    /**
+     * @dataProvider getDataTestGenerate
+     * @testCase generate
+     */
+    public function testGenerate(string $requestsChainFixture, string $reportCsvFixture, array $dbChanges): void
+    {
+        $this->mockHttpRequestService($this->getJsonFixture($requestsChainFixture));
+
+        app(Dispatcher::class)->dispatchNow(new ZeroReportJob(CarbonImmutable::parse('2018-10-10'), CarbonImmutable::parse('2018-10-11'), 202));
+
+        $this->assertEquals(['202.csv'], Storage::disk('csv_reports')->allFiles());
+
+        $this->assertEqualsTextFixture($reportCsvFixture, Storage::disk('csv_reports')->get('202.csv'));
+
+        foreach ($dbChanges as $table => $fixture) {
+            $this->assertChangesEqualsFixture($table, $fixture);
+        }
+    }
+
+    /**
+     * @testCase generate
+     */
+    public function testGenerateFailed(): void
+    {
+        $job = new ZeroReportJob(CarbonImmutable::parse('2018-10-10'), CarbonImmutable::parse('2018-10-10'), 202);
+
+        $job->failed();
+
+        $this->assertChangesEqualsFixture('notify_csv_reports', 'job_failed__db_changes__notify_csv_reports.json');
     }
 }

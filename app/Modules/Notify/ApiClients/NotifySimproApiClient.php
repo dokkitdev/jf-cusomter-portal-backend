@@ -4,6 +4,7 @@ namespace App\Modules\Notify\ApiClients;
 
 use App\Modules\Notify\Exceptions\ApiClientException;
 use App\Services\HttpRequestService;
+use Carbon\CarbonImmutable;
 use DateTimeImmutable;
 use Generator;
 use Symfony\Component\HttpFoundation\Response;
@@ -12,6 +13,7 @@ class NotifySimproApiClient
 {
     public const JOB_STAGE_PENDING = 'Pending';
     public const JOB_STAGE_PROGRESS = 'Progress';
+    public const JOB_STAGE_ARCHIVED = 'Archived';
 
     public const JOB_TYPE_PROJECT = 'Project';
     public const JOB_TYPE_SERVICE = 'Service';
@@ -50,6 +52,34 @@ class NotifySimproApiClient
         return $this->apiCall('get', "/jobs/{$jobId}", [
             'display' => 'all',
         ]);
+    }
+
+    public function getJobsIssuedBetweenDates(CarbonImmutable $dateFrom, CarbonImmutable $dateTo, int $customerId): Generator
+    {
+        $page = 1;
+
+        do {
+            $jobs = $this->apiCall('get', '/jobs/', [
+                'DateIssued' => "between({$dateFrom->format('Y-m-d')},{$dateTo->format('Y-m-d')})",
+                'Customer.ID' => $customerId,
+                'columns' => implode(',', [
+                    'ID',
+                    'OrderNo',
+                    'DateIssued',
+                    'Stage',
+                    'Status',
+                    'Total',
+                ]),
+                'pageSize' => self::MAX_PAGE_SIZE,
+                'page' => $page,
+            ]);
+
+            foreach ($jobs as $job) {
+                yield $job;
+            }
+
+            $page++;
+        } while (!empty($jobs));
     }
 
     public function getCostCenterStock(int $jobId, int $sectionId, int $costCenterId): array

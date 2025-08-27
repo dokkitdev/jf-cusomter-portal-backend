@@ -3,6 +3,7 @@
 namespace App\Modules\Notify\Jobs;
 
 use App\Jobs\AbstractJob;
+use App\Modules\Notify\Services\ZeroReportService;
 use Carbon\CarbonImmutable;
 
 class ZeroReportJob extends AbstractJob
@@ -22,10 +23,12 @@ class ZeroReportJob extends AbstractJob
 
     public function handle()
     {
+        app(ZeroReportService::class)->generateReport($this->dateFrom, $this->dateTo, $this->csvReportId);
     }
 
     public function failed(): void
     {
+        app(ZeroReportService::class)->failedReportGeneration($this->csvReportId);
     }
     
     public function getDateFrom(): CarbonImmutable

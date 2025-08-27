@@ -10,8 +10,9 @@ class NotifyModuleServiceProvider extends BaseServiceProvider
     {
         $this->mergeConfigFrom(__DIR__ . '/config.php', 'notify');
 
-        config(['filesystems.disks.letter_templates' => config('notify.storage.letter_templates')]);
-        config(['filesystems.disks.pdf_reports' => config('notify.storage.pdf_reports')]);
+        foreach (config('notify.storage') as $disk => $config) {
+            config(["filesystems.disks.{$disk}" => $config]);
+        }
 
         $this->loadTranslationsFrom(__DIR__ . '/Resources/Lang', 'notify');
         $this->loadViewsFrom(__DIR__ . '/Resources/Views', 'notify');

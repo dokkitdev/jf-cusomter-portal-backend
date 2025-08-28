@@ -24,8 +24,8 @@ class ParsingLogResource extends BaseResource
             'success_count' => $this->resource->success_count,
             'ids' => $this->resource->ids,
             'error_reasons' => $this->renderErrorReasons($this->resource->parsing_type, $this->resource->error_reasons),
-            'created_at' => isset($createdAt) ? $createdAt->format(self::DATE_FORMAT) : null,
-            'updated_at' => isset($updatedAt) ? $updatedAt->format(self::DATE_FORMAT) : null,
+            'created_at' => $this->renderDate($this->resource->created_at),
+            'updated_at' => $this->renderDate($this->resource->updated_at)
         ];
     }
 

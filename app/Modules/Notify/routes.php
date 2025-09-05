@@ -3,6 +3,7 @@
 use App\Modules\Notify\Http\Controllers\LetterTemplateController;
 use App\Modules\Notify\Http\Controllers\NotifyCsvReportController;
 use App\Modules\Notify\Http\Controllers\NotifyReportController;
+use App\Modules\Notify\Http\Controllers\NotifySimproWebhookController;
 use App\Modules\Notify\Http\Controllers\ParsingLogController;
 use App\Modules\Notify\Http\Controllers\WarehouseReportController;
 use App\Modules\Notify\Http\Controllers\ZeroReportController;
@@ -24,5 +25,11 @@ Route::group(['middleware' => ['api', 'auth']], function () {
         Route::get('/csv-reports/{id}/download', ['uses' => NotifyCsvReportController::class . '@downloadCsvReport']);
 
         Route::get('/parsing-logs', ['uses' => ParsingLogController::class . '@search']);
+    });
+});
+
+Route::group(['middleware' => ['api', 'guest']], function () {
+    Route::prefix('/notify')->group(function () {
+        Route::post('/simpro-webhook', ['uses' => NotifySimproWebhookController::class . '@registerWebhook']);
     });
 });

@@ -1,0 +1,58 @@
+[
+    {
+        "request": {
+            "type": "get",
+            "url": "https://fake.notify.simpro.url/api/v1.0/companies/0/sites/11",
+            "data": {
+            },
+            "headers": {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": "Bearer fake_notify_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": {
+                "ID": 11,
+                "Customers": [
+                    {
+                        "ID": 999
+                    },
+                    {
+                        "ID": 11514
+                    },
+                    {
+                        "ID": 999
+                    }
+                ]
+            },
+            "headers": {
+                "any": "headers"
+            }
+        }
+    },
+    {
+        "request": {
+            "type": "get",
+            "url": "https://fake.notify.simpro.url/api/v1.0/companies/0/sites/11/assets/111",
+            "data": {
+            },
+            "headers": {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": "Bearer fake_notify_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": {
+                "ID": 111,
+                "Archived": true
+            },
+            "headers": {
+                "any": "headers"
+            }
+        }
+    }
+]

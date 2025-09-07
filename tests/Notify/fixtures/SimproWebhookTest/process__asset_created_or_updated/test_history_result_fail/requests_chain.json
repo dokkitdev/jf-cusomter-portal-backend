@@ -1,0 +1,270 @@
+[
+    {
+        "request": {
+            "type": "get",
+            "url": "https://fake.notify.simpro.url/api/v1.0/companies/0/sites/11",
+            "data": {
+            },
+            "headers": {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": "Bearer fake_notify_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": {
+                "ID": 11,
+                "Customers": [
+                    {"ID": 999},
+                    {"ID": 11514},
+                    {"ID": 999}
+                ],
+                "CustomFields": [
+                    {
+                        "CustomField": {
+                            "ID": 999
+                        },
+                        "Value": "Any Value"
+                    },
+                    {
+                        "CustomField": {
+                            "ID": 4,
+                            "Name": "Any Custom Field"
+                        },
+                        "Value": "site_uprn_value"
+                    },
+                    {
+                        "CustomField": {
+                            "ID": 999
+                        },
+                        "Value": "Any Value"
+                    }
+                ]
+            },
+            "headers": {
+                "any": "headers"
+            }
+        }
+    },
+    {
+        "request": {
+            "type": "get",
+            "url": "https://fake.notify.simpro.url/api/v1.0/companies/0/sites/11/assets/111",
+            "data": {
+            },
+            "headers": {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": "Bearer fake_notify_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": {
+                "ID": 111,
+                "Archived": false,
+                "StartDate": "2017-11-11",
+                "AssetType": {
+                    "Name": "asset_type_name"
+                },
+                "CustomFields": [
+                    {
+                        "CustomField": {
+                            "Name": "Type"
+                        },
+                        "Value": "asset_custom_field_type_value"
+                    },
+                    {
+                        "CustomField": {
+                            "Name": "any_strFuel Typeany_str"
+                        },
+                        "Value": "asset_custom_field_fuel_type_value"
+                    },
+                    {
+                        "CustomField": {
+                            "Name": "Make"
+                        },
+                        "Value": "asset_custom_field_make_value"
+                    },
+                    {
+                        "CustomField": {
+                            "Name": "Model"
+                        },
+                        "Value": "asset_custom_field_model_value"
+                    },
+                    {
+                        "CustomField": {
+                            "Name": "Last Years MOT Date"
+                        },
+                        "Value": "asset_custom_field_last_years_mot_date_value"
+                    },
+                    {
+                        "CustomField": {
+                            "Name": "Location"
+                        },
+                        "Value": "asset_custom_field_location_value"
+                    }
+                ]
+            },
+            "headers": {
+                "any": "headers"
+            }
+        }
+    },
+    {
+        "request": {
+            "type": "get",
+            "url": "https://fake.notify.simpro.url/api/v1.0/companies/0/sites/11/assets/111/serviceLevels/",
+            "data": {
+                "pageSize": 1
+            },
+            "headers": {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": "Bearer fake_notify_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": [
+                {
+                    "ServiceLevel": {
+                        "Name": "service_level_name"
+                    },
+                    "ServiceDate": "2020-11-11"
+                }
+            ],
+            "headers": {
+                "any": "headers"
+            }
+        }
+    },
+    {
+        "request": {
+            "type": "get",
+            "url": "https://fake.notify.simpro.url/api/v1.0/companies/0/sites/11/assets/111/testHistory/",
+            "data": {
+            },
+            "headers": {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": "Bearer fake_notify_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": [
+                {
+                    "Job": {
+                        "ID": 1111,
+                        "DueDate": "2019-11-11"
+                    },
+                    "TestRecord": {
+                        "Date": "9999-99-99",
+                        "Result": "Any Result"
+                    }
+                },
+                {
+                    "Job": {
+                        "ID": 1111,
+                        "DueDate": "9999-99-99"
+                    },
+                    "TestRecord": {
+                        "Date": "2018-11-10",
+                        "Result": "Fail"
+                    }
+                }
+            ],
+            "headers": {
+                "any": "headers"
+            }
+        }
+    },
+    {
+        "request": {
+            "type": "get",
+            "url": "https://fake.notify.simpro.url/api/v1.0/companies/0/jobs/1111",
+            "data": {
+                "display": "all"
+            },
+            "headers": {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": "Bearer fake_notify_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": {
+                "ID": 1111,
+                "Stage": "job_stage_value",
+                "Tags": [
+                    {"ID": 56},
+                    {"ID": 55},
+                    {"ID": 54},
+                    {"ID": 999}
+                ],
+                "CustomFields": [
+                    {
+                        "CustomField": {
+                            "Name": "Anu Custom Field"
+                        },
+                        "Value": "Any Value"
+                    },
+                    {
+                        "CustomField": {
+                            "Name": "Cancellation"
+                        },
+                        "Value": "job_custom_field_cancellation_value"
+                    },
+                    {
+                        "CustomField": {
+                            "Name": "Anu Custom Field"
+                        },
+                        "Value": "Any Value"
+                    }
+                ]
+            },
+            "headers": {
+                "any": "headers"
+            }
+        }
+    },
+    {
+        "request": {
+            "type": "get",
+            "url": "https://fake.notify.simpro.url/api/v1.0/companies/0/schedules/",
+            "data": {
+                "Reference": "1111-%",
+                "pageSize": 1
+            },
+            "headers": {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": "Bearer fake_notify_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": [
+                {
+                    "Date": "2018-11-09",
+                    "Blocks": [
+                        {
+                            "StartTime": "10:00",
+                            "EndTime": "11:30"
+                        },
+                        {
+                            "StartTime": "11:30",
+                            "EndTime": "13:00"
+                        }
+                    ]
+                }
+            ],
+            "headers": {
+                "any": "headers"
+            }
+        }
+    }
+]

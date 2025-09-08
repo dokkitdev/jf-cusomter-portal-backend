@@ -13,7 +13,17 @@ class NotifyAssetReportValidationsTableCreate extends Migration
             $table->integer('site_id');
             $table->integer('asset_id');
             $table->foreignId('asset_report_id');
-            $table->text('error');
+            $table->enum('error_type', [
+                'last_service_over_14_months',
+                'service_due_in_30_days',
+                'service_due_tomorrow',
+                'service_complete_outside_dude_date',
+                'no_uprn',
+                'no_fuel_type',
+                'no_asset_make',
+                'no_model',
+            ]);
+            $table->text('error_text');
             $table->string('uprn')->nullable();
             $table->string('fuel_type')->nullable();
             $table->string('asset_type')->nullable();

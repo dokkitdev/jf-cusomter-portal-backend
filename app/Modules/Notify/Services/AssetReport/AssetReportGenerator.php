@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\Notify\Services;
+namespace App\Modules\Notify\Services\AssetReport;
 
 use App\Modules\Notify\ApiClients\NotifySimproApiClient;
 use App\Modules\Notify\DB\Models\NotifyAssetReport;

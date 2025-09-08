@@ -3,7 +3,7 @@
 namespace App\Tests\Notify;
 
 use App\Modules\Notify\Jobs\ProcessSimproWebhookJob;
-use App\Modules\Notify\Services\AssetReportGenerator;
+use App\Modules\Notify\Services\AssetReport\AssetReportGenerator;
 use App\Modules\Notify\Services\SimproWebhooks\ProcessSimproWebhookAction;
 use App\Tests\Support\MockClassTrait;
 use App\Tests\Support\MockHttpRequestServiceTrait;

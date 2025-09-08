@@ -26,6 +26,7 @@ Route::group(['middleware' => ['api', 'auth']], function () {
         Route::get('/csv-reports/{id}/download', ['uses' => NotifyCsvReportController::class . '@downloadCsvReport']);
 
         Route::get('/asset-reports/validation', ['uses' => AssetReportValidationController::class . '@search']);
+        Route::get('/asset-reports/validation/search-filters', ['uses' => AssetReportValidationController::class . '@getSearchFilters']);
 
         Route::get('/parsing-logs', ['uses' => ParsingLogController::class . '@search']);
     });

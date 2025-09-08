@@ -4,7 +4,7 @@ namespace App\Modules\Notify\Services\SimproWebhooks;
 
 use App\Modules\Notify\DB\Models\NotifySimproWebhook;
 use App\Modules\Notify\DB\Services\NotifySimproWebhookService;
-use App\Modules\Notify\Services\AssetReportGenerator;
+use App\Modules\Notify\Services\AssetReport\AssetReportGenerator;
 
 class ProcessSimproWebhookAction
 {

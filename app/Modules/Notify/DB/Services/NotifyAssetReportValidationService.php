@@ -23,6 +23,11 @@ class NotifyAssetReportValidationService extends BaseService
     {
         return $this
             ->searchQuery($filters)
+            ->filterBy('site_id')
+            ->filterByList('service_level_name', 'service_level_names')
+            ->filterByList('asset_type', 'asset_types')
+            ->filterByList('job_stage', 'job_stages')
+            ->filterByList('error_type', 'error_types')
             ->getSearchResults();
     }
 }

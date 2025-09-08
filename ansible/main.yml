@@ -28,7 +28,7 @@ ssl: true
 # config for worker in supervisor
 supervisor_programs:
   - name: "worker"
-    command: php {{ remote_path }}/artisan queue:work --daemon --sleep=30 --backoff=60 --tries=3 --queue=mails,notify:process_simpro_webhook,notify:zero_report,notify:warehouse_report,sync_archived_assets:init,sync_archived_assets:process_page,sync_archived_assets:process_asset
+    command: php {{ remote_path }}/artisan queue:work --daemon --sleep=30 --backoff=60 --tries=3 --queue=mails,notify:process_simpro_webhook,notify:asset_report,notify:zero_report,notify:warehouse_report,sync_archived_assets:init,sync_archived_assets:process_page,sync_archived_assets:process_asset
     state: present
     configuration: |
       process_name=%(program_name)s_%(process_num)02d

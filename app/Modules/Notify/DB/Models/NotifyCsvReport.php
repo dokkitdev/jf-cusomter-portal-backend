@@ -20,6 +20,7 @@ use Carbon\Carbon;
 class NotifyCsvReport extends BaseModel
 {
     public const REPORT_TYPE_ZERO = 'zero';
+    public const REPORT_TYPE_ASSET = 'asset';
 
     protected $fillable = [
         'report_type',

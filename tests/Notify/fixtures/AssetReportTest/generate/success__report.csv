@@ -1,0 +1,10 @@
+"Site ID",~UPRN,AssetID,AssetType,Type,"Fuel Type",Make,Model,Location,"Last Service Date","Service Level Start Date","Job Due Date","Service Level Next Service Date","Job Stage","Service Level Name","Last MOT Date","Service Due","Next Scheduled Appointment Date","No Access Visits",Cancellations
+11,uprn_1,111,asset_type_1,type_1,fuel_type_1,make_1,model_1,location_1,2018-11-10,2017-11-11,2019-11-11,2020-11-11,Progress,service_level_name_1,last_mot_date_1,2019-11-11,"2018-11-11 10:00 - 11:30",no_access_visits_1,cancellation
+12,uprn_1,112,asset_type_1,type_1,fuel_type_1,make_1,model_1,location_1,2018-11-10,2017-11-11,,2020-11-11,"Any Not Progress Or Pending",service_level_name_1,last_mot_date_1,2020-11-11,"2018-11-11 10:00 - 11:30",no_access_visits_1,cancellation
+13,uprn_1,113,asset_type_1,type_1,fuel_type_1,make_1,model_1,location_1,2018-11-10,2017-11-11,,2020-11-11,Progress,service_level_name_1,last_mot_date_1,2020-11-11,"2018-11-11 10:00 - 11:30",no_access_visits_1,cancellation
+14,uprn_1,114,asset_type_1,type_1,fuel_type_1,make_1,model_1,location_1,2018-11-10,2017-11-11,,2020-11-11,,service_level_name_1,last_mot_date_1,2020-11-11,"2018-11-11 10:00 - 11:30",no_access_visits_1,
+15,uprn_1,115,asset_type_1,type_1,fuel_type_1,make_1,model_1,location_1,2018-11-10,2017-11-11,2019-11-11,2020-11-11,Progress,service_level_name_1,last_mot_date_1,2019-11-11,,no_access_visits_1,cancellation
+16,uprn_1,116,asset_type_1,type_1,fuel_type_1,make_1,model_1,location_1,2018-11-10,2017-11-11,2018-11-11,2020-11-11,Progress,service_level_name_1,last_mot_date_1,2020-11-11,"2018-11-11 10:00 - 11:30",no_access_visits_1,cancellation
+17,uprn_1,117,asset_type_1,type_1,fuel_type_1,make_1,model_1,location_1,2018-11-10,2017-11-11,,,Progress,service_level_name_1,last_mot_date_1,,"2018-11-11 10:00 - 11:30",no_access_visits_1,cancellation
+18,uprn_1,118,asset_type_1,type_1,fuel_type_1,make_1,model_1,location_1,,,2019-11-11,,Progress,service_level_name_1,last_mot_date_1,2019-11-11,"2018-11-11 10:00 - 11:30",no_access_visits_1,cancellation
+19,,119,,,,,,,,,,,,,,,,,

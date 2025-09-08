@@ -1,5 +1,6 @@
 <?php
 
+use App\Modules\Notify\Http\Controllers\AssetReportController;
 use App\Modules\Notify\Http\Controllers\AssetReportValidationController;
 use App\Modules\Notify\Http\Controllers\LetterTemplateController;
 use App\Modules\Notify\Http\Controllers\NotifyCsvReportController;
@@ -18,6 +19,7 @@ Route::group(['middleware' => ['api', 'auth']], function () {
 
         Route::post('/reports/warehouse', ['uses' => WarehouseReportController::class . '@create']);
         Route::post('/csv-reports/zero', ['uses' => ZeroReportController::class . '@create']);
+        Route::post('/csv-reports/asset', ['uses' => AssetReportController::class . '@create']);
 
         Route::get('/reports', ['uses' => NotifyReportController::class . '@search']);
         Route::get('/reports/{id}/letters', ['uses' => NotifyReportController::class . '@downloadLettersPdf']);

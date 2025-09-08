@@ -35,6 +35,17 @@ class NotifyAssetReportValidation extends BaseModel
     public const ERROR_TYPE_NO_ASSET_MAKE = 'no_asset_make';
     public const ERROR_TYPE_NO_MODEL = 'no_model';
 
+    public const ERROR_TYPES = [
+        self::ERROR_TYPE_LAST_SERVICE_OVER_14_MONTHS,
+        self::ERROR_TYPE_SERVICE_DUE_IN_30_DAYS,
+        self::ERROR_TYPE_SERVICE_DUE_TOMORROW,
+        self::ERROR_TYPE_SERVICE_COMPLETE_OUTSIDE_DUE_DATE,
+        self::ERROR_TYPE_NO_UPRN,
+        self::ERROR_TYPE_NO_FUEL_TYPE,
+        self::ERROR_TYPE_NO_ASSET_MAKE,
+        self::ERROR_TYPE_NO_MODEL,
+    ];
+
     protected $fillable = [
         'site_id',
         'asset_id',

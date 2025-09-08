@@ -20,6 +20,15 @@ class SearchAssetReportValidationsRequest extends Request
             'per_page' => 'filled|integer',
             'order_by' => 'filled|string|in:id,site_id,uprn,asset_id,asset_type,service_level_name,error',
             'desc' => 'filled|boolean',
+            'site_id' => 'filled|integer',
+            'service_level_names' => 'array',
+            'service_level_names.*' => 'required|string',
+            'asset_types' => 'array',
+            'asset_types.*' => 'required|string',
+            'job_stages' => 'array',
+            'job_stages.*' => 'required|string',
+            'error_types' => 'array',
+            'error_types.*' => 'required|string',
         ];
     }
 }

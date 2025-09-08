@@ -83,6 +83,36 @@ class AssetReportValidationTest extends TestCase
                 ],
                 'responseFixture' => 'search__order_by_desc__response.json',
             ],
+            [
+                'filters' => [
+                    'site_id' => 11,
+                ],
+                'responseFixture' => 'search__by_site_id__response.json',
+            ],
+            [
+                'filters' => [
+                    'error_types' => ['no_fuel_type', 'no_asset_make'],
+                ],
+                'responseFixture' => 'search__by_error_types__response.json',
+            ],
+            [
+                'filters' => [
+                    'asset_types' => ['asset_type_value_3', 'asset_type_value_4'],
+                ],
+                'responseFixture' => 'search__by_asset_types__response.json',
+            ],
+            [
+                'filters' => [
+                    'service_level_names' => ['service_level_name_4', 'service_level_name_5'],
+                ],
+                'responseFixture' => 'search__by_service_level_names__response.json',
+            ],
+            [
+                'filters' => [
+                    'job_stages' => ['job_stage_value_1', 'job_stage_value_3'],
+                ],
+                'responseFixture' => 'search__by_job_stages__response.json',
+            ],
         ];
     }
 

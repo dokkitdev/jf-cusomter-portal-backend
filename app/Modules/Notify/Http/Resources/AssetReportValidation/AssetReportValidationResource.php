@@ -20,7 +20,8 @@ class AssetReportValidationResource extends BaseResource
             'asset_type' => $this->resource->asset_type,
             'service_level_name' => $this->resource->service_level_name,
             'job_stage' => $this->resource->job_stage,
-            'error' => $this->resource->error,
+            'error_type' => $this->resource->error_type,
+            'error_text' => $this->resource->error_text,
             'created_at' => $this->renderDate($this->resource->created_at),
             'updated_at' => $this->renderDate($this->resource->updated_at),
         ];

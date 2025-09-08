@@ -4,6 +4,7 @@ namespace App\Modules\Notify\Services;
 
 use App\Modules\Notify\ApiClients\NotifySimproApiClient;
 use App\Modules\Notify\DB\Models\NotifyAssetReport;
+use App\Modules\Notify\DB\Models\NotifyAssetReportValidation;
 use App\Modules\Notify\DB\Services\NotifyAssetReportService;
 use App\Modules\Notify\DB\Services\NotifyAssetReportValidationService;
 use Carbon\Carbon;
@@ -88,7 +89,7 @@ class AssetReportGenerator
             $diff = Carbon::now()->startOfDay()->diffInDays(Carbon::parse($assetReport->last_service_date)->startOfDay());
 
             if ($diff > self::LAST_SERVICE_DATE_ERROR_DAYS) {
-                $errors[] = __('notify::asset_reports.errors.last_service_date', ['diff' => $diff]);
+                $this->appendError($errors, NotifyAssetReportValidation::ERROR_TYPE_LAST_SERVICE_OVER_14_MONTHS, ['diff' => $diff]);
             }
         }
 
@@ -96,9 +97,9 @@ class AssetReportGenerator
             $diff = Carbon::now()->startOfDay()->diffInDays(Carbon::parse($assetReport->service_due)->startOfDay(), false);
 
             if ($diff === 1) {
-                $errors[] = __('notify::asset_reports.errors.service_due_tomorrow');
+                $this->appendError($errors, NotifyAssetReportValidation::ERROR_TYPE_SERVICE_DUE_TOMORROW);
             } elseif ($diff <= self::SERVICE_DUE_SOON_DAYS) {
-                $errors[] = __('notify::asset_reports.errors.service_due_soon', ['diff' => $diff]);
+                $this->appendError($errors, NotifyAssetReportValidation::ERROR_TYPE_SERVICE_DUE_IN_30_DAYS, ['diff' => $diff]);
             }
         }
 
@@ -115,27 +116,31 @@ class AssetReportGenerator
                 ($months < self::LAST_SERVICE_DATE_AND_SERVICE_DUE_DIFF_ERROR_MONTHS_LESS)
                 || ($months > self::LAST_SERVICE_DATE_AND_SERVICE_DUE_DIFF_ERROR_MONTHS_MORE)
             ) {
-                $errors[] = __('notify::asset_reports.errors.last_service_date_diff_service_due', ['months' => $months, 'days' => $days]);
+                $this->appendError(
+                    $errors,
+                    NotifyAssetReportValidation::ERROR_TYPE_SERVICE_COMPLETE_OUTSIDE_DUE_DATE,
+                    ['months' => $months, 'days' => $days],
+                );
             }
         }
 
         if (is_null($assetReport->uprn)) {
-            $errors[] = __('notify::asset_reports.errors.no_uprn');
+            $this->appendError($errors, NotifyAssetReportValidation::ERROR_TYPE_NO_UPRN);
         }
 
         if (is_null($assetReport->fuel_type)) {
-            $errors[] = __('notify::asset_reports.errors.no_fuel_type');
+            $this->appendError($errors, NotifyAssetReportValidation::ERROR_TYPE_NO_FUEL_TYPE);
         }
 
         if (is_null($assetReport->make)) {
-            $errors[] = __('notify::asset_reports.errors.no_make');
+            $this->appendError($errors, NotifyAssetReportValidation::ERROR_TYPE_NO_ASSET_MAKE);
         }
 
         if (is_null($assetReport->model)) {
-            $errors[] = __('notify::asset_reports.errors.no_model');
+            $this->appendError($errors, NotifyAssetReportValidation::ERROR_TYPE_NO_MODEL);
         }
 
-        return array_map(function (string $error) use ($assetReport) {
+        return array_map(function (array $error) use ($assetReport) {
             return [
                 'site_id' => $assetReport->site_id,
                 'uprn' => $assetReport->uprn,
@@ -143,9 +148,18 @@ class AssetReportGenerator
                 'asset_type' => $assetReport->asset_type,
                 'asset_id' => $assetReport->asset_id,
                 'asset_report_id' => $assetReport->id,
-                'error' => $error,
+                'error_type' => $error['type'],
+                'error_text' => $error['text'],
             ];
         }, $errors);
+    }
+
+    protected function appendError(array &$errors, string $errorType, array $replacements = []): void
+    {
+        $errors[] = [
+            'type' => $errorType,
+            'text' => __("notify::asset_reports.validation_messages.{$errorType}", $replacements),
+        ];
     }
 
     protected function prepareAssetReportData(int $siteId, int $assetId): ?array

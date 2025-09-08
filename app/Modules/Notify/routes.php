@@ -1,5 +1,6 @@
 <?php
 
+use App\Modules\Notify\Http\Controllers\AssetReportValidationController;
 use App\Modules\Notify\Http\Controllers\LetterTemplateController;
 use App\Modules\Notify\Http\Controllers\NotifyCsvReportController;
 use App\Modules\Notify\Http\Controllers\NotifyReportController;
@@ -23,6 +24,8 @@ Route::group(['middleware' => ['api', 'auth']], function () {
 
         Route::get('/csv-reports', ['uses' => NotifyCsvReportController::class . '@search']);
         Route::get('/csv-reports/{id}/download', ['uses' => NotifyCsvReportController::class . '@downloadCsvReport']);
+
+        Route::get('/asset-reports/validation', ['uses' => AssetReportValidationController::class . '@search']);
 
         Route::get('/parsing-logs', ['uses' => ParsingLogController::class . '@search']);
     });

@@ -1,0 +1,31 @@
+{
+    "updated": [],
+    "created": [],
+    "deleted": [
+        {
+            "id": 102,
+            "site_id": 11,
+            "asset_id": 111,
+            "uprn": "",
+            "asset_type": "",
+            "type": "",
+            "fuel_type": "",
+            "make": "",
+            "model": "",
+            "last_service_date": "2001-01-01",
+            "service_level_start_date": "2001-01-01",
+            "job_due_date": "2001-01-01",
+            "next_service_date": "2001-01-01",
+            "job_stage": "",
+            "service_level_name": "",
+            "last_mot_date": "",
+            "service_due": "2001-01-01",
+            "next_scheduled_appointment_date": "",
+            "no_access_visits": "",
+            "location": "",
+            "cancellation": "",
+            "created_at": "2018-10-10 10:10:10",
+            "updated_at": "2018-10-10 10:10:10"
+        }
+    ]
+}

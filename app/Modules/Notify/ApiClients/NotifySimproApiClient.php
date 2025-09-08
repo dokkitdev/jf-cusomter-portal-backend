@@ -82,6 +82,16 @@ class NotifySimproApiClient
         } while (!empty($jobs));
     }
 
+    public function getJobLatestSchedule(int $jobId): ?array
+    {
+        $schedules = $this->apiCall('get', '/schedules/', [
+            'Reference' => "{$jobId}-%",
+            'pageSize' => 1,
+        ]);
+
+        return empty($schedules) ? null : $schedules[0];
+    }
+
     public function getCostCenterStock(int $jobId, int $sectionId, int $costCenterId): array
     {
         return $this->apiCall('get', "/jobs/{$jobId}/sections/{$sectionId}/costCenters/{$costCenterId}/stock/", [
@@ -92,6 +102,30 @@ class NotifySimproApiClient
     public function getCatalog(int $catalogId): array
     {
         return $this->apiCall('get', "/catalogs/{$catalogId}");
+    }
+
+    public function getSite(int $siteId): array
+    {
+        return $this->apiCall('get', "/sites/{$siteId}");
+    }
+
+    public function getSiteAsset(int $siteId, int $assetId): array
+    {
+        return $this->apiCall('get', "/sites/{$siteId}/assets/{$assetId}");
+    }
+
+    public function getSiteAssetTestHistory(int $siteId, int $assetId): array
+    {
+        return $this->apiCall('get', "/sites/{$siteId}/assets/{$assetId}/testHistory/");
+    }
+
+    public function getSiteAssetLatestServiceLevel(int $siteId, int $assetId): ?array
+    {
+        $serviceLevels = $this->apiCall('get', "/sites/{$siteId}/assets/{$assetId}/serviceLevels/", [
+            'pageSize' => 1,
+        ]);
+
+        return empty($serviceLevels) ? null : $serviceLevels[0];
     }
 
     protected function apiCall(string $method, string $endpoint, array $data = [], array $headers = []): array

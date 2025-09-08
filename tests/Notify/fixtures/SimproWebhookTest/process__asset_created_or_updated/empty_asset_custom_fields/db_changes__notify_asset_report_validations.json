@@ -1,0 +1,77 @@
+{
+    "updated": [],
+    "created": [
+        {
+            "id": 205,
+            "site_id": 11,
+            "asset_id": 111,
+            "asset_report_id": 104,
+            "error": "No Fuel Type found",
+            "uprn": "site_uprn_value",
+            "fuel_type": null,
+            "asset_type": "asset_type_name",
+            "service_level_name": null,
+            "job_stage": null,
+            "created_at": "2018-11-11 11:11:11",
+            "updated_at": "2018-11-11 11:11:11"
+        },
+        {
+            "id": 206,
+            "site_id": 11,
+            "asset_id": 111,
+            "asset_report_id": 104,
+            "error": "No Asset Make found",
+            "uprn": "site_uprn_value",
+            "fuel_type": null,
+            "asset_type": "asset_type_name",
+            "service_level_name": null,
+            "job_stage": null,
+            "created_at": "2018-11-11 11:11:11",
+            "updated_at": "2018-11-11 11:11:11"
+        },
+        {
+            "id": 207,
+            "site_id": 11,
+            "asset_id": 111,
+            "asset_report_id": 104,
+            "error": "No Model found",
+            "uprn": "site_uprn_value",
+            "fuel_type": null,
+            "asset_type": "asset_type_name",
+            "service_level_name": null,
+            "job_stage": null,
+            "created_at": "2018-11-11 11:11:11",
+            "updated_at": "2018-11-11 11:11:11"
+        }
+    ],
+    "deleted": [
+        {
+            "id": 202,
+            "site_id": 11,
+            "asset_id": 111,
+            "asset_report_id": 102,
+            "error": "",
+            "uprn": "",
+            "fuel_type": "",
+            "asset_type": "",
+            "service_level_name": "",
+            "job_stage": "",
+            "created_at": "2018-10-10 10:10:10",
+            "updated_at": "2018-10-10 10:10:10"
+        },
+        {
+            "id": 203,
+            "site_id": 11,
+            "asset_id": 111,
+            "asset_report_id": 102,
+            "error": "",
+            "uprn": "",
+            "fuel_type": "",
+            "asset_type": "",
+            "service_level_name": "",
+            "job_stage": "",
+            "created_at": "2018-10-10 10:10:10",
+            "updated_at": "2018-10-10 10:10:10"
+        }
+    ]
+}

@@ -1,0 +1,35 @@
+{
+    "site_ids": [
+        11,
+        12,
+        13
+    ],
+    "service_level_names": [
+        "service_level_name_2",
+        "service_level_name_3",
+        "service_level_name_4",
+        "service_level_name_5"
+    ],
+    "asset_types": [
+        "asset_type_value_2",
+        "asset_type_value_3",
+        "asset_type_value_4",
+        "asset_type_value_5"
+    ],
+    "job_stages": [
+        "job_stage_value_2",
+        "job_stage_value_3",
+        "job_stage_value_4",
+        "job_stage_value_5"
+    ],
+    "error_types": [
+        "last_service_over_14_months",
+        "service_due_in_30_days",
+        "service_due_tomorrow",
+        "service_complete_outside_dude_date",
+        "no_uprn",
+        "no_fuel_type",
+        "no_asset_make",
+        "no_model"
+    ]
+}

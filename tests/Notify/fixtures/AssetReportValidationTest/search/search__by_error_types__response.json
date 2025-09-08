@@ -1,0 +1,62 @@
+{
+    "data": [
+        {
+            "id": 202,
+            "site_id": 11,
+            "asset_id": 111,
+            "uprn": "uprn_value_2",
+            "asset_type": "asset_type_value_2",
+            "service_level_name": "service_level_name_2",
+            "job_stage": "job_stage_value_2",
+            "error_type": "no_fuel_type",
+            "error_text": "error_text_2",
+            "created_at": "2018-10-10T09:10:10.000000Z",
+            "updated_at": "2018-10-10T09:10:10.000000Z"
+        },
+        {
+            "id": 203,
+            "site_id": 12,
+            "asset_id": 111,
+            "uprn": "uprn_value_3",
+            "asset_type": "asset_type_value_3",
+            "service_level_name": "service_level_name_3",
+            "job_stage": "job_stage_value_3",
+            "error_type": "no_asset_make",
+            "error_text": "error_text_3",
+            "created_at": "2018-10-10T09:10:10.000000Z",
+            "updated_at": "2018-10-10T09:10:10.000000Z"
+        }
+    ],
+    "links": {
+        "first": "http:\/\/localhost\/notify\/asset-reports\/validation?page=1",
+        "last": "http:\/\/localhost\/notify\/asset-reports\/validation?page=1",
+        "prev": null,
+        "next": null
+    },
+    "meta": {
+        "current_page": 1,
+        "from": 1,
+        "last_page": 1,
+        "links": [
+            {
+                "url": null,
+                "label": "&laquo; Previous",
+                "active": false
+            },
+            {
+                "url": "http:\/\/localhost\/notify\/asset-reports\/validation?page=1",
+                "label": "1",
+                "active": true
+            },
+            {
+                "url": null,
+                "label": "Next &raquo;",
+                "active": false
+            }
+        ],
+        "path": "http:\/\/localhost\/notify\/asset-reports\/validation",
+        "per_page": 10,
+        "to": 2,
+        "total": 2
+    }
+}

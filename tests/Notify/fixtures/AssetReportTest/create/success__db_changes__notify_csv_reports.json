@@ -1,0 +1,14 @@
+{
+    "updated": [],
+    "created": [
+        {
+            "id": 1,
+            "report_type": "asset",
+            "file_name": "CHL_InstalledEquipment_201811111111.csv",
+            "is_finished": false,
+            "created_at": "2018-11-11 11:11:11",
+            "updated_at": "2018-11-11 11:11:11"
+        }
+    ],
+    "deleted": []
+}

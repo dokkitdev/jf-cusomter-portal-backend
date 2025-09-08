@@ -1,0 +1,14 @@
+{
+    "updated": [],
+    "created": [],
+    "deleted": [
+        {
+            "id": 202,
+            "report_type": "asset",
+            "file_name": "file_02.csv",
+            "is_finished": false,
+            "created_at": "2018-10-10 10:10:10",
+            "updated_at": "2018-10-10 10:10:10"
+        }
+    ]
+}

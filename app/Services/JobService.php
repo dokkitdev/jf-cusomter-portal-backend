@@ -5,7 +5,9 @@ namespace App\Services;
 use App\ApiClients\SimproApiClient;
 use App\Models\Role;
 use App\Models\SimproJob;
+use App\Models\Team\SimProTeams;
 use App\Repositories\JobRepository;
+use App\Services\SimProTeam\SimProTeamService;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
@@ -26,6 +28,7 @@ class JobService extends BaseService
     protected JobAttachmentService $jobAttachmentService;
     protected JobWorkOrderService $jobWorkOrderService;
     protected JobNoAccessDateService $jobNoAccessDateService;
+    private ?SimProTeams $team = null;
 
     public function __construct()
     {
@@ -158,20 +161,29 @@ class JobService extends BaseService
     {
         $companyId = $webhook['data']['reference']['companyID'];
         $simproJobId = $webhook['data']['reference']['jobID'];
+        $build_url = $webhook['data']['build'];
+
+        $this->team = app(SimProTeamService::class)->getSimProTeam($build_url);
+
+        $this->simproClient = new SimproApiClient($this->team);
 
         $simproJob = $this->simproClient->getJob($companyId, $simproJobId);
+        $customerService = new CustomerService($this->team);
+        $customer =$customerService->firstOrCreateBySimpro($companyId, $simproJob['Customer']['ID']);
 
-        $customer = $this->customerService->firstOrCreateBySimpro($companyId, $simproJob['Customer']['ID']);
-
-        $site = $this->siteService->firstOrCreateBySimpro($companyId, $simproJob['Site']['ID']);
+        $siteService = new SiteService($this->team);
+        $site =$siteService->firstOrCreateBySimpro($companyId, $simproJob['Site']['ID']);
 
         $job = $this->createOrUpdate($companyId, $simproJob, $customer['id'], $site['id']);
 
-        $this->jobCatalogService->syncBySimpro($simproJob, $job['id']);
+        $jobCatalogService = new JobCatalogService($this->team);
+        $jobCatalogService->syncBySimpro($simproJob, $job['id']);
 
-        $this->jobAttachmentService->syncBySimpro($companyId, $simproJobId, $job['id']);
+        $jobAttachmentService = new JobAttachmentService($this->team);
+        $jobAttachmentService->syncBySimpro($companyId, $simproJobId, $job['id']);
 
-        $this->jobWorkOrderService->syncBySimpro($companyId, $simproJob, $job['id']);
+        $jobWorkOrderService = new JobWorkOrderService($this->team);
+        $jobWorkOrderService->syncBySimpro($companyId, $simproJob, $job['id']);
 
         return $job;
     }
@@ -185,6 +197,8 @@ class JobService extends BaseService
         }
 
         $simproJob = $this->simproClient->getJob($companyId, $simproJobId);
+
+        dump($simproJob);
 
         $customer = $this->customerService->firstOrCreateBySimpro($companyId, $simproJob['Customer']['ID']);
 
@@ -223,7 +237,15 @@ class JobService extends BaseService
             }
         }
 
-        $job = $this->repository->updateOrCreate(['simpro_job_id' => $simproJob['ID']], [
+        $company = app(SimProTeamService::class)
+            ->fetchCompanyBySimProId($this->team->id, $companyId);
+
+        $job = $this->repository->updateOrCreate(
+            [
+                'simpro_job_id' => $simproJob['ID'],
+                'team_id' => $this->team->id,
+                'company_id' => $company->id,
+            ], [
             'customer_id' => $customerId,
             'site_id' => $siteId,
             'order_no' => Arr::get($simproJob, 'OrderNo'),
@@ -242,11 +264,14 @@ class JobService extends BaseService
             'is_repair' => $isJobRepair,
         ]);
 
-        $this->jobNoAccessDateService->syncBySimpro($companyId, $simproJob['ID'], $job['id']);
+        $jobNoAccessDateService = new jobNoAccessDateService($this->team);
+        $jobNoAccessDateService->syncBySimpro($companyId, $simproJob['ID'], $job['id']);
 
-        app(ScheduleService::class)->createOrUpdateManyBySimpro($companyId, $simproJob['ID'], $job['id']);
+        $scheduleService = new ScheduleService($this->team);
+        $scheduleService->createOrUpdateManyBySimpro($companyId, $simproJob['ID'], $job['id']);
 
-        app(AssetService::class)->updateReportFieldsFromJob($job['id']);
+        $assetService =  new AssetService($this->team);
+        $assetService->updateReportFieldsFromJob($job['id']);
 
         return $job;
     }

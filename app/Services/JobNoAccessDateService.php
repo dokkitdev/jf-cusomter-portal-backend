@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\ApiClients\SimproApiClient;
+use App\Models\Team\SimProTeams;
 use App\Repositories\JobNoAccessDateRepository;
 use Illuminate\Support\Carbon;
 use RonasIT\Support\Services\EntityService;
@@ -15,12 +16,20 @@ class JobNoAccessDateService extends EntityService
 {
     protected SimproApiClient $simproClient;
     protected int $companyId;
+    protected ?SimProTeams $team = null;
 
-    public function __construct()
+    public function __construct(
+        SImproTeams $team = null
+    )
     {
+        $this->team = $team;
         $this->setRepository(JobNoAccessDateRepository::class);
 
-        $this->simproClient = app(SimproApiClient::class);
+        if($team){
+            $this->simproClient = new SimproApiClient($team);
+        }else{
+            $this->simproClient = app(SimproApiClient::class);
+        }
         $this->companyId = config('services.simpro.company_id');
     }
 

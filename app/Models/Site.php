@@ -8,6 +8,8 @@ class Site extends BaseModel
 {
     protected $fillable = [
         'simpro_site_id',
+        'team_id',
+        'company_id',
         'name',
         'uprn',
         'address',

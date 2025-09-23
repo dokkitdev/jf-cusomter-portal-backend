@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\ApiClients\SimproApiClient;
+use App\Models\Team\SimProTeams;
 use App\Repositories\JobWorkOrderRepository;
 use Illuminate\Support\Arr;
 use RonasIT\Support\Services\EntityService;
@@ -14,12 +15,20 @@ use RonasIT\Support\Services\EntityService;
 class JobWorkOrderService extends EntityService
 {
     protected SimproApiClient $simproClient;
+    protected ?SimProTeams $team = null;
 
-    public function __construct()
+    public function __construct(
+        SimProTeams $team = null
+    )
     {
+        $this->team = $team;
         $this->setRepository(JobWorkOrderRepository::class);
 
-        $this->simproClient = app(SimproApiClient::class);
+        if($team){
+            $this->simproClient = new SimproApiClient($team);
+        }else{
+            $this->simproClient = app(SimproApiClient::class);
+        }
     }
 
     public function syncBySimpro(int $companyId, array $simproJob, int $jobId): void

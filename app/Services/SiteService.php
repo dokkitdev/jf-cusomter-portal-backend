@@ -5,7 +5,10 @@ namespace App\Services;
 use App\ApiClients\SimproApiClient;
 use App\Models\Role;
 use App\Models\SimproJob;
+use App\Models\Team\SimProCompanies;
+use App\Models\Team\SimProTeams;
 use App\Repositories\SiteRepository;
+use App\Services\SimProTeam\SimProTeamService;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
@@ -21,14 +24,23 @@ class SiteService extends BaseService
     protected SimproApiClient $simproClient;
     protected int $companyId;
     protected SiteContactService $siteContactService;
+    protected ?SimProTeams $team = null;
 
-    public function __construct()
+    public function __construct(
+        SimProTeams $team = null
+    )
     {
+        $this->team = $team;
         parent::__construct();
 
         $this->setRepository(SiteRepository::class);
 
-        $this->simproClient = app(SimproApiClient::class);
+        if($this->team){
+            $this->simproClient = new SimproApiClient($this->team);
+        }else{
+            $this->simproClient = app(SimproApiClient::class);
+        }
+
         $this->companyId = config('services.simpro.company_id');
         $this->customerService = app(CustomerService::class);
         $this->siteContactService = app(SiteContactService::class);
@@ -102,6 +114,12 @@ class SiteService extends BaseService
     {
         $companyId = $webhook['data']['reference']['companyID'];
         $simproSiteId = $webhook['data']['reference']['siteID'];
+        $build_url = $webhook['data']['build'];
+
+        $this->team = app(SimProTeamService::class)->getSimProTeam($build_url);
+
+        $this->simproClient = new SimproApiClient($this->team);
+
 
         return $this->createOrUpdate($companyId, $simproSiteId);
     }
@@ -123,8 +141,13 @@ class SiteService extends BaseService
             return Arr::get($value, 'CustomField.ID') === config('defaults.site_uprn_custom_field_id');
         });
 
+        $company = app(SimProTeamService::class)
+            ->fetchCompanyBySimProId($this->team->id, $companyId);
+
         $site = $this->repository->updateOrCreate([
-            'simpro_site_id' => $simproSite['ID']
+            'simpro_site_id' => $simproSite['ID'],
+            'team_id' => $this->team->id,
+            'company_id' => $company->id,
         ], [
             'name' => $simproSite['Name'],
             'address' => $simproSite['Address']['Address'],
@@ -135,11 +158,14 @@ class SiteService extends BaseService
             'uprn' => Arr::get($uprnCustomField, 'Value'),
         ]);
 
-        $this->siteContactService->syncBySite($companyId, $simproSiteId, $site['id']);
+        $siteContactService = new SiteContactService($this->team);
+        $siteContactService->syncBySite($companyId, $simproSiteId, $site['id']);
 
         $customerIds = [];
+
+        $customerService = new CustomerService($this->team);
         foreach ($simproSite['Customers'] as $siteCustomer) {
-            $customer = $this->customerService->firstOrCreateBySimpro($companyId, $siteCustomer['ID']);
+            $customer = $customerService->firstOrCreateBySimpro($companyId, $siteCustomer['ID']);
             $customerIds[] = $customer['id'];
         }
         $site->customers()->sync($customerIds);

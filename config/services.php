@@ -44,6 +44,6 @@ return [
         'token' => env('SIMPRO_TOKEN', 'fake_simpro_token'),
         'api_url' => env('SIMPRO_API_URL', 'https://fake.gassure.simprocloud.com/'),
         'webhook_secret' => env('SIMPRO_WEBHOOK_SECRET'),
-        'company_id' => env('SIMPRO_COMPANY_ID', 0)
+        'company_id' => env('SIMPRO_COMPANY_ID', 114)
     ]
 ];

@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\ApiClients\SimproApiClient;
+use App\Models\Team\SimProTeams;
 use App\Repositories\AssetAttachmentRepository;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
@@ -15,15 +16,24 @@ class AssetAttachmentService extends BaseService
 {
     protected SimproApiClient $simproClient;
     protected int $companyId;
+    protected ?SimProTeams $team = null;
 
-    public function __construct()
+    public function __construct(
+        SimProTeams $team = null
+    )
     {
+        $this->team = $team;
         parent::__construct();
 
         $this->setRepository(AssetAttachmentRepository::class);
 
         $this->companyId = config('services.simpro.company_id');
-        $this->simproClient = app(SimproApiClient::class);
+
+        if($team){
+            $this->simproClient = new SimproApiClient($team);
+        }else{
+            $this->simproClient = app(SimproApiClient::class);
+        }
     }
 
     public function syncByAsset(int $companyId, int $simproSiteId, int $simproAssetId, int $assetId): void

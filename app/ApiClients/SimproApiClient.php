@@ -3,9 +3,11 @@
 namespace App\ApiClients;
 
 use App\Models\Customer;
+use App\Models\Team\SimProTeams;
 use Generator;
 use App\Services\HttpRequestService;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Log;
 
 class SimproApiClient
 {
@@ -16,9 +18,13 @@ class SimproApiClient
     protected const JOB_STATUS_NAME_NO_GAS = 'Job: No Gas';
 
     protected HttpRequestService $httpRequestService;
+    protected SimProTeams $team;
 
-    public function __construct()
+    public function __construct(
+        SimProTeams $team
+    )
     {
+        $this->team = $team;
         $this->httpRequestService = app(HttpRequestService::class);
     }
 
@@ -192,6 +198,12 @@ class SimproApiClient
         return $this->makeRequest('get', $url);
     }
 
+    public function getSites(int $companyId, $page, $pageSize = 250): ?array
+    {
+        $url = $this->getUrl("companies/{$companyId}/sites/");
+        return $this->makeRequest('get', $url, ['pageSize' => $pageSize, 'page' => $page]);
+    }
+
     public function getSite(int $companyId, int $siteId): ?array
     {
         $url = $this->getUrl("companies/{$companyId}/sites/{$siteId}");
@@ -251,6 +263,13 @@ class SimproApiClient
         return $this->makeRequest('get', $url, [
             'display' => 'all'
         ]);
+    }
+
+    public function getJobs(int $companyId, $page = 1, $pageSize = 250): ?array
+    {
+        $url = $this->getUrl("companies/{$companyId}/jobs/");
+
+        return $this->makeRequest('get', $url, ['pageSize' => $pageSize, 'page' => $page]);
     }
 
     public function getMadeSafeJobLog(int $companyId, int $jobId): array
@@ -472,6 +491,15 @@ class SimproApiClient
         return $this->makeRequest('get', $url, $data);
     }
 
+    public function getCompanies()
+    {
+        $url = $this->getUrl("companies/");
+
+        Log::debug($url);
+
+        return $this->makeRequest('get', $url);
+    }
+
     protected function getArchivedAssetsPageWithoutData(int $companyId): int
     {
         $pageWithoutData = 0;
@@ -500,7 +528,7 @@ class SimproApiClient
 
     protected function getUrl(string $action): string
     {
-        return config('services.simpro.api_url') . "api/v1.0/{$action}";
+        return "https://". $this->team->build_url . ".simprosuite.com/api/v1.0/{$action}";
     }
 
     protected function getHeaders(): array
@@ -508,7 +536,7 @@ class SimproApiClient
         return [
             'Accept' => 'application/json',
             'Content-Type' => 'application/json',
-            'Authorization' => 'Bearer ' . config('services.simpro.token'),
+            'Authorization' => 'Bearer ' . $this->team->token
         ];
     }
 }

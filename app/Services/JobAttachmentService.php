@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\ApiClients\SimproApiClient;
+use App\Models\Team\SimProTeams;
 use App\Repositories\JobAttachmentRepository;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
@@ -16,12 +17,20 @@ class JobAttachmentService extends EntityService
 {
     protected SimproApiClient $simproClient;
     protected int $companyId;
+    protected ?SimProTeams $team = null;
 
-    public function __construct()
+    public function __construct(
+        SimProTeams $team = null
+    )
     {
+        $this->team = $team;
         $this->setRepository(JobAttachmentRepository::class);
 
-        $this->simproClient = app(SimproApiClient::class);
+        if($team){
+            $this->simproClient = new SimproApiClient($team);
+        }else{
+            $this->simproClient = new SimproApiClient($team);
+        }
         $this->companyId = config('services.simpro.company_id');
     }
 

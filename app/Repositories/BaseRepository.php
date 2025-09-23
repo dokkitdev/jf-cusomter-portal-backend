@@ -31,6 +31,7 @@ class BaseRepository extends Repository
                 return $this->update($where, $data);
             }
 
+            dump($exception->getMessage());
             throw $exception;
         }
     }

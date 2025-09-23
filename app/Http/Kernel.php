@@ -69,6 +69,7 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-        'maintenance' => \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class
+        'maintenance' => \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
+        'dokkit.api.key' => \App\Http\Middleware\CheckDokkitExtensionApiKey::class
     ];
 }

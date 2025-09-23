@@ -19,6 +19,8 @@ class Job extends BaseModel
 
     protected $fillable = [
         'simpro_job_id',
+        'team_id',
+        'company_id',
         'customer_id',
         'site_id',
         'order_no',

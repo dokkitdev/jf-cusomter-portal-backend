@@ -6,6 +6,7 @@ use App\ApiClients\SimproApiClient;
 use App\Models\Role;
 use App\Models\Customer;
 use App\Models\SimproJob;
+use App\Models\Team\SimProTeams;
 use App\Repositories\CustomerRepository;
 use Exception;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
@@ -20,14 +21,22 @@ class CustomerService extends BaseService
 {
     protected SimproApiClient $simproClient;
     protected int $companyId;
+    protected ?SimProTeams $team = null;
 
-    public function __construct()
+    public function __construct(
+        SimProTeams $team = null
+    )
     {
+        $this->team = $team;
         parent::__construct();
 
         $this->setRepository(CustomerRepository::class);
 
-        $this->simproClient = app(SimproApiClient::class);
+        if($team){
+            $this->simproClient = new SimproApiClient($team);
+        }else{
+            $this->simproClient = app(SimproApiClient::class);
+        }
 
         $this->companyId = config('services.simpro.company_id');
     }

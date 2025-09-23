@@ -7,6 +7,7 @@ use App\Models\Asset;
 use App\Models\AssetTestRecord;
 use App\Models\Role;
 use App\Models\SimproJob;
+use App\Models\Team\SimProTeams;
 use App\Repositories\AssetRepository;
 use Exception;
 use Generator;
@@ -28,20 +29,32 @@ class AssetService extends BaseService
     protected AssetAttachmentService $assetAttachmentService;
     protected AssetTestRecordService $assetTestRecordService;
     protected int $companyId;
+    protected ?SimProTeams $team = null;
 
-    public function __construct()
+    public function __construct(
+        SimProTeams $team = null
+    )
     {
+        $this->team = $team;
         parent::__construct();
 
         $this->setRepository(AssetRepository::class);
 
         $this->companyId = config('services.simpro.company_id');
 
-        $this->simproClient = app(SimproApiClient::class);
-        $this->siteService = app(SiteService::class);
+        if($this->team){
+            $this->simproClient = new SimproApiClient($this->team);
+            $this->siteService = new SiteService($this->team);
+            $this->assetAttachmentService = new AssetAttachmentService($this->team);
+            $this->assetTestRecordService = new AssetTestRecordService($this->team);
+        }else{
+            $this->simproClient = app(SimproApiClient::class);
+            $this->siteService = app(SiteService::class);
+            $this->assetAttachmentService = app(AssetAttachmentService::class);
+            $this->assetTestRecordService = app(AssetTestRecordService::class);
+        }
+
         $this->assetCustomFieldService = app(AssetCustomFieldService::class);
-        $this->assetAttachmentService = app(AssetAttachmentService::class);
-        $this->assetTestRecordService = app(AssetTestRecordService::class);
     }
 
     public function getAssetServiceLevels()

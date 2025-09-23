@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\ApiClients\SimproApiClient;
 use App\Models\SimproJob;
+use App\Models\Team\SimProTeams;
 use App\Repositories\ScheduleRepository;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
@@ -17,13 +18,23 @@ class ScheduleService extends EntityService
 {
     protected JobService $jobService;
     protected SimproApiClient $simproClient;
+    protected ?SimProTeams $team = null;
 
-    public function __construct()
+
+    public function __construct(
+        SimProTeams $team = null
+    )
     {
+        $this->team = $team;
         $this->setRepository(ScheduleRepository::class);
 
         $this->jobService = app(JobService::class);
-        $this->simproClient = app(SimproApiClient::class);
+
+        if($team){
+            $this->simproClient = new SimproApiClient($team);
+        }else{
+            $this->simproClient = app(SimproApiClient::class);
+        }
     }
 
     public function createOrUpdateManyBySimpro(int $companyId, int $simproJobId, int $jobId): void

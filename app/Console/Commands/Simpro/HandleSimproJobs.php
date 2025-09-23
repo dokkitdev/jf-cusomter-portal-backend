@@ -3,6 +3,7 @@
 namespace App\Console\Commands\Simpro;
 
 use App\Console\Commands\AbstractTimeoutCommand;
+use App\Jobs\SimProHandleJob;
 use App\Models\SimproJob;
 use App\Services\SimproJobService;
 use Exception;
@@ -27,15 +28,15 @@ class HandleSimproJobs extends AbstractTimeoutCommand
             ->getForHandle(1000, $eventId, $divider, $mod)
             ->each(function ($job) {
                 try {
-                    $this->simproJobService->handleJob($job);
+//                    $this->simproJobService->update($job->id, [
+//                        'handle_status' => SimproJob::HANDLE_STATUS_PROCESSED,
+//                    ]);
+                    SimProHandleJob::dispatch($job);
 
                     //$this->simproJobService->delete($job->id);
 
-                    $this->simproJobService->update($job->id, [
-                        'handle_status' => SimproJob::HANDLE_STATUS_COMPLETED,
-                    ]);
                 } catch (Exception $e) {
-                    if (app()->environment() === 'testing') {
+                    if (app()->environment() === 'local') {
                         throw $e;
                     }
 

@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\ApiClients\SimproApiClient;
+use App\Models\Team\SimProTeams;
 use App\Repositories\AssetTestRecordRepository;
 use Illuminate\Support\Arr;
 
@@ -15,14 +16,22 @@ class AssetTestRecordService extends BaseService
     protected SimproApiClient $simproClient;
     protected JobService $jobService;
     protected AssetTestRecordReadingService $assetTestRecordReadingService;
+    protected ?SimProTeams $team = null;
 
-    public function __construct()
+    public function __construct(
+        SimProTeams $team = null
+    )
     {
+        $this->team = $team;
         parent::__construct();
 
         $this->setRepository(AssetTestRecordRepository::class);
 
-        $this->simproClient = app(SimproApiClient::class);
+        if($team){
+            $this->simproClient = new SimproApiClient($team);
+        }else{
+            $this->simproClient = app(SimproApiClient::class);
+        }
         $this->jobService = app(JobService::class);
         $this->assetTestRecordReadingService = app(AssetTestRecordReadingService::class);
     }

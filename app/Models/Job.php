@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Team\SimProTeams;
 use Illuminate\Database\Eloquent\Builder;
 
 class Job extends BaseModel
@@ -48,6 +49,16 @@ class Job extends BaseModel
         return $query->whereHas('customer.users', function ($query) use ($userId) {
             return $query->where('user_id', $userId);
         });
+    }
+
+    public function scopeOnlyTeam(Builder $query, SimProTeams $team): Builder
+    {
+        return $query->where('team_id', $team->id);
+    }
+
+    public function scopeOnlyCompany(Builder $query, int $company_id): Builder
+    {
+        return $query->where('company_id', $company_id);
     }
 
     public function scopeOutOfHours(Builder $query): Builder

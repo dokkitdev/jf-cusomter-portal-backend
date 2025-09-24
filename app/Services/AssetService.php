@@ -9,6 +9,7 @@ use App\Models\Role;
 use App\Models\SimproJob;
 use App\Models\Team\SimProTeams;
 use App\Repositories\AssetRepository;
+use App\Services\SimProTeam\SimProTeamService;
 use Exception;
 use Generator;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
@@ -83,12 +84,13 @@ class AssetService extends BaseService
         return $assetNames;
     }
 
-    public function search(array $filters): LengthAwarePaginator
+    public function search(array $filters, SimProTeams $team = null): LengthAwarePaginator
     {
         $filters = $this->prepareSearchFilters($filters);
 
         $assets = $this->repository
             ->searchQuery($filters)
+            ->filterByTeam($team)
             ->getSearchResults();
 
         if (Arr::get($filters, 'report')) {
@@ -121,8 +123,14 @@ class AssetService extends BaseService
 
     public function updateOrCreateBySimpro(SimproJob $webhook): Model
     {
-        $companyId = 0;
-        $assetId = $this->getAssetId(Arr::get($webhook, 'data.description'));
+        $companyId =  Arr::get($webhook, 'data.reference.companyID') ?? 0;
+        $assetId =  Arr::get($webhook, 'data.reference.assetID') ??
+            $this->getAssetId(Arr::get($webhook, 'data.description'));
+
+        $build_url = $webhook['data']['build'];
+        $this->team = app(SimProTeamService::class)->getSimProTeam($build_url);
+
+        $this->simproClient = new SimproApiClient($this->team);
 
         return $this->createOrUpdateAsset($companyId, $assetId);
     }
@@ -150,19 +158,20 @@ class AssetService extends BaseService
 
         $simproSiteId = $simproAsset['Site']['ID'];
 
-        $site = $this->siteService->firstOrCreateBySimpro($companyId, $simproSiteId);
+        $siteService = new SiteService($this->team);
+        $site = $siteService->firstOrCreateBySimpro($companyId, $simproSiteId);
 
         $asset = $this->createOrUpdate($companyId, $simproAsset, $site['id'], $site['simpro_site_id']);
 
         $this->assetCustomFieldService->syncByAsset($simproAsset, $asset['id']);
 
-        $this->assetAttachmentService->syncByAsset($companyId, $simproSiteId, $simproAssetId, $asset['id']);
+        $assetAttachmentService = new AssetAttachmentService($this->team);
+        $assetAttachmentService->syncByAsset($companyId, $simproSiteId, $simproAssetId, $asset['id']);
 
-        $this->assetTestRecordService->syncByAsset($companyId, $simproSiteId, $simproAssetId, $asset['id']);
+        $assetTestRecordService = new AssetTestRecordService($this->team);
+        $assetTestRecordService->syncByAsset($companyId, $simproSiteId, $simproAssetId, $asset['id']);
 
-        $asset = $this->updateReportFields($asset);
-
-        return $asset;
+        return $this->updateReportFields($asset);
     }
 
     protected function prepareSearchFilters(array $filters): array
@@ -211,6 +220,8 @@ class AssetService extends BaseService
 
         return $this->repository->updateOrCreate([
             'simpro_asset_id' => $simproAsset['ID'],
+            'team_id' => $this->team->id,
+            'company_id' => $companyId,
         ], [
             'site_id' => $siteId,
             'name' => Arr::get($simproAsset, 'AssetType.Name'),

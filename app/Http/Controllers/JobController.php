@@ -11,6 +11,7 @@ use App\Http\Requests\Jobs\GetStatusesRequest;
 use App\Http\Requests\Jobs\SearchJobRequest;
 use App\Services\JobService;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Log;
 use Maatwebsite\Excel\Facades\Excel;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -48,7 +49,9 @@ class JobController extends Controller
 
     public function search(SearchJobRequest $request, JobService $service)
     {
-        $result = $service->search($request->onlyValidated());
+        $team = $request->attributes->get('auth_team');
+
+        $result = $service->search($request->onlyValidated(), $team);
 
         return response()->json($result);
     }
@@ -63,9 +66,11 @@ class JobController extends Controller
         return Excel::download(new JobsReportExport($service, $request->onlyValidated()), 'jobs_report.csv');
     }
 
-    public function getCostCenters(GetCostCentersRequest $request, JobService $service)
+    public function getCostCenters(GetCostCentersRequest $request)
     {
-        $result = $service->getCostCenters();
+        $team = $request->attributes->get('auth_team');
+        $jobService = new JobService($team);
+        $result = $jobService->getCostCenters($request->get('company_id') ?? 0);
 
         return response()->json($result);
     }

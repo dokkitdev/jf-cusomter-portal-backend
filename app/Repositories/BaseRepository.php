@@ -143,4 +143,21 @@ class BaseRepository extends Repository
             $query->orWhere($field, 'like', "{$left}{$loweredQuery}{$right}");
         };
     }
+
+    public function filterByCompanyId(int $companyId): self
+    {
+        if (Arr::has($this->filter, 'company_id')) {
+            $this->query->where('company_id', $companyId);
+        }
+
+        return $this;
+    }
+
+
+    public function filterByTeam($team): self
+    {
+        $this->query->where('team_id', $team->id);
+
+        return $this;
+    }
 }

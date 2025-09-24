@@ -19,7 +19,8 @@ class CustomerController extends Controller
 
     public function search(SearchCustomerRequest $request, CustomerService $service)
     {
-        $result = $service->search($request->onlyValidated());
+        $team = $request->attributes->get('auth_team');
+        $result = $service->search($request->onlyValidated(), $team);
 
         return response()->json($result);
     }

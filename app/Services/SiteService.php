@@ -46,14 +46,8 @@ class SiteService extends BaseService
         $this->siteContactService = app(SiteContactService::class);
     }
 
-    public function search(array $filters): LengthAwarePaginator
+    public function search(array $filters, SimProTeams $team = null): LengthAwarePaginator
     {
-        $authUser = $this->getAuthUser();
-
-        if ($authUser['role_id'] === Role::CUSTOMER) {
-            $filters['site_has_user'] = $authUser['id'];
-        }
-
         if (Arr::get($filters, 'order_by') === 'postal_code') {
             $filters['order_by'] = DB::raw('LOWER(postal_code)');
         }
@@ -71,6 +65,7 @@ class SiteService extends BaseService
             ->filterByPrimaryContact()
             ->filterByOpenJobs()
             ->filterByOnlyPermitted()
+            ->filterByTeam($team)
             ->getSearchResults();
     }
 

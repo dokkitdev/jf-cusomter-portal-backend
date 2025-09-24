@@ -31,7 +31,9 @@ class SiteController extends Controller
 
     public function search(SearchSiteRequest $request, SiteService $service)
     {
-        $result = $service->search($request->onlyValidated());
+        $team = $request->attributes->get('auth_team');
+
+        $result = $service->search($request->onlyValidated(), $team);
 
         return response()->json($result);
     }

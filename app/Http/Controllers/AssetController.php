@@ -37,7 +37,8 @@ class AssetController extends Controller
 
     public function search(SearchAssetRequest $request, AssetService $service)
     {
-        $result = $service->search($request->onlyValidated());
+        $team = $request->attributes->get('auth_team');
+        $result = $service->search($request->onlyValidated(), $team);
 
         return response()->json($result);
     }

@@ -28,10 +28,7 @@ class HandleSimproJobs extends AbstractTimeoutCommand
             ->getForHandle(1000, $eventId, $divider, $mod)
             ->each(function ($job) {
                 try {
-//                    $this->simproJobService->update($job->id, [
-//                        'handle_status' => SimproJob::HANDLE_STATUS_PROCESSED,
-//                    ]);
-                    SimProHandleJob::dispatch($job);
+                    SimProHandleJob::dispatch($job)->onQueue('full_parser');
 
                     //$this->simproJobService->delete($job->id);
 

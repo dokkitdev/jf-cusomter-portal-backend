@@ -2,6 +2,7 @@
 
 namespace App\Services\Parser;
 
+use App\Jobs\Parser\AssetsParserJob;
 use App\Jobs\Parser\FullCompaniesParseJob;
 use App\Jobs\Parser\FullJobsParseJob;
 use App\Jobs\Parser\FullSiteParseJob;
@@ -27,7 +28,8 @@ class FullParserService extends BaseService
     public function fullParse($team)
     {
         FullCompaniesParseJob::dispatchSync($team);
-        FullSiteParseJob::dispatch($team);
-        FullJobsParseJob::dispatch($team);
+        FullSiteParseJob::dispatch($team)->onQueue('full_parser');
+        FullJobsParseJob::dispatch($team)->onQueue('full_parser');
+        AssetsParserJob::dispatch($team)->onQueue('full_parser');
     }
 }

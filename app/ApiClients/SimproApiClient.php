@@ -102,6 +102,18 @@ class SimproApiClient
         return $this->makeRequest('get', $url);
     }
 
+    public function getAssets(int $companyId, $page = 1): ?array
+    {
+        $url = $this->getUrl("companies/{$companyId}/customerAssets/");
+
+        return $this->makeRequest('get', $url,
+            [
+                'pageSize' => self::MAX_PAGE_SIZE,
+                'page' => $page,
+            ]
+        );
+    }
+
     public function getArchivedAssets(int $companyId, int $page): array
     {
         return $this->makeRequest(
@@ -395,7 +407,7 @@ class SimproApiClient
         ]);
     }
 
-    public function getCostCenters(int $companyId): Generator
+    public function getCostCenters(int $companyId = 0): Generator
     {
         $url = "companies/{$companyId}/setup/accounts/costCenters/";
 

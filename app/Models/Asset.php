@@ -15,6 +15,8 @@ class Asset extends BaseModel
 
     protected $fillable = [
         'simpro_asset_id',
+        'team_id',
+        'company_id',
         'site_id',
         'name',
         'customer_name',

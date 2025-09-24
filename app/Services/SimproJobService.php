@@ -34,6 +34,8 @@ class SimproJobService extends EntityService
     {
         $event = $webhook['data']['ID'];
 
+        dump($event);
+
         switch ($event) {
             case 'job.created':
             case 'job.updated':

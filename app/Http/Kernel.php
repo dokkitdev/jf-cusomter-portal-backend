@@ -70,6 +70,8 @@ class Kernel extends HttpKernel
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'maintenance' => \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
-        'dokkit.api.key' => \App\Http\Middleware\CheckDokkitExtensionApiKey::class
+        'dokkit.api.key' => \App\Http\Middleware\CheckDokkitExtensionApiKey::class,
+        'dokkit.team.api.key' => \App\Http\Middleware\CheckDokkitExtensionTeamApiKey::class,
+        'auth.team.api.key' => \App\Http\Middleware\AuthUserWithTeamMiddleware::class
     ];
 }

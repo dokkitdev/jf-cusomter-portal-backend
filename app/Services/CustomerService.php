@@ -41,19 +41,14 @@ class CustomerService extends BaseService
         $this->companyId = config('services.simpro.company_id');
     }
 
-    public function search(array $filters): LengthAwarePaginator
+    public function search(array $filters, SimProTeams $team = null): LengthAwarePaginator
     {
-        $authUser = $this->getAuthUser();
-
-        if ($authUser['role_id'] === Role::CUSTOMER) {
-            $filters['customer_has_user'] = $authUser['id'];
-        }
-
         return $this->repository
             ->with(Arr::get($filters, 'with', []))
             ->searchQuery($filters)
             ->filterBy('users.user_id', 'customer_has_user')
             ->filterByNameOrId()
+            ->filterByTeam($team)
             ->getSearchResults();
     }
 

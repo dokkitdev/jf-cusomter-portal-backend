@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
-class CheckDokkitExtensionApiKey
+class AuthUserWithTeamMiddleware
 {
     /**
      * Handle an incoming request.
@@ -19,15 +19,21 @@ class CheckDokkitExtensionApiKey
      */
     public function handle(Request $request, Closure $next)
     {
-        $configApiKey = config('microservice.dokkit_extension.api_key');
-        $requestApiKey = $request->header('x-api-key');
+        $user = $request->user();
 
-        if (empty($configApiKey) || $requestApiKey !== $configApiKey) {
-            return response()->json([
-                'message' => 'Unauthorized. Invalid or missing API key'
-            ], ResponseAlias::HTTP_UNAUTHORIZED);
+        if ($user && $user->team_id) {
+            $team = SimProTeams::whereId($user->team_id)->first();
+
+            if ($team) {
+                $request->attributes->add(['auth_team' => $team]);
+
+                return $next($request);
+            }
         }
 
-        return $next($request);
+        return response()->json([
+            'message' => 'Invalid or missing Team API key'
+        ], ResponseAlias::HTTP_FORBIDDEN);
+
     }
 }

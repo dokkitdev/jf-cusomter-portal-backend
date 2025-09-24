@@ -30,35 +30,43 @@ class JobService extends BaseService
     protected JobNoAccessDateService $jobNoAccessDateService;
     private ?SimProTeams $team = null;
 
-    public function __construct()
+    public function __construct(
+        SimProTeams $team = null
+    )
     {
         parent::__construct();
 
         $this->setRepository(JobRepository::class);
 
-        $this->simproClient = app(SimproApiClient::class);
+        $this->team = $team;
+        if($team){
+            $this->simproClient = new SimproApiClient($team);
+            $this->siteService = new SiteService($team);
+            $this->customerService = new CustomerService($team);
+            $this->jobAttachmentService = new JobAttachmentService($team);
+            $this->jobWorkOrderService = new JobWorkOrderService($team);
+            $this->jobNoAccessDateService = new JobNoAccessDateService($team);
+        }else{
+            $this->simproClient = app(SimproApiClient::class);
+            $this->siteService = app(SiteService::class);
+            $this->customerService = app(CustomerService::class);
+            $this->jobAttachmentService = app(JobAttachmentService::class);
+            $this->jobWorkOrderService = app(JobWorkOrderService::class);
+            $this->jobNoAccessDateService = app(JobNoAccessDateService::class);
+        }
         $this->settingService = app(SettingService::class);
         $this->companyId = config('services.simpro.company_id');
-        $this->siteService = app(SiteService::class);
-        $this->customerService = app(CustomerService::class);
         $this->jobCatalogService = app(JobCatalogService::class);
-        $this->jobAttachmentService = app(JobAttachmentService::class);
-        $this->jobWorkOrderService = app(JobWorkOrderService::class);
-        $this->jobNoAccessDateService = app(JobNoAccessDateService::class);
+
     }
 
-    public function search(array $filters): LengthAwarePaginator
+    public function search(array $filters, SimProTeams $team = null): LengthAwarePaginator
     {
-        $authUser = $this->getAuthUser();
-
-        if ($authUser['role_id'] === Role::CUSTOMER) {
-            $filters['job_has_user'] = $authUser['id'];
-        }
-
         return $this->repository
             ->with(Arr::get($filters, 'with', []))
             ->withCount(Arr::get($filters, 'with_count', []))
             ->searchQuery($filters)
+
             ->filterByIntQuery('simpro_job_id')
             ->filterBy('customer_id')
             ->filterBy('site_id')
@@ -86,13 +94,13 @@ class JobService extends BaseService
             ->filterTimeFrom('made_safe_date', 'made_safe_time_from')
             ->filterTimeTo('made_safe_date', 'made_safe_time_to')
             ->filterByOutOfHours()
-            ->filterByOnlyPermitted()
+            ->filterByTeam($team)
             ->getSearchResults();
     }
 
-    public function getCostCenters()
+    public function getCostCenters($companyId = 0)
     {
-        $costCenterPages = $this->simproClient->getCostCenters($this->companyId);
+        $costCenterPages = $this->simproClient->getCostCenters($companyId ?? 0);
 
         $costCenters = [];
         foreach ($costCenterPages as $costCenterPage) {
@@ -197,8 +205,6 @@ class JobService extends BaseService
         }
 
         $simproJob = $this->simproClient->getJob($companyId, $simproJobId);
-
-        dump($simproJob);
 
         $customer = $this->customerService->firstOrCreateBySimpro($companyId, $simproJob['Customer']['ID']);
 

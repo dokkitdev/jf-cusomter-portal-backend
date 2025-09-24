@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Job;
+use App\Models\Team\SimProTeams;
 use Carbon\Carbon;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
@@ -129,25 +130,42 @@ class JobRepository extends BaseRepository
         return $this;
     }
 
-    public function getOutOfHoursCount(?int $userId): int
+    public function getOutOfHoursCount(SimProTeams $team): int
     {
         $query = $this->getQuery()->outOfHours();
 
-        if ($userId) {
-            $query->onlyPermitted($userId);
+        if ($team) {
+            $query->onlyTeam($team);
         }
 
         return $query->count();
     }
 
-    public function getCountWithPermissions(?int $userId, array $where = []): int
+    public function getCountWithPermissions(SimProTeams $team = null, array $where = []): int
     {
         $query = $this->getQuery($where);
 
-        if ($userId) {
-            $query->onlyPermitted($userId);
+        if ($team) {
+            $query->onlyTeam($team);
         }
 
         return $query->count();
+    }
+
+    public function filterByCompanyId(int $companyId): self
+    {
+        if (Arr::has($this->filter, 'company_id')) {
+            $this->query->where('company_id', $companyId);
+        }
+
+        return $this;
+    }
+
+
+    public function filterByTeam($team): self
+    {
+        $this->query->where('team_id', $team->id);
+
+        return $this;
     }
 }

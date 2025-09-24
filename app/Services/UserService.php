@@ -14,6 +14,7 @@ use Illuminate\Support\Arr;
 use App\Repositories\UserRepository;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 
 /**
  * @property UserRepository $repository
@@ -133,28 +134,27 @@ class UserService extends BaseService
         $this->sendInvitationEmail($user['email'], $data['set_password_hash']);
     }
 
-    public function getDashboardCounters(): array
+    public function getDashboardCounters($request): array
     {
-        $authUser = $this->getAuthUser();
 
-        $authUserId = $authUser->role_id === Role::CUSTOMER ? $authUser->id : null;
+        $team = $request->attributes->get('auth_team');
 
-        $todaysJobsCount = $this->jobService->getCountWithPermissions($authUserId, [
+        $todaysJobsCount = $this->jobService->getCountWithPermissions($team, [
             'date_created' => now()->format('Y-m-d'),
             'stage' => Job::PENDING_STAGE
         ]);
 
-        $outOfHoursJobsCount = $this->jobService->getOutOfHoursCount($authUserId);
+        $outOfHoursJobsCount = $this->jobService->getOutOfHoursCount($team);
 
-        $pendingJobsCount = $this->jobService->getCountWithPermissions($authUserId, ['stage' => Job::PENDING_STAGE]);
+        $pendingJobsCount = $this->jobService->getCountWithPermissions($team, ['stage' => Job::PENDING_STAGE]);
 
-        $progressJobsCount = $this->jobService->getCountWithPermissions($authUserId, ['stage' => Job::PROGRESS_STAGE]);
+        $progressJobsCount = $this->jobService->getCountWithPermissions($team, ['stage' => Job::PROGRESS_STAGE]);
 
-        $completeJobsCount = $this->jobService->getCountWithPermissions($authUserId, ['stage' => Job::COMPLETE_STAGE]);
+        $completeJobsCount = $this->jobService->getCountWithPermissions($team, ['stage' => Job::COMPLETE_STAGE]);
 
-        $invoicedJobsCount = $this->jobService->getCountWithPermissions($authUserId, ['stage' => Job::INVOICED_STAGE]);
+        $invoicedJobsCount = $this->jobService->getCountWithPermissions($team, ['stage' => Job::INVOICED_STAGE]);
 
-        $archivedJobsCount = $this->jobService->getCountWithPermissions($authUserId, ['stage' => Job::ARCHIVED_STAGE]);
+        $archivedJobsCount = $this->jobService->getCountWithPermissions($team, ['stage' => Job::ARCHIVED_STAGE]);
 
         return [
             'todays_jobs_total' => $todaysJobsCount,

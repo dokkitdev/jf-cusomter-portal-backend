@@ -29,24 +29,30 @@ class AssetTestRecordService extends BaseService
 
         if($team){
             $this->simproClient = new SimproApiClient($team);
+            $this->jobService = new JobService($team);
         }else{
             $this->simproClient = app(SimproApiClient::class);
+            $this->jobService = app(JobService::class);
         }
-        $this->jobService = app(JobService::class);
         $this->assetTestRecordReadingService = app(AssetTestRecordReadingService::class);
     }
 
     public function syncByAsset(int $companyId, int $simproSiteId, int $simproAssetId, int $assetId): void
     {
-        $testHistories = $this->simproClient->getAssetTestHistories($companyId, $simproSiteId, $simproAssetId);
+        $simproClient = new SimproApiClient($this->team);
+        $jobService = new JobService($this->team);
+
+
+        $testHistories = $simproClient->getAssetTestHistories($companyId, $simproSiteId, $simproAssetId);
 
         $this->repository->delete(['asset_id' => $assetId]);
 
         if ($testHistories) {
+
             foreach ($testHistories as $testHistory) {
                 $jobID = null;
                 if (Arr::get($testHistory, 'Job.ID')) {
-                    $job = $this->jobService->firstOrCreateBySimpro($companyId, Arr::get($testHistory, 'Job.ID'));
+                    $job = $jobService->firstOrCreateBySimpro($companyId, Arr::get($testHistory, 'Job.ID'));
                     $jobID = $job['id'];
                 }
 
@@ -59,6 +65,7 @@ class AssetTestRecordService extends BaseService
                     'result' => Arr::get($testHistory, 'TestRecord.Result'),
                 ]);
 
+
                 foreach ($testHistory['TestReadings'] as $testReading) {
                     $this->assetTestRecordReadingService->create([
                         'asset_test_record_id' => $testRecord['id'],
@@ -66,7 +73,9 @@ class AssetTestRecordService extends BaseService
                         'value' => $testReading['Value'],
                     ]);
                 }
+
             }
         }
+
     }
 }

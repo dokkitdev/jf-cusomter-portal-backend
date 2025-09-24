@@ -1,5 +1,10 @@
 <?php
 
+use App\Http\Controllers\AssetController;
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\JobController;
+use App\Http\Controllers\SiteController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,9 +22,35 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('dokkit.api.key')->group(function () {
     Route::group(['prefix' => 'dokkit-extension'], function () {
         Route::get('status', [App\Http\Controllers\DokkitExtension\DokkitExtensionController::class, 'status']);
-
         Route::post('add-team', [App\Http\Controllers\DokkitExtension\DokkitExtensionController::class, 'addTeam']);
-        Route::post('update-token', [App\Http\Controllers\DokkitExtension\DokkitExtensionController::class, 'updateToken']);
+
+        Route::middleware('dokkit.team.api.key')->group(function () {
+            Route::post('update-token', [App\Http\Controllers\DokkitExtension\DokkitExtensionController::class, 'updateToken']);
+
+
+            Route::group(['prefix' => 'data'], function () {
+                Route::get('dashboard', ['uses' => UserController::class . '@dashboard']);
+                Route::get('jobs', ['uses' => JobController::class . '@search']);
+
+
+                Route::group(['prefix' => 'jobs'], function () {
+                    Route::get('/', ['uses' => JobController::class . '@search']);
+                    Route::get('cost-centers', ['uses' => JobController::class . '@getCostCenters']);
+                });
+
+                Route::group(['prefix' => 'sites'], function () {
+                    Route::get('/', ['uses' => SiteController::class . '@search']);
+                });
+
+                Route::group(['prefix' => 'customers'], function () {
+                    Route::get('/', ['uses' => CustomerController::class . '@search']);
+                });
+
+                Route::group(['prefix' => 'assets'], function () {
+                    Route::get('/', ['uses' => AssetController::class . '@search']);
+                });
+            });
+        });
     });
 });
 

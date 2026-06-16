@@ -2,12 +2,18 @@
 
 namespace App\ApiClients;
 
+use App\Models\Customer;
 use Generator;
 use App\Services\HttpRequestService;
+use Illuminate\Support\Carbon;
 
 class SimproApiClient
 {
-    protected const MAX_PAGE_SIZE = 250;
+	protected const MAX_PAGE_SIZE = 250;
+
+	    protected const JOB_STATUS_NAME_MADE_SAFE = 'Job : Made Safe';
+    protected const JOB_STATUS_NAME_NO_ACCESS = 'Job : No Access';
+    protected const JOB_STATUS_NAME_NO_GAS = 'Job: No Gas';
 
     protected HttpRequestService $httpRequestService;
 
@@ -266,9 +272,20 @@ class SimproApiClient
         return $this->makeRequest('get', $url, $data);
     }
 
-    public function getMadeSafeJobLog(int $companyId, int $jobId): ?array
+
+    public function getMadeSafeJobLog(int $companyId, int $jobId): array
     {
-        return  $this->getJobLog($companyId, $jobId, 'Job status set to Job : Made Safe');
+        return $this->searchJobLogForUpdateStatusRecords($companyId, $jobId, [
+            self::JOB_STATUS_NAME_MADE_SAFE,
+        ]);
+    }
+
+    public function getNoAccessJobLog(int $companyId, int $jobId): array
+    {
+        return $this->searchJobLogForUpdateStatusRecords($companyId, $jobId, [
+            self::JOB_STATUS_NAME_NO_ACCESS,
+            self::JOB_STATUS_NAME_NO_GAS,
+        ]);
     }
 
     public function getCreatedJobLog(int $companyId, int $jobId): ?array
@@ -289,15 +306,6 @@ class SimproApiClient
         });
 
         return $response;
-    }
-
-    public function getNoAccessJobLog(int $companyId, int $jobId): ?array
-    {
-        return $this->getJobLog(
-            $companyId,
-            $jobId,
-            'in(Job status set to Job : No Access,Job status set to Job: No Gas)',
-        );
     }
 
     public function postJob(int $companyId, array $data): ?array
@@ -402,6 +410,50 @@ class SimproApiClient
 
             yield $result;
         } while (!empty($result));
+    }
+
+    public function searchJobLogForUpdateStatusRecords(int $companyId, int $jobId, array $newStatuses): array
+    {
+        $fullLog = $this->getJobLog($companyId, $jobId);
+
+        if (empty($fullLog)) {
+            return [];
+        }
+
+        $foundLogRecords = array_filter($fullLog, function (array $logEntry) use ($newStatuses) {
+            foreach ($newStatuses as $newStatus) {
+                if (
+                    preg_match("/^Job status set to {$newStatus}$/i", $logEntry['Message'])
+                    || preg_match("/^Updated Status from \".*\" to \"{$newStatus}\"$/i", $logEntry['Message'])
+                ) {
+                    return true;
+                }
+            }
+
+            return false;
+        });
+
+        usort($foundLogRecords, function (array $recordA, array $recordB) {
+            return Carbon::parse($recordA['DateLogged']) <=> Carbon::parse($recordB['DateLogged']);
+        });
+
+        return $foundLogRecords;
+    }
+
+    protected function getJobLog(int $companyId, int $jobId, ?string $message = null): ?array
+    {
+        $url = $this->getUrl("companies/{$companyId}/logs/jobs/");
+
+	$data = [
+            'JobID' => $jobId,
+            'pageSize' => self::MAX_PAGE_SIZE,
+        ];
+
+        if (isset($message)) {
+            $data['Message'] = $message;
+        }
+
+        return $this->makeRequest('get', $url, $data);
     }
 
     protected function getArchivedAssetsPageWithoutData(int $companyId): int

@@ -5,6 +5,7 @@ namespace App\Console\Commands\FullUpdateSimpro;
 use App\ApiClients\SimproApiClient;
 use App\Console\Commands\AbstractTimeoutCommand;
 use App\Services\SimproJobService;
+use Carbon\Carbon;
 
 class FullUpdateJobsCommand extends AbstractTimeoutCommand
 {
@@ -31,7 +32,14 @@ class FullUpdateJobsCommand extends AbstractTimeoutCommand
         ]);
 
         foreach ($jobs as $job) {
-           dump($job);
+
+            $input = Carbon::parse($job['DateModified']);
+
+            $startOfCurrentMonth = Carbon::now()->startOfMonth();
+
+            $isOlderThanCurrentMonth = $input->lt($startOfCurrentMonth);
+           dump($job['Id']);
+           dump($isOlderThanCurrentMonth);
         }
         if (count($jobs) < 250) {
             return;

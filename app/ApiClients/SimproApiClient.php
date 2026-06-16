@@ -4,6 +4,7 @@ namespace App\ApiClients;
 
 use Generator;
 use App\Services\HttpRequestService;
+use Illuminate\Support\Facades\Cache;
 
 class SimproApiClient
 {
@@ -417,8 +418,29 @@ class SimproApiClient
         return $pageWithoutData;
     }
 
+    protected function checkRateLimit(): void
+    {
+        $maxRequests = 7;
+        $currentSecond = time();
+
+        $cacheKey = "rate_limit:request_count:" . $currentSecond;
+
+        $currentRequests = Cache::remember($cacheKey, 5, function () {
+                return 0;
+            }) + 1;
+
+        Cache::put($cacheKey, $currentRequests, 5);
+
+        if ($currentRequests > $maxRequests) {
+            sleep(1);
+            $this->checkRateLimit();
+        }
+    }
+
     protected function makeRequest(string $method, string $url, array $data = [], array $headers = []): ?array
     {
+        $this->checkRateLimit();
+
         $headers = array_merge($this->getHeaders(), $headers);
 
         $requestData = ($method === 'delete') ? $headers : $data;

@@ -440,22 +440,6 @@ class SimproApiClient
         return $foundLogRecords;
     }
 
-    protected function getJobLog(int $companyId, int $jobId, ?string $message = null): ?array
-    {
-        $url = $this->getUrl("companies/{$companyId}/logs/jobs/");
-
-	$data = [
-            'JobID' => $jobId,
-            'pageSize' => self::MAX_PAGE_SIZE,
-        ];
-
-        if (isset($message)) {
-            $data['Message'] = $message;
-        }
-
-        return $this->makeRequest('get', $url, $data);
-    }
-
     protected function getArchivedAssetsPageWithoutData(int $companyId): int
     {
         $pageWithoutData = 0;

@@ -247,6 +247,13 @@ class SimproApiClient
         ]);
     }
 
+    public function getJobs(int $companyId, array $data): ?array
+    {
+        $url = $this->getUrl("companies/{$companyId}/jobs/");
+
+        return $this->makeRequest('get', $url, $data);
+    }
+
     public function getJobLog(int $companyId, int $jobId, string $message): ?array
     {
         $url = $this->getUrl("companies/{$companyId}/logs/jobs/");

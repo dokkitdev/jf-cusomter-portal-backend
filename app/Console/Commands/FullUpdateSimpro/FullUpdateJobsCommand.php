@@ -40,6 +40,7 @@ class FullUpdateJobsCommand extends AbstractTimeoutCommand
             $isOlderThanCurrentMonth = $input->lt($startOfCurrentMonth);
            dump($job['ID']);
            dump($isOlderThanCurrentMonth);
+           dump($job['DateModified']);
         }
         if (count($jobs) < 250) {
             return;

@@ -448,11 +448,13 @@ class SimproApiClient
             $headers = array_merge($this->getHeaders(), $headers);
             $requestData = ($method === 'delete') ? $headers : $data;
 
-            $response = $this->httpRequestService
+            $this->httpRequestService
                 ->set('timeout', config('artisan.timeout_seconds'))
                 ->$method($url, $requestData, $headers);
 
-            if ($response && $response->getStatusCode() === 429) {
+            $rawResponse = $this->httpRequestService->getResponse();
+
+            if ($rawResponse && $rawResponse->getStatusCode() === 429) {
                 $attempt++;
 
                 if ($attempt < $maxRetries) {
@@ -464,7 +466,7 @@ class SimproApiClient
 
         } while ($attempt < $maxRetries);
 
-        return $response ? $response->jsonOrNull() : null;
+        return $this->httpRequestService->jsonOrNull();
     }
 
     protected function getUrl(string $action): string

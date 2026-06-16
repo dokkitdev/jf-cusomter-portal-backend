@@ -452,7 +452,7 @@ class SimproApiClient
                 ->set('timeout', config('artisan.timeout_seconds'))
                 ->$method($url, $requestData, $headers);
 
-            if ($response && $response->status() === 429) {
+            if ($response && $response->getStatusCode() === 429) {
                 $attempt++;
 
                 if ($attempt < $maxRetries) {

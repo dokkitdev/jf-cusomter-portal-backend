@@ -38,7 +38,7 @@ class FullUpdateJobsCommand extends AbstractTimeoutCommand
             $startOfCurrentMonth = Carbon::now()->startOfMonth();
 
             $isOlderThanCurrentMonth = $input->lt($startOfCurrentMonth);
-           dump($job['Id']);
+           dump($job['ID']);
            dump($isOlderThanCurrentMonth);
         }
         if (count($jobs) < 250) {

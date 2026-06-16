@@ -439,17 +439,32 @@ class SimproApiClient
 
     protected function makeRequest(string $method, string $url, array $data = [], array $headers = []): ?array
     {
-        $this->checkRateLimit();
+        $maxRetries = 10;
+        $attempt = 0;
 
-        $headers = array_merge($this->getHeaders(), $headers);
+        do {
+            $this->checkRateLimit();
 
-        $requestData = ($method === 'delete') ? $headers : $data;
+            $headers = array_merge($this->getHeaders(), $headers);
+            $requestData = ($method === 'delete') ? $headers : $data;
 
-        $response = $this->httpRequestService
-            ->set('timeout', config('artisan.timeout_seconds'))
-            ->$method($url, $requestData, $headers);
+            $response = $this->httpRequestService
+                ->set('timeout', config('artisan.timeout_seconds'))
+                ->$method($url, $requestData, $headers);
 
-        return $response->jsonOrNull();
+            if ($response && $response->status() === 429) {
+                $attempt++;
+
+                if ($attempt < $maxRetries) {
+                    sleep(1);
+                    continue;
+                }
+            }
+            break;
+
+        } while ($attempt < $maxRetries);
+
+        return $response ? $response->jsonOrNull() : null;
     }
 
     protected function getUrl(string $action): string

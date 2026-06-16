@@ -27,7 +27,7 @@ class FullUpdateJobsCommand extends AbstractTimeoutCommand
         $jobs = $simproClient->getJobs(0, [
             'columns' => 'ID,Stage,Status,Description,Name,Sections.CostCenters,Site,Customer,OrderNo,ResponseTime,Sections,DateModified',
             'pageSize' => 250,
-            'page' => 1,
+            'page' => $page,
             'orderbydesc' => 'DateModified',
         ]);
 

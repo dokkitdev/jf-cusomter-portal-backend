@@ -3,11 +3,12 @@
 namespace App\Console\Commands\Simpro;
 
 use App\Console\Commands\AbstractTimeoutCommand;
+use App\Models\Asset;
 use App\Services\AssetService;
 
 class UpdateAssets extends AbstractTimeoutCommand
 {
-    protected $signature = 'simpro:update-assets';
+    protected $signature = 'simpro:update-assets {--asset_id=0}';
 
     protected $description = 'Update Assets';
 
@@ -16,6 +17,12 @@ class UpdateAssets extends AbstractTimeoutCommand
     public function handle(): void
     {
         $service = app(AssetService::class);
+
+        if($this->option('asset_id')) {
+            $asset = Asset::find($this->option('asset_id'));
+            $service->updateReportFields($asset);
+            return;
+        }
 
         $service->chunk(1000, function ($assets) use ($service) {
             foreach ($assets as $asset) {
